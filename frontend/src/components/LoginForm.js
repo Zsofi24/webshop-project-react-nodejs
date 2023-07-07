@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { formValidation } from '../utils/formValidation';
 import { MdOutlineAlternateEmail } from 'react-icons/md';
@@ -6,13 +6,13 @@ import { GiCheckMark } from 'react-icons/gi';
 import { BiLock } from 'react-icons/bi';
 import '../assets/css/AuthForm.css';
 import { userService } from '../services/userServices';
+import { UserAuthContext } from '../contexts/UserAuthProvider';
 
 export default function LoginForm() {
 
     const navigate = useNavigate()
     const [ errorMessage, setErrorMessage ] = useState(null);
-    const user = false;
-
+    const { user, setUser } = useContext(UserAuthContext);
 
     const [formData, setFormData] = useState({
         email: {
@@ -40,7 +40,11 @@ export default function LoginForm() {
         e.preventDefault();
         userService.userLogin({email: formData.email.value, password: formData.password.value})
             .then(resp => resp.json())
-            .then(data => console.log(data))
+            .then(data => { 
+                console.log(data)
+                setUser(data)
+                navigate('/')
+            })
     }
 
   return (

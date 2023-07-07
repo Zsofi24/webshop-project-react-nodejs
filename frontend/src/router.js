@@ -4,6 +4,7 @@ import Home from './pages/Home'
 import Login from './pages/Login';
 import Registration from './pages/Registration';
 import Products from './pages/Products';
+import Profile from './pages/Profile';
 
 const routes = createBrowserRouter([
     {element: <Layout />, 
@@ -12,10 +13,9 @@ const routes = createBrowserRouter([
             { index: true, element: <Home />},
             { path: '/belepes', element: <Login />},
             { path: '/regisztracio', element: <Registration />},
-            { path: '/termekek', element: <Products />}
-
+            { path: '/termekek', element: <Products />},
+            { path: '/profile', element: <Profile />}
         ]
-
     }
 ])
 
