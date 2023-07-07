@@ -32,5 +32,20 @@ export default {
                 })
             })
         })
+    },
+
+    getAll() {
+        const sql = `SELECT * FROM products`;
+
+        return new Promise((resolve, reject) => {
+            db.serialize(() => {
+                const stmt = db.prepare(sql);
+                stmt.all((err, rows) => {
+                    if(err) reject(err)
+                    else resolve(rows)
+
+                })
+            })
+        })
     }
 }

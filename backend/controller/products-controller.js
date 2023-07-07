@@ -7,6 +7,12 @@ export default {
             .create({ title, price, description })
             .then(resp => res.status(201).send(resp))
             .catch(next)
+    },
+    getAll(req, res, next) {
+        productsServices
+            .getAll()
+            .then(resp => res.status(200).send(resp))
+            .catch(next)
     }
 }
 

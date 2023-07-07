@@ -3,6 +3,7 @@ import Layout from './components/Layout';
 import Home from './pages/Home'
 import Login from './pages/Login';
 import Registration from './pages/Registration';
+import Products from './pages/Products';
 
 const routes = createBrowserRouter([
     {element: <Layout />, 
@@ -10,7 +11,9 @@ const routes = createBrowserRouter([
         children: [
             { index: true, element: <Home />},
             { path: '/belepes', element: <Login />},
-            { path: '/regisztracio', element: <Registration />}
+            { path: '/regisztracio', element: <Registration />},
+            { path: '/termekek', element: <Products />}
+
         ]
 
     }
