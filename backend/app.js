@@ -6,7 +6,9 @@ import errorHandler from './middlewares/error-handler-middleware.js';
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin: ['http://localhost:3001']
+}));
 
 app.use('/api', usersRouter);
 app.use('/api', productsRouter);
