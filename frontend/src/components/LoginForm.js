@@ -6,7 +6,7 @@ import { GiCheckMark } from 'react-icons/gi';
 import { BiLock } from 'react-icons/bi';
 import '../assets/css/AuthForm.css';
 import { userService } from '../services/userServices';
-import { UserAuthContext } from '../contexts/UserAuthProvider';
+import { UserAuthContext } from '../contexts/UserAuthContext';
 
 export default function LoginForm() {
 

@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { CgProfile } from 'react-icons/cg'
 import { BsCart } from 'react-icons/bs'
-import { UserAuthContext } from '../contexts/UserAuthProvider';
+import { UserAuthContext } from '../contexts/UserAuthContext';
 import { userService } from '../services/userServices';
 
 export default function Nav() {

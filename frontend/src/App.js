@@ -1,23 +1,23 @@
 import { RouterProvider } from "react-router-dom";
 import routes from "./router";
-import { UserAuthContext, UserAuthProvider } from "./contexts/UserAuthProvider";
-import { useContext, useEffect } from "react";
+import { UserAuthContext, UserAuthProvider } from "./contexts/UserAuthContext";
+import { useContext } from "react";
 import { CookiesProvider, useCookies } from "react-cookie";
 
 
 function App() {
 
   const [ cookies ] = useCookies("sessionID")
-  const { user, setUser } = useContext(UserAuthContext);
+  const { setUser } = useContext(UserAuthContext);
   console.log(setUser, 'setuser');
-
+  console.log(cookies, "cookies");
 
   return (
-    <CookiesProvider>
     <UserAuthProvider>
+      <CookiesProvider>
       <RouterProvider router={routes} />
-    </UserAuthProvider>
     </CookiesProvider>
+    </UserAuthProvider>
   );
 }
 
