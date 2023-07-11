@@ -20,10 +20,10 @@ app.use(
     session({
       key: "sessionID",
       secret: "false",
-      cookie: { maxAge: 300000000, secure: false },
+      cookie: { maxAge: 300000000, secure: false , httpOnly: false },
       saveUninitialized: false,
       resave: false,
-      store,
+      store
     })
 );
 

@@ -1,13 +1,23 @@
 import React, { useContext } from 'react'
-import { NavLink } from 'react-router-dom'
-// import { UserAuthContext } from '../context/UserAuthContext'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { CgProfile } from 'react-icons/cg'
 import { BsCart } from 'react-icons/bs'
 import { UserAuthContext } from '../contexts/UserAuthProvider';
+import { userService } from '../services/userServices';
 
 export default function Nav() {
 
-  const { user } = useContext(UserAuthContext);
+  const { user, setUser } = useContext(UserAuthContext);
+  const navigate = useNavigate();
+
+  function logout() {
+    userService
+      .userLogout()
+      .then(() => {
+        setUser({});
+        navigate('/')
+      })
+  }
   
   return (
     <nav>
@@ -28,7 +38,7 @@ export default function Nav() {
         <NavLink to='/kosar'><BsCart/></NavLink>
         { user.email ? 
         <>
-          <NavLink to='/kijelentkezes'>kijelentkezés</NavLink>
+          <NavLink  ><button onClick={logout}>kijelentkezés</button></NavLink>
           <NavLink to='/profile'>profil</NavLink>
         </>
           :
