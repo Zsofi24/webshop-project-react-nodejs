@@ -1,5 +1,6 @@
 import db from '../connection.js';
 import { nanoid } from 'nanoid';
+import bcrypt from 'bcrypt';
 
 export default {
     createTable() {
@@ -27,29 +28,46 @@ export default {
         const id = nanoid(16);
 
         console.log(email, password, username);
-
+        // hash-t kivinni a service-be
         return new Promise((resolve, reject) => {
             db.serialize(() => {
-                const stmt = db.prepare(sql);
-                stmt.bind(id, email, password, username);
-                stmt.run((err) => {
-                    if(err) return reject(err)
-                    else resolve({message: 'ok'})
-                })
+                bcrypt.hash(password, 10, (err, hash) => {
+                    const stmt = db.prepare(sql);
+                    stmt.bind(id, email, hash, username);
+                    stmt.run((err) => {
+                        if(err) reject(err)
+                        else resolve({message: 'ok'})
+                    })
+
+                } )
             })
         })
     },
 
-    find({ email, password }) {
-        const sql = `SELECT * FROM users WHERE email = ? AND password = ?`;
+    find({ email, password, req }) {
+        const sql = `SELECT * FROM users WHERE email = ?`;
         return new Promise((resolve, reject) => {
             db.serialize(() => {
                 const stmt = db.prepare(sql);
-                stmt.bind(email, password);
+                stmt.bind(email);
                 stmt.get((err, row) => {
                     if(err) reject(err)
                     if(row) {
-                        resolve({...row})
+                        bcrypt.compare(password, row.password, (err, response) => {
+                            if(err) console.log(err, "login err");
+                            if(response) {
+                                // console.log("pwd response", response); //true or false
+                                req.session.authenticated = true;
+                                req.session.user = {
+                                    email: row.email,
+                                    username: row.username,
+                                    localId: row.id                             
+                                }; 
+                                resolve({localId: row.id, email: row.email, username: row.username })
+                            } else {
+                                resolve({message: "helytelen email cím vagy jelszó"})
+                            }
+                        })
                     } else {
                         console.log("nincs ilyen user");
                         resolve({message: "nincs ilyen user"});

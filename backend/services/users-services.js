@@ -4,7 +4,7 @@ export default {
     create({ email, password, username }) {
         return usersModel.create({ email, password, username });
     },
-    find({ email, password }) {
-        return usersModel.find({ email,password })
+    find({ email, password , req}) {
+        return usersModel.find({ email,password , req})
     }
 }

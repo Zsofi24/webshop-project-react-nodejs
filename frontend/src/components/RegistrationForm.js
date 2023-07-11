@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-// import { userRegistrationAuth } from '../../services/user-authentication';
 import { MdOutlineAlternateEmail } from 'react-icons/md';
 import { BiLock } from 'react-icons/bi';
 import { FaUser } from 'react-icons/fa';
@@ -14,7 +13,7 @@ export default function RegistrationForm() {
     const navigate = useNavigate();
 
     const [errorMessage, setErrorMessage] = useState(null);
-
+    console.log(errorMessage, "errormessage");
     const [formData, setFormData] = useState({
         email: {
             value: "",
@@ -47,15 +46,15 @@ export default function RegistrationForm() {
         console.log(invalid);
         if(invalid) return 
         console.log(formData);
-        try {
-            userService.userRegist({email: formData.email.value, password: formData.password.value, username: formData.username.value})
-                .then(resp => console.log(resp))
-            // userRegistrationAuth(formData);
-        }
-        catch (err) {
-            console.log("set");
-            setErrorMessage(err.message)
-        }
+       
+        userService.userRegist({email: formData.email.value, password: formData.password.value, username: formData.username.value})
+            .then(resp => {
+                if(resp.ok) navigate('/belepes')
+                else setErrorMessage("már létezik ilyen adat")
+            })
+            
+        
+ 
         // navigate('/')
         
     }
