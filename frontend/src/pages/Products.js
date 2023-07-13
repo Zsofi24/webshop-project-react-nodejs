@@ -11,6 +11,7 @@ export default function Products() {
             .getProducts()
             .then(data => setProducts(data))
     }, [])
+    
   return (
     <>
     <div>Products</div>

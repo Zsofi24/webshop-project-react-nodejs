@@ -1,11 +1,16 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { productService } from '../services/productServices';
+import { UserAuthContext } from '../contexts/UserAuthContext'
 
 export default function ProductCard({product}) {
+
+  const { user } = useContext(UserAuthContext)
     console.log(product);
 
     function addToCart() {
-        productService.addProductToCart(product.id)
+      const cartdata = { userid: user.localId, productid: product.id }
+      console.log(cartdata, "cartdata");
+        productService.addProductToCart(cartdata)
     }
 
   return (
