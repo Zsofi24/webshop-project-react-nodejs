@@ -65,7 +65,27 @@ export default {
                 stmt.bind(amount, userid, productid);
                 stmt.run((err) => {
                     if(err) reject(err)
-                    else resolve({userid, productid, amount})
+                    else resolve({ userid, productid, amount })
+                })
+            })
+        })
+    },
+
+    getCartItems({ userid }) {
+        const sql = `SELECT * FROM cart_items JOIN products ON product_id = id WHERE user_id = ?`;
+
+        return new Promise((resolve, reject) => {
+            db.serialize(() => {
+                const stmt = db.prepare(sql);
+                stmt.bind(userid);
+                stmt.all((err, rows) => {
+                    console.log(rows);
+                    if(err) reject(err)
+                    if(rows) {
+                        resolve(rows)
+                    } else {
+                        resolve({})
+                    }
                 })
             })
         })

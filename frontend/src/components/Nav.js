@@ -35,7 +35,7 @@ export default function Nav() {
       </div>
       <div>
         { !user.email && <NavLink to='/regisztracio'><CgProfile/></NavLink> }
-        <NavLink to='/kosar'><BsCart/></NavLink>
+        <NavLink to={`/kosar/${user.localId}`}><BsCart/></NavLink>
         { user.email ? 
         <>
           <NavLink  ><button onClick={logout}>kijelentkezés</button></NavLink>

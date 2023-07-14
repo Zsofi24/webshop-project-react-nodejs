@@ -31,11 +31,9 @@ export default {
                     res.clearCookie("sessionID", {path: "/"})
                     res.json({message: "ok"})
                 }
-            });
-            
+            });            
         } else {
             res.send("nincs ilyen session")
-
         }
     },
 
