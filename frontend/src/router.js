@@ -15,7 +15,7 @@ const routes = createBrowserRouter([
             { path: '/belepes', element: <Login />},
             { path: '/regisztracio', element: <Registration />},
             { path: '/termekek', element: <Products />},
-            { path: '/kosar/:userid', element: <Cart />},
+            { path: '/kosar/', element: <Cart />},
             { path: '/profile', element: <Profile />}
         ]
     }
