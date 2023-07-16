@@ -4,7 +4,9 @@ import session from 'express-session';
 import cookieParser from 'cookie-parser';
 import usersRouter from './routes/users-router.js';
 import productsRouter from './routes/products-router.js';
-import cartItemsRouter from './routes/cart-items-router.js'
+import cartItemsRouter from './routes/cart-items-router.js';
+import ordersRouter from './routes/orders-router.js';
+import ordersProductsRouter from './routes/orders-products-router.js';
 import errorHandler from './middlewares/error-handler-middleware.js';
 
 const store = new session.MemoryStore();
@@ -30,7 +32,9 @@ app.use(
 
 app.use('/api', usersRouter);
 app.use('/api', productsRouter);
-app.use('/api', cartItemsRouter)
+app.use('/api', cartItemsRouter);
+app.use('/api', ordersRouter);
+app.use('/api', ordersProductsRouter);
 
 app.use(errorHandler);
 
