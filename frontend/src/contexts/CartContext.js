@@ -7,10 +7,7 @@ export const CartContext = createContext({});
 export function CartProvider({ children }) {
 
     const [cart, setCart] = useState({});
-    const { user, setUser } = useContext(UserAuthContext);
-    const [ cookies ] = useCookies(['sessionID'])
-    console.log(user, "user in context");
-
+    const [ cookies ] = useCookies(['sessionID']);
     
   useEffect(() => {
     if(cookies.sessionID) {

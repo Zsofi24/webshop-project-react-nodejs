@@ -9,7 +9,11 @@ export default {
         //         if(resp.amount == 0) return  cartItemsModel.addProduct({ userid, productid, amount: updatedamount})
         //         else return cartItemsModel.updateAmount({ userid, productid, amount: updatedamount})
         //         }
-        //     )               
+        //     )   
+        
+        if(!userid || !productid) {
+            return new Promise((reject) => reject({error: "nincs felhasználó vagy termék"})) 
+        } 
             
         const resp = await cartItemsModel.getAmount({userid, productid})
         const updatedamount = resp.amount + 1

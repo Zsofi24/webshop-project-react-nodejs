@@ -12,7 +12,11 @@ export default function Cart() {
    
   return (
     <>
-      {
+      {Object.keys(user).length == 0 
+        ?
+         <p>A kosár megtekintéséhez jelentkezzen be</p> 
+        : 
+      (
         cart.length > 0 && (
         cart.map(cartitem => (
           <div key={cartitem.product_id}>
@@ -21,6 +25,7 @@ export default function Cart() {
             <p>ár: {cartitem.price}</p>
           </div>
         )))
+      )
       }
     </>
   )
