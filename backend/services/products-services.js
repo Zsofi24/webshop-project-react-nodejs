@@ -6,5 +6,8 @@ export default {
     },
     getAll() {
         return productsModel.getAll()
+    },
+    getCurrent({ pageSize, currentPage, sortBy, order }) {
+        return productsModel.getCurrent({ pageSize, currentPage, sortBy, order})
     }
 }

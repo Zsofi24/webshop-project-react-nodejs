@@ -43,7 +43,23 @@ export default {
                 stmt.all((err, rows) => {
                     if(err) reject(err)
                     else resolve(rows)
+                })
+            })
+        })
+    },
 
+    getCurrent({ pageSize , currentPage, sortBy, order }) {
+        console.log(pageSize, currentPage, "size");
+        let orderquery = "";
+        if(sortBy) orderquery = `ORDER BY ${sortBy} ${order}`
+        const sql = `SELECT * FROM products ${orderquery} LIMIT ${pageSize} OFFSET ${pageSize  * (currentPage -1)}`
+
+        return new Promise((resolve, reject) => {
+            db.serialize(() => {
+                const stmt = db.prepare(sql);
+                stmt.all((err, rows) => {
+                    if(err) reject(err)
+                    else resolve(rows)
                 })
             })
         })
