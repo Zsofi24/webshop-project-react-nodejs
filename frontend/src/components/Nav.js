@@ -34,15 +34,15 @@ export default function Nav() {
         }
       </div>
       <div>
-        { !user.email && <NavLink to='/regisztracio'><CgProfile/></NavLink> }
         <NavLink to={`/kosar`}><BsCart/></NavLink>
-        { user.email ? 
+        {/* { !user.email && <NavLink to='/belepes'><CgProfile/></NavLink> } */}
+        { user.email ?
         <>
           <NavLink  ><button onClick={logout}>kijelentkezés</button></NavLink>
           <NavLink to='/profile'>profil</NavLink>
         </>
           :
-          <NavLink to='/belepes'>bejelentkezés</NavLink>
+          <NavLink to='/belepes'><CgProfile/></NavLink>
         }
       </div>
         
