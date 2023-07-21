@@ -1,0 +1,7 @@
+.product-card p {
+    margin: 0;
+}
+
+.product-card {
+    flex: 1 1 30%;
+}

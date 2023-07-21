@@ -1,11 +1,11 @@
 import React, { useContext } from 'react'
 import { productService } from '../services/productServices';
-import { UserAuthContext } from '../contexts/UserAuthContext'
+import { UserAuthContext } from '../contexts/UserAuthContext';
+import '../assets/css/ProductCard.css'
 
 export default function ProductCard({product}) {
 
   const { user } = useContext(UserAuthContext)
-    console.log(user);
 
     function addToCart() {
       const cartdata = { userid: user.localId, productid: product.id }
@@ -20,10 +20,12 @@ export default function ProductCard({product}) {
 
   return (
     <>
-    <div>ProductCard</div>
-    <p>{product.title}</p>
-    <p>{product.price}</p>
-    <button onClick={addToCart}>kosárba</button>
+    <div className='product-card'>
+      <img src='https://placekitten.com/200'/>
+      <p>{product.title}</p>
+      <p>{product.price}</p>
+      <button onClick={addToCart}>kosárba</button>
+    </div>
     </>
   )
 }

@@ -1,0 +1,12 @@
+.product-page {
+    display: flex;
+}
+
+.products-container {
+    flex: 4;
+    margin: 0 auto;
+}
+.product-card-list {
+    display: flex;
+    flex-wrap: wrap;
+}
