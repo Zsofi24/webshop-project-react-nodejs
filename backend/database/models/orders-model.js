@@ -5,7 +5,10 @@ export default {
         const sql = `CREATE TABLE IF NOT EXISTS orders (
             id VARCHAR(50) PRIMARY KEY,
             user_id VARCHAR(50) NOT NULL,
-            created DATE,
+            created TEXT NOT NULL,
+            status VARCHAR(32) NOT NULL,
+            extra_info TEXT,
+            total_amount INTEGER,
             FOREIGN KEY(user_id) REFERENCES users(id)
         )`
         db.serialize(() => {
@@ -19,16 +22,35 @@ export default {
         })
     },
 
-    create({ id, userid, created }) {
-        const sql = `INSERT INTO orders(id, user_id, created) VALUES(?, ?, ?)`;
+    create({ id, userid, extra_info }) {
+        const status = 1;
+        const sql = `INSERT INTO orders(id, user_id, created, status, extra_info) VALUES(?, ?,  datetime('now', 'localtime'), ?, ?)`;
 
         return new Promise((resolve, reject) => {
             db.serialize(() => {
                 const stmt = db.prepare(sql);
-                stmt.bind(id, userid, created);
+                stmt.bind(id, userid, status, extra_info);
                 stmt.run((err) => {
                     if(err) reject(err)
-                    else resolve({id, userid, created})
+                    else resolve({ id })
+                })
+            })
+        })
+    },
+
+    getUserOrders({ userid }) {
+        const sql = `SELECT * FROM orders 
+                    JOIN orders_products ON orders.id = orders_products.order_id
+                    JOIN products ON orders_products.product_id=products.id
+                    WHERE orders.user_id = ?
+                    `;
+        return new Promise((resolve, reject) => {
+            db.serialize(() => {
+                const stmt = db.prepare(sql);
+                stmt.bind(userid);
+                stmt.all((err, rows) => {
+                    if(err) reject(err)
+                    else resolve(rows)
                 })
             })
         })

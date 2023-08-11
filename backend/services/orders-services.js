@@ -2,9 +2,12 @@ import { nanoid } from "nanoid";
 import ordersModel from "../database/models/orders-model.js";
 
 export default {
-    create({ userid }) {
+    create({ userid, extra_info }) {
         const id = nanoid(10);
-        const created = Date.now();
-        return ordersModel.create({ id, userid, created })
+        return ordersModel.create({ id, userid, extra_info })
+    },
+
+    getUserOrders({ userid }) {
+        return ordersModel.getUserOrders({ userid })
     }
 }

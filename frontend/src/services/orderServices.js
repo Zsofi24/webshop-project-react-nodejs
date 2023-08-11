@@ -15,6 +15,14 @@ function sendOrder(userid, cart) {
         })
 }
 
+function getUserOrders() {
+    return fetch(`http://localhost:3031/api/orders/user`, {
+        credentials: 'include'
+    })
+    .then(resp => resp.json())
+}
+
 export const orderServices = {
-    sendOrder
+    sendOrder,
+    getUserOrders
 }
