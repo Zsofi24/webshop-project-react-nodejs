@@ -29,7 +29,7 @@ export default function Nav() {
         <NavLink to='/admin'>admin</NavLink>
         { user.email &&
         <>
-          <NavLink to='/megrendeleseim'>rendeléseim</NavLink>
+          <NavLink to='/rendelesek'>rendeléseim</NavLink>
         </> 
         }
       </div>

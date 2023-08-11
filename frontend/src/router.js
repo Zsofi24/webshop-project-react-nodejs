@@ -6,6 +6,7 @@ import Registration from './pages/Registration';
 import Products from './pages/Products';
 import Profile from './pages/Profile';
 import Cart from './pages/Cart';
+import Orders from './pages/Orders';
 
 const routes = createBrowserRouter([
     {element: <Layout />, 
@@ -16,7 +17,9 @@ const routes = createBrowserRouter([
             { path: '/regisztracio', element: <Registration />},
             { path: '/termekek', element: <Products />},
             { path: '/kosar/', element: <Cart />},
-            { path: '/profile', element: <Profile />}
+            { path: '/profile', element: <Profile />},
+            { path: '/rendelesek', element: <Orders />}
+
         ]
     }
 ])

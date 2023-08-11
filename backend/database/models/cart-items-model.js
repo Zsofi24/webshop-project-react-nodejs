@@ -89,5 +89,20 @@ export default {
                 })
             })
         })
+    },
+
+    deleteCart({ userid }) {
+        const sql = `DELETE FROM cart_items WHERE user_id = ?`;
+
+        return new Promise((resolve, reject) => {
+            const stmt = db.prepare(sql);
+            stmt.bind(userid);
+            stmt.run((err) => {
+                if(err) reject(err)
+                else resolve({userid})
+            })
+
+        })
+
     }
 }

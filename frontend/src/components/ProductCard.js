@@ -2,10 +2,12 @@ import React, { useContext } from 'react'
 import { productService } from '../services/productServices';
 import { UserAuthContext } from '../contexts/UserAuthContext';
 import '../assets/css/ProductCard.css'
+import { CartContext } from '../contexts/CartContext';
 
 export default function ProductCard({product}) {
 
-  const { user } = useContext(UserAuthContext)
+  const { user } = useContext(UserAuthContext);
+  const { cart, setCart, addToCartContext } = useContext(CartContext);
 
     function addToCart() {
       const cartdata = { userid: user.localId, productid: product.id }
@@ -14,9 +16,11 @@ export default function ProductCard({product}) {
       else {
       productService.addProductToCart(cartdata)
         .then(resp => {
-          if(resp.error) console.log(resp.error);
-      })}
+          if(resp.error) console.log(resp.error, "cart error");
+  
+      })
     }
+  }
 
   return (
     <>

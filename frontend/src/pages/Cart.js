@@ -8,13 +8,16 @@ export default function Cart() {
 
   const {cart, setCart} = useContext(CartContext);
   const {user} = useContext(UserAuthContext);
-  const [ cookies ] = useCookies(['sessionID'])
-  console.log(user, "user in cart");
+  console.log(cart, "cart in cart");
 
   function order() {
     console.log(cart, "cart in order function");
     orderServices.sendOrder({userid: user.localId}, cart)
-      .then(orderdetails => {if(orderdetails.orderid) setCart({})})
+      .then(orderdetails => {
+        if(orderdetails.orderid) setCart({})
+        alert("sikeres megrendelés")
+      })
+      .catch(err => alert(err))
   }
    
   return (
@@ -34,6 +37,7 @@ export default function Cart() {
             <p>{cartitem.title}</p>
             <p>mennyiség: {cartitem.amount}</p>
             <p>ár: {cartitem.price}</p>
+            <hr/>
           </div>
         ))
         }

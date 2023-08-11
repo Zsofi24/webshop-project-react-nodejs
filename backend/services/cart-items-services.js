@@ -34,5 +34,9 @@ export default {
 
     getCartItems({ userid }) {
         return cartItemsModel.getCartItems({ userid })
+    },
+
+    deletCart({ userid }) {
+        return cartItemsModel.deleteCart({ userid })
     }
 }
