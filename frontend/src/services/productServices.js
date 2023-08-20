@@ -9,7 +9,10 @@ function addProductToCart(cart) {
         body: JSON.stringify(cart),
         headers: {"Content-Type": "application/json"}
     })
-    .then(resp => resp.json())
+    .then(resp => {
+        console.log(resp);
+       return resp.json()
+    } )
 }
 
 export const productService = {
