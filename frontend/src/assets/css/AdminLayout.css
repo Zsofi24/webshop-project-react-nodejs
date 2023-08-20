@@ -1,0 +1,15 @@
+.admin-aside {
+    background-color: rgb(72, 105, 105);
+
+}
+
+.admin-aside nav {
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-wrapper {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}

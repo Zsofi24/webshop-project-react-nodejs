@@ -20,7 +20,7 @@ export default function Nav() {
   }
   
   return (
-    <nav>
+    <nav className='shop-nav'>
       <div>
         <NavLink to='/'>F</NavLink>
       </div>

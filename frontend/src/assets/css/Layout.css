@@ -3,7 +3,7 @@ header {
     background-color: rgb(20, 63, 63);
 }
 
-nav {
+.shop-nav nav {
     display: flex;
     justify-content: space-between;
     padding: 1rem;
@@ -11,21 +11,21 @@ nav {
     
 }
 
-nav a {
+.shop-nav nav a {
     text-decoration: none;
     color: white;
 }     
 
-nav a:hover {
+.shop-nav nav a:hover {
     text-decoration: underline;
     background-color: rgba(20, 144, 144, 0.296);
 }
 
-.admin-nav {
+/* .admin-nav {
     background-color: rgb(52, 160, 160)
 }
 
 .admin-nav a:hover {
     text-decoration: underline;
     background-color: rgba(8, 62, 62, 0.296);
-}
+} */
