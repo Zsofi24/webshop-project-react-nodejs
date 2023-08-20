@@ -1,5 +1,4 @@
-import React, { useEffect, useReducer } from 'react'
-import { FaSmileBeam } from 'react-icons/fa'
+import { useEffect, useReducer } from 'react'
 import { productService } from '../services/productServices'
 
 export default function useProducts() {
