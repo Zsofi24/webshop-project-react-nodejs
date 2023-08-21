@@ -24,6 +24,14 @@ export default function useProducts() {
                     error: action.error
                 }
             }
+            case 'UPDATE': {
+                return {
+                    ...state,
+                    loading: false,
+                    response: action.response,
+                    error: null
+                }
+            }
             default: 
                 return state
         }
@@ -51,5 +59,5 @@ export default function useProducts() {
         }
     }, [])
 
-  return [state.loading, state.response, state.error]
+  return [state.loading, state.response, state.error, dispatch]
 }

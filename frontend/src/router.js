@@ -10,6 +10,7 @@ import Orders from './pages/Orders';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import AdminLayout from './components/admin/AdminLayout';
 import AdminProductList from './pages/admin/AdminProductList';
+import EditProduct from './components/admin/EditProduct';
 
 const routes = createBrowserRouter([
     {element: <Layout />, 
@@ -19,7 +20,7 @@ const routes = createBrowserRouter([
             { path: '/belepes', element: <Login /> },
             { path: '/regisztracio', element: <Registration /> },
             { path: '/termekek', element: <Products /> },
-            { path: '/kosar/', element: <Cart /> },
+            { path: '/kosar', element: <Cart /> },
             { path: '/profile', element: <Profile /> },
             { path: '/rendelesek', element: <Orders /> }
 
@@ -30,7 +31,9 @@ const routes = createBrowserRouter([
             path: '/admin',
             children: [
                 { index: true, element: <AdminDashboard /> },
-                { path: 'termekek', element: <AdminProductList />}
+                { path: 'termekek', element: <AdminProductList />},
+                { path: 'termekek/:productid', element: <EditProduct />},
+
             ]
     }
 ])

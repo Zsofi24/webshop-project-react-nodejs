@@ -9,5 +9,11 @@ export default {
     },
     getCurrent({ pageSize, currentPage, sortBy, order }) {
         return productsModel.getCurrent({ pageSize, currentPage, sortBy, order})
+    },
+    getOne({ productid }) {
+        return productsModel.getOne({ productid })
+    },
+    edit({ title, price, description, id }) {
+        return productsModel.edit({ title, price, description, id })
     }
 }

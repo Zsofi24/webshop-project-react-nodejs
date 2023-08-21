@@ -15,7 +15,23 @@ function addProductToCart(cart) {
     } )
 }
 
+function getOneProduct(id) {
+    return fetch(`http://localhost:3031/api/products/${id}`)
+        .then(resp => resp.json())
+}
+
+function updateProduct(product, id) {
+    return fetch(`http://localhost:3031/api/products/${id}`, {
+        method: "POST",
+        body: JSON.stringify(product),
+        headers: {"Content-Type": "application/json"}
+    })
+    .then(resp => resp.json())
+}
+
 export const productService = {
     getProducts,
-    addProductToCart
+    addProductToCart,
+    getOneProduct,
+    updateProduct
 }

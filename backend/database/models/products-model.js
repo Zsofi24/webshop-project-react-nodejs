@@ -49,7 +49,6 @@ export default {
     },
 
     getCurrent({ pageSize , currentPage, sortBy, order }) {
-        console.log(pageSize, currentPage, "size");
         let orderquery = "";
         if(sortBy) orderquery = `ORDER BY ${sortBy} ${order}`
         const sql = `SELECT * FROM products ${orderquery} LIMIT ${pageSize} OFFSET ${pageSize  * (currentPage -1)}`
@@ -63,5 +62,36 @@ export default {
                 })
             })
         })
+    },
+
+    getOne({ productid }) {
+        const sql = 'SELECT * FROM products WHERE id = ?';
+
+        return new Promise((resolve, reject) => {
+            const stmt = db.prepare(sql);
+            stmt.bind(productid)
+            stmt.get((err, row) => {
+                if(err) reject(err)
+                else if(row) resolve(row)
+                else reject(err)
+            })
+        })
+    },
+
+    edit({ title, price, description, id }) {
+        const sql = 'UPDATE products SET title = ?, price = ?, description = ? WHERE id = ?';
+
+        return new Promise((resolve, reject) => {
+            const stmt = db.prepare(sql);
+            stmt.bind(title, price, description, id);
+            stmt.run(err => {
+                if(err) reject(err)
+                else resolve({ title, price, description })
+            })
+        })
+    },
+
+    deleteOne({ id }) {
+        
     }
 }

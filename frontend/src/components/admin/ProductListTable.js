@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function ProductListTable({products}) {
 
@@ -15,14 +16,14 @@ export default function ProductListTable({products}) {
             </tr>
         </thead>
         <tbody>
-            {products.map(p => 
+            {products?.map(p => 
                 (
                     <tr>
                         <td>{p.id}</td>
                         <td>{p.title}</td>
                         <td>{p.price}</td>
                         <td>{p.description}</td>
-                        <td>szerk</td>
+                        <td><Link to={`/admin/termekek/${p.id}`}>szerk</Link></td>
                         <td>törlés</td>
                     </tr>
                 )
