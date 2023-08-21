@@ -11,3 +11,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+:root {
+  --clr-primary: rgba(20, 144, 144, 0.296);
+  --clr-btn-red: rgba(217, 85, 32, 0.662);
+  --clr-btn-green: rgba(41, 195, 105, 0.662);
+
+}
