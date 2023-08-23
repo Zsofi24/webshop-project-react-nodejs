@@ -1,5 +1,6 @@
 import { nanoid } from "nanoid";
 import productsModel from "../database/models/products-model.js";
+import productsCategoriesModel from "../database/models/products-categories-model.js";
 
 export default {
     create({ title, price, description, id, stock }) {
@@ -17,7 +18,12 @@ export default {
     getOne({ productid }) {
         return productsModel.getOne({ productid })
     },
-    edit({ title, price, description, id }) {
-        return productsModel.edit({ title, price, description, id })
+    async edit({ title, price, description, id, stock, categories }) {
+        console.log(id, "id");
+        const resp = await productsCategoriesModel.delete(id)
+        const resp2 = await productsCategoriesModel.setToProduct(id, categories)
+        const productsResp = await productsModel.edit({ title, price, description, id, stock, categories })
+        return productsResp
+                 
     }
 }

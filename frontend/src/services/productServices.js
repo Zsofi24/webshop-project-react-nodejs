@@ -3,16 +3,25 @@ function getProducts() {
         .then(resp => resp.json())
 }
 
+function createProduct(product) {
+    return fetch(`http://localhost:3031/api/products`, {
+        method: "POST",
+        body: JSON.stringify(product),
+        headers: {"Content-Type": "application/json"}
+    })
+        .then(resp => resp.json())
+}
+
 function addProductToCart(cart) {
     return fetch(`http://localhost:3031/api/cart`, {
         method: "POST",
         body: JSON.stringify(cart),
         headers: {"Content-Type": "application/json"}
     })
-    .then(resp => {
-        console.log(resp);
-       return resp.json()
-    } )
+        .then(resp => {
+            console.log(resp);
+        return resp.json()
+        } )
 }
 
 function getOneProduct(id) {
@@ -26,12 +35,13 @@ function updateProduct(product, id) {
         body: JSON.stringify(product),
         headers: {"Content-Type": "application/json"}
     })
-    .then(resp => resp.json())
+        .then(resp => resp.json())
 }
 
 export const productService = {
     getProducts,
     addProductToCart,
     getOneProduct,
-    updateProduct
+    updateProduct,
+    createProduct
 }

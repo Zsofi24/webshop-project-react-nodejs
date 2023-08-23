@@ -7,7 +7,7 @@ import ProductForm from '../../components/admin/ProductForm';
 
 export default function EditProduct() {
 
-    const [loading, response, error, dispatch] = useProduct();
+    const [ loading, response, error, categories, dispatch ] = useProduct();
     const { productid } = useParams();
     
     function updateProduct(e) {
@@ -21,6 +21,22 @@ export default function EditProduct() {
       dispatch({ type: 'UPDATE', response: {...response, [name]: value}})
     }
 
+    function addOrRemoveCheckbox(id, name) {
+
+      const newCategories = [...response.categories];
+      console.log(newCategories, "new");
+      const index = newCategories.map(cat => cat.categoryId).indexOf(Number(id));
+      console.log(index, "index");
+      if (index === -1) {
+          newCategories.push({categoryId: Number(id), categoryName: name});
+      } else {
+          newCategories.splice(index, 1);
+      }
+      
+      dispatch({ type: 'UPDATE', response: {...response, categories: newCategories} });
+  
+  }
+
     console.log(response, "resp");
     
 
@@ -30,31 +46,8 @@ export default function EditProduct() {
       { error && <div>ERROR OH NO</div> }
       { response && (
         <>
-            <ProductForm inputData={response} handleChange={handleChange}/>
-            {/* <form>
-                <label>title</label>
-                <input 
-                    type='text' 
-                    name='title'
-                    value={response.title}
-                    onChange={(e) => dispatch({ type: 'UPDATE', response: {...response, title: e.target.value }})}
-                />
-                <label>price</label>
-                <input 
-                    type='text' 
-                    name='price'
-                    value={response.price}
-                    onChange={(e) => dispatch({ type: 'UPDATE', response: {...response, price: e.target.value }})}
-                />
-                <label>descr</label>
-                <input 
-                    type='text' 
-                    name='description'
-                    value={response.description}
-                    onChange={(e) => dispatch({ type: 'UPDATE', response: {...response, description: e.target.value }})}
-                />
-              </form> */}
-              <Button $primary onClick={updateProduct}>szerkesztés</Button>
+            <ProductForm inputData={response} categories={categories} handleChange={handleChange} addOrRemoveCheckbox={addOrRemoveCheckbox}/>
+            <Button $primary onClick={updateProduct}>szerkesztés</Button>
         </>
       )}
     </section>

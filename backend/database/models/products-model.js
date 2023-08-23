@@ -20,7 +20,7 @@ export default {
        })
     },
 
-    create({title, description, price, stock, id}) {
+    create({ title, description, price, stock, id }) {
         const sql = `INSERT INTO products(title, description, price, stock, id) VALUES(?, ?, ?, ?, ?)`;
 
         return new Promise((resolve, reject) => {
@@ -66,28 +66,45 @@ export default {
     },
 
     getOne({ productid }) {
-        const sql = 'SELECT * FROM products WHERE id = ?';
+        const sql = `
+            SELECT p.id, p.title, p.description, p.price, p.stock FROM products p
+            WHERE p.id = ?
+        `;
+
+        const sql2 = `
+            SELECT c.id as categoryId, c.name as categoryName FROM products_categories pc
+            JOIN categories c ON pc.category_id = c.id
+            WHERE pc.product_id = ?
+        `
 
         return new Promise((resolve, reject) => {
             const stmt = db.prepare(sql);
             stmt.bind(productid)
             stmt.get((err, row) => {
                 if(err) reject(err)
-                else if(row) resolve(row)
+                else if(row) {
+                    const stmt2 = db.prepare(sql2);
+                    stmt2.bind(productid)
+                    stmt2.all((categoryerror, categoryrow) => {
+                        if(categoryerror) reject(categoryerror)
+                        else if(categoryrow) resolve({...row, categories: [...categoryrow]})
+                        else resolve(row)
+                    })
+                }
                 else reject(err)
             })
         })
     },
 
-    edit({ title, price, description, id }) {
-        const sql = 'UPDATE products SET title = ?, price = ?, description = ? WHERE id = ?';
+    edit({ title, price, description, id, stock }) {
+        const sql = 'UPDATE products SET title = ?, price = ?, description = ?, stock = ? WHERE id = ?';
 
         return new Promise((resolve, reject) => {
             const stmt = db.prepare(sql);
-            stmt.bind(title, price, description, id);
+            stmt.bind(title, price, description, id, stock);
             stmt.run(err => {
                 if(err) reject(err)
-                else resolve({ title, price, description })
+                else resolve({ title, price, description, stock })
             })
         })
     },

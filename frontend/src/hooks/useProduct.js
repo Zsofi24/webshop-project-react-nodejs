@@ -1,6 +1,7 @@
-import { useEffect, useReducer } from 'react'
-import { productService } from '../services/productServices'
-import { useParams } from 'react-router-dom'
+import { useEffect, useReducer } from 'react';
+import { useParams } from 'react-router-dom';
+import { productService } from '../services/productServices';
+import { categoryService } from '../services/categoryService';
 
 export default function useProduct() {
 
@@ -17,6 +18,14 @@ export default function useProduct() {
                     loading: false,
                     response: action.response,
                     error: null
+                }
+            }
+            case 'CATEGORYRESOLVED': {
+                return {
+                    ...state,
+                    loading: false,
+                    error: null,
+                    categories: action.categories
                 }
             }
             case 'ERROR': {
@@ -41,6 +50,7 @@ export default function useProduct() {
     }, {
         loading: false,
         response: null,
+        categories: null,
         error: null
     })
 
@@ -62,5 +72,24 @@ export default function useProduct() {
         }
     }, [])
 
-  return [state.loading, state.response, state.error, dispatch]
+    useEffect(() => {
+        let isCurrent = true;
+        dispatch({ type: 'LOADING' })
+        categoryService
+            .getCategories()
+            .then(categories => {
+                console.log(categories, "cat");
+                if(isCurrent) {
+                    dispatch({ type: 'CATEGORYRESOLVED', categories})
+                }
+            })
+            .catch(error => {
+                dispatch({ type: 'ERROR', error })
+            })
+        return () => {
+            isCurrent = false
+        }
+    }, [])
+
+  return [state.loading, state.response, state.error, state.categories, dispatch]
 }

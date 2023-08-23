@@ -7,6 +7,7 @@ import productsRouter from './routes/products-router.js';
 import cartItemsRouter from './routes/cart-items-router.js';
 import ordersRouter from './routes/orders-router.js';
 import ordersProductsRouter from './routes/orders-products-router.js';
+import categoriesRouter from './routes/categories-router.js'
 import errorHandler from './middlewares/error-handler-middleware.js';
 
 const store = new session.MemoryStore();
@@ -35,6 +36,7 @@ app.use('/api', productsRouter);
 app.use('/api', cartItemsRouter);
 app.use('/api', ordersRouter);
 app.use('/api', ordersProductsRouter);
+app.use('/api', categoriesRouter);
 
 app.use(errorHandler);
 
