@@ -1,8 +1,12 @@
+import { nanoid } from "nanoid";
 import productsModel from "../database/models/products-model.js";
 
 export default {
-    create({ title, price, description }) {
-        return productsModel.create({ title, price, description })
+    create({ title, price, description, id, stock }) {
+        if(!id) {
+            id = nanoid(8)
+        }
+        return productsModel.create({ title, price, description, id, stock })
     },
     getAll() {
         return productsModel.getAll()

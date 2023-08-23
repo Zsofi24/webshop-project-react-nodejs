@@ -2,9 +2,9 @@ import productsServices from "../services/products-services.js";
 
 export default {
     create(req, res, next) {
-        const { title, price, description } = req.body;
+        const { title, price, description, id, stock } = req.body;
         productsServices
-            .create({ title, price, description })
+            .create({ title, price, description, id, stock })
             .then(resp => res.status(201).send(resp))
             .catch(next)
     },

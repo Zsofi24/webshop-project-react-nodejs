@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import useProducts from '../../hooks/useProducts';
-import { useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import Pagination from '../../components/Pagination';
 import ProductListTable from '../../components/admin/ProductListTable';
+import { Button } from '../../assets/css/Button';
 
 export default function AdminProductList() {
 
@@ -42,9 +43,13 @@ export default function AdminProductList() {
     <section>
       { loading && <div>Loading...</div> }
       { error && <div>ERROR OH NO</div> }
-      { <ProductListTable 
+      { 
+      <>
+        <Link to='/admin/termekek/termek-felvitel'><Button>ÚJ TERMÉK</Button></Link>
+        <ProductListTable 
           products={currentTableData}>
         </ProductListTable>
+      </>
       }
     </section>
     <Pagination totalPages={totalPages} onPageChange={onPageChange} currentPage={currentPage}/>

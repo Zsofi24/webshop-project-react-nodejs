@@ -10,7 +10,8 @@ import Orders from './pages/Orders';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import AdminLayout from './components/admin/AdminLayout';
 import AdminProductList from './pages/admin/AdminProductList';
-import EditProduct from './components/admin/EditProduct';
+import EditProduct from './pages/admin/EditProduct';
+import AddNewProduct from './pages/admin/AddNewProduct'
 
 const routes = createBrowserRouter([
     {element: <Layout />, 
@@ -33,7 +34,7 @@ const routes = createBrowserRouter([
                 { index: true, element: <AdminDashboard /> },
                 { path: 'termekek', element: <AdminProductList />},
                 { path: 'termekek/:productid', element: <EditProduct />},
-
+                { path: 'termekek/termek-felvitel', element: <AddNewProduct />}
             ]
     }
 ])
