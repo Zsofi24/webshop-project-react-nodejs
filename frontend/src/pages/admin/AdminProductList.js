@@ -7,12 +7,12 @@ import { Button } from '../../assets/css/Button';
 
 export default function AdminProductList() {
 
-  const [loading, response, error] = useProducts();
+  const [loading, response, error, total] = useProducts();
 
   
   const [currentTableData, setCurrentTableData] = useState(null)
   const [totalPages, setTotalPages] = useState(1);
-  const [pageSize, setPageSize] = useState(2);
+  const [pageSize, setPageSize] = useState(3);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -23,7 +23,7 @@ export default function AdminProductList() {
   }
 
   useEffect(() => {
-    setTotalPages(Math.ceil(response?.length / pageSize))
+    setTotalPages(Math.ceil(total / pageSize))
   }, [response])
 
   useEffect(() => {
@@ -34,7 +34,7 @@ export default function AdminProductList() {
     console.log(query);
     fetch(`http://localhost:3031/api/products?${query}`)
       .then(resp => resp.json())
-      .then(prod => setCurrentTableData(prod))
+      .then(prod => setCurrentTableData(prod.products))
   }, [searchParams])
 
 

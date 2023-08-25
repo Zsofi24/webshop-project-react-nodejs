@@ -13,6 +13,7 @@ export default function useProducts() {
                     ...state,
                     loading: false,
                     response: action.response,
+                    total: action.total,
                     error: null
                 }
             }
@@ -38,7 +39,8 @@ export default function useProducts() {
     }, {
         loading: false,
         response: null,
-        error: null
+        error: null,
+        total: null
     })
 
     useEffect(() => {
@@ -47,8 +49,10 @@ export default function useProducts() {
         productService
             .getProducts()
             .then(products => {
+                console.log(products, "products");
                 if(isCurrent) {
-                    dispatch({ type: 'RESOLVED', response: products})
+                    dispatch({ type: 'RESOLVED', response: products.products})
+                    dispatch({ type: 'RESOLVED', total: products.total})
                 }
             })
             .catch(error => {
@@ -59,5 +63,5 @@ export default function useProducts() {
         }
     }, [])
 
-  return [state.loading, state.response, state.error, dispatch]
+  return [state.loading, state.response, state.error, state.total, dispatch]
 }

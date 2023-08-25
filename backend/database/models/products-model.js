@@ -51,15 +51,22 @@ export default {
 
     getCurrent({ pageSize , currentPage, sortBy, order }) {
         let orderquery = "";
-        if(sortBy) orderquery = `ORDER BY ${sortBy} ${order}`
-        const sql = `SELECT * FROM products ${orderquery} LIMIT ${pageSize} OFFSET ${pageSize  * (currentPage -1)}`
+        if(sortBy) orderquery = `ORDER BY ${sortBy} ${order}`;
+        const sql = `SELECT * FROM products ${orderquery} LIMIT ${pageSize} OFFSET ${pageSize  * (currentPage -1)}`;
+        const sql2 = `SELECT COUNT(*) as total FROM products`;
 
         return new Promise((resolve, reject) => {
             db.serialize(() => {
                 const stmt = db.prepare(sql);
                 stmt.all((err, rows) => {
                     if(err) reject(err)
-                    else resolve(rows)
+                    else {
+                        const stmt2 = db.prepare(sql2);
+                        stmt2.get((err, row) => {
+                            if(err) reject(err)
+                            else resolve({products: rows, total: row.total})
+                        })
+                    }
                 })
             })
         })

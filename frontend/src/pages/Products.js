@@ -10,11 +10,11 @@ import useProducts from '../hooks/useProducts';
 export default function Products() {
 
     // const [products, setProducts] = useState();
-    const [loading, response, error] = useProducts();
+    const [loading, response, error, total] = useProducts();
 
     const [currentTableData, setCurrentTableData] = useState(null)
     const [totalPages, setTotalPages] = useState(1);
-    const [pageSize, setPageSize] = useState(2);
+    const [pageSize, setPageSize] = useState(3);
     const [currentPage, setCurrentPage] = useState(1);
     const [searchParams, setSearchParams] = useSearchParams();
 
@@ -24,16 +24,8 @@ export default function Products() {
       setCurrentPage(pagenum)
     }
 
-    // useEffect(() => {
-    //     productService
-    //         .getProducts()
-    //         .then(data => {
-    //           setProducts(data)
-    //         })
-    // }, [])
-
     useEffect(() => {
-      setTotalPages(Math.ceil(response?.length / pageSize))
+      setTotalPages(Math.ceil(total / pageSize))
     }, [response])
 
     useEffect(() => {
@@ -44,7 +36,7 @@ export default function Products() {
       console.log(query);
       fetch(`http://localhost:3031/api/products?${query}`)
         .then(resp => resp.json())
-        .then(prod => setCurrentTableData(prod))
+        .then(prod => setCurrentTableData(prod.products))
     }, [searchParams])
     
   return (

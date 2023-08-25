@@ -1,10 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { AdminTable } from '../../assets/css/AdminTable'
 
 export default function ProductListTable({products}) {
 
   return (
-    <table>
+    <AdminTable classname="her">
         <thead>
             <tr>
                 <th>ID</th>
@@ -31,6 +32,6 @@ export default function ProductListTable({products}) {
             }
 
         </tbody>
-    </table>
+    </AdminTable>
   )
 }
