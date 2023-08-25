@@ -41,14 +41,14 @@ export default function ProductForm({ inputData, handleChange, categories, addOr
       />
       <label>kategóriák</label>
       {categories?.map(category => (
-        <Fragment key={category.id}>
-          <label htmlFor={category.name}> {category.name}</label>
+        <Fragment key={category.categoryId}>
+          <label htmlFor={category.categoryName}> {category.categoryName}</label>
           <input
                 type="checkbox"
-                value={category.id}
-                id={category.id}
-                onChange={e => addOrRemoveCheckbox(e.target.value, category.name)}
-                checked={inputData.categories?.some(cat => cat.categoryId == category.id)} 
+                value={category.categoryId}
+                id={category.categoryId}
+                onChange={e => addOrRemoveCheckbox(e.target.value, category.categoryName)}
+                checked={inputData.categories?.some(cat => cat.categoryId == category.categoryId)} 
           />
         </Fragment>
       ))

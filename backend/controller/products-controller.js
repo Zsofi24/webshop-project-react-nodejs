@@ -1,11 +1,10 @@
 import productsServices from "../services/products-services.js";
-import productCategoriesServices from "../services/products-categories-service.js";
 
 export default {
     create(req, res, next) {
-        const { title, price, description, id, stock } = req.body;
+        const { title, price, description, id, stock, newcategories } = req.body;
         productsServices
-            .create({ title, price, description, id, stock })
+            .create({ title, price, description, id, stock, newcategories })
             .then(resp => res.status(201).send(resp))
             .catch(next)
     },

@@ -33,7 +33,7 @@ export default {
     },
 
     getAll() {
-        const sql = `SELECT * FROM categories`;
+        const sql = `SELECT id as categoryId, name as categoryName FROM categories`;
 
         return new Promise((resolve, reject) => {
             const stmt = db.prepare(sql);

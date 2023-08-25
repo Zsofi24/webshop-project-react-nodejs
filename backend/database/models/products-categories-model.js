@@ -61,7 +61,7 @@ export default {
             })
             stmt.finalize((err) => {
                 if(err) reject(err)
-                else resolve(id)
+                else resolve({id})
             })
         })
     }
