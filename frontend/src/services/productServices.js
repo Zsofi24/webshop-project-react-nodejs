@@ -38,10 +38,18 @@ function updateProduct(product, id) {
         .then(resp => resp.json())
 }
 
+function deleteProduct(id) {
+    return fetch(`http://localhost:3031/api/products/${id}`, {
+        method: "DELETE"
+    })
+        .then(resp => resp.json())
+}
+
 export const productService = {
     getProducts,
     addProductToCart,
     getOneProduct,
     updateProduct,
-    createProduct
+    createProduct,
+    deleteProduct
 }

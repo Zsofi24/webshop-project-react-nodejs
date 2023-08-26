@@ -1,8 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { AdminTable } from '../../assets/css/AdminTable'
+import { Button } from '../../assets/css/Button'
 
-export default function ProductListTable({products}) {
+export default function ProductListTable({products, productDelete}) {
 
   return (
     <AdminTable classname="her">
@@ -12,8 +13,8 @@ export default function ProductListTable({products}) {
                 <th>név</th>
                 <th>ár</th>
                 <th>leírás</th>
-                <th>szerkesztés</th>
-                <th>törlés</th>
+                {/* <th>szerkesztés</th>
+                <th>törlés</th> */}
             </tr>
         </thead>
         <tbody>
@@ -25,7 +26,8 @@ export default function ProductListTable({products}) {
                         <td>{p.price}</td>
                         <td>{p.description}</td>
                         <td><Link to={`/admin/termekek/${p.id}`}>szerk</Link></td>
-                        <td>törlés</td>
+                        <td><Button>láthatóság</Button></td>
+                        <td><Button onClick={() => productDelete(p.id)}>törlés</Button></td>
                     </tr>
                 )
                 )            

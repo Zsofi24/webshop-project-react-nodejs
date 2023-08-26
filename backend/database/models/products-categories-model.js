@@ -6,8 +6,8 @@ export default {
             product_id VARCHAR(42),
             category_id INTEGER,
             PRIMARY KEY(product_id, category_id),
-            FOREIGN KEY(product_id) REFERENCES products(id),
-            FOREIGN KEY(category_id) REFERENCES categories(id)
+            FOREIGN KEY(product_id) REFERENCES products(id) ON DELETE CASCADE ON UPDATE CASCADE,
+            FOREIGN KEY(category_id) REFERENCES categories(id) ON DELETE CASCADE ON UPDATE CASCADE
         )`
         db.serialize(() => {
             db.run(sql, (err) => {

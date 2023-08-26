@@ -40,6 +40,14 @@ export default {
         productsServices.edit({ title, price, description, id, categories, stock })
             .then(resp => res.status(201).send(resp))
             .catch(next)
+    },
+
+    delete(req, res, next) {
+        console.log(req.params);
+        const { productid: id } = req.params;
+        productsServices.delete(id)
+            .then(resp => res.status(201).send(resp))
+            .catch(next)
     }
 }
 

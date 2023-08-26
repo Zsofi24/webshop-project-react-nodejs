@@ -4,6 +4,7 @@ import { Link, useSearchParams } from 'react-router-dom';
 import Pagination from '../../components/Pagination';
 import ProductListTable from '../../components/admin/ProductListTable';
 import { Button } from '../../assets/css/Button';
+import { productService } from '../../services/productServices';
 
 export default function AdminProductList() {
 
@@ -37,6 +38,11 @@ export default function AdminProductList() {
       .then(prod => setCurrentTableData(prod.products))
   }, [searchParams])
 
+  function productDelete(id) {
+    productService.deleteProduct(id)
+      .then(id => console.log(id))
+  }
+
 
   return (
     <>
@@ -47,7 +53,9 @@ export default function AdminProductList() {
       <>
         <Link to='/admin/termekek/termek-felvitel'><Button>ÚJ TERMÉK</Button></Link>
         <ProductListTable 
-          products={currentTableData}>
+          products={currentTableData}
+          productDelete={productDelete}
+        >          
         </ProductListTable>
       </>
       }

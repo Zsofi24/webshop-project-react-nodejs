@@ -27,5 +27,8 @@ export default {
         const productsResp = await productsModel.edit({ title, price, description, id, stock, categories })
         return productsResp
                  
+    },
+    delete(id) {
+        return productsModel.delete(id)
     }
 }

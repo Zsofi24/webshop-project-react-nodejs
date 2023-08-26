@@ -7,7 +7,8 @@ export default {
             title VARCHAR(42) NOT NULL UNIQUE,
             description TEXT,
             price INTEGER,
-            stock INTEGER
+            stock INTEGER,
+            visible BOOLEAN
        )`
        db.serialize(() => {
             db.run(sql, (err) => {
@@ -116,7 +117,16 @@ export default {
         })
     },
 
-    deleteOne({ id }) {
-        
+    delete(id) {
+        const sql = `DELETE FROM products WHERE id = ?`;
+
+        return new Promise((resolve, reject) => {
+            const stmt = db.prepare(sql);
+            stmt.bind(id);
+            stmt.run(err => {
+                if(err) reject(err)
+                else resolve({ id })
+            })
+        })
     }
 }
