@@ -1,11 +1,14 @@
 import React, { useContext } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
-import { CgProfile } from 'react-icons/cg'
-import { BsCart } from 'react-icons/bs'
+import { BiLogIn } from 'react-icons/bi';
+import { BsCart } from 'react-icons/bs';
+import { AiOutlineUser } from 'react-icons/ai';
 import { UserAuthContext } from '../contexts/UserAuthContext';
 import { userService } from '../services/userServices';
+import Profile from './Profile';
+import '../assets/css/Profile.css';
 
-export default function Nav() {
+export default function Nav({ handleMouseEnter, handleMouseLeave, isProfileVisible }) {
 
   const { user, setUser } = useContext(UserAuthContext);
   const navigate = useNavigate();
@@ -27,22 +30,21 @@ export default function Nav() {
       <div>
         <NavLink to='/termekek'>termékek</NavLink>
         <NavLink to='/admin'>admin</NavLink>
-        { user.email &&
-        <>
-          <NavLink to='/rendelesek'>rendeléseim</NavLink>
-        </> 
-        }
       </div>
-      <div>
+      <div className='nav-profile'>
         <NavLink to={`/kosar`}><BsCart/></NavLink>
         {/* { !user.email && <NavLink to='/belepes'><CgProfile/></NavLink> } */}
         { user.email ?
         <>
-          <NavLink  ><button onClick={logout}>kijelentkezés</button></NavLink>
-          <NavLink to='/profile'>profil</NavLink>
+          <div className='profile-hover-container'>
+            <NavLink to='/profile' onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+              <AiOutlineUser />
+            </NavLink>
+            <Profile logout={logout} />
+          </div>
         </>
           :
-          <NavLink to='/belepes'><CgProfile/></NavLink>
+          <NavLink to='/belepes'><BiLogIn /></NavLink>
         }
       </div>
         

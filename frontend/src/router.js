@@ -24,7 +24,7 @@ const routes = createBrowserRouter([
             { path: '/termekek', element: <Products /> },
             { path: '/termekek/:id', element: <ProductDetails /> },
             { path: '/kosar', element: <Cart /> },
-            { path: '/profile', element: <Profile /> },
+            { path: '/profil', element: <Profile /> },
             { path: '/rendelesek', element: <Orders /> }
 
         ]
