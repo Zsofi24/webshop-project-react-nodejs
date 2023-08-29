@@ -32,6 +32,14 @@ export default function ProductForm({ inputData, handleChange, categories, addOr
         value={inputData?.description || ""}
         onChange={(e) => handleChange(e)}
       />
+      <label htmlFor='visible'>láthatóság</label>
+      <input
+        type='checkbox'
+        name='visible'
+        id="visible"
+        checked={inputData?.visible}
+        onChange={(e) => handleChange(e)}
+      />
       <label>készlet</label>
       <input 
         type='number' 

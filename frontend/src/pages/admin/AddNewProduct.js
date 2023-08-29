@@ -14,6 +14,7 @@ export default function AddNewProduct() {
     desciption: "",
     title: "",
     stock: 0,
+    visible: false,
     newcategories: []
   });
 
@@ -27,7 +28,6 @@ export default function AddNewProduct() {
       setFormData(prev => ({...prev, newcategories: prev.newcategories.splice(index, 1)}))
     }
     dispatch({ type: 'UPDATE', response: {...response, categories: formData.newcategories} });
-
 }
 
   function createProduct() {
@@ -37,8 +37,8 @@ export default function AddNewProduct() {
   }
 
   function handleChange(e) {
-    const { name, value } = e.target;
-    setFormData(prev => ({...prev, [name]: value}))
+    const { name, value, type, checked } = e.target;
+    setFormData(prev => ({...prev, [name]: type === "checkbox" ? checked : value}))
   }
 
   return (

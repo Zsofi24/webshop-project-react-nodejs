@@ -31,7 +31,7 @@ function getOneProduct(id) {
 
 function updateProduct(product, id) {
     return fetch(`http://localhost:3031/api/products/${id}`, {
-        method: "POST",
+        method: "PUT",
         body: JSON.stringify(product),
         headers: {"Content-Type": "application/json"}
     })

@@ -21,16 +21,16 @@ export default {
        })
     },
 
-    create({ title, description, price, stock, id }) {
-        const sql = `INSERT INTO products(title, description, price, stock, id) VALUES(?, ?, ?, ?, ?)`;
+    create({ title, description, price, stock, id, visible }) {
+        const sql = `INSERT INTO products(title, description, price, stock, id, visible) VALUES(?, ?, ?, ?, ?, ?)`;
 
         return new Promise((resolve, reject) => {
             db.serialize(() => {
                 const stmt = db.prepare(sql);
-                stmt.bind(title, description, price, stock, id);
+                stmt.bind(title, description, price, stock, id, visible);
                 stmt.run((err) => {
                     if(err) reject(err)
-                    else resolve({title, description, price, stock, id})
+                    else resolve({title, description, price, stock, id, visible})
                 })
             })
         })
@@ -60,10 +60,12 @@ export default {
             db.serialize(() => {
                 const stmt = db.prepare(sql);
                 stmt.all((err, rows) => {
+                    console.log(rows, "rows");
                     if(err) reject(err)
                     else {
                         const stmt2 = db.prepare(sql2);
                         stmt2.get((err, row) => {
+                            console.log(rows, "row");
                             if(err) reject(err)
                             else resolve({products: rows, total: row.total})
                         })
@@ -75,7 +77,7 @@ export default {
 
     getOne({ productid }) {
         const sql = `
-            SELECT p.id, p.title, p.description, p.price, p.stock FROM products p
+            SELECT p.id, p.title, p.description, p.price, p.stock, p.visible FROM products p
             WHERE p.id = ?
         `;
 
@@ -104,15 +106,16 @@ export default {
         })
     },
 
-    edit({ title, price, description, id, stock }) {
-        const sql = 'UPDATE products SET title = ?, price = ?, description = ?, stock = ? WHERE id = ?';
+    edit({ title, price, description, id, stock, visible }) {
+        console.log(visible, "visible edit");
+        const sql = 'UPDATE products SET title = ?, price = ?, description = ?, stock = ?, visible = ? WHERE id = ?';
 
         return new Promise((resolve, reject) => {
             const stmt = db.prepare(sql);
-            stmt.bind(title, price, description, id, stock);
+            stmt.bind(title, price, description, stock, visible, id );
             stmt.run(err => {
                 if(err) reject(err)
-                else resolve({ title, price, description, stock })
+                else resolve({ title, price, description, stock, visible, id })
             })
         })
     },

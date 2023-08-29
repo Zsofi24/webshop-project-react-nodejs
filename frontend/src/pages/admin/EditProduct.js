@@ -17,9 +17,11 @@ export default function EditProduct() {
     }
 
     function handleChange(e) {
-      const { name, value } = e.target;
-      dispatch({ type: 'UPDATE', response: {...response, [name]: value}})
+      const { name, value, type, checked } = e.target;
+      dispatch({ type: 'UPDATE', response: {...response, [name]: type === "checkbox" ? checked : value}})
     }
+
+    console.log(response, "response");
 
     function addOrRemoveCheckbox(id, name) {
 
@@ -36,9 +38,6 @@ export default function EditProduct() {
       dispatch({ type: 'UPDATE', response: {...response, categories: newCategories} });
   
   }
-
-    console.log(response, "resp");
-    
 
   return (
     <section>

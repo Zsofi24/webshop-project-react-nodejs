@@ -2,9 +2,9 @@ import productsServices from "../services/products-services.js";
 
 export default {
     create(req, res, next) {
-        const { title, price, description, id, stock, newcategories } = req.body;
+        const { title, price, description, id, stock, newcategories, visible } = req.body;
         productsServices
-            .create({ title, price, description, id, stock, newcategories })
+            .create({ title, price, description, id, stock, newcategories, visible })
             .then(resp => res.status(201).send(resp))
             .catch(next)
     },
@@ -35,9 +35,9 @@ export default {
     },
 
     edit(req, res, next) {
-        console.log(req.body, "body");
-        const { title, price, description, id, categories, stock } = req.body;
-        productsServices.edit({ title, price, description, id, categories, stock })
+        console.log(req.body, "body edit");
+        const { title, price, description, id, categories, stock, visible } = req.body;
+        productsServices.edit({ title, price, description, id, categories, stock, visible })
             .then(resp => res.status(201).send(resp))
             .catch(next)
     },
