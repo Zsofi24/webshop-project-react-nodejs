@@ -11,7 +11,8 @@ import AdminDashboard from './pages/admin/AdminDashboard';
 import AdminLayout from './components/admin/AdminLayout';
 import AdminProductList from './pages/admin/AdminProductList';
 import EditProduct from './pages/admin/EditProduct';
-import AddNewProduct from './pages/admin/AddNewProduct'
+import AddNewProduct from './pages/admin/AddNewProduct';
+import ProductDetails from './components/ProductDetails';
 
 const routes = createBrowserRouter([
     {element: <Layout />, 
@@ -21,6 +22,7 @@ const routes = createBrowserRouter([
             { path: '/belepes', element: <Login /> },
             { path: '/regisztracio', element: <Registration /> },
             { path: '/termekek', element: <Products /> },
+            { path: '/termekek/:id', element: <ProductDetails /> },
             { path: '/kosar', element: <Cart /> },
             { path: '/profile', element: <Profile /> },
             { path: '/rendelesek', element: <Orders /> }

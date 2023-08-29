@@ -3,6 +3,8 @@ import { productService } from '../services/productServices';
 import { UserAuthContext } from '../contexts/UserAuthContext';
 import '../assets/css/ProductCard.css'
 import { CartContext } from '../contexts/CartContext';
+import { Link } from 'react-router-dom';
+import  { BsFillCartFill, BsFillCartXFill, BsFillBellFill } from 'react-icons/bs';
 
 export default function ProductCard({product}) {
 
@@ -25,10 +27,15 @@ export default function ProductCard({product}) {
   return (
     <>
     <div className='product-card'>
+      <Link to={`${product.id}`}>
       <img src='https://placekitten.com/200'/>
       <p>{product.title}</p>
       <p>{product.price}</p>
-      <button onClick={addToCart}>kosárba</button>
+      </Link>
+      <button onClick={addToCart} disabled={product.stock == 0}>{product.stock > 0 ? <BsFillCartFill /> : <BsFillCartXFill />}</button>
+      {
+        product.stock == 0 && <button><BsFillBellFill /> értesítés ha lesz raktáron</button>       
+      }
     </div>
     </>
   )

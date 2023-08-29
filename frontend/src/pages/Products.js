@@ -1,6 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { useSearchParams } from 'react-router-dom';
-import {productService} from '../services/productServices';
 import ProductCard from '../components/ProductCard';
 import Aside from '../components/Aside';
 import Pagination from '../components/Pagination';
