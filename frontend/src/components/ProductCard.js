@@ -5,11 +5,14 @@ import '../assets/css/ProductCard.css'
 import { CartContext } from '../contexts/CartContext';
 import { Link } from 'react-router-dom';
 import  { BsFillCartFill, BsFillCartXFill, BsFillBellFill } from 'react-icons/bs';
+import { cartService } from '../services/cartService';
 
 export default function ProductCard({product}) {
 
   const { user } = useContext(UserAuthContext);
   const { cart, setCart, addToCartContext } = useContext(CartContext);
+
+  console.log(cart, "cart");
 
     function addToCart() {
       const cartdata = { userid: user.localId, productid: product.id }
@@ -19,7 +22,10 @@ export default function ProductCard({product}) {
       productService.addProductToCart(cartdata)
         .then(resp => {
           if(resp.error) console.log(resp.error, "cart error");
-  
+          else {
+            cartService.getCart()
+            .then(cartitems => setCart(cartitems))
+          }  
       })
     }
   }

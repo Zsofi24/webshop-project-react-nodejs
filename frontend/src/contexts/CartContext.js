@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { useCookies } from "react-cookie";
 import { UserAuthContext } from "./UserAuthContext";
+import { cartService } from "../services/cartService";
 
 export const CartContext = createContext({});
 
@@ -11,10 +11,7 @@ export function CartProvider({ children }) {
     
     useEffect(() => {
         if(user.email) {
-            fetch(`http://localhost:3031/api/cart`, {
-                credentials: 'include'
-            })
-            .then(resp => resp.json())
+            cartService.getCart()
             .then(cartitems => setCart(cartitems))
         }
     }, [user])

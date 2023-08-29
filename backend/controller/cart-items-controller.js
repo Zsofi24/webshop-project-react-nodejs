@@ -13,7 +13,7 @@ export default  {
     getCartItems(req, res, next) {
         const userid = req.session.user.localId;
         cartItemsServices
-            .getCartItems({userid})
+            .getCartItems({ userid })
             .then(resp => res.status(200).send(resp))
             .catch(next)
     }
