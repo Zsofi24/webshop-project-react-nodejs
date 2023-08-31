@@ -1,4 +1,7 @@
 import React from 'react'
+import { MdOutlineArrowBackIosNew, MdOutlineArrowForwardIos } from 'react-icons/md';
+import '../assets/css/Pagination.css';
+import { PaginationButton } from '../assets/css/Button';
 
 export default function Pagination({totalPages, onPageChange, currentPage}) {
 
@@ -24,13 +27,13 @@ export default function Pagination({totalPages, onPageChange, currentPage}) {
     const paginatioRange = range(1, totalPages)
 
   return (
-    <>
-    <span onClick={() => onPageChange(pageBackOne(currentPage))}>vissza</span>
-    {
-        paginatioRange.map(page => <span key={page} onClick={() => onPageChange(page)}>{page}</span> )
-    }
-    <span onClick={() => onPageChange(pageForwardkOne(currentPage, totalPages))}>tovább</span>
+    <div className='pagination-container'>
+      <PaginationButton onClick={() => onPageChange(pageBackOne(currentPage))}><MdOutlineArrowBackIosNew /></PaginationButton>
+      {
+          paginatioRange.map(page => <PaginationButton key={page} onClick={() => onPageChange(page)}>{page}</PaginationButton> )
+      }
+      <PaginationButton onClick={() => onPageChange(pageForwardkOne(currentPage, totalPages))}><MdOutlineArrowForwardIos /></PaginationButton>
 
-    </>
+    </div>
   )
 }

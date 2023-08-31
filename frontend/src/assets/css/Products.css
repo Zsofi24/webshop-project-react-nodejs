@@ -5,8 +5,22 @@
 .products-container {
     flex: 4;
     margin: 0 auto;
+    padding: 1rem;
 }
+
+
 .product-card-list {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(4, 1fr);
+    margin: 0 auto
+}
+
+.product-card {
+}
+
+.product-card img {
+    width: 100%;
+    overflow: hidden;
+    border-radius: 1rem 1rem 0 0;
 }

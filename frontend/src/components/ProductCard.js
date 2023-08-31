@@ -1,19 +1,30 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { productService } from '../services/productServices';
 import { UserAuthContext } from '../contexts/UserAuthContext';
 import '../assets/css/ProductCard.css'
 import { CartContext } from '../contexts/CartContext';
 import { Link } from 'react-router-dom';
-import  { BsFillCartFill, BsFillCartXFill, BsFillBellFill } from 'react-icons/bs';
+import  { BsFillCartFill, BsFillCartXFill, BsFillBellFill, BsFillCartCheckFill } from 'react-icons/bs';
 import { cartService } from '../services/cartService';
+import { Button, CartButton } from '../assets/css/Button'
 
 export default function ProductCard({product}) {
 
   const { user } = useContext(UserAuthContext);
   const { cart, setCart, addToCartContext } = useContext(CartContext);
+  const [ isInCart, setIsInCart ] = useState(false);
+  const [ isInStock, setIsInStock ] = useState(true);
 
-  console.log(cart, "cart");
-
+  useEffect(() => {
+    if(cart.length > 0) {
+      const productInCart = cart.some(item => item.id == product.id)
+      setIsInCart(productInCart)
+    } else {
+      setIsInCart(false)
+    }
+    setIsInStock(product.stock > 0);
+  }, [product])
+ 
     function addToCart() {
       const cartdata = { userid: user.localId, productid: product.id }
       console.log(cartdata, "cartdata");
@@ -35,12 +46,25 @@ export default function ProductCard({product}) {
     <div className='product-card'>
       <Link to={`${product.id}`}>
       <img src='https://placekitten.com/200'/>
-      <p>{product.title}</p>
-      <p>{product.price}</p>
+      <p className='product-font-primary'>{product.title}</p>
+      <p className='product-font-primary'>{product.price} Ft</p>
       </Link>
-      <button onClick={addToCart} disabled={product.stock == 0}>{product.stock > 0 ? <BsFillCartFill /> : <BsFillCartXFill />}</button>
       {
-        product.stock == 0 && <button><BsFillBellFill /> értesítés ha lesz raktáron</button>       
+        isInCart 
+          ?
+          <CartButton onClick={addToCart}><BsFillCartCheckFill /></CartButton>
+          :
+          (          
+            isInStock
+              ?
+              <CartButton onClick={addToCart} disabled={product.stock == 0}>{product.stock > 0 ? <BsFillCartFill /> : <BsFillCartXFill />}</CartButton>
+              :
+              <CartButton $notInStock onClick={addToCart} disabled={product.stock == 0}>{product.stock > 0 ? <BsFillCartFill /> : <BsFillCartXFill />}</CartButton>
+
+          )
+      }      
+      {
+        product.stock == 0 && <Button><BsFillBellFill /></Button>       
       }
     </div>
     </>

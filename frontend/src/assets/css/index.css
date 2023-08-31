@@ -13,8 +13,25 @@ code {
 }
 
 :root {
-  --clr-primary: rgba(20, 144, 144, 0.296);
+  --clr-primary: rgb(20, 63, 63);
   --clr-btn-red: rgba(217, 85, 32, 0.662);
-  --clr-btn-green: rgba(41, 195, 105, 0.662);
+  --clr-btn-green: rgba(37, 173, 94, 0.662);
+  --clr-btn-pagination: rgba(133, 77, 18, 0.737);
 
+  --ff-product-primary: 'Josefin Sans', sans-serif;
+}
+
+.product-font-primary {
+  font-family: var(--ff-product-primary);
+  font-weight: 400;
+  color: var(--clr-primary);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.hide {
+  display: none;
 }

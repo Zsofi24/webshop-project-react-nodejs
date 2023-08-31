@@ -49,7 +49,6 @@ export default function useProducts() {
         productService
             .getProducts()
             .then(products => {
-                console.log(products, "products");
                 if(isCurrent) {
                     dispatch({ type: 'RESOLVED', response: products.products})
                     dispatch({ type: 'RESOLVED', total: products.total})
