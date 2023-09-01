@@ -62,11 +62,12 @@ export default {
         console.log(filterquery, "filterquerry");
 
         const sql = `
-            SELECT p.price, p.id, p.title, p.description, p.stock, p.visible FROM products p ${orderquery}  
+            SELECT p.price, p.id, p.title, p.description, p.stock, p.visible FROM products p  
             JOIN products_categories pc ON pc.product_id = p.id
             JOIN categories c ON c.id = pc.category_id   
             ${filterquery} 
             GROUP BY p.id  
+            ${orderquery} 
             LIMIT ${pageSize} OFFSET ${pageSize  * (currentPage -1)}             
          `;
         const sql2 = `SELECT COUNT(*) as total FROM products`;
