@@ -50,22 +50,35 @@ export default {
         })
     },
 
-    getCurrent({ pageSize , currentPage, sortBy, order }) {
+    getCurrent({ pageSize , currentPage, sortBy, order, filter }) {
         let orderquery = "";
+        let filterquery = "";
         if(sortBy) orderquery = `ORDER BY ${sortBy} ${order}`;
-        const sql = `SELECT * FROM products ${orderquery} LIMIT ${pageSize} OFFSET ${pageSize  * (currentPage -1)}`;
+
+        console.log(filter, "filter");
+
+        if(filter) { filter = filter.map(cat => `'${cat}'`); filterquery = `WHERE c.name IN (${filter})`}
+        else  filterquery = ""
+        console.log(filterquery, "filterquerry");
+
+        const sql = `
+            SELECT p.price, p.id, p.title, p.description, p.stock, p.visible FROM products p ${orderquery}  
+            JOIN products_categories pc ON pc.product_id = p.id
+            JOIN categories c ON c.id = pc.category_id   
+            ${filterquery} 
+            GROUP BY p.id  
+            LIMIT ${pageSize} OFFSET ${pageSize  * (currentPage -1)}             
+         `;
         const sql2 = `SELECT COUNT(*) as total FROM products`;
 
         return new Promise((resolve, reject) => {
             db.serialize(() => {
                 const stmt = db.prepare(sql);
                 stmt.all((err, rows) => {
-                    console.log(rows, "rows");
                     if(err) reject(err)
                     else {
                         const stmt2 = db.prepare(sql2);
                         stmt2.get((err, row) => {
-                            console.log(rows, "row");
                             if(err) reject(err)
                             else resolve({products: rows, total: row.total})
                         })

@@ -33,6 +33,8 @@ export default function Products() {
       searchParams.forEach((key, value) => {
         query = query + `${value}=${key}&`;
       })
+      
+      console.log(query, "query");
       fetch(`http://localhost:3031/api/products?${query}`)
         .then(resp => resp.json())
         .then(prod => setCurrentTableData(prod.products))

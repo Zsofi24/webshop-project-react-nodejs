@@ -14,8 +14,9 @@ export default {
     getAll() {
         return productsModel.getAll()
     },
-    getCurrent({ pageSize, currentPage, sortBy, order }) {
-        return productsModel.getCurrent({ pageSize, currentPage, sortBy, order})
+    getCurrent({ pageSize, currentPage, sortBy, order, filter }) {
+        if(!Array.isArray(filter) && filter) filter = [filter]
+        return productsModel.getCurrent({ pageSize, currentPage, sortBy, order, filter })
     },
     getOne({ productid }) {
         return productsModel.getOne({ productid })

@@ -1,13 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Outlet } from 'react-router-dom'
 import Nav from './Nav'
 import '../assets/css/Layout.css'
 
 export default function Layout() {
+
   return (
     <>
     <header>
-        <Nav/>
+        <Nav />
     </header>
     <main>
         <Outlet/>
