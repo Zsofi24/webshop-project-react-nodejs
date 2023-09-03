@@ -4,9 +4,10 @@ import { UserAuthContext } from '../contexts/UserAuthContext';
 import '../assets/css/ProductCard.css'
 import { CartContext } from '../contexts/CartContext';
 import { Link } from 'react-router-dom';
-import  { BsFillCartFill, BsFillCartXFill, BsFillBellFill, BsFillCartCheckFill } from 'react-icons/bs';
+import { BsFillCartFill, BsFillCartXFill, BsFillBellFill, BsFillCartCheckFill } from 'react-icons/bs';
 import { cartService } from '../services/cartService';
-import { Button, CartButton } from '../assets/css/Button'
+import { CartButton } from '../assets/css/Button';
+import Button from '../components/Button'
 
 export default function ProductCard({product}) {
 
