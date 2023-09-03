@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import ProductForm from '../../components/admin/ProductForm'
 import { productService } from '../../services/productServices';
 import useProduct from '../../hooks/useProduct';
-import { Button } from '../../assets/css/Button';
+import Button from '../../components/Button';
 
 export default function AddNewProduct() {
 
@@ -44,7 +44,7 @@ export default function AddNewProduct() {
   return (
     <>
       <ProductForm inputData={formData} handleChange={handleChange} categories={categories} addOrRemoveCheckbox={addOrRemoveCheckbox}/>
-      <Button $primary onClick={createProduct}>TERMÉK LÉTREHOZÁSA</Button>
+      <Button $primary handleClick={createProduct}>TERMÉK LÉTREHOZÁSA</Button>
     </>
   )
 }

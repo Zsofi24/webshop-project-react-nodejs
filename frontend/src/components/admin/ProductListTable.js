@@ -4,7 +4,7 @@ import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 import { RiDeleteBin2Fill } from 'react-icons/ri';
 import { LuEdit } from 'react-icons/lu';
 import { AdminTable } from '../../assets/css/AdminTable';
-import { Button } from '../../assets/css/Button';
+import Button from '../../components/Button';
 
 export default function ProductListTable({products, productDelete, productVisible}) {
 
@@ -27,8 +27,8 @@ export default function ProductListTable({products, productDelete, productVisibl
                         <td>{p.price}</td>
                         <td>{p.description}</td>
                         <td><Button><Link to={`/admin/termekek/${p.id}`}><LuEdit /></Link></Button></td>
-                        <td><Button onClick={() => productVisible(p, p.id)}>{p.visible ? <AiFillEye/> : <AiFillEyeInvisible/>}</Button></td>
-                        <td><Button onClick={() => productDelete(p.id)}><RiDeleteBin2Fill /></Button></td>
+                        <td><Button handleClick={() => productVisible(p, p.id)}>{p.visible ? <AiFillEye/> : <AiFillEyeInvisible/>}</Button></td>
+                        <td><Button handleClick={() => productDelete(p.id)}><RiDeleteBin2Fill /></Button></td>
                     </tr>
                 )
                 )            

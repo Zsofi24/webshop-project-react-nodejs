@@ -2,7 +2,7 @@ import React from 'react'
 import useProduct from '../../hooks/useProduct';
 import { productService } from '../../services/productServices';
 import { useParams } from 'react-router-dom';
-import { Button } from '../../assets/css/Button';
+import Button from '../../components/Button';
 import ProductForm from '../../components/admin/ProductForm';
 
 export default function EditProduct() {
@@ -46,7 +46,7 @@ export default function EditProduct() {
       { response && (
         <>
             <ProductForm inputData={response} categories={categories} handleChange={handleChange} addOrRemoveCheckbox={addOrRemoveCheckbox}/>
-            <Button $primary onClick={updateProduct}>szerkesztés</Button>
+            <Button $primary onClick={updateProduct} text='szerkesztés'></Button>
         </>
       )}
     </section>
