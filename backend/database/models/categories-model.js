@@ -1,3 +1,4 @@
+import { rejects } from "assert";
 import db from "../connection.js";
 
 export default {
@@ -56,6 +57,36 @@ export default {
                         else resolve({categories: rows, total: row.total})
                     })
                 }
+            })
+        })
+    },
+
+    getOne({ categoryid }) {
+        const sql = `
+            SELECT id as categoryId, name as categoryName
+            FROM categories
+            WHERE id = ?
+        `;
+
+        return new Promise((resolve, reject) => {
+            const stmt = db.prepare(sql);
+            stmt.bind(categoryid);
+            stmt.get((err, row) => {
+                if(err) reject(err)
+                if(row) resolve(row)
+            })
+        })
+    },
+
+    update(name, id) {
+        const sql = `UPDATE categories SET name = ? WHERE id = ?`;
+
+        return new Promise((resolve, reject) => {
+            const stmt = db.prepare(sql);
+            stmt.bind(name, id);
+            stmt.run((err) => {
+                if(err) reject(err);
+                else resolve({name, id})
             })
         })
     }

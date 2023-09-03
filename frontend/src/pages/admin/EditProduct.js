@@ -7,7 +7,7 @@ import ProductForm from '../../components/admin/ProductForm';
 
 export default function EditProduct() {
 
-    const [ loading, response, error, categories, dispatch ] = useProduct();
+    let [ loading, response, error, categories, dispatch ] = useProduct();
     const { productid } = useParams();
     
     function updateProduct(e) {

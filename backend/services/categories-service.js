@@ -7,5 +7,13 @@ export default {
 
     getAll({ currentPage, pageSize, sortBy, order }) {
         return categoriesModel.getAll({ currentPage, pageSize, sortBy, order })
+    },
+
+    getOne({ categoryid }) {
+        return categoriesModel.getOne({ categoryid })
+    },
+
+    update(name, id) {
+        return categoriesModel.update(name, id)
     }
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import '../assets/css/Aside.css'
 import { categoryService } from '../services/categoryService';
@@ -6,13 +6,13 @@ import { categoryService } from '../services/categoryService';
 export default function Aside() {
 
   const [ sort, setSort ] = useState({sortByTitle: ""});
-  const [ filtered, setFiltered ] = useState([]);
   const [ searchParams, setSearchParams ] = useSearchParams();
+  const [ filtered, setFiltered ] = useState(searchParams.getAll('filter') || []);
   const [ categories, setCategories ] = useState([]);
 
   useEffect(() => {
     categoryService.getCategories()
-      .then(categories => setCategories(categories))
+      .then(categories => setCategories(categories.categories))
   }, [])
 
   function handleChange(e) {
@@ -58,18 +58,24 @@ export default function Aside() {
         <div>
             <input type='checkbox'/>
             <label>raktáron</label>
+            <fieldset>
+            <legend>Kategóriák</legend>
             {
-              categories.map(cat => (
-                <>
-                  <input type='checkbox' value={cat.categoryId} name={cat.categoryName} onChange={(e) => handleCheckChange(e) }/>
+              categories?.map(cat => (
+                <Fragment key={cat.categoryId}>
+                  <input 
+                    type='checkbox' 
+                    value={cat.categoryId} 
+                    name={cat.categoryName} 
+                    onChange={(e) => handleCheckChange(e)}
+                    checked={filtered.includes(cat.categoryName)}
+                  />
                   <label>{cat.categoryId} {cat.categoryName}</label>
-                </>
+                </Fragment>
               ))
             }
-
-  
+            </fieldset>  
         </div>
-
     </div>
   )
 }

@@ -15,6 +15,7 @@ import AddNewProduct from './pages/admin/AddNewProduct';
 import ProductDetails from './components/ProductDetails';
 import AdminCategoryList from './pages/admin/AdminCategoryList';
 import AddNewCategory from './pages/admin/AddNewCategory';
+import EditCategory from './pages/admin/EditCategory';
 
 const routes = createBrowserRouter([
     {element: <Layout />, 
@@ -40,6 +41,7 @@ const routes = createBrowserRouter([
                 { path: 'termekek/:productid', element: <EditProduct />},
                 { path: 'termekek/termek-felvitel', element: <AddNewProduct />},
                 { path: 'kategoriak', element: <AdminCategoryList />},
+                { path: 'kategoriak/:categoryid', element: <EditCategory />},
                 { path: 'kategoriak/kategoria-felvitel', element: <AddNewCategory />}
             ]
     }
