@@ -13,6 +13,8 @@ import AdminProductList from './pages/admin/AdminProductList';
 import EditProduct from './pages/admin/EditProduct';
 import AddNewProduct from './pages/admin/AddNewProduct';
 import ProductDetails from './components/ProductDetails';
+import AdminCategoryList from './pages/admin/AdminCategoryList';
+import AddNewCategory from './pages/admin/AddNewCategory';
 
 const routes = createBrowserRouter([
     {element: <Layout />, 
@@ -36,7 +38,9 @@ const routes = createBrowserRouter([
                 { index: true, element: <AdminDashboard /> },
                 { path: 'termekek', element: <AdminProductList />},
                 { path: 'termekek/:productid', element: <EditProduct />},
-                { path: 'termekek/termek-felvitel', element: <AddNewProduct />}
+                { path: 'termekek/termek-felvitel', element: <AddNewProduct />},
+                { path: 'kategoriak', element: <AdminCategoryList />},
+                { path: 'kategoriak/kategoria-felvitel', element: <AddNewCategory />}
             ]
     }
 ])

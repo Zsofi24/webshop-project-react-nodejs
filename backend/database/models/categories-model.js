@@ -32,14 +32,30 @@ export default {
         })
     },
 
-    getAll() {
-        const sql = `SELECT id as categoryId, name as categoryName FROM categories`;
+    getAll({ pageSize , currentPage, sortBy, order }) {
+        let orderquery = "";
+        if(sortBy) orderquery = `ORDER BY ${sortBy} ${order}`;
+
+        const sql = `
+            SELECT id as categoryId, name as categoryName 
+            FROM categories
+            ${orderquery}
+            LIMIT ${pageSize} OFFSET ${pageSize * (currentPage -1)}
+        `;
+
+        const sql2 = `SELECT COUNT(*) as total FROM categories`
 
         return new Promise((resolve, reject) => {
             const stmt = db.prepare(sql);
             stmt.all((err, rows) => {
                 if(err) reject(err)
-                if(rows) resolve(rows)
+                else {
+                    const stmt2 = db.prepare(sql2);
+                    stmt2.get((err, row) => {
+                        if(err) reject(err)
+                        else resolve({categories: rows, total: row.total})
+                    })
+                }
             })
         })
     }

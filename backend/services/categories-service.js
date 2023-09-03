@@ -5,7 +5,7 @@ export default {
         return categoriesModel.create({ name })
     },
 
-    getAll() {
-        return categoriesModel.getAll()
+    getAll({ currentPage, pageSize, sortBy, order }) {
+        return categoriesModel.getAll({ currentPage, pageSize, sortBy, order })
     }
 }
