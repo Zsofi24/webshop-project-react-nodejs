@@ -1,5 +1,5 @@
-function getProducts() {
-    return fetch(`http://localhost:3031/api/products`)
+function getProducts(query) {
+    return fetch(`http://localhost:3031/api/products?${query}`)
         .then(resp => resp.json())
 }
 

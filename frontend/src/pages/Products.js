@@ -9,36 +9,15 @@ import { ColorRing } from 'react-loader-spinner';
 
 export default function Products() {
 
-    // const [products, setProducts] = useState();
-    const [loading, response, error, total] = useProducts();
+    const [{loading, response, error, totalPages, currentPage}, dispatch] = useProducts();
 
-    const [currentTableData, setCurrentTableData] = useState(null)
-    const [totalPages, setTotalPages] = useState(1);
-    const [pageSize, setPageSize] = useState(3);
-    const [currentPage, setCurrentPage] = useState(1);
     const [searchParams, setSearchParams] = useSearchParams();
 
     function onPageChange(pagenum) {
       searchParams.set("currentPage", pagenum)
       setSearchParams(searchParams)
-      setCurrentPage(pagenum)
+      dispatch({ type: 'PAGECHANGE', currentPage: pagenum})
     }
-
-    useEffect(() => {
-      setTotalPages(Math.ceil(total / pageSize))
-    }, [response])
-
-    useEffect(() => {
-      let query = "";
-      searchParams.forEach((key, value) => {
-        query = query + `${value}=${key}&`;
-      })
-      
-      console.log(query, "query");
-      fetch(`http://localhost:3031/api/products?${query}`)
-        .then(resp => resp.json())
-        .then(prod => setCurrentTableData(prod.products))
-    }, [searchParams])
     
   return (
     <section className='product-page'>
@@ -55,7 +34,7 @@ export default function Products() {
               colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
             /></div> }
         { error && <div className="error">ERROR OH NO</div> }
-        {currentTableData?.map(prod => <ProductCard key={prod.id} product={prod}/>)}
+        {response?.map(prod => <ProductCard key={prod.id} product={prod}/>)}
         </div>
         <Pagination totalPages={totalPages} onPageChange={onPageChange} currentPage={currentPage}/>
       </div>

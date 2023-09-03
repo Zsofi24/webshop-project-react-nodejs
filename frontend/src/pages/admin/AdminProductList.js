@@ -3,38 +3,19 @@ import useProducts from '../../hooks/useProducts';
 import { Link, useSearchParams } from 'react-router-dom';
 import Pagination from '../../components/Pagination';
 import ProductListTable from '../../components/admin/ProductListTable';
-import { Button } from '../../assets/css/Button';
+import Button from '../../components/Button';
 import { productService } from '../../services/productServices';
 
 export default function AdminProductList() {
 
-  const [loading, response, error, total, dispatch] = useProducts();
+  const [{loading, response, error, totalPages, currentPage} , dispatch] = useProducts();
   
-  const [currentTableData, setCurrentTableData] = useState(null)
-  const [totalPages, setTotalPages] = useState(1);
-  const [pageSize, setPageSize] = useState(3);
-  const [currentPage, setCurrentPage] = useState(1);
   const [searchParams, setSearchParams] = useSearchParams();
-  
-  useEffect(() => {
-    setTotalPages(Math.ceil(total / pageSize))
-  }, [response])
-  
-  useEffect(() => {
-    let query = "";
-    searchParams.forEach((key, value) => {
-      query = query + `${value}=${key}&`;
-    })
-    console.log(query);
-    fetch(`http://localhost:3031/api/products?${query}`)
-    .then(resp => resp.json())
-    .then(prod => setCurrentTableData(prod.products))
-  }, [searchParams])
   
   function onPageChange(pagenum) {
     searchParams.set("currentPage", pagenum)
     setSearchParams(searchParams)
-    setCurrentPage(pagenum)
+    dispatch({ type: 'PAGECHANGE', currentPage: pagenum})
   }
 
   function productDelete(id) {
@@ -46,12 +27,12 @@ export default function AdminProductList() {
     const modifyProduct = {...product, visible: !product.visible }
     productService.updateProduct(modifyProduct, id)
       .then(resp => {
-        dispatch({ type: 'UPDATE', response: currentTableData?.map(product => { 
+        dispatch({ type: 'UPDATE', response: response?.map(product => { 
           if(product.id == resp.id) return resp 
           else return product
         })
-      })})
-    
+      })
+    })    
   }
 
   return (
@@ -63,7 +44,7 @@ export default function AdminProductList() {
       <>
         <Link to='/admin/termekek/termek-felvitel'><Button>ÚJ TERMÉK</Button></Link>
         <ProductListTable 
-          products={currentTableData}
+          products={response}
           productDelete={productDelete}
           productVisible={productVisible}
         >          
@@ -73,6 +54,5 @@ export default function AdminProductList() {
     </section>
     <Pagination totalPages={totalPages} onPageChange={onPageChange} currentPage={currentPage}/>
     </>
-
   )
 }
