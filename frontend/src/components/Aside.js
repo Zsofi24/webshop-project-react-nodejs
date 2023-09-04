@@ -2,8 +2,11 @@ import React, { Fragment, useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import '../assets/css/Aside.css'
 import { categoryService } from '../services/categoryService';
+import useCategories from '../hooks/useCategories';
 
 export default function Aside() {
+
+  const [{loading, response, error, totalPages, currentPage, total} , dispatch] = useCategories();
 
   const [ sort, setSort ] = useState({sortByTitle: ""});
   const [ searchParams, setSearchParams ] = useSearchParams();
@@ -11,9 +14,17 @@ export default function Aside() {
   const [ categories, setCategories ] = useState([]);
 
   useEffect(() => {
-    categoryService.getCategories()
-      .then(categories => setCategories(categories.categories))
-  }, [])
+    let loaded = total;
+    if(loaded) {
+      categoryService.getCategories(`pageSize=${total}`)
+        .then(categories => setCategories(categories.categories))
+    }
+    return () => {
+      loaded = false
+  }
+  }, [ total])
+
+  console.log(categories);
 
   function handleChange(e) {
     const newSort = {[e.target.name] : e.target.value}
@@ -56,24 +67,37 @@ export default function Aside() {
             <option value="desc" >rendezés z-a</option>
         </select>
         <div>
-            <input type='checkbox'/>
-            <label>raktáron</label>
             <fieldset>
-            <legend>Kategóriák</legend>
-            {
-              categories?.map(cat => (
-                <Fragment key={cat.categoryId}>
-                  <input 
-                    type='checkbox' 
-                    value={cat.categoryId} 
-                    name={cat.categoryName} 
-                    onChange={(e) => handleCheckChange(e)}
-                    checked={filtered.includes(cat.categoryName)}
-                  />
-                  <label>{cat.categoryId} {cat.categoryName}</label>
-                </Fragment>
-              ))
-            }
+              <legend>raktáron</legend>
+              <label>csak készleten</label>
+              <input 
+                type='radio'
+                name='stock'
+                value='in-stock'
+              />
+              <label>összes</label>
+              <input 
+                type='radio'
+                name='stock'
+                value='all'
+              />
+            </fieldset>
+            <fieldset>
+              <legend>Kategóriák</legend>
+              {
+                categories?.map(cat => (
+                  <Fragment key={cat.categoryId}>
+                    <input 
+                      type='checkbox' 
+                      value={cat.categoryId} 
+                      name={cat.categoryName} 
+                      onChange={(e) => handleCheckChange(e)}
+                      checked={filtered.includes(cat.categoryName)}
+                    />
+                    <label>{cat.categoryId} {cat.categoryName}</label>
+                  </Fragment>
+                ))
+              }
             </fieldset>  
         </div>
     </div>
