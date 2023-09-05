@@ -17,12 +17,12 @@ export default {
     },
 
     getCurrent(req, res, next) {
-        let { currentPage, pageSize, sortBy, order, filter } = req.query;
-        // console.log(filter, "filter");
+        let { currentPage, pageSize, sortBy, order, filter, products } = req.query;
         if(!currentPage) currentPage = 1;
         if(!pageSize) pageSize = 5;
+        if(!products) products = "all";
         productsServices
-            .getCurrent({ currentPage, pageSize, sortBy, order, filter })
+            .getCurrent({ currentPage, pageSize, sortBy, order, filter, products })
             .then(resp => res.status(201).send(resp))
             .catch(next)    
     },

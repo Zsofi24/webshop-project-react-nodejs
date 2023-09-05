@@ -11,6 +11,7 @@ export default function Aside() {
   const [ sort, setSort ] = useState({sortByTitle: ""});
   const [ searchParams, setSearchParams ] = useSearchParams();
   const [ filtered, setFiltered ] = useState(searchParams.getAll('filter') || []);
+  const [ instock, setInStock ] = useState("all")
   const [ categories, setCategories ] = useState([]);
 
   useEffect(() => {
@@ -59,6 +60,12 @@ export default function Aside() {
     }
   }
 
+  function handleRadio(e) {
+    searchParams.delete("products");
+    searchParams.append("products", e.target.value);
+    setSearchParams(searchParams)
+  }
+
   return (
     <div className='aside'>
         <select value={sort.sortByTitle} onChange={(e) => handleChange(e)} name='sortByTitle'>
@@ -73,13 +80,17 @@ export default function Aside() {
               <input 
                 type='radio'
                 name='stock'
-                value='in-stock'
+                value='instock'
+                checked={instock == "instock"}
+                onChange={(e) => {setInStock(e.target.value); handleRadio(e)}}
               />
               <label>összes</label>
               <input 
                 type='radio'
                 name='stock'
                 value='all'
+                checked={instock == "all"}
+                onChange={(e) => {setInStock(e.target.value); handleRadio(e)}}
               />
             </fieldset>
             <fieldset>

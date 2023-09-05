@@ -50,22 +50,20 @@ export default {
         })
     },
 
-    getCurrent({ pageSize , currentPage, sortBy, order, filter }) {
+    getCurrent({ pageSize , currentPage, sortBy, order, filter, products }) {
         let orderquery = "";
         let filterquery = "";
         if(sortBy) orderquery = `ORDER BY ${sortBy} ${order}`;
 
-        console.log(filter, "filter");
-
         if(filter) { filter = filter.map(cat => `'${cat}'`); filterquery = `WHERE c.name IN (${filter})`}
         else  filterquery = ""
-        console.log(filterquery, "filterquerry");
 
         const sql = `
             SELECT p.price, p.id, p.title, p.description, p.stock, p.visible FROM products p  
             JOIN products_categories pc ON pc.product_id = p.id
             JOIN categories c ON c.id = pc.category_id   
             ${filterquery} 
+            AND p.stock > ${products}
             GROUP BY p.id  
             ${orderquery} 
             LIMIT ${pageSize} OFFSET ${pageSize  * (currentPage -1)}             
