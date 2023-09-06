@@ -53,13 +53,13 @@ export default {
     getCurrent({ pageSize , currentPage, sortBy, order, filter, products }) {
         let orderquery = "";
         let filterquery = "";
-        if(sortBy) orderquery = `ORDER BY ${sortBy} ${order}`;
+        if(sortBy) orderquery = `ORDER BY p.${sortBy} ${order}`;
 
         if(filter) { filter = filter.map(cat => `'${cat}'`); filterquery = `WHERE c.name IN (${filter})`}
         else  filterquery = ""
 
         const sql = `
-            SELECT p.price, p.id, p.title, p.description, p.stock, p.visible FROM products p  
+            SELECT COUNT(*) as total, p.price, p.id, p.title, p.description, p.stock, p.visible FROM products p  
             JOIN products_categories pc ON pc.product_id = p.id
             JOIN categories c ON c.id = pc.category_id   
             ${filterquery} 
@@ -68,7 +68,17 @@ export default {
             ${orderquery} 
             LIMIT ${pageSize} OFFSET ${pageSize  * (currentPage -1)}             
          `;
-        const sql2 = `SELECT COUNT(*) as total FROM products`;
+        const sql2 = `
+            SELECT COUNT(*) as total FROM ( 
+                SELECT COUNT(*) FROM products p
+                JOIN products_categories pc ON pc.product_id = p.id
+                JOIN categories c ON c.id = pc.category_id   
+                ${filterquery}
+                AND p.stock > ${products}
+                GROUP BY p.id
+            );
+
+        `;
 
         return new Promise((resolve, reject) => {
             db.serialize(() => {
@@ -78,6 +88,7 @@ export default {
                     else {
                         const stmt2 = db.prepare(sql2);
                         stmt2.get((err, row) => {
+                            console.log(row, "row");
                             if(err) reject(err)
                             else resolve({products: rows, total: row.total})
                         })
