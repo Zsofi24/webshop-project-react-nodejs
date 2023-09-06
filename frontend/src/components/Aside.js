@@ -3,6 +3,8 @@ import { useSearchParams } from 'react-router-dom'
 import '../assets/css/Aside.css'
 import { categoryService } from '../services/categoryService';
 import useCategories from '../hooks/useCategories';
+import Select from './Select';
+import Fieldset from './Fieldset';
 
 export default function Aside() {
 
@@ -68,48 +70,61 @@ export default function Aside() {
 
   return (
     <div className='aside'>
-        <select value={sort.sortByTitle} onChange={(e) => handleChange(e)} name='sortByTitle'>
-            <option value="">rendezés - válasz</option>
-            <option value="asc" >rendezés a-z</option>
-            <option value="desc" >rendezés z-a</option>
-        </select>
+      <div className='aside-select'>
+        <Select value={sort.sortByTitle} onChange={(e) => handleChange(e)} name='sortByTitle'>
+            <option value="">RENDEZÉS</option>
+            <option value="asc" >név: a-z</option>
+            <option value="desc" >név: z-a</option>
+        </Select>
+        <span class="focus"></span>
+      </div>
         <div>
-            <fieldset>
-              <legend>raktáron</legend>
-              <label>csak készleten</label>
-              <input 
-                type='radio'
-                name='stock'
-                value='instock'
-                checked={instock == "instock"}
-                onChange={(e) => {setInStock(e.target.value); handleRadio(e)}}
-              />
-              <label>összes</label>
-              <input 
-                type='radio'
-                name='stock'
-                value='all'
-                checked={instock == "all"}
-                onChange={(e) => {setInStock(e.target.value); handleRadio(e)}}
-              />
-            </fieldset>
-            <fieldset>
-              <legend>Kategóriák</legend>
+            <Fieldset>
+              <legend>készlet</legend>
+              <div>
+                <label htmlFor='instock'>csak készleten</label>
+                <input 
+                  type='radio'
+                  name='stock'
+                  id='instock'
+                  value='instock'
+                  checked={instock == "instock"}
+                  onChange={(e) => {setInStock(e.target.value); handleRadio(e)}}
+                />
+              </div>
+              <div>
+                <label htmlFor='all'>összes</label>
+                <input 
+                  type='radio'
+                  name='stock'
+                  id='all'
+                  value='all'
+                  checked={instock == "all"}
+                  onChange={(e) => {setInStock(e.target.value); handleRadio(e)}}
+                />
+              </div>
+            </Fieldset>
+            <Fieldset>
+              <legend>kategória</legend>
               {
                 categories?.map(cat => (
                   <Fragment key={cat.categoryId}>
-                    <input 
-                      type='checkbox' 
-                      value={cat.categoryId} 
-                      name={cat.categoryName} 
-                      onChange={(e) => handleCheckChange(e)}
-                      checked={filtered.includes(cat.categoryName)}
-                    />
-                    <label>{cat.categoryId} {cat.categoryName}</label>
+                    <div>
+                      <label htmlFor={cat.categoryName}>{cat.categoryId} {cat.categoryName}</label>
+                      <input 
+                        type='checkbox' 
+                        value={cat.categoryId} 
+                        name={cat.categoryName} 
+                        id={cat.categoryName}
+                        onChange={(e) => handleCheckChange(e)}
+                        checked={filtered.includes(cat.categoryName)}
+                      />
+
+                    </div>
                   </Fragment>
                 ))
               }
-            </fieldset>  
+            </Fieldset>  
         </div>
     </div>
   )

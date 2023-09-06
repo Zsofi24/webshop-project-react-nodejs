@@ -6,7 +6,6 @@ import { CartContext } from '../contexts/CartContext';
 import { Link } from 'react-router-dom';
 import { BsFillCartFill, BsFillCartXFill, BsFillBellFill, BsFillCartCheckFill } from 'react-icons/bs';
 import { cartService } from '../services/cartService';
-import { CartButton } from '../assets/css/Button';
 import Button from '../components/Button'
 
 export default function ProductCard({product}) {
@@ -46,28 +45,27 @@ export default function ProductCard({product}) {
     <>
     <div className='product-card'>
       <Link to={`${product.id}`}>
-      <img src='https://placekitten.com/200'/>
-      <p className='product-font-primary'>{product.title}</p>
+      <img src='https://images.pexels.com/photos/8128069/pexels-photo-8128069.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'/>
+      <h3 className='product-font-primary'>{product.title}</h3>
       <p className='product-font-primary'>{product.price} Ft</p>
       </Link>
       {
         isInCart 
           ?
-          <CartButton onClick={addToCart}><BsFillCartCheckFill /></CartButton>
+          <Button type="cart" text="Hozzáadva" primary handleClick={addToCart} ><BsFillCartCheckFill /></Button>
           :
           (          
             isInStock
               ?
-              <CartButton onClick={addToCart} disabled={product.stock == 0}>{product.stock > 0 ? <BsFillCartFill /> : <BsFillCartXFill />}</CartButton>
+              <Button type="cart" text='Hozzáadás a kosárhoz' handleClick={addToCart} disabled={product.stock == 0}>{product.stock > 0 ? <BsFillCartFill /> : <BsFillCartXFill />}</Button>
               :
-              <CartButton $notInStock onClick={addToCart} disabled={product.stock == 0}>{product.stock > 0 ? <BsFillCartFill /> : <BsFillCartXFill />}</CartButton>
-
+              <div>
+                <Button type="cart" notInStock handleClick={addToCart} disabled={product.stock == 0}>{product.stock > 0 ? <BsFillCartFill /> : <BsFillCartXFill />}</Button>
+                <Button type="cart" ><BsFillBellFill /></Button>
+              </div>
           )
-      }      
-      {
-        product.stock == 0 && <Button><BsFillBellFill /></Button>       
       }
-    </div>
+    </div>      
     </>
   )
 }

@@ -4,8 +4,7 @@ export const StyledButton = styled.button`
   background: ${props => props.$primary ? "var(--clr-btn-green)" : "var(--clr-primary)"};
   color: ${props => props.$primary ? "var(--clr-primary)" : "var(--clr-btn-green)"};
 
-  font-size: 1em;
-  padding: 0.25rem 1rem;
+  padding: 0.5rem 1rem;
   border: 2px solid var(--clr-primary);
   border-radius: 3px;
   cursor: pointer;
@@ -13,10 +12,15 @@ export const StyledButton = styled.button`
 `;
 
 export const CartButton = styled(StyledButton)`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
   background: white;
   color: ${props => props.$notInStock ? "grey" : "var(--clr-primary)"};
   border-color: ${props => props.$notInStock ? "grey" : "var(--clr-primary)"};
-  cursor: ${props => props.$notInStock && "not-allowed"}
+  cursor: ${props => props.$notInStock && "not-allowed"};
 `
 export const PaginationButton = styled(StyledButton)`
   background-color: white;

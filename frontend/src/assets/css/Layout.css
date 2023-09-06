@@ -6,9 +6,7 @@ header {
 .shop-nav {
     display: flex;
     justify-content: space-between;
-    padding: 1rem;
-
-    
+    padding: 1rem;    
 }
 
 .shop-nav a {
@@ -20,6 +18,14 @@ header {
     text-decoration: underline;
     background-color: var(--clr-primary);
 }
+
+main {
+    margin-top: 1rem;
+}
+
+/* .nav-profile {
+    display: inline-block;
+} */
 
 /* .admin-nav {
     background-color: rgb(52, 160, 160)
