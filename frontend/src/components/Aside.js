@@ -71,7 +71,7 @@ export default function Aside() {
             <option value="asc" >név: a-z</option>
             <option value="desc" >név: z-a</option>
         </Select>
-        <span class="focus"></span>
+        <span className="focus"></span>
       </div>
         <div>
             <Fieldset>

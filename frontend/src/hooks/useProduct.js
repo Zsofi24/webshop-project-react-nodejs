@@ -60,6 +60,7 @@ export default function useProduct() {
         productService
             .getOneProduct(productid)
             .then(product => {
+                console.log(product, "prod");
                 if(isCurrent) {
                     dispatch({ type: 'RESOLVED', response: product})
                 }
@@ -91,5 +92,5 @@ export default function useProduct() {
         }
     }, [])
 
-  return [state.loading, state.response, state.error, state.categories, dispatch]
+  return [state, dispatch]
 }

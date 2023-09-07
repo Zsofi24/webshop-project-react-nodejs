@@ -25,7 +25,7 @@ const routes = createBrowserRouter([
             { path: '/belepes', element: <Login /> },
             { path: '/regisztracio', element: <Registration /> },
             { path: '/termekek', element: <Products /> },
-            { path: '/termekek/:id', element: <ProductDetails /> },
+            { path: '/termekek/:productid', element: <ProductDetails /> },
             { path: '/kosar', element: <Cart /> },
             { path: '/profil', element: <Profile /> },
             { path: '/rendelesek', element: <Orders /> }
