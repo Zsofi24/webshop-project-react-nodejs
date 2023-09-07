@@ -1,4 +1,3 @@
-import { rejects } from "assert";
 import db from "../connection.js";
 
 export default {
@@ -33,7 +32,22 @@ export default {
         })
     },
 
-    getAll({ pageSize , currentPage, sortBy, order }) {
+    getAll() {
+        const sql = `
+            SELECT id as categoryId, name as categoryName FROM categories;
+        `
+
+        return new Promise((resolve, reject) => {
+            const stmt = db.prepare(sql);
+            stmt.all((err, rows) => {
+                console.log(rows, "cat");
+                if(err) reject(err)
+                else resolve(rows)
+            })
+        })
+    },
+
+    getCurrent({ pageSize , currentPage, sortBy, order }) {
         let orderquery = "";
         if(sortBy) orderquery = `ORDER BY ${sortBy} ${order}`;
 
@@ -44,7 +58,7 @@ export default {
             LIMIT ${pageSize} OFFSET ${pageSize * (currentPage -1)}
         `;
 
-        const sql2 = `SELECT COUNT(*) as total FROM categories`
+        const sql2 = `SELECT COUNT(*) as total FROM categories;`
 
         return new Promise((resolve, reject) => {
             const stmt = db.prepare(sql);
@@ -53,6 +67,7 @@ export default {
                 else {
                     const stmt2 = db.prepare(sql2);
                     stmt2.get((err, row) => {
+                        console.log(row, "row");
                         if(err) reject(err)
                         else resolve({categories: rows, total: row.total})
                     })

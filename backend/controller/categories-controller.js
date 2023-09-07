@@ -10,11 +10,18 @@ export default {
     },
 
     getAll(req, res, next) {
+        categoriesService
+            .getAll()
+            .then(resp => res.status(200).send(resp))
+            .catch(next)
+    },
+
+    getCurrent(req, res, next) {
         let { currentPage, pageSize, sortBy, order } = req.query;
         if(!currentPage) currentPage = 1;
         if(!pageSize) pageSize = 5;
         categoriesService
-            .getAll({ currentPage, pageSize, sortBy, order })
+            .getCurrent({ currentPage, pageSize, sortBy, order })
             .then(resp => res.status(200).send(resp))
             .catch(next)
     },

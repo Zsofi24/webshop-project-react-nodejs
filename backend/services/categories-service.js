@@ -5,8 +5,12 @@ export default {
         return categoriesModel.create({ name })
     },
 
-    getAll({ currentPage, pageSize, sortBy, order }) {
-        return categoriesModel.getAll({ currentPage, pageSize, sortBy, order })
+    getAll() {
+        return categoriesModel.getAll()
+    },
+
+    getCurrent({ currentPage, pageSize, sortBy, order }) {
+        return categoriesModel.getCurrent({ currentPage, pageSize, sortBy, order })
     },
 
     getOne({ categoryid }) {

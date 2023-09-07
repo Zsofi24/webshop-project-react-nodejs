@@ -8,7 +8,7 @@ import Fieldset from './Fieldset';
 
 export default function Aside() {
 
-  const [{loading, response, error, totalPages, currentPage, total} , dispatch] = useCategories();
+  // const [{loading, response, error, totalPages, currentPage, total} , dispatch] = useCategories();
 
   const [ sort, setSort ] = useState({sortByTitle: ""});
   const [ searchParams, setSearchParams ] = useSearchParams();
@@ -17,19 +17,14 @@ export default function Aside() {
   const [ categories, setCategories ] = useState([]);
 
   useEffect(() => {
-    let loaded = total;
-    if(loaded) {
-      categoryService.getCategories(`pageSize=${total}`)
-        .then(categories => setCategories(categories.categories))
-    }
-    return () => {
-      loaded = false
-  }
-  }, [ total])
+      categoryService.getAllCategories()
+        .then(cat => setCategories(cat))
+  }, [])
 
   console.log(categories);
 
   function handleChange(e) {
+    console.log("valami");
     const newSort = {[e.target.name] : e.target.value}
     setSort(newSort)
     if(e.target.value == "") {
@@ -71,7 +66,7 @@ export default function Aside() {
   return (
     <div className='aside'>
       <div className='aside-select'>
-        <Select value={sort.sortByTitle} onChange={(e) => handleChange(e)} name='sortByTitle'>
+        <Select value={sort.sortByTitle} handleChange={(e) => handleChange(e)} name='sortByTitle'>
             <option value="">RENDEZÉS</option>
             <option value="asc" >név: a-z</option>
             <option value="desc" >név: z-a</option>

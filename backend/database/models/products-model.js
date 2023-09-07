@@ -59,7 +59,7 @@ export default {
         else  filterquery = ""
 
         const sql = `
-            SELECT COUNT(*) as total, p.price, p.id, p.title, p.description, p.stock, p.visible FROM products p  
+            SELECT p.price, p.id, p.title, p.description, p.stock, p.visible FROM products p  
             JOIN products_categories pc ON pc.product_id = p.id
             JOIN categories c ON c.id = pc.category_id   
             ${filterquery} 
@@ -88,7 +88,6 @@ export default {
                     else {
                         const stmt2 = db.prepare(sql2);
                         stmt2.get((err, row) => {
-                            console.log(row, "row");
                             if(err) reject(err)
                             else resolve({products: rows, total: row.total})
                         })
