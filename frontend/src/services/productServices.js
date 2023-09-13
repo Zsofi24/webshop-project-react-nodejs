@@ -4,10 +4,19 @@ function getProducts(query) {
 }
 
 function createProduct(product) {
+    console.log(product, "prod");
     return fetch(`http://localhost:3031/api/products`, {
         method: "POST",
-        body: JSON.stringify(product),
-        headers: {"Content-Type": "application/json"}
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(product)
+    })
+        .then(resp => resp.json())
+}
+
+function uploadimage(file, productid) {
+    return fetch(`http://localhost:3031/api/products/${productid}/imageupload`, {
+        method: "PUT",
+        body: file
     })
         .then(resp => resp.json())
 }
@@ -51,5 +60,6 @@ export const productService = {
     getOneProduct,
     updateProduct,
     createProduct,
-    deleteProduct
+    deleteProduct,
+    uploadimage
 }

@@ -43,6 +43,17 @@ export default {
             .catch(next)
     },
 
+    imgupload(req, res, next) {
+        console.log(req.file, "file");
+        const { productid } = req.params;
+        const newPath = req.file.path.replace(/\\/g, '/');
+        console.log(productid, "productid");
+        productsServices.imgupload(newPath, productid)
+        .then(resp => res.status(201).send(resp))
+        .catch(next)
+
+    },
+
     delete(req, res, next) {
         console.log(req.params);
         const { productid: id } = req.params;

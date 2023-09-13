@@ -6,44 +6,55 @@ import Button from '../../components/Button';
 
 export default function AddNewProduct() {
 
-  const [ loading, response, error, categories, dispatch ] = useProduct();
-
-  const [formData, setFormData] = useState({
-    id: "",
-    price: "",
-    desciption: "",
-    title: "",
-    stock: 0,
-    visible: false,
-    newcategories: []
-  });
+  const [{ loading, response, error, categories}, dispatch ] = useProduct();
 
   function addOrRemoveCheckbox(id, name) {
 
-    const index = formData.newcategories.map(cat => cat.id).indexOf(Number(id));
-    console.log(index, "index");
-    if (index === -1) {
-      setFormData(prev => ({...prev, newcategories: [...prev.newcategories, {"categoryId": Number(id), "categoryName": name}]}))
-    } else {
-      setFormData(prev => ({...prev, newcategories: prev.newcategories.splice(index, 1)}))
-    }
-    dispatch({ type: 'UPDATE', response: {...response, categories: formData.newcategories} });
+      const newCategories = [...response.newcategories];
+      const index = newCategories.map(cat => cat.categoryId).indexOf(Number(id));
+      console.log(index, "index");
+      if (index === -1) {
+          newCategories.push({categoryId: Number(id), categoryName: name});
+      } else {
+          newCategories.splice(index, 1);
+      }
+      
+      dispatch({ type: 'UPDATE', response: {...response, newcategories: newCategories} });
 }
 
   function createProduct() {
     productService
-      .createProduct(formData)
-      .then(created => console.log(created))
+      .createProduct(response)
+      .then((resp) => {
+        const fd = new FormData();
+        fd.append("pic", response.pic)    
+        productService
+          .uploadimage(fd, resp.id)
+          .then(uploadedimg => console.log("sikeres képfeltöltés"))
+          .catch(err => console.log(err))
+      })
+      .catch(err => console.log(`termékfeltöltés ${err}`))    
   }
 
   function handleChange(e) {
-    const { name, value, type, checked } = e.target;
-    setFormData(prev => ({...prev, [name]: type === "checkbox" ? checked : value}))
+    const { name, value, type, checked, files } = e.target;
+    if(type == "file") {
+      console.log(files[0], "files0");
+      dispatch({ type: 'UPDATE', response: {...response, [name]: files[0]}})
+    } else {
+      dispatch({ type: 'UPDATE', response: {...response, [name]: type === "checkbox" ? checked : value}})
+    }
+
   }
 
   return (
     <>
-      <ProductForm inputData={formData} handleChange={handleChange} categories={categories} addOrRemoveCheckbox={addOrRemoveCheckbox}/>
+      <ProductForm 
+        inputData={response} 
+        handleChange={handleChange} 
+        categories={categories} 
+        addOrRemoveCheckbox={addOrRemoveCheckbox}
+      />
       <Button $primary handleClick={createProduct}>TERMÉK LÉTREHOZÁSA</Button>
     </>
   )

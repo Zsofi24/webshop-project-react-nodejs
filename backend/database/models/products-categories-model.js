@@ -56,7 +56,7 @@ export default {
         return new Promise((resolve, reject) => {
             const stmt = db.prepare(sql);
             stmt.bind(id, categories);
-            categories.forEach(cat => {
+            categories?.forEach(cat => {
                 stmt.run(id, cat.categoryId)
             })
             stmt.finalize((err) => {

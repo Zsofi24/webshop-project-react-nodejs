@@ -11,6 +11,9 @@ export default {
         const resp2 = await productsCategoriesModel.setToProduct(id, categories)
         return resp2
     },
+    imgupload(newPath, productid) {
+        return productsModel.imgupload(newPath, productid)
+    },
     getAll() {
         return productsModel.getAll()
     },

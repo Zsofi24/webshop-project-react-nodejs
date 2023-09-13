@@ -63,7 +63,7 @@ export default function ProductDetails() {
           <h3>{response?.title}</h3>
           <h6>{response?.id}</h6>
           <div>
-            {response?.categories.map((cat) => <span key={cat.categoryId}>{cat.categoryName}</span>)}
+            {response?.categories?.map((cat) => <span key={cat.categoryId}>{cat.categoryName}</span>)}
             <p>{response?.price} Ft</p>
             {response?.stock < 6 && <p className='low-stock'>Már csak {response.stock} maradt!</p>}
             {response?.description}

@@ -1,6 +1,9 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useState } from 'react';
+import previewImage from '../../utils/loadPreviewImage';
 
 export default function ProductForm({ inputData, handleChange, categories, addOrRemoveCheckbox }) {
+
+  const [previewImg, setPreviewImg] = useState("");
 
   return (
     <form>
@@ -56,12 +59,26 @@ export default function ProductForm({ inputData, handleChange, categories, addOr
                 value={category.categoryId}
                 id={category.categoryId}
                 onChange={e => addOrRemoveCheckbox(e.target.value, category.categoryName)}
-                checked={inputData.categories?.some(cat => cat.categoryId == category.categoryId)} 
+                checked={inputData?.categories?.some(cat => cat.categoryId == category.categoryId)} 
           />
         </Fragment>
       ))
       }
-    </form>
+      <label>képfeltöltés</label>
+      <input
+        type="file"
+        id="pic"
+        name="pic"
+        accept="image/png, image/jpeg"
+        onChange={e => { 
+          handleChange(e); 
+          previewImage(e.target.files[0], setPreviewImg)
+       }}
+      />
+      {inputData?.pic &&
+        <img src={previewImg} alt="" style={{ width: "300px" }} />
+      }
+      </form>
   )
 }
 

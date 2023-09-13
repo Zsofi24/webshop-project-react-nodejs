@@ -7,7 +7,7 @@ import ProductForm from '../../components/admin/ProductForm';
 
 export default function EditProduct() {
 
-    let [ loading, response, error, categories, dispatch ] = useProduct();
+    let [{ loading, response, error, categories}, dispatch ] = useProduct();
     const { productid } = useParams();
     
     function updateProduct(e) {
@@ -20,8 +20,6 @@ export default function EditProduct() {
       const { name, value, type, checked } = e.target;
       dispatch({ type: 'UPDATE', response: {...response, [name]: type === "checkbox" ? checked : value}})
     }
-
-    console.log(response, "response");
 
     function addOrRemoveCheckbox(id, name) {
 

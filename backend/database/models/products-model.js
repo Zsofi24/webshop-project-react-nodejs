@@ -3,12 +3,13 @@ import db from "../connection.js";
 export default {
     createTable() {
         const sql = `CREATE TABLE IF NOT EXISTS products (
-            id VARCHAR PRIMARY KEY,
+            id VARCHAR(42) PRIMARY KEY,
             title VARCHAR(42) NOT NULL UNIQUE,
             description TEXT,
             price INTEGER,
             stock INTEGER,
-            visible BOOLEAN
+            visible BOOLEAN,
+            image_path VARCHAR(42)
        )`
        db.serialize(() => {
             db.run(sql, (err) => {
@@ -31,6 +32,22 @@ export default {
                 stmt.run((err) => {
                     if(err) reject(err)
                     else resolve({title, description, price, stock, id, visible})
+                })
+            })
+        })
+    },
+
+    imgupload(newPath, productid) {
+        console.log(newPath, productid);
+        const sql = `UPDATE products SET image_path = ? WHERE id = ?`;
+
+        return new Promise((resolve, reject) => {
+            db.serialize(() => {
+                const stmt = db.prepare(sql);
+                stmt.bind(newPath, productid);
+                stmt.run(err => {
+                    if(err) reject(err)
+                    else resolve({newPath, productid})
                 })
             })
         })

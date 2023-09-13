@@ -49,25 +49,35 @@ export default function useProduct() {
         }
     }, {
         loading: false,
-        response: null,
+        response: {
+              id: "",
+              price: "",
+              description: "",
+              title: "",
+              stock: 0,
+              visible: false,
+              newcategories: [],
+              pic: ""
+            },
         categories: null,
         error: null
     })
 
     useEffect(() => {
         let isCurrent = true;
-        dispatch({ type: 'LOADING' })
-        productService
-            .getOneProduct(productid)
-            .then(product => {
-                console.log(product, "prod");
-                if(isCurrent) {
-                    dispatch({ type: 'RESOLVED', response: product})
-                }
-            })
-            .catch(error => {
-                dispatch({ type: 'ERROR', error })
-            })
+        if(productid) {
+            dispatch({ type: 'LOADING' })
+            productService
+                .getOneProduct(productid)
+                .then(product => {
+                    if(isCurrent) {
+                        dispatch({ type: 'RESOLVED', response: product})
+                    }
+                })
+                .catch(error => {
+                    dispatch({ type: 'ERROR', error })
+                })
+        }
         return () => {
             isCurrent = false
         }
@@ -77,11 +87,10 @@ export default function useProduct() {
         let isCurrent = true;
         dispatch({ type: 'LOADING' })
         categoryService
-            .getCategories()
+            .getAllCategories()
             .then(categories => {
-                console.log(categories, "cat");
                 if(isCurrent) {
-                    dispatch({ type: 'CATEGORYRESOLVED', categories})
+                    dispatch({ type: 'CATEGORYRESOLVED', categories: categories})
                 }
             })
             .catch(error => {
