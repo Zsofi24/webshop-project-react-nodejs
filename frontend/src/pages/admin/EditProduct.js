@@ -44,7 +44,7 @@ export default function EditProduct() {
       { response && (
         <>
             <ProductForm inputData={response} categories={categories} handleChange={handleChange} addOrRemoveCheckbox={addOrRemoveCheckbox}/>
-            <Button $primary onClick={updateProduct} text='szerkesztés'></Button>
+            <Button $primary handleClick={updateProduct} text='szerkesztés'></Button>
         </>
       )}
     </section>

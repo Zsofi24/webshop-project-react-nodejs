@@ -15,7 +15,7 @@ export default function Button({disabled, notInStock, primary, text, children, h
     } else if(type == "cart-delete") {
       return <CartDelete onClick={handleClick}>{children}</CartDelete>
     } else if(!type) {
-      return <StyledButton onClick={handleClick}>{children}</StyledButton>
+      return <StyledButton onClick={handleClick}>{text}{children}</StyledButton>
     }
 
 }
