@@ -45,7 +45,7 @@ export default function ProductCard({product}) {
     <>
     <div className='product-card'>
       <Link to={`${product.id}`}>
-      <img src='https://images.pexels.com/photos/8128069/pexels-photo-8128069.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'/>
+      <img src={`http://localhost:3031/api/${product.path}`} alt="wine" />
       <h3 className='product-font-primary'>{product.title}</h3>
       <p className='product-font-primary'>{product.price} Ft</p>
       </Link>

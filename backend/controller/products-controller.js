@@ -1,4 +1,5 @@
 import productsServices from "../services/products-services.js";
+import path from 'path';
 
 export default {
     create(req, res, next) {
@@ -33,6 +34,12 @@ export default {
             .getOne({ productid })
             .then(resp => res.status(201).send(resp))
             .catch(next)
+    },
+
+    getImage(req, res, next) {
+        const { imgpath } = req.params;
+        res.sendFile(path.resolve(`./uploads/${imgpath}`))
+    
     },
 
     edit(req, res, next) {

@@ -76,7 +76,7 @@ export default {
         else  filterquery = ""
 
         const sql = `
-            SELECT p.price, p.id, p.title, p.description, p.stock, p.visible FROM products p  
+            SELECT p.price, p.id, p.title, p.description, p.stock, p.visible, p.image_path as path FROM products p  
             JOIN products_categories pc ON pc.product_id = p.id
             JOIN categories c ON c.id = pc.category_id   
             ${filterquery} 
@@ -116,7 +116,7 @@ export default {
 
     getOne({ productid }) {
         const sql = `
-            SELECT p.id, p.title, p.description, p.price, p.stock, p.visible FROM products p
+            SELECT p.id, p.title, p.description, p.price, p.stock, p.visible, p.image_path as path FROM products p
             WHERE p.id = ?
         `;
 
