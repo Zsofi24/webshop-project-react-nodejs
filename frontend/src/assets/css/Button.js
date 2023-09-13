@@ -28,3 +28,18 @@ export const PaginationButton = styled(StyledButton)`
   border: none;
   padding: 0.25rem 0.4rem;
 `
+
+export const CartAmount = styled(StyledButton)`
+  background-color: ${(props) => props.disabled ? "black" :  "var(--clr-lightgrey)"};
+  border: var(--clr-lightgrey);
+  color: white;
+  font-weight: bold;
+  font-size: 0.8rem;
+`
+
+export const CartDelete = styled(StyledButton)`
+  background-color: red;
+  color: white;
+  border: red;
+  fonst-size: 0.8rem;
+`

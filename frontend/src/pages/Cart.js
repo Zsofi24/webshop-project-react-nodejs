@@ -1,8 +1,8 @@
 import React, { useContext, useEffect } from 'react'
 import { CartContext } from '../contexts/CartContext'
 import { UserAuthContext } from '../contexts/UserAuthContext';
-import { useCookies } from 'react-cookie';
 import { orderServices } from '../services/orderServices';
+import CartItem from '../components/CartItem';
 
 export default function Cart() {
 
@@ -19,6 +19,13 @@ export default function Cart() {
       })
       .catch(err => alert(err))
   }
+
+  function increaseAmount(id) {
+    const index = cart.findIndex(item => item.id == id);
+    console.log(index, "index");
+    cart[index].amount++;
+    console.log(cart, "cart");
+  }
    
   return (
     <>
@@ -33,12 +40,8 @@ export default function Cart() {
         <>
         {
         cart.map(cartitem => (
-          <div key={cartitem.product_id}>
-            <p>{cartitem.title}</p>
-            <p>mennyiség: {cartitem.amount}</p>
-            <p>ár: {cartitem.price}</p>
-            <hr/>
-          </div>
+          <CartItem key={cartitem.product_id} item={cartitem} increaseAmount={increaseAmount}></CartItem>
+          
         ))
         }
         <button onClick={order}>megrendelés</button>
