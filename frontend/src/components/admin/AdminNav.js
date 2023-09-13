@@ -7,6 +7,7 @@ export default function AdminNav() {
         <NavLink to='/'>webshop</NavLink>
         <NavLink to='/admin'>dasboard</NavLink>
         <NavLink  to='/admin/termekek'>termékek</NavLink>
+        <NavLink  to='/admin/kategoriak'>kategóriák</NavLink>
     </nav>
   )
 }
