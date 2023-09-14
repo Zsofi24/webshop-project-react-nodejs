@@ -1,5 +1,6 @@
 import productsServices from "../services/products-services.js";
 import path from 'path';
+import sharp from 'sharp';
 
 export default {
     create(req, res, next) {
@@ -55,9 +56,15 @@ export default {
         const { productid } = req.params;
         const newPath = req.file.path.replace(/\\/g, '/');
         console.log(productid, "productid");
-        productsServices.imgupload(newPath, productid)
-        .then(resp => res.status(201).send(resp))
-        .catch(next)
+        sharp(req.file.path)
+            .resize({width: 640, height: 1014})
+            .toFile(`${newPath}-resized`)
+            .then(data => {
+                console.log(data, "data");
+                productsServices.imgupload(`${newPath}-resized`, productid)
+                .then(resp => res.status(201).send(resp))
+                .catch(next)
+            })
 
     },
 

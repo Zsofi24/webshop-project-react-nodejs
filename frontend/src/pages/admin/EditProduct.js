@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import useProduct from '../../hooks/useProduct';
 import { productService } from '../../services/productServices';
 import { useParams } from 'react-router-dom';
@@ -9,17 +9,31 @@ export default function EditProduct() {
 
     let [{ loading, response, error, categories}, dispatch ] = useProduct();
     const { productid } = useParams();
+    console.log(response, "resp");
     
     function updateProduct(e) {
         e.preventDefault();
         productService.updateProduct(response, productid)
             .then(updated => console.log(updated, "updqted"))
+            .then(() => {
+              const fd = new FormData();
+              fd.append("pic", response.path)    
+              productService
+                .uploadimage(fd, productid)
+                .then(uploadedimg => console.log("sikeres képfeltöltés"))
+                .catch(err => console.log(err))
+              }
+            )    
     }
 
     function handleChange(e) {
-      const { name, value, type, checked } = e.target;
-      dispatch({ type: 'UPDATE', response: {...response, [name]: type === "checkbox" ? checked : value}})
-    }
+      const { name, value, type, checked, files } = e.target;
+      if(type == "file") {
+        console.log(files[0], "files0");
+        dispatch({ type: 'UPDATE', response: {...response, [name]: files[0]}})
+      } else {
+        dispatch({ type: 'UPDATE', response: {...response, [name]: type === "checkbox" ? checked : value}})
+      }    }
 
     function addOrRemoveCheckbox(id, name) {
 
