@@ -4,15 +4,17 @@ import { formValidation } from '../utils/formValidation';
 import { MdOutlineAlternateEmail } from 'react-icons/md';
 import { GiCheckMark } from 'react-icons/gi';
 import { BiLock } from 'react-icons/bi';
+import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import '../assets/css/AuthForm.css';
 import { userService } from '../services/userServices';
 import { UserAuthContext } from '../contexts/UserAuthContext';
 
 export default function LoginForm() {
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     const [ errorMessage, setErrorMessage ] = useState(null);
     const { user, setUser } = useContext(UserAuthContext);
+    const [ passwordVisible, setPasswordVisible ] = useState(false);
 
     const [formData, setFormData] = useState({
         email: {
@@ -65,21 +67,22 @@ export default function LoginForm() {
                                 onChange={(e) => handleChange(e)}
                             />
                         </fieldset>
-                        <span className={`${formData.email.valid ? "valid" : "invalid"}`}>{formData.email.valid ?  <GiCheckMark /> : "X"}</span>
+                        {/* <span className={`${formData.email.valid ? "valid" : "invalid"}`}>{formData.email.valid ?  <GiCheckMark /> : "X"}</span> */}
                     </div>
 
                     <div className='input-container'>
                         <fieldset>
                             <span><BiLock /></span>
                             <input
-                                type='password'
+                                type={passwordVisible ? 'text' : 'password'}
                                 name='password'
                                 placeholder='password'
                                 value={formData.password.value}
                                 onChange={(e) => handleChange(e)}
                             />
+                            <span onClick={() => setPasswordVisible(prev => !prev)}>{passwordVisible ? <AiOutlineEyeInvisible /> : <AiOutlineEye /> }</span>
                         </fieldset>
-                        <span className={`${formData.password.valid ? "valid" : "invalid"}`}>{formData.password.valid ? <GiCheckMark /> : "X"}</span>
+                        {/* <span className={`${formData.password.valid ? "valid" : "invalid"}`}>{formData.password.valid ? <GiCheckMark /> : "X"}</span> */}
                     </div>
                     
                     <button type='submit'>bejelentkezés</button>
