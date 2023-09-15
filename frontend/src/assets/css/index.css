@@ -38,6 +38,12 @@ code {
 
   --ff-product-primary: 'Josefin Sans', sans-serif;
   --ff-second: 'Playfair', serif;
+
+  --nav-height: 8vh;
+  --main-height: calc(100vh - var(--nav-height));
+
+  --fs-medium: 1.4rem;
+
 }
 
 .product-font-primary {

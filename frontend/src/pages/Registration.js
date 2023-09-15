@@ -6,7 +6,8 @@ import '../assets/css/AuthForm.css'
 export default function Registration() {
   return (
     <>
-        <section >
+        <section className='flex-wrapper' >
+          <div className='form-img'></div>
           <div className='form-container'>
             <h1>Registration</h1>
             <RegistrationForm/>

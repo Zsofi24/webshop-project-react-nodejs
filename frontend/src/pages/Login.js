@@ -5,12 +5,15 @@ import { Link } from 'react-router-dom';
 export default function Login() {
   return (
     <>
-      <section>
+      <section className='flex-wrapper'>
+        <div className='form-img'>        </div>
+
         <div className='form-container'>
-            <h1>Login</h1>
+            <h1>bejelentkezés</h1>
             <LoginForm/>
-            <p>nincs még fiókja? <Link className='regist-link' to={'/regisztracio'}>regisztráljon</Link></p>
+            <p>még nincs fiókja? <Link className='regist-link' to={'/regisztracio'}>regisztráljon</Link></p>
         </div>
+
       </section>
     </>
   )

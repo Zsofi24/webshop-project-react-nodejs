@@ -1,6 +1,7 @@
 header {
     /* padding: 1rem; */
     background-color: rgb(20, 63, 63);
+    height: var(--nav-height);
 }
 
 .shop-nav {
@@ -12,7 +13,11 @@ header {
 .shop-nav a {
     text-decoration: none;
     color: white;
-}     
+}    
+
+.shop-nav a img {
+    height: 100%;
+}
 
 .shop-nav a:hover {
     text-decoration: underline;
@@ -20,7 +25,8 @@ header {
 }
 
 main {
-    margin-top: 1rem;
+    /* margin-top: 1rem; */
+    min-height: var(--main-height);
 }
 
 /* .nav-profile {
