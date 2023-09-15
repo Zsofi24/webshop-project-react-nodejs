@@ -8,8 +8,6 @@ import Fieldset from './Fieldset';
 
 export default function Aside() {
 
-  // const [{loading, response, error, totalPages, currentPage, total} , dispatch] = useCategories();
-
   const [ sort, setSort ] = useState({sortByTitle: ""});
   const [ searchParams, setSearchParams ] = useSearchParams();
   const [ filtered, setFiltered ] = useState(searchParams.getAll('filter') || []);
@@ -20,8 +18,6 @@ export default function Aside() {
       categoryService.getAllCategories()
         .then(cat => setCategories(cat))
   }, [])
-
-  console.log(categories);
 
   function handleChange(e) {
     console.log("valami");

@@ -40,7 +40,6 @@ export default {
         return new Promise((resolve, reject) => {
             const stmt = db.prepare(sql);
             stmt.all((err, rows) => {
-                console.log(rows, "cat");
                 if(err) reject(err)
                 else resolve(rows)
             })
@@ -67,7 +66,6 @@ export default {
                 else {
                     const stmt2 = db.prepare(sql2);
                     stmt2.get((err, row) => {
-                        console.log(row, "row");
                         if(err) reject(err)
                         else resolve({categories: rows, total: row.total})
                     })

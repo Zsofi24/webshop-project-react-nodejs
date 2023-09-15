@@ -69,12 +69,15 @@ export default function useProducts() {
             .getProducts(query)
             .then(products => {
                 if(isCurrent) {
-                    dispatch({ 
-                        type: 'RESOLVED', 
-                        response: products.products, 
-                        total: products.total,
-                        totalPages: (Math.ceil(products.total / state.pageSize))
-                    })
+                    // setTimeout(() => {
+                        dispatch({ 
+                            type: 'RESOLVED', 
+                            response: products.products, 
+                            total: products.total,
+                            totalPages: (Math.ceil(products.total / state.pageSize))
+                        })
+
+                    // }, 1000)
                 }
             })
             .catch(error => {
