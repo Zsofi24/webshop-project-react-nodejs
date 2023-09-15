@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { BsFillCartFill, BsFillCartXFill, BsFillBellFill, BsFillCartCheckFill } from 'react-icons/bs';
 import { cartService } from '../services/cartService';
 import Button from '../components/Button'
+import ProductCardLabel from './ProductCardLabel';
 
 export default function ProductCard({product}) {
 
@@ -45,7 +46,10 @@ export default function ProductCard({product}) {
     <>
     <div className='product-card'>
       <Link to={`${product.id}`}>
-      <img src={`http://localhost:3031/api/${product.path}`} alt="wine" />
+      <div className='product-image'>
+        <img src={`http://localhost:3031/api/${product.path}`} alt="wine" />
+        { product.limited ? <ProductCardLabel text="limitált"/> : null }
+      </div>
       <h3 className='product-font-primary'>{product.title}</h3>
       <p className='product-font-primary'>{product.price} Ft</p>
       </Link>

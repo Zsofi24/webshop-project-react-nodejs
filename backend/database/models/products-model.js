@@ -9,6 +9,7 @@ export default {
             price INTEGER,
             stock INTEGER,
             visible BOOLEAN,
+            limited BOOLEAN,
             image_path VARCHAR(42)
        )`
        db.serialize(() => {
@@ -22,16 +23,16 @@ export default {
        })
     },
 
-    create({ title, description, price, stock, id, visible }) {
-        const sql = `INSERT INTO products(title, description, price, stock, id, visible) VALUES(?, ?, ?, ?, ?, ?)`;
+    create({ title, description, price, stock, id, visible, limited }) {
+        const sql = `INSERT INTO products(title, description, price, stock, id, visible, limited) VALUES(?, ?, ?, ?, ?, ?, ?)`;
 
         return new Promise((resolve, reject) => {
             db.serialize(() => {
                 const stmt = db.prepare(sql);
-                stmt.bind(title, description, price, stock, id, visible);
+                stmt.bind(title, description, price, stock, id, visible, limited);
                 stmt.run((err) => {
                     if(err) reject(err)
-                    else resolve({title, description, price, stock, id, visible})
+                    else resolve({title, description, price, stock, id, visible, limited})
                 })
             })
         })
@@ -76,7 +77,7 @@ export default {
         else  filterquery = ""
 
         const sql = `
-            SELECT p.price, p.id, p.title, p.description, p.stock, p.visible, p.image_path as path FROM products p  
+            SELECT p.price, p.id, p.title, p.description, p.stock, p.visible, p.image_path as path, p.limited FROM products p  
             JOIN products_categories pc ON pc.product_id = p.id
             JOIN categories c ON c.id = pc.category_id   
             ${filterquery} 
@@ -116,7 +117,7 @@ export default {
 
     getOne({ productid }) {
         const sql = `
-            SELECT p.id, p.title, p.description, p.price, p.stock, p.visible, p.image_path as path FROM products p
+            SELECT p.id, p.title, p.description, p.price, p.stock, p.visible, p.image_path as path, p.limited FROM products p
             WHERE p.id = ?
         `;
 

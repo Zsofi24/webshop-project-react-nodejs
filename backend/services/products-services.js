@@ -3,11 +3,11 @@ import productsModel from "../database/models/products-model.js";
 import productsCategoriesModel from "../database/models/products-categories-model.js";
 
 export default {
-    async create({ title, price, description, id, stock, newcategories: categories, visible }) {
+    async create({ title, price, description, id, stock, newcategories: categories, visible, limited }) {
         if(!id) {
             id = nanoid(8)
         }
-        const resp = await productsModel.create({ title, price, description, id, stock, visible })
+        const resp = await productsModel.create({ title, price, description, id, stock, visible, limited })
         const resp2 = await productsCategoriesModel.setToProduct(id, categories)
         return resp2
     },

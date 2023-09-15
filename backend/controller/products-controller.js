@@ -4,9 +4,9 @@ import sharp from 'sharp';
 
 export default {
     create(req, res, next) {
-        const { title, price, description, id, stock, newcategories, visible } = req.body;
+        const { title, price, description, id, stock, newcategories, visible, limited } = req.body;
         productsServices
-            .create({ title, price, description, id, stock, newcategories, visible })
+            .create({ title, price, description, id, stock, newcategories, visible, limited })
             .then(resp => res.status(201).send(resp))
             .catch(next)
     },

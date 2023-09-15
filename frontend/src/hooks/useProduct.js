@@ -56,6 +56,7 @@ export default function useProduct() {
               title: "",
               stock: 0,
               visible: false,
+              limited: false,
               newcategories: [],
               pic: ""
             },

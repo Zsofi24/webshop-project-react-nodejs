@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import previewImage from '../../utils/loadPreviewImage';
 
 export default function ProductForm({ inputData, handleChange, categories, addOrRemoveCheckbox }) {
@@ -41,6 +41,14 @@ export default function ProductForm({ inputData, handleChange, categories, addOr
         name='visible'
         id="visible"
         checked={inputData?.visible}
+        onChange={(e) => handleChange(e)}
+      />
+      <label htmlFor='limited'>limitált</label>
+      <input
+        type='checkbox'
+        name='limited'
+        id="limited"
+        checked={inputData?.limited}
         onChange={(e) => handleChange(e)}
       />
       <label>készlet</label>
