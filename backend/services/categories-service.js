@@ -1,8 +1,10 @@
+import { nanoid } from "nanoid";
 import categoriesModel from "../database/models/categories-model.js";
 
 export default {
-    create({ name }) {
-        return categoriesModel.create({ name })
+    create({ id, name }) {
+        if(!id) id = nanoid(6);
+        return categoriesModel.create({ id, name })
     },
 
     getAll() {

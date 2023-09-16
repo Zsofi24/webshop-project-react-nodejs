@@ -3,7 +3,7 @@ import db from "../connection.js";
 export default {
     createTable() {
         const sql = `CREATE TABLE IF NOT EXISTS categories (
-            id INTEGER PRIMARY KEY,
+            id VARCHAR(42) PRIMARY KEY,
             name VARCHAR(42)
         )`
         db.serialize(() => {
@@ -17,8 +17,8 @@ export default {
        })
     },
 
-    create({ name }) {
-        const sql = `INSERT INTO categories(name) VALUES(?)`;
+    create({ id, name }) {
+        const sql = `INSERT INTO categories(id, name) VALUES(?, ?)`;
 
         return new Promise((resolve, reject) => {
             db.serialize(() => {
@@ -26,7 +26,7 @@ export default {
                 stmt.bind(id, name);
                 stmt.run((err) => {
                     if(err) reject(err)
-                    else resolve({name})
+                    else resolve({id, name})
                 })
             })
         })

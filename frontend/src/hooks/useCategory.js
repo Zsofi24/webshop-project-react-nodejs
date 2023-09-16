@@ -43,29 +43,34 @@ export default function useCategory() {
         }
     }, {
         loading: false,
-        response: null,
+        response: {
+            id: null,
+            name: ""
+        },
         categories: null,
         error: null
     })
 
     useEffect(() => {
         let isCurrent = true;
-        dispatch({ type: 'LOADING' })
-        categoryService
-            .getOneCategory(categoryid)
-            .then(category => {
-                if(isCurrent) {
-                    dispatch({ type: 'RESOLVED', response: category})
-                }
-            })
-            .catch(error => {
-                dispatch({ type: 'ERROR', error })
-            })
+        if(categoryid) {
+            dispatch({ type: 'LOADING' })
+            categoryService
+                .getOneCategory(categoryid)
+                .then(category => {
+                    if(isCurrent) {
+                        dispatch({ type: 'RESOLVED', response: category})
+                    }
+                })
+                .catch(error => {
+                    dispatch({ type: 'ERROR', error })
+                })
+        }
         return () => {
             isCurrent = false
         }
     }, [])
 
     
-  return [state.loading, state.response, state.error, dispatch]
+  return [state, dispatch]
 }

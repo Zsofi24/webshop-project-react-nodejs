@@ -4,7 +4,7 @@ export default {
     createTable() {
         const sql = `CREATE TABLE IF NOT EXISTS products_categories (
             product_id VARCHAR(42),
-            category_id INTEGER,
+            category_id VARCHAR(42),
             PRIMARY KEY(product_id, category_id),
             FOREIGN KEY(product_id) REFERENCES products(id) ON DELETE CASCADE ON UPDATE CASCADE,
             FOREIGN KEY(category_id) REFERENCES categories(id) ON DELETE CASCADE ON UPDATE CASCADE
