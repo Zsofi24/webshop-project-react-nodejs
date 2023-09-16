@@ -4,18 +4,18 @@ export default function CategoryForm({inputData, handleChange}) {
 
   return (
     <form>        
-        <label>id</label>
-        <input 
+      <label>id</label>
+      <input 
         type='text' 
-        name='id'
-        value={inputData?.id || ""}
+        name='categoryId'
+        value={inputData.categoryId || ""}
         onChange={(e) => handleChange(e)}
       />
       <label>name</label>
       <input 
         type='text' 
-        name='name'
-        value={inputData?.name || ""}
+        name='categoryName'
+        value={inputData.categoryName || ""}
         onChange={(e) => handleChange(e)}
       />
     </form>

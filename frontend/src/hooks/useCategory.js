@@ -44,8 +44,8 @@ export default function useCategory() {
     }, {
         loading: false,
         response: {
-            id: null,
-            name: ""
+            categoryId: null,
+            categoryName: ""
         },
         categories: null,
         error: null

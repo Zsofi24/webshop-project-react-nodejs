@@ -22,7 +22,7 @@ export default function AddNewCategory() {
 
   function createCategory() {
     categoryService
-      .create(response)
+      .create({id: response.categoryId, name: response.categoryName})
       .then(resp => console.log(resp))
   }
 
