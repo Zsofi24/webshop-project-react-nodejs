@@ -31,10 +31,18 @@ function updateCategory(updatedcategory, id) {
         .then(resp => resp.json())
 }
 
+function deleteCategory(id) {
+    return fetch(`http://localhost:3031/api/categories/${id}`, {
+        method: 'DELETE'
+    })
+        .then(resp => resp.json())
+}
+
 export const categoryService = {
     getCategories,
     getOneCategory,
     updateCategory,
     getAllCategories,
-    create
+    create,
+    deleteCategory
 }

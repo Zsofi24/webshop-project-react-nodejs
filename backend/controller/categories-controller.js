@@ -42,5 +42,15 @@ export default {
             .then(resp => res.status(201).send(resp))
             .catch(next)
 
+    },
+
+    delete(req, res, next) {
+        const { categoryid: id } = req.params;
+        console.log(id, "id");
+        categoriesService
+            .delete(id)
+            .then(resp => res.status(201).send(resp))
+            .catch(next)
+
     }
 }

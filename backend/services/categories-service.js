@@ -21,5 +21,9 @@ export default {
 
     update(name, id) {
         return categoriesModel.update(name, id)
+    },
+
+    delete(id) {
+        return categoriesModel.delete(id)
     }
 }

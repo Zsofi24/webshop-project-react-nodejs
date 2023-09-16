@@ -4,6 +4,7 @@ import { Link, useSearchParams } from 'react-router-dom';
 import Button from '../../components/Button';
 import Pagination from '../../components/Pagination';
 import CategoryListTable from '../../components/admin/CategoryListTable';
+import { categoryService } from '../../services/categoryService';
 
 export default function AdminCategoryList() {
 
@@ -18,8 +19,8 @@ export default function AdminCategoryList() {
   }
 
   function categoryDelete(id) {
-    // productService.deleteProduct(id)
-    //   .then(id => console.log(id))
+    categoryService.deleteCategory(id)
+     .then(id => console.log(id))
   }
 
   console.log(response, "resp");
