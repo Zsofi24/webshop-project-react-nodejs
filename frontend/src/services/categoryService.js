@@ -19,6 +19,17 @@ function create(category) {
         body: JSON.stringify(category),
         headers: {"Content-Type": "application/json"}
     })
+        .then(resp => {
+            console.log(resp, "resp");
+            if(!resp.ok) {
+                console.log(resp.status, resp.statusText);
+                return Promise.reject({
+                    status: resp.status,
+                    statusText: resp.statusText
+                })
+            }
+            return resp
+        })
         .then(resp => resp.json())
 }
 

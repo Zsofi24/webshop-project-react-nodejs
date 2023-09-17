@@ -33,7 +33,7 @@ export default function AddNewProduct() {
           .then(uploadedimg => console.log("sikeres képfeltöltés"))
           .catch(err => console.log(err))
       })
-      .catch(err => console.log(`termékfeltöltés ${err}`))    
+      .catch(err => alert(err.statusText))    
   }
 
   function handleChange(e) {

@@ -6,7 +6,7 @@ export default {
         categoriesService
             .create({ id, name })
             .then(resp => res.status(201).send(resp))
-            .catch(next)
+            .catch(err => next(err))
     },
 
     getAll(req, res, next) {
