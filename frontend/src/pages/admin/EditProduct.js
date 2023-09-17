@@ -38,11 +38,10 @@ export default function EditProduct() {
     function addOrRemoveCheckbox(id, name) {
 
       const newCategories = [...response.categories];
-      console.log(newCategories, "new");
-      const index = newCategories.map(cat => cat.categoryId).indexOf(Number(id));
-      console.log(index, "index");
+      const index = newCategories.map(cat => cat.categoryId).indexOf(id);
+      
       if (index === -1) {
-          newCategories.push({categoryId: Number(id), categoryName: name});
+          newCategories.push({categoryId: id, categoryName: name});
       } else {
           newCategories.splice(index, 1);
       }
