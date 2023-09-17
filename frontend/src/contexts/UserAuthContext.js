@@ -1,6 +1,7 @@
 import { createContext, useState } from "react";
 import { useEffect } from "react";
 import { useCookies } from "react-cookie";
+import { API_URL } from "../constants";
 
 export const UserAuthContext = createContext({});
 
@@ -13,7 +14,7 @@ export function UserAuthProvider({children}) {
     useEffect(() => {
         console.log(cookies, "cookies");
         // if(cookies.sessionID) {
-          fetch(`http://localhost:3031/api/verify`, {
+          fetch(`${API_URL}/api/verify`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json"

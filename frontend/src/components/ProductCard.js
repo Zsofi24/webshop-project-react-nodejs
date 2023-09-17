@@ -8,6 +8,7 @@ import { BsFillCartFill, BsFillCartXFill, BsFillBellFill, BsFillCartCheckFill } 
 import { cartService } from '../services/cartService';
 import Button from '../components/Button'
 import ProductCardLabel from './ProductCardLabel';
+import { API_URL } from '../constants';
 
 export default function ProductCard({product}) {
 
@@ -47,7 +48,7 @@ export default function ProductCard({product}) {
     <div className='product-card'>
       <Link to={`${product.id}`}>
       <div className='product-image'>
-        <img src={`http://localhost:3031/api/${product.path}`} alt="wine" />
+        <img src={`${API_URL}/api/${product.path}`} alt="wine" />
         { product.limited ? <ProductCardLabel text="limitált"/> : null }
       </div>
       <h3 className='product-font-primary'>{product.title}</h3>

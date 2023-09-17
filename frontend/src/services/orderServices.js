@@ -1,12 +1,14 @@
+import { API_URL } from "../constants";
+
 function sendOrder(userid, cart) {
-    return fetch(`http://localhost:3031/api/orders`, {
+    return fetch(`${API_URL}/api/orders`, {
         method: 'POST',
         body: JSON.stringify(userid),
         headers: {"Content-Type": "application/json"}
     })
     .then(resp => resp.json())
     .then(respData => {
-            return (fetch(`http://localhost:3031/api/orders-products`, {
+            return (fetch(`${API_URL}/api/orders-products`, {
                 method: 'POST',
                 body: JSON.stringify({orderid: respData.id, cart}),
                 headers: {"Content-Type": "application/json"}
@@ -16,7 +18,7 @@ function sendOrder(userid, cart) {
 }
 
 function getUserOrders() {
-    return fetch(`http://localhost:3031/api/orders/user`, {
+    return fetch(`${API_URL}/api/orders/user`, {
         credentials: 'include'
     })
     .then(resp => resp.json())

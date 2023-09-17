@@ -1,20 +1,22 @@
+import { API_URL } from "../constants";
+
 function getCategories(query) {
-    return fetch(`http://localhost:3031/api/categories?${query}`)
+    return fetch(`${API_URL}/api/categories?${query}`)
         .then(resp => resp.json())
 }
 
 function getAllCategories() {
-    return fetch(`http://localhost:3031/api/allcategories`)
+    return fetch(`${API_URL}/api/allcategories`)
         .then(resp => resp.json())
 }
 
 function getOneCategory(id) {
-    return fetch(`http://localhost:3031/api/categories/${id}`)
+    return fetch(`${API_URL}/api/categories/${id}`)
         .then(resp => resp.json())
 }
 
 function create(category) {
-    return fetch(`http://localhost:3031/api/categories`, {
+    return fetch(`${API_URL}/api/categories`, {
         method: 'POST',
         body: JSON.stringify(category),
         headers: {"Content-Type": "application/json"}
@@ -34,7 +36,7 @@ function create(category) {
 }
 
 function updateCategory(updatedcategory, id) {
-    return fetch(`http://localhost:3031/api/categories/${id}`, {
+    return fetch(`${API_URL}/api/categories/${id}`, {
         method: 'PUT',
         body: JSON.stringify(updatedcategory),
         headers: {"Content-Type": "application/json"}
@@ -43,7 +45,7 @@ function updateCategory(updatedcategory, id) {
 }
 
 function deleteCategory(id) {
-    return fetch(`http://localhost:3031/api/categories/${id}`, {
+    return fetch(`${API_URL}/api/categories/${id}`, {
         method: 'DELETE'
     })
         .then(resp => resp.json())

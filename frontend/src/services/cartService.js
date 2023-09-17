@@ -1,5 +1,7 @@
+import { API_URL } from "../constants";
+
 function getCart() {
-    return fetch(`http://localhost:3031/api/cart`, {
+    return fetch(`${API_URL}/api/cart`, {
         credentials: 'include'
     })
     .then(resp => resp.json())

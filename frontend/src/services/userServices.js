@@ -1,5 +1,7 @@
+import { API_URL } from "../constants";
+
 function userRegist(formData) {
-    return fetch(`http://localhost:3031/api/signup`, {
+    return fetch(`${API_URL}/api/signup`, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(formData)
@@ -7,7 +9,7 @@ function userRegist(formData) {
 }
 
 function userLogin(formData) {
-    return fetch(`http://localhost:3031/api/login`, {
+    return fetch(`${API_URL}/api/login`, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(formData),
@@ -16,7 +18,7 @@ function userLogin(formData) {
 }
 
 function userLogout() {
-    return fetch(`http://localhost:3031/api/logout`, {
+    return fetch(`${API_URL}/api/logout`, {
         credentials: 'include'
     })
     .then(resp => resp.json())

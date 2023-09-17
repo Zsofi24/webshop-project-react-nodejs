@@ -1,11 +1,13 @@
+import { API_URL } from "../constants";
+
 function getProducts(query) {
-    return fetch(`http://localhost:3031/api/products?${query}`)
+    return fetch(`${API_URL}/api/products?${query}`)
         .then(resp => resp.json())
 }
 
 function createProduct(product) {
     console.log(product, "prod");
-    return fetch(`http://localhost:3031/api/products`, {
+    return fetch(`${API_URL}/api/products`, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(product)
@@ -25,7 +27,7 @@ function createProduct(product) {
 }
 
 function uploadimage(file, productid) {
-    return fetch(`http://localhost:3031/api/products/${productid}/imageupload`, {
+    return fetch(`${API_URL}/api/products/${productid}/imageupload`, {
         method: "PUT",
         body: file
     })
@@ -33,7 +35,7 @@ function uploadimage(file, productid) {
 }
 
 function addProductToCart(cart) {
-    return fetch(`http://localhost:3031/api/cart`, {
+    return fetch(`${API_URL}/api/cart`, {
         method: "POST",
         body: JSON.stringify(cart),
         headers: {"Content-Type": "application/json"}
@@ -45,12 +47,12 @@ function addProductToCart(cart) {
 }
 
 function getOneProduct(id) {
-    return fetch(`http://localhost:3031/api/products/${id}`)
+    return fetch(`${API_URL}/api/products/${id}`)
         .then(resp => resp.json())
 }
 
 function updateProduct(product, id) {
-    return fetch(`http://localhost:3031/api/products/${id}`, {
+    return fetch(`${API_URL}/api/products/${id}`, {
         method: "PUT",
         body: JSON.stringify(product),
         headers: {"Content-Type": "application/json"}
@@ -59,7 +61,7 @@ function updateProduct(product, id) {
 }
 
 function deleteProduct(id) {
-    return fetch(`http://localhost:3031/api/products/${id}`, {
+    return fetch(`${API_URL}/api/products/${id}`, {
         method: "DELETE"
     })
         .then(resp => resp.json())
