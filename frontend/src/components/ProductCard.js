@@ -25,7 +25,7 @@ export default function ProductCard({product}) {
       setIsInCart(false)
     }
     setIsInStock(product.stock > 0);
-  }, [product])
+  }, [product, cart])
  
     function addToCart() {
       const cartdata = { userid: user.localId, productid: product.id }
@@ -60,7 +60,7 @@ export default function ProductCard({product}) {
         { product.limited ? <ProductCardLabel text="limitált"/> : null }
       </div>
       <h3 className='product-font-primary'>{product.title}</h3>
-      <p className='product-font-primary'>{product.price} Ft</p>
+      <p className='product-font-primary'>{(product.price).toLocaleString('fr')} Ft</p>
       </Link>
       {
         isInCart 
