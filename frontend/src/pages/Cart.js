@@ -3,12 +3,12 @@ import { CartContext } from '../contexts/CartContext'
 import { UserAuthContext } from '../contexts/UserAuthContext';
 import { orderServices } from '../services/orderServices';
 import CartItem from '../components/CartItem';
+import { cartService } from '../services/cartService';
 
 export default function Cart() {
 
   const {cart, setCart} = useContext(CartContext);
   const {user} = useContext(UserAuthContext);
-  console.log(cart, "cart in cart");
 
   function order() {
     console.log(cart, "cart in order function");
@@ -20,11 +20,25 @@ export default function Cart() {
       .catch(err => alert(err))
   }
 
-  function increaseAmount(id) {
-    const index = cart.findIndex(item => item.id == id);
-    console.log(index, "index");
-    cart[index].amount++;
-    console.log(cart, "cart");
+  function updateAmount(id, operator) {
+
+    const productIndex = cart.findIndex(item => item.id == id);
+    const productAmount = cart[productIndex].amount;
+    let updatedAmount;
+
+    if(operator == "+") {
+      updatedAmount = productAmount + 1;
+    } else if(operator == "-") {
+      updatedAmount = (productAmount > 2) ? productAmount - 1 : 1;
+    }
+
+    cartService
+      .updateCartItem(user.localId, id, updatedAmount)
+        .then(() => {
+          cartService
+            .getCart()
+            .then(resp => setCart(resp))
+        })
   }
    
   return (
@@ -40,7 +54,7 @@ export default function Cart() {
         <>
         {
         cart.map(cartitem => (
-          <CartItem key={cartitem.product_id} item={cartitem} increaseAmount={increaseAmount}></CartItem>
+          <CartItem key={cartitem.product_id} item={cartitem} updateAmount={updateAmount}></CartItem>
           
         ))
         }

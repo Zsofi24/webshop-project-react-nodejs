@@ -7,6 +7,16 @@ function getCart() {
     .then(resp => resp.json())
 }
 
+function updateCartItem(userid, productid, amount) {
+    return fetch(`${API_URL}/api/cart/${userid}/${productid}`, {
+        method: 'PUT',
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({amount})
+    })
+        .then(resp => resp.json())
+}
+
 export const cartService = {
-    getCart
+    getCart,
+    updateCartItem
 }

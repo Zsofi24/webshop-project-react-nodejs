@@ -38,5 +38,9 @@ export default {
 
     deletCart({ userid }) {
         return cartItemsModel.deleteCart({ userid })
+    },
+
+    updateCart({ userid, productid, amount }) {
+        return cartItemsModel.updateAmount({ userid, productid, amount})
     }
 }
