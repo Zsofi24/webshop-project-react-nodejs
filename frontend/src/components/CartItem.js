@@ -1,11 +1,19 @@
 import React from 'react'
 import { StyledCartItem } from '../assets/css/StyledCartItem'
 import Button from './Button'
+import { API_URL } from '../constants'
 
-export default function CartItem({item, updateAmount}) {
+export default function CartItem({item, updateAmount, deleteItem}) {
+  console.log(item, "item");
   return (
     <StyledCartItem>
-        <img src='https://images.pexels.com/photos/8128069/pexels-photo-8128069.jpeg?auto=compress&cs=tinysrgb&w=400&h=200&dpr=1'/>
+      {
+        item.path
+        ?
+          <img src={`${API_URL}/api/${item.path}`} alt="wine" />
+          :
+          <img src={`${API_URL}/api/uploads/e65d2a0f397b3aadf357c6fd6dde1282-resized`} alt="wine" />
+      }
         <div>
             <p>{item.title}</p>
         </div>
@@ -15,8 +23,8 @@ export default function CartItem({item, updateAmount}) {
             <Button type='cart-amount' handleClick={() => updateAmount(item.id, "+")}>+</Button>
         </div>
         <div>
-            <p>{item.price}</p>
-            <Button type='cart-delete'>remove</Button>
+            <p>{(item.price * item.amount).toLocaleString("fr")} Ft</p>
+            <Button type='cart-delete' handleClick={() => deleteItem(item.id)}>remove</Button>
         </div>
     </StyledCartItem>
   )

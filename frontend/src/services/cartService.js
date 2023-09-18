@@ -16,7 +16,23 @@ function updateCartItem(userid, productid, amount) {
         .then(resp => resp.json())
 }
 
+function deleteCartItem(userid, productid) {
+    return fetch(`${API_URL}/api/cart/${userid}/${productid}`, {
+        method: 'DELETE'
+    })
+        .then(resp => resp.json())
+}
+
+function getCartTotal() {
+    return fetch(`${API_URL}/api/cart/total`, {
+        credentials: 'include'
+    })
+    .then(resp => resp.json())
+}
+
 export const cartService = {
     getCart,
-    updateCartItem
+    updateCartItem,
+    deleteCartItem,
+    getCartTotal
 }

@@ -7,6 +7,7 @@ export const CartContext = createContext({});
 export function CartProvider({ children }) {
 
     const [cart, setCart] = useState({});
+    const [total, setTotal] = useState(10);
     const {user, setUser} = useContext(UserAuthContext)
     
     useEffect(() => {
@@ -16,8 +17,16 @@ export function CartProvider({ children }) {
         }
     }, [user])
 
+    useEffect(() => {
+        if(user.email) {
+            cartService
+                .getCartTotal()
+                .then(cartTotal => setTotal(cartTotal.total))
+        }
+    }, [cart])
+
     return (
-        <CartContext.Provider value={{ cart, setCart }}>
+        <CartContext.Provider value={{ cart, setCart, total }}>
             {children}
         </CartContext.Provider>
     )

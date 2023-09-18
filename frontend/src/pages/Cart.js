@@ -7,7 +7,7 @@ import { cartService } from '../services/cartService';
 
 export default function Cart() {
 
-  const {cart, setCart} = useContext(CartContext);
+  const {cart, setCart, total} = useContext(CartContext);
   const {user} = useContext(UserAuthContext);
 
   function order() {
@@ -40,6 +40,16 @@ export default function Cart() {
             .then(resp => setCart(resp))
         })
   }
+
+  function deleteItem(id) {
+    cartService
+      .deleteCartItem(user.localId, id)
+      .then(() => {
+        cartService
+          .getCart()
+          .then(resp => setCart(resp))
+      })
+  }
    
   return (
     <>
@@ -52,12 +62,19 @@ export default function Cart() {
         {
         cart.length > 0 ? (
         <>
+        <div className=''>
         {
         cart.map(cartitem => (
-          <CartItem key={cartitem.product_id} item={cartitem} updateAmount={updateAmount}></CartItem>
-          
+          <CartItem 
+            key={cartitem.product_id} 
+            item={cartitem} 
+            updateAmount={updateAmount}
+            deleteItem={deleteItem}
+          />          
         ))
         }
+        </div>
+        <h4>végösszeg: {total} </h4>
         <button onClick={order}>megrendelés</button>
         </>
         )

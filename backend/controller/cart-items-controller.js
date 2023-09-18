@@ -27,5 +27,22 @@ export default  {
             .getCartItems({ userid })
             .then(resp => res.status(200).send(resp))
             .catch(next)
+    },
+
+    getCartTotal(req, res, next) {
+        const userid = req.session.user.localId;
+        cartItemsServices
+            .getCartTotal({ userid })
+            .then(resp => res.status(200).send(resp))
+            .catch(next)
+   
+    },
+
+    deleteItem(req, res, next) {
+        const { userid, productid } = req.params;
+        cartItemsServices
+            .deleteItem({ userid, productid })
+            .then(resp => res.status(200).send(resp))
+            .catch(next)
     }
 }

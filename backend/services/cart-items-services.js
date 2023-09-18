@@ -36,8 +36,16 @@ export default {
         return cartItemsModel.getCartItems({ userid })
     },
 
+    getCartTotal({ userid }) {
+        return cartItemsModel.getCartTotal({ userid })
+    },
+
     deletCart({ userid }) {
         return cartItemsModel.deleteCart({ userid })
+    },
+
+    deleteItem({ userid, productid }) {
+        return cartItemsModel.deleteItem({ userid, productid })
     },
 
     updateCart({ userid, productid, amount }) {

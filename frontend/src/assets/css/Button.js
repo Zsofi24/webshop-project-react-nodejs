@@ -38,8 +38,10 @@ export const CartAmount = styled(StyledButton)`
 `
 
 export const CartDelete = styled(StyledButton)`
-  background-color: red;
-  color: white;
+  background-color: white;
+  color: red;
   border: red;
+  padding-left: 0;
+  padding-top: 0;
   fonst-size: 0.8rem;
 `
