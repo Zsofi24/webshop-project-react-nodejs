@@ -4,6 +4,7 @@ import { UserAuthContext } from '../contexts/UserAuthContext';
 import { orderServices } from '../services/orderServices';
 import CartItem from '../components/CartItem';
 import { cartService } from '../services/cartService';
+import '../assets/css/Cart.css';
 
 export default function Cart() {
 
@@ -12,9 +13,9 @@ export default function Cart() {
 
   function order() {
     console.log(cart, "cart in order function");
-    orderServices.sendOrder({userid: user.localId}, cart)
+    orderServices.sendOrder(user.localId, cart, total)
       .then(orderdetails => {
-        if(orderdetails.orderid) setCart({})
+        if(orderdetails.userId) setCart({})
         alert("sikeres megrendelés")
       })
       .catch(err => alert(err))
@@ -62,24 +63,28 @@ export default function Cart() {
         {
         cart.length > 0 ? (
         <>
-        <div className=''>
-        {
-        cart.map(cartitem => (
-          <CartItem 
-            key={cartitem.product_id} 
-            item={cartitem} 
-            updateAmount={updateAmount}
-            deleteItem={deleteItem}
-          />          
-        ))
-        }
+        <div className='cart-wrapper'>
+          <div className='cart-items-wrapper'>
+            {
+            cart.map(cartitem => (
+              <CartItem 
+                key={cartitem.product_id} 
+                item={cartitem} 
+                updateAmount={updateAmount}
+                deleteItem={deleteItem}
+              />          
+            ))
+            }
+          </div>
+          <div className='cart-order-wrapper'>
+            <h4>végösszeg: {total} </h4>
+            <button onClick={order}>megrendelés</button>
+          </div>
         </div>
-        <h4>végösszeg: {total} </h4>
-        <button onClick={order}>megrendelés</button>
         </>
         )
         :
-        "A kosara üres"
+        "A kosara üres :("
         }
         </>
       )

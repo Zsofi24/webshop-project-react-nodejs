@@ -43,7 +43,6 @@ export default {
 
     addProduct({ userid, productid, amount }) {
         const sql = `INSERT INTO cart_items (user_id, product_id, amount) VALUES (?, ?, ?)`;
-        console.log(userid, "userid");
         return new Promise((resolve, reject) => {
             db.serialize(() => {
                 const stmt = db.prepare(sql);
@@ -105,7 +104,6 @@ export default {
                 const stmt = db.prepare(sql);
                 stmt.bind(userid);
                 stmt.all((err, rows) => {
-                    console.log(rows);
                     if(err) reject(err)
                     if(rows) {
                         resolve(rows)
@@ -117,15 +115,15 @@ export default {
         })
     },
 
-    deleteCart({ userid }) {
+    deleteCart({ userId }) {
         const sql = `DELETE FROM cart_items WHERE user_id = ?`;
 
         return new Promise((resolve, reject) => {
             const stmt = db.prepare(sql);
-            stmt.bind(userid);
+            stmt.bind(userId);
             stmt.run((err) => {
                 if(err) reject(err)
-                else resolve({userid})
+                else resolve({userId})
             })
         })
     },

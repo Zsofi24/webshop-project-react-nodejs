@@ -8,7 +8,7 @@ export default {
             created TEXT NOT NULL,
             status VARCHAR(32) NOT NULL,
             extra_info TEXT,
-            total_amount INTEGER,
+            total INTEGER,
             FOREIGN KEY(user_id) REFERENCES users(id)
         )`
         db.serialize(() => {
@@ -22,14 +22,14 @@ export default {
         })
     },
 
-    create({ id, userid, extra_info }) {
+    create({ id, userId, extraInfo, total }) {
         const status = 1;
-        const sql = `INSERT INTO orders(id, user_id, created, status, extra_info) VALUES(?, ?,  datetime('now', 'localtime'), ?, ?)`;
+        const sql = `INSERT INTO orders(id, user_id, created, status, extra_info, total) VALUES(?, ?,  datetime('now', 'localtime'), ?, ?, ?)`;
 
         return new Promise((resolve, reject) => {
             db.serialize(() => {
                 const stmt = db.prepare(sql);
-                stmt.bind(id, userid, status, extra_info);
+                stmt.bind(id, userId, status, extraInfo, total);
                 stmt.run((err) => {
                     if(err) reject(err)
                     else resolve({ id })

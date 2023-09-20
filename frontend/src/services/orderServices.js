@@ -1,20 +1,20 @@
 import { API_URL } from "../constants";
 
-function sendOrder(userid, cart) {
+function sendOrder(userId, cart, total) {
     return fetch(`${API_URL}/api/orders`, {
         method: 'POST',
-        body: JSON.stringify(userid),
+        body: JSON.stringify({userId, total, cart}),
         headers: {"Content-Type": "application/json"}
     })
     .then(resp => resp.json())
-    .then(respData => {
-            return (fetch(`${API_URL}/api/orders-products`, {
-                method: 'POST',
-                body: JSON.stringify({orderid: respData.id, cart}),
-                headers: {"Content-Type": "application/json"}
-            }))
-            .then(resp => resp.json());
-        })
+    // .then(respData => {
+    //         return (fetch(`${API_URL}/api/orders-products`, {
+    //             method: 'POST',
+    //             body: JSON.stringify({orderid: respData.id, cart}),
+    //             headers: {"Content-Type": "application/json"}
+    //         }))
+    //         .then(resp => resp.json());
+    //     })
 }
 
 function getUserOrders() {

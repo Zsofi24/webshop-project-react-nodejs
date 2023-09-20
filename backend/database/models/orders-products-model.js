@@ -21,19 +21,17 @@ export default {
         })
     },
 
-    create({ orderid, cart}) {
+    create({ orderId, cart}) {
         const sql = `INSERT INTO orders_products(order_id, product_id, amount) VALUES(?, ?, ?)`;
-
         return new Promise((resolve, reject) => {
             const stmt = db.prepare(sql);
-            stmt.bind(orderid, cart);
+            stmt.bind(orderId, cart);
             cart.forEach(item => {
-                console.log(item, "item");
-                stmt.run(orderid, item.product_id, item.amount)
+                stmt.run(orderId, item.id, item.amount)
             })
             stmt.finalize((err) => {
                 if(err) reject(err)
-                else resolve({orderid})
+                else resolve({orderId})
             })
         })
     }
