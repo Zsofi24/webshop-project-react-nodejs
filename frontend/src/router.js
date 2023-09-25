@@ -16,6 +16,7 @@ import ProductDetails from './components/ProductDetails';
 import AdminCategoryList from './pages/admin/AdminCategoryList';
 import AddNewCategory from './pages/admin/AddNewCategory';
 import EditCategory from './pages/admin/EditCategory';
+import SendOrder from './pages/SendOrder';
 
 const routes = createBrowserRouter([
     {element: <Layout />, 
@@ -27,6 +28,7 @@ const routes = createBrowserRouter([
             { path: '/termekek', element: <Products /> },
             { path: '/termekek/:productid', element: <ProductDetails /> },
             { path: '/kosar', element: <Cart /> },
+            { path: '/rendeles', element: <SendOrder />},
             { path: '/profil', element: <Profile /> },
             { path: '/rendelesek', element: <Orders /> }
 

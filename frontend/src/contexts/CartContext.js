@@ -7,13 +7,14 @@ export const CartContext = createContext({});
 export function CartProvider({ children }) {
 
     const [cart, setCart] = useState({});
-    const [total, setTotal] = useState(10);
+    const [total, setTotal] = useState(null);
     const {user, setUser} = useContext(UserAuthContext)
     
     useEffect(() => {
         if(user.email) {
-            cartService.getCart()
-            .then(cartitems => setCart(cartitems))
+            cartService
+                .getCart()
+                .then(cartitems => setCart(cartitems))
         }
     }, [user])
 

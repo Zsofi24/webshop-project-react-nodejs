@@ -1,4 +1,5 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { CartContext } from '../contexts/CartContext'
 import { UserAuthContext } from '../contexts/UserAuthContext';
 import { orderServices } from '../services/orderServices';
@@ -10,6 +11,7 @@ export default function Cart() {
 
   const {cart, setCart, total} = useContext(CartContext);
   const {user} = useContext(UserAuthContext);
+  const navigate = useNavigate();
 
   function order() {
     console.log(cart, "cart in order function");
@@ -78,7 +80,7 @@ export default function Cart() {
           </div>
           <div className='cart-order-wrapper'>
             <h4>végösszeg: {total} </h4>
-            <button onClick={order}>megrendelés</button>
+            <button onClick={() => navigate("/rendeles")}>megrendelés</button>
           </div>
         </div>
         </>

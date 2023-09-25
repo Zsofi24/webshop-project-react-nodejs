@@ -1,9 +1,9 @@
 import { API_URL } from "../constants";
 
-function sendOrder(userId, cart, total) {
+function sendOrder(userId, cart, total, shippingAddress , billingAddress) {
     return fetch(`${API_URL}/api/orders`, {
         method: 'POST',
-        body: JSON.stringify({userId, total, cart}),
+        body: JSON.stringify({ userId, total, cart, shippingAddress, billingAddress }),
         headers: {"Content-Type": "application/json"}
     })
     .then(resp => resp.json())
