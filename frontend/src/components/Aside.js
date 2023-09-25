@@ -2,7 +2,6 @@ import React, { Fragment, useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import '../assets/css/Aside.css'
 import { categoryService } from '../services/categoryService';
-import useCategories from '../hooks/useCategories';
 import Select from './Select';
 import Fieldset from './Fieldset';
 

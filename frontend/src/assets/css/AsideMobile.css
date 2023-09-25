@@ -1,0 +1,19 @@
+.aside-mobile-wrapper {
+  height: 8vh;
+  display: flex;
+  flex-direction: column;
+}
+.aside-mobile-wrapper .aside-mobile-panel {
+  display: flex;
+  justify-content: flex-end;
+}
+.aside-mobile-wrapper .filter-button {
+  background-color: transparent;
+  border: none;
+  margin-right: 1rem;
+}
+.aside-mobile-wrapper .aside-mobile-filter {
+  z-index: 100;
+  background-color: white;
+  height: 100vh;
+}/*# sourceMappingURL=AsideMobile.css.map */
