@@ -6,6 +6,7 @@ import { orderServices } from '../services/orderServices';
 import CartItem from '../components/CartItem';
 import { cartService } from '../services/cartService';
 import '../assets/css/Cart.css';
+import Button from '../components/Button';
 
 export default function Cart() {
 
@@ -66,7 +67,7 @@ export default function Cart() {
         cart.length > 0 ? (
         <>
         <div className='cart-wrapper'>
-          <div className='cart-items-wrapper'>
+          <div className='padding-helper'>
             {
             cart.map(cartitem => (
               <CartItem 
@@ -77,10 +78,12 @@ export default function Cart() {
               />          
             ))
             }
-          </div>
+
           <div className='cart-order-wrapper'>
-            <h4>végösszeg: {total} </h4>
-            <button onClick={() => navigate("/rendeles")}>megrendelés</button>
+            <h4>végösszeg: {total} Ft</h4>
+            <Button handleClick={() => navigate("/rendeles")}>megrendelés</Button>
+          </div>
+
           </div>
         </div>
         </>

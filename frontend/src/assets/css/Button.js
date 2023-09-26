@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 export const StyledButton = styled.button`
   background: ${props => props.$primary ? "var(--clr-btn-green)" : "var(--clr-primary)"};
@@ -30,18 +30,19 @@ export const PaginationButton = styled(StyledButton)`
 `
 
 export const CartAmount = styled(StyledButton)`
-  background-color: ${(props) => props.disabled ? "black" :  "var(--clr-lightgrey)"};
+  background-color: ${(props) => props.disabled ? "var(--clr-lightgrey)" :  "green"};
   border: var(--clr-lightgrey);
   color: white;
   font-weight: bold;
   font-size: 0.8rem;
+  padding: 0;
+  border-radius: none;
+  overflow: hidden;
 `
 
 export const CartDelete = styled(StyledButton)`
   background-color: white;
   color: red;
   border: red;
-  padding-left: 0;
-  padding-top: 0;
-  fonst-size: 0.8rem;
+  padding: 0;
 `

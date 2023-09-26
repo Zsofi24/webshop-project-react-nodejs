@@ -1,0 +1,12 @@
+.cart-wrapper {
+    display: flex;
+    flex-direction: column;
+
+    .padding-helper {
+        padding: 0.5rem;
+    }
+
+    .cart-order-wrapper {
+        text-align: right;
+    }
+}

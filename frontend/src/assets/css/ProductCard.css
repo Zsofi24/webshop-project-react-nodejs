@@ -18,6 +18,7 @@
 .product-card h3 {
     font-weight: bold;
 }
-.product-card h3, p {
+.product-card h3, 
+.product-card p {
     margin: 0.5rem 0;
 }
