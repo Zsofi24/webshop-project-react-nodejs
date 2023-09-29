@@ -1,0 +1,134 @@
+tags:
+  - name: products
+    description: Access to webshop products
+
+paths:
+  /api/products:
+    post:
+      tags:
+        - products
+      summary: Create a new product
+      description: Create a new product 
+      operationId: create
+      requestBody:
+        description: Create a new product
+        required: true
+        content: 
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                pic:
+                  type: string
+                  format: binary
+                description: 
+                  type: string
+                id:
+                  type: string
+                limited:
+                  type: boolean
+                price:
+                  type: string
+                stock:
+                  type: string
+                title:
+                  type: string
+                visible:
+                  type: boolean
+                categories:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Category'
+
+      responses:
+        '201':
+          description: Product created
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          description: bad request
+        '500':
+          description: error
+    get:
+      tags:
+        - products
+      summary: Get all products 
+      description: Get all products 
+      operationId: getCurrent
+      parameters:
+        - name: currentPage
+          in: path
+          description: current page
+          required: false
+          schema:
+            type: integer
+            default: 1
+        # - name: userId
+        #   in: path
+        #   description: ID of the user sending the request
+        #   required: true
+        #   schema:
+        #     type: string
+      responses:
+        '200':
+          description: Successful request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  products:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Product'
+                  total:
+                    type: integer
+        '400':
+          description: bad request
+
+components:
+  schemas:
+    Product:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "13"
+        title:
+          type: string
+          example: "Bluetooth Earphones"
+        description:
+          type: string
+          example: "Lightweight Bluetooth earphones with magnetic earbuds and up to 10 hours of playtime."
+        price:
+          type: number
+          example: 500
+        stock:
+          type: integer
+          example: 20
+        image_path:
+          type: string
+          format: uri
+          example: "uploads/55554600147573673d84c50e977ccf30-resized"
+        limited:
+          type: boolean
+          example: false
+        visible:
+          type: boolean
+          example: false  
+      required:
+        - id
+        - title
+    Category:
+      type: object
+      properties:
+        categoryName:
+          type: string
+        categoryId:
+          type: string
+
+
+
+      

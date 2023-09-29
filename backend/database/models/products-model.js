@@ -23,36 +23,36 @@ export default {
        })
     },
 
-    create({ title, description, price, stock, id, visible, limited }) {
-        const sql = `INSERT INTO products(title, description, price, stock, id, visible, limited) VALUES(?, ?, ?, ?, ?, ?, ?)`;
+    create({ title, description, price, stock, id, visible, limited, path }) {
+        const sql = `INSERT INTO products(title, description, price, stock, id, visible, limited, image_path) VALUES(?, ?, ?, ?, ?, ?, ?, ?)`;
 
         return new Promise((resolve, reject) => {
             db.serialize(() => {
                 const stmt = db.prepare(sql);
-                stmt.bind(title, description, price, stock, id, visible, limited);
+                stmt.bind(title, description, price, stock, id, visible, limited, path);
                 stmt.run((err) => {
                     if(err) reject(err)
-                    else resolve({title, description, price, stock, id, visible, limited})
+                    else resolve({title, description, price, stock, id, visible, limited, path})
                 })
             })
         })
     },
 
-    imgupload(newPath, productid) {
-        console.log(newPath, productid);
-        const sql = `UPDATE products SET image_path = ? WHERE id = ?`;
+    // imgupload(newPath, productid) {
+    //     console.log(newPath, productid);
+    //     const sql = `UPDATE products SET image_path = ? WHERE id = ?`;
 
-        return new Promise((resolve, reject) => {
-            db.serialize(() => {
-                const stmt = db.prepare(sql);
-                stmt.bind(newPath, productid);
-                stmt.run(err => {
-                    if(err) reject(err)
-                    else resolve({newPath, productid})
-                })
-            })
-        })
-    },
+    //     return new Promise((resolve, reject) => {
+    //         db.serialize(() => {
+    //             const stmt = db.prepare(sql);
+    //             stmt.bind(newPath, productid);
+    //             stmt.run(err => {
+    //                 if(err) reject(err)
+    //                 else resolve({newPath, productid})
+    //             })
+    //         })
+    //     })
+    // },
 
     getAll() {
         const sql = `SELECT * FROM products`;

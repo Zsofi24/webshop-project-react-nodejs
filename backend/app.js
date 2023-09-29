@@ -11,11 +11,15 @@ import categoriesRouter from './routes/categories-router.js';
 import billingAddressesRouter from './routes/billing-addresses-router.js';
 import shippingAddressesRouter from './routes/shipping-addresses-router.js';
 import errorHandler from './middlewares/error-handler-middleware.js';
+import swaggerUi from 'swagger-ui-express';
+import swaggerJSDocs from 'swagger-jsdoc';
+import { swaggerOptions } from './constants.js';
 
 
 const store = new session.MemoryStore();
-
 const app = express();
+const specs = swaggerJSDocs(swaggerOptions);
+
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
@@ -42,6 +46,8 @@ app.use('/api', ordersProductsRouter);
 app.use('/api', categoriesRouter);
 app.use('/api', shippingAddressesRouter);
 app.use('/api', billingAddressesRouter);
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 
 app.use(errorHandler);
 

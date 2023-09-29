@@ -4,9 +4,10 @@ import sharp from 'sharp';
 
 export default {
     create(req, res, next) {
-        const { title, price, description, id, stock, newcategories, visible, limited } = req.body;
+        const { title, price, description, id, stock, visible, categories, limited } = req.body;
+        const path = req.file.path.replace(/\\/g, '/');
         productsServices
-            .create({ title, price, description, id, stock, newcategories, visible, limited })
+            .create({ title, price, description, id, stock, categories, visible, limited, path })
             .then(resp => res.status(201).send(resp))
             .catch(next)
     },
@@ -19,6 +20,7 @@ export default {
     },
 
     getCurrent(req, res, next) {
+        // console.log(req.app.get('env'))
         let { currentPage, pageSize, sortBy, order, filter, products } = req.query;
         if(!currentPage) currentPage = 1;
         if(!pageSize) pageSize = 5;
@@ -39,8 +41,7 @@ export default {
 
     getImage(req, res, next) {
         const { imgpath } = req.params;
-        res.sendFile(path.resolve(`./uploads/${imgpath}`))
-    
+        res.sendFile(path.resolve(`./uploads/${imgpath}`))    
     },
 
     edit(req, res, next) {
@@ -51,22 +52,22 @@ export default {
             .catch(next)
     },
 
-    imgupload(req, res, next) {
-        console.log(req.file, "file");
-        const { productid } = req.params;
-        const newPath = req.file.path.replace(/\\/g, '/');
-        console.log(productid, "productid");
-        sharp(req.file.path)
-            .resize({width: 640, height: 1014})
-            .toFile(`${newPath}-resized`)
-            .then(data => {
-                console.log(data, "data");
-                productsServices.imgupload(`${newPath}-resized`, productid)
-                .then(resp => res.status(201).send(resp))
-                .catch(next)
-            })
+    // imgupload(req, res, next) {
+    //     console.log(req.file, "file");
+    //     const { productid } = req.params;
+    //     const newPath = req.file.path.replace(/\\/g, '/');
+    //     console.log(productid, "productid");
+    //     sharp(req.file.path)
+    //         .resize({width: 640, height: 1014})
+    //         .toFile(`${newPath}-resized`)
+    //         .then(data => {
+    //             console.log(data, "data");
+    //             productsServices.imgupload(`${newPath}-resized`, productid)
+    //             .then(resp => res.status(201).send(resp))
+    //             .catch(next)
+    //         })
 
-    },
+    // },
 
     delete(req, res, next) {
         console.log(req.params);

@@ -23,16 +23,14 @@ export default function AddNewProduct() {
 }
 
   function createProduct() {
+    const productData = new FormData();
+    Object.entries(response).forEach(([key, value]) => {
+      if(key=="newcategories") value.forEach(cat => productData.append('categories[]', JSON.stringify(cat)))
+      else productData.append(key, value);
+    });
+
     productService
-      .createProduct(response)
-      .then((resp) => {
-        const fd = new FormData();
-        fd.append("pic", response.pic)    
-        productService
-          .uploadimage(fd, resp.id)
-          .then(uploadedimg => console.log("sikeres képfeltöltés"))
-          .catch(err => console.log(err))
-      })
+      .createProduct(productData)
       .catch(err => alert(err.statusText))    
   }
 

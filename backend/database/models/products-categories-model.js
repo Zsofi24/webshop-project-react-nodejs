@@ -50,8 +50,8 @@ export default {
     },
 
     setToProduct(id, categories) {
-        console.log(categories, "categores");
         const sql = 'INSERT INTO products_categories (product_id, category_id) VALUES(?, ?)';
+        categories = categories.map(cat => JSON.parse(cat))
 
         return new Promise((resolve, reject) => {
             const stmt = db.prepare(sql);
