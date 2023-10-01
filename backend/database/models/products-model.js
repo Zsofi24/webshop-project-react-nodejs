@@ -146,16 +146,15 @@ export default {
         })
     },
 
-    edit({ title, price, description, id, stock, visible }) {
-        console.log(visible, "visible edit");
-        const sql = 'UPDATE products SET title = ?, price = ?, description = ?, stock = ?, visible = ? WHERE id = ?';
+    edit({ title, price, description, id, stock, visible, path, limited }) {
+        const sql = 'UPDATE products SET title = ?, price = ?, description = ?, stock = ?, visible = ?, image_path = ?, limited = ? WHERE id = ?';
 
         return new Promise((resolve, reject) => {
             const stmt = db.prepare(sql);
-            stmt.bind(title, price, description, stock, visible, id );
+            stmt.bind(title, price, description, stock, visible, path, limited, id );
             stmt.run(err => {
                 if(err) reject(err)
-                else resolve({ title, price, description, stock, visible, id })
+                else resolve({ title, price, description, stock, visible, path, id , limited})
             })
         })
     },

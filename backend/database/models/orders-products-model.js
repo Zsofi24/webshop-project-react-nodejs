@@ -7,8 +7,8 @@ export default {
             product_id INTEGER,
             amount INTEGER,
             PRIMARY KEY(order_id, product_id),
-            FOREIGN KEY(order_id) REFERENCES orders(id),
-            FOREIGN KEY(product_id) REFERENCES products(id)
+            FOREIGN KEY(order_id) REFERENCES orders(id) ON DELETE CASCADE,
+            FOREIGN KEY(product_id) REFERENCES products(id) ON DELETE CASCADE
         )`
         db.serialize(() => {
             db.run(sql, (err) => {

@@ -30,15 +30,23 @@ export default {
     getOne({ productid }) {
         return productsModel.getOne({ productid })
     },
-    async edit({ title, price, description, id, stock, categories, visible }) {
-        console.log(id, "id");
+    async edit({ title, price, description, id, categories, stock, visible, path, limited }) {
+        visible = JSON.parse(visible);
+        limited = JSON.parse(limited);
+
+        if(path) {
+           const resizedImg = await sharp(path).resize({width: 640, height: 1014}).toFile(`${path}-resized`)
+           path = `${path}-resized`
+        }
+
         if(categories) {
             const resp = await productsCategoriesModel.delete(id)
             const resp2 = await productsCategoriesModel.setToProduct(id, categories)
-            const productsResp = await productsModel.edit({ title, price, description, id, stock, visible })
+            const productsResp = await productsModel.edit({ title, price, description, id, stock, visible, path, limited })
             return productsResp                 
         } else {
-            const productsResp = await productsModel.edit({ title, price, description, id, stock, visible })
+            const resp = await productsCategoriesModel.delete(id)
+            const productsResp = await productsModel.edit({ title, price, description, id, stock, visible, path, limited })
             return productsResp               
         }
     },

@@ -21,6 +21,7 @@ export default function AdminCategoryList() {
   function categoryDelete(id) {
     categoryService.deleteCategory(id)
      .then(id => console.log(id))
+     .catch(err => alert(err.statusText))
   }
 
   console.log(response, "resp");

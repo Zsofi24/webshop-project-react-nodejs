@@ -13,17 +13,15 @@ export default function EditProduct() {
     
     function updateProduct(e) {
         e.preventDefault();
-        productService.updateProduct(response, productid)
+        const productData = new FormData();
+        Object.entries(response).forEach(([key, value]) => {
+          if(key=="categories") value.forEach(cat => productData.append('categories[]', JSON.stringify(cat)))
+          else productData.append(key, value)
+        })
+        productService.updateProduct(productData, productid)
             .then(updated => console.log(updated, "updqted"))
-            .then(() => {
-              const fd = new FormData();
-              fd.append("pic", response.path)    
-              productService
-                .uploadimage(fd, productid)
-                .then(uploadedimg => console.log("sikeres képfeltöltés"))
-                .catch(err => console.log(err))
-              }
-            )    
+            .catch(err => alert("err"))
+  
     }
 
     function handleChange(e) {

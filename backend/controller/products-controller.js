@@ -1,6 +1,5 @@
 import productsServices from "../services/products-services.js";
 import path from 'path';
-import sharp from 'sharp';
 
 export default {
     create(req, res, next) {
@@ -46,8 +45,9 @@ export default {
 
     edit(req, res, next) {
         console.log(req.body, "body edit");
-        const { title, price, description, id, categories, stock, visible } = req.body;
-        productsServices.edit({ title, price, description, id, categories, stock, visible })
+        const path = req.file ? req.file.path.replace(/\\/g, '/') : req.body.path;
+        const { title, price, description, id, categories, stock, visible, limited } = req.body;
+        productsServices.edit({ title, price, description, id, categories, stock, visible, path, limited })
             .then(resp => res.status(201).send(resp))
             .catch(next)
     },

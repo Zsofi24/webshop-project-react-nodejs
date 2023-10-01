@@ -9,7 +9,7 @@ export default {
             status VARCHAR(32) NOT NULL,
             extra_info TEXT,
             total INTEGER,
-            FOREIGN KEY(user_id) REFERENCES users(id)
+            FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE
         )`
         db.serialize(() => {
             db.run(sql, (err) => {
