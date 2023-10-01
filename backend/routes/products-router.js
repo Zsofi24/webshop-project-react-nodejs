@@ -1,5 +1,6 @@
 import express from "express";
 import multer from 'multer';
+import adminVerify from "../middlewares/admin-verify.js";
 
 import productsController from "../controller/products-controller.js";
 
@@ -10,14 +11,14 @@ router.use('/uploads', express.static('/uploads'))
 
 router
     .route('/products')
-    .post(upload.single("pic"), productsController.create)
+    .post(adminVerify, upload.single("pic"), productsController.create)
     .get(productsController.getCurrent)
 
 router
     .route('/products/:productid')
     .get(productsController.getOne)
-    .put(productsController.edit)
-    .delete(productsController.delete)
+    .put(adminVerify, upload.single("pic"), productsController.edit)
+    .delete(adminVerify, productsController.delete)
 
 router
     .route('/uploads/:imgpath')

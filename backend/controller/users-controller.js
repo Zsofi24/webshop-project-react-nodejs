@@ -37,5 +37,14 @@ export default {
         } else {
             res.send({message: "nincs bejelentkezve"})
         }
+    },
+
+    adminVerify(req, res, next) {
+        if(req.session.authenticated) {
+            if(req.session.isAdmin) res.send(req.session.user)
+            else res.send({message: "nincs hozzáférés"})
+        } else {
+            res.send({message: "nincs authentikáció"})
+        }
     }
 }

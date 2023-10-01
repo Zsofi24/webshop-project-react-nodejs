@@ -1,4 +1,4 @@
-import {createBrowserRouter} from 'react-router-dom';
+import {Route, createBrowserRouter, createRoutesFromElements} from 'react-router-dom';
 import Layout from './components/Layout';
 import Home from './pages/Home'
 import Login from './pages/Login';
@@ -17,36 +17,29 @@ import AdminCategoryList from './pages/admin/AdminCategoryList';
 import AddNewCategory from './pages/admin/AddNewCategory';
 import EditCategory from './pages/admin/EditCategory';
 import SendOrder from './pages/SendOrder';
+import requireAuth from './utils/requireAuth';
 
-const routes = createBrowserRouter([
-    {element: <Layout />, 
-        path: '/',
-        children: [
-            { index: true, element: <Home /> },
-            { path: '/belepes', element: <Login /> },
-            { path: '/regisztracio', element: <Registration /> },
-            { path: '/termekek', element: <Products /> },
-            { path: '/termekek/:productid', element: <ProductDetails /> },
-            { path: '/kosar', element: <Cart /> },
-            { path: '/rendeles', element: <SendOrder />},
-            { path: '/profil', element: <Profile /> },
-            { path: '/rendelesek', element: <Orders /> }
+export const router = createBrowserRouter(createRoutesFromElements([
+    <Route path='/' element={<Layout/>}>
+        <Route index element={<Home />} />
+        <Route path='/belepes' element={<Login />} />
+        <Route path='/regisztracio' element={<Registration />}/>
+        <Route path='/termekek' element={<Products />}/>
+        <Route path='/termekek/:productid' element={<ProductDetails />}/>
+        <Route path='/rendelesek' element={<Orders />}/>
+        <Route path='/kosar' element={<Cart />}/>
+        <Route path='/rendeles' element={<SendOrder />}/>
+        <Route path='/profil' element={<Profile />}/>
+    </Route>,
+    <Route path='/admin' element={<AdminLayout />}>
+        <Route index element={<AdminDashboard />} loader={async () => await requireAuth()}/>
+        <Route path='termekek' element={<AdminProductList />} loader={async () => await requireAuth()}/>
+        <Route path='termekek/:productid' element={<EditProduct />} loader={async () => await requireAuth()}/>
+        <Route path='termekek/termek-felvitel' element={<AddNewProduct />} loader={async () => await requireAuth()}/>
+        <Route path='kategoriak' element={<AdminCategoryList />} loader={async () => await requireAuth()}/>
+        <Route path='kategoriak/:categoryid' element={<EditCategory />} loader={async () => await requireAuth()}/>
+        <Route path='kategoriak/kategoria-felvitel' element={<AddNewCategory />} loader={async () => await requireAuth()}/>
 
-        ]
-    },
-    {
-        element: <AdminLayout />,
-            path: '/admin',
-            children: [
-                { index: true, element: <AdminDashboard /> },
-                { path: 'termekek', element: <AdminProductList />},
-                { path: 'termekek/:productid', element: <EditProduct />},
-                { path: 'termekek/termek-felvitel', element: <AddNewProduct />},
-                { path: 'kategoriak', element: <AdminCategoryList />},
-                { path: 'kategoriak/:categoryid', element: <EditCategory />},
-                { path: 'kategoriak/kategoria-felvitel', element: <AddNewCategory />}
-            ]
-    }
-])
-
-export default routes;
+    </Route>
+]
+))

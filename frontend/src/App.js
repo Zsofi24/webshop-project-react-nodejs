@@ -1,5 +1,5 @@
 import { RouterProvider } from "react-router-dom";
-import routes from "./router";
+import routes, { router } from "./router";
 import { UserAuthContext, UserAuthProvider } from "./contexts/UserAuthContext";
 import { useContext, useEffect } from "react";
 import { CookiesProvider, useCookies } from "react-cookie";
@@ -17,7 +17,7 @@ function App() {
     <UserAuthProvider>
         <CartProvider>
         <CookiesProvider>
-        <RouterProvider router={routes} />
+        <RouterProvider router={router} />
       </CookiesProvider>
       </CartProvider>
       </UserAuthProvider>

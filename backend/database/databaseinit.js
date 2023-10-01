@@ -10,7 +10,7 @@ import billingAddressesModel from './models/billing-addresses-model.js';
 import shippingAddressesModel from './models/shipping-addresses-model.js';
 
 export default function databaseInit() {
-    db.run('PRAGMA foreign_keys = ON');
+    db.run('PRAGMA foreign_keys = OFF');
     usersModel.createTable();
     productsModel.createTable();
     cartModel.createTable();   

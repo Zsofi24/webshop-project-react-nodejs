@@ -50,6 +50,7 @@ export default {
     },
 
     setToProduct(id, categories) {
+        console.log(categories, "cat");
         const sql = 'INSERT INTO products_categories (product_id, category_id) VALUES(?, ?)';
         categories = categories.map(cat => JSON.parse(cat))
 

@@ -5,12 +5,30 @@ function getProducts(query) {
         .then(resp => resp.json())
 }
 
+/**
+ * Product is a webshop product with all the saved information in the database.
+ * @typedef {Object} Product 
+ * @property {string} id
+ * @property {string} price
+ * @property {string} description
+ * @property {boolean} limited
+ * @property {boolean} visible
+ * @property {string} title
+ * @property {string} stock
+ * @property {Array} categories
+ * @property {File} pic
+ */
+
+/**
+ * send a new product to the api and create a new product in the database
+ * @param {Product} product - new product details
+ * @returns {Promise}
+ */
 function createProduct(product) {
-    console.log(product, "prod");
     return fetch(`${API_URL}/api/products`, {
         method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(product)
+        credentials: "include",
+        body: product,
     })
         .then(resp => {
             console.log(resp, "resp");
@@ -29,6 +47,7 @@ function createProduct(product) {
 function uploadimage(file, productid) {
     return fetch(`${API_URL}/api/products/${productid}/imageupload`, {
         method: "PUT",
+        credentials: "include",
         body: file
     })
         .then(resp => resp.json())
@@ -52,16 +71,18 @@ function getOneProduct(id) {
 }
 
 function updateProduct(product, id) {
+    console.log(product, "p");
     return fetch(`${API_URL}/api/products/${id}`, {
         method: "PUT",
-        body: JSON.stringify(product),
-        headers: {"Content-Type": "application/json"}
+        credentials: "include",
+        body: product
     })
         .then(resp => resp.json())
 }
 
 function deleteProduct(id) {
     return fetch(`${API_URL}/api/products/${id}`, {
+        credentials: "include",
         method: "DELETE"
     })
         .then(resp => resp.json())
