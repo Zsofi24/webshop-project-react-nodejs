@@ -12,7 +12,7 @@ export const StyledSelect = styled.select`
     cursor: inherit;
     line-height: inherit;
     outline: none;
-    color: white;
+    color: var(--clr-primary);
 
     &::-ms-expand {
         display: none;
@@ -29,6 +29,7 @@ export const StyledSelect = styled.select`
     }
 
     option {
-        background-color: var(--clr-lightgrey)
+        background-color: white;
+        padding: 0.5em
     }
 `

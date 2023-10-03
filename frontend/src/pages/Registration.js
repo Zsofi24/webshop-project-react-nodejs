@@ -9,7 +9,7 @@ export default function Registration() {
         <section className='flex-wrapper' >
           <div className='form-img'></div>
           <div className='form-container'>
-            <h1>Registration</h1>
+            <h1>Regisztráció</h1>
             <RegistrationForm/>
           </div>
         </section>

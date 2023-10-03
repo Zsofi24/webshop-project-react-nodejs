@@ -1,0 +1,11 @@
+@use "../abstracts/" as *;
+
+:root {
+    @each $name, $color-code in $colors {
+        --clr-#{$name}: #{$color-code};
+    }
+
+    @each $name, $size in $sizes {
+        --#{$name}: #{$size};
+    }
+}

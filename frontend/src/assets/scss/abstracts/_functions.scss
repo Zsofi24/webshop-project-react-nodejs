@@ -1,0 +1,7 @@
+@function set-font-family($font-family-name) {
+    @return map-get($font-familys, $font-family-name)
+};
+
+@function font-size($size) {
+    @return map-get($font-sizes, $size)
+};

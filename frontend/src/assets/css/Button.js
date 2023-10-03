@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 export const StyledButton = styled.button`
-  background: ${props => props.$primary ? "var(--clr-btn-green)" : "var(--clr-primary)"};
-  color: ${props => props.$primary ? "var(--clr-primary)" : "var(--clr-btn-green)"};
+  background: ${props => props.$primary ? "var(--clr-green)" : "var(--clr-primary)"};
+  color: ${props => props.$primary ? "var(--clr-primary)" : "var(--clr-green)"};
 
   padding: 0.5rem 1rem;
   border: 2px solid var(--clr-primary);
@@ -30,7 +30,7 @@ export const PaginationButton = styled(StyledButton)`
 `
 
 export const CartAmount = styled(StyledButton)`
-  background-color: ${(props) => props.disabled ? "var(--clr-lightgrey)" :  "green"};
+  background-color: ${(props) => props.disabled ? "var(--clr-lightgrey)" :  "var(--clr-green)"};
   border: var(--clr-lightgrey);
   color: white;
   font-weight: bold;

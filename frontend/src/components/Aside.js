@@ -1,6 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import '../assets/css/Aside.css'
 import { categoryService } from '../services/categoryService';
 import Select from './Select';
 import Fieldset from './Fieldset';
@@ -60,9 +59,9 @@ export default function Aside() {
 
   return (
     <div className='aside'>
-      <div className='aside-select'>
+      <div className='aside__select'>
         <Select value={sort.sortByTitle} handleChange={(e) => handleChange(e)} name='sortByTitle'>
-            <option value="">RENDEZÉS</option>
+            <option className="hidden" value="">RENDEZÉS</option>
             <option value="asc" >név: a-z</option>
             <option value="desc" >név: z-a</option>
         </Select>
@@ -100,7 +99,7 @@ export default function Aside() {
                 categories?.map(cat => (
                   <Fragment key={cat.categoryId}>
                     <div>
-                      <label htmlFor={cat.categoryName}>{cat.categoryId} {cat.categoryName}</label>
+                      <label htmlFor={cat.categoryName}>{cat.categoryName}</label>
                       <input 
                         type='checkbox' 
                         value={cat.categoryId} 

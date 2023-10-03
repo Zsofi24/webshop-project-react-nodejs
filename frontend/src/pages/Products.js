@@ -1,7 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { useSearchParams } from 'react-router-dom';
 import { ColorRing } from 'react-loader-spinner';
-import '../assets/css/Products.css';
 import ProductCard from '../components/ProductCard';
 import Aside from '../components/Aside';
 import Pagination from '../components/Pagination';
@@ -18,17 +17,14 @@ export default function Products() {
     const screenSize = useScreenSize();
     const [showMobileAside, setShowMobileAside] = useState(false);
 
-
-
     function onPageChange(pagenum) {
       searchParams.set("currentPage", pagenum)
       setSearchParams(searchParams)
       dispatch({ type: 'PAGECHANGE', currentPage: pagenum})
     }
-
     
   return (
-    <section className='product-page'>
+    <section className='products-wrapper'>
       {/* <AsideMobile /> */}
       {
         (screenSize.width <= 1025) 
@@ -41,8 +37,12 @@ export default function Products() {
         <Aside />
       }
 
+      {/* !!!! termék kártyák design */}
+{/* https://www.youtube.com/watch?v=sKFW3wek21Q */}
+
+
       <div className='products-container'>
-        <div className='product-card-list'>
+        <div className='card-list'>
         { loading && <div><ColorRing
               visible={true}
               height="80"

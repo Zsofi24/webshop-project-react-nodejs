@@ -13,7 +13,6 @@ export default function RegistrationForm() {
     const navigate = useNavigate();
 
     const [errorMessage, setErrorMessage] = useState(null);
-    console.log(errorMessage, "errormessage");
     const [formData, setFormData] = useState({
         email: {
             value: "",
@@ -49,13 +48,12 @@ export default function RegistrationForm() {
        
         userService.userRegist({email: formData.email.value, password: formData.password.value, username: formData.username.value})
             .then(resp => {
+                console.log(resp, "resp regist");
                 if(resp.ok) navigate('/belepes')
                 else setErrorMessage("már létezik ilyen adat")
-            })
-            
+            })          
         
  
-        // navigate('/')
         
     }
 
@@ -75,7 +73,14 @@ export default function RegistrationForm() {
                             onChange={(e) => handleChange(e)}
                         />
                     </fieldset>
-                    <span className={`${formData.email.valid ? "valid" : "invalid"}`}>{formData.email.valid ?  <GiCheckMark /> : "X"}</span>
+                    <span className={`${formData.email.valid ? "valid" : "invalid"}`}>
+                        {(!formData.email.valid && !formData.email.value) 
+                            ? null
+                            : formData.email.valid  
+                                ? <GiCheckMark />
+                                : "Helyes e-mail formátumot adjon meg!"
+                          }
+                    </span>
                 </div>
             
                 <div className='input-container'>
@@ -84,12 +89,19 @@ export default function RegistrationForm() {
                         <input
                             type='password'
                             name='password'
-                            placeholder='password'
+                            placeholder='jelszó'
                             value={formData.password.value}
                             onChange={(e) => handleChange(e)}
                         />
                     </fieldset>
-                    <span className={`${formData.password.valid ? "valid" : "invalid"}`}>{formData.password.valid ? <GiCheckMark /> : "X"}</span>
+                    <span className={`${formData.password.valid ? "valid" : "invalid"}`}>
+                        {(!formData.password.valid && !formData.password.value) 
+                            ? null
+                            : formData.password.valid  
+                                ? <GiCheckMark />
+                                : "Minimum 4 karakter"
+                          }
+                    </span>
                 </div>
 
                 <div className='input-container'>
@@ -98,12 +110,19 @@ export default function RegistrationForm() {
                         <input
                             type='text'
                             name='username'
-                            placeholder='username'
+                            placeholder='felhasználónév'
                             value={formData.username.value}
                             onChange={(e) => handleChange(e)}
                         />
                     </fieldset>
-                    <span className={`${formData.username.valid ? "valid" : "invalid"}`}>{formData.username.valid ? <GiCheckMark /> : "X"}</span>
+                    <span className={`${formData.username.valid ? "valid" : "invalid"}`}>
+                        {(!formData.username.valid && !formData.username.value) 
+                            ? null
+                            : formData.username.valid  
+                                ? <GiCheckMark />
+                                : "Minimum 2 karakter"
+                          }
+                    </span>
                 </div>
                 <button type='submit'>regisztráció</button>
             </form>

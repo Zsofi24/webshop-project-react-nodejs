@@ -1,6 +1,7 @@
 .cart-wrapper {
     display: flex;
     flex-direction: column;
+    max-width: 600px;
 
     .padding-helper {
         padding: 0.5rem;

@@ -1,0 +1,242 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Josefin Sans";
+  font-size: 1rem;
+  color: rgb(20, 63, 63);
+  background-color: white;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --clr-primary: rgb(20, 63, 63);
+  --clr-red: rgba(217, 85, 32, 0.662);
+  --clr-green: rgba(37, 173, 94, 0.662);
+  --clr-grey: rgb(69, 69, 72);
+  --clr-lightgrey: #777;
+  --clr-white: #f8f8f8;
+  --clr-black: rgba(0, 0, 0, 0);
+  --size-1: 0.25rem;
+  --size-2: 0.5rem;
+  --size-3: 0.75rem;
+  --size-4: 1rem;
+  --size-5: 1.25rem;
+  --size-6: 1.5rem;
+  --size-7: 1.75rem;
+  --size-8: 2rem;
+  --size-9: 2.5rem;
+  --size-10: 3rem;
+  --size-11: 4rem;
+  --size-12: 5rem;
+  --size-13: 6rem;
+  --size-14: 8rem;
+  --size-15: 10rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  /* flex: 1 1 30%; */
+}
+.card .card__image {
+  /* height: 20rem; */
+  position: relative;
+}
+.card .card__image img {
+  max-height: 100%;
+}
+.card h3 {
+  font-weight: bold;
+}
+.card h3, .card p {
+  margin: 0.5rem 0;
+}
+
+.products-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.products-container {
+  flex: 4;
+  padding: 1rem;
+}
+
+.card-list {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(min(9rem, 100%), 1fr));
+  margin: 0 auto;
+}
+
+.card img {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 1rem 1rem 0 0;
+}
+
+@media screen and (width > 1025px) {
+  .products-wrapper {
+    flex-direction: row;
+  }
+  .products-container {
+    padding-right: 3rem;
+    padding-left: 3rem;
+  }
+  .card-list {
+    grid-template-columns: repeat(auto-fill, minmax(min(12rem, 100%), 1fr));
+  }
+}
+.cart-wrapper {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+}
+.cart-wrapper .padding-helper {
+  padding: 0.5rem;
+}
+.cart-wrapper .cart-order-wrapper {
+  text-align: right;
+}
+
+header {
+  background-color: white;
+  color: black;
+}
+
+.navshop {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+}
+.navshop a {
+  text-decoration: none;
+  color: black;
+}
+.navshop a:hover {
+  text-decoration: underline;
+}
+.navshop .navshop__profile {
+  display: inline-block;
+}
+.navshop .navshop__profile:hover .navshop__profile--hover {
+  display: block;
+}
+.navshop .navshop__profile--hover {
+  display: none;
+  position: absolute;
+  right: 0;
+  overflow: auto;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.4);
+}
+.navshop .navshop__profile--hover ul {
+  padding-left: 0;
+  padding: 0 1rem;
+}
+.navshop .navshop__profile--hover ul li {
+  color: black;
+  list-style-type: none;
+}
+.navshop .navshop__profile--hover ul li:hover {
+  background-color: green;
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}
+.navshop .navshop__profile--hover ul li a {
+  color: black;
+  display: inline-block;
+  width: 100%;
+  text-decoration: none;
+}
+.navshop .navshop__profile--hover ul li a:hover {
+  background-color: green;
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.aside-mobile-wrapper {
+  height: 8vh;
+  display: flex;
+  flex-direction: column;
+}
+.aside-mobile-wrapper .aside-mobile-panel {
+  display: flex;
+  justify-content: flex-end;
+}
+.aside-mobile-wrapper .filter-button {
+  background-color: transparent;
+  border: none;
+  margin-right: 1rem;
+}
+.aside-mobile-wrapper .aside-mobile-filter {
+  z-index: 100;
+  background-color: white;
+  height: 100vh;
+}
+
+.aside {
+  flex: 1;
+  /* background-color: rgb(246, 209, 134); */
+}
+
+.aside__select {
+  display: grid;
+  grid-template-areas: "select";
+  align-items: center;
+  position: relative;
+  width: 100%;
+  min-width: 15ch;
+  max-width: 30ch;
+  border: 1px solid var(--clr-primary);
+  border-radius: 0.25em;
+  padding: 0.25em 0.5em;
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  cursor: pointer;
+  line-height: 1.1;
+  background-color: white;
+  /* background-image: linear-gradient(to top, #a88282, #fff 33%); */
+}
+.aside__select::after {
+  grid-area: select;
+  justify-self: end;
+  content: "";
+  width: 0.8em;
+  height: 0.5em;
+  background-color: var(--clr-primary);
+  -webkit-clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+          clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+}
+
+select {
+  grid-area: select;
+  justify-self: end;
+}
+
+.hidden {
+  display: none;
+}
+
+.padding-helperr {
+  padding-block: min(20vh, 10rem);
+}/*# sourceMappingURL=main.css.map */

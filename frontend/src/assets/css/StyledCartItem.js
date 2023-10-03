@@ -9,6 +9,7 @@ export const StyledCartItem = styled.div`
     gap: 0.5rem;
     padding-bottom: 0.5rem;
     border-bottom: 1px solid grey;
+    background-color: $clr-primary;
 
     #cart-item-title {
         grid-area: title

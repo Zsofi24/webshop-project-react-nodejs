@@ -5,7 +5,6 @@ import { UserAuthContext } from '../contexts/UserAuthContext';
 import { orderServices } from '../services/orderServices';
 import CartItem from '../components/CartItem';
 import { cartService } from '../services/cartService';
-import '../assets/css/Cart.css';
 import Button from '../components/Button';
 
 export default function Cart() {

@@ -2,7 +2,6 @@ import React, { Fragment, useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { BiSolidFilterAlt } from "react-icons/bi";
 import { AiOutlineClose } from "react-icons/ai";
-import "../assets/css/AsideMobile.css";
 import Select from "./Select";
 import Fieldset from "./Fieldset";
 import { categoryService } from "../services/categoryService";
@@ -126,7 +125,7 @@ export default function AsideMobile({ showMobileAside, setShowMobileAside }) {
               <Fragment key={cat.categoryId}>
                 <div>
                   <label htmlFor={cat.categoryName}>
-                    {cat.categoryId} {cat.categoryName}
+                    {cat.categoryName}
                   </label>
                   <input
                     type="checkbox"

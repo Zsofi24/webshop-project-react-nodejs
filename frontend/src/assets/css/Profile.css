@@ -1,4 +1,12 @@
-.profile-hover {
+.navshop__profile {
+    display: inline-block;
+}
+
+.navshop__profile:hover .navshop__profile--hover {
+    display: block;
+}
+
+.navshop__profile--hover {
     display: none;
     position: absolute;
     right: 0;
@@ -8,32 +16,24 @@
     box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.4);
 }
 
-.profile-hover-container {
-    display: inline-block;
-}
-
-.profile-hover-container:hover .profile-hover {
-    display: block;
-}
-
-.profile-hover ul {
+.navshop__profile--hover ul {
     padding-left: 0;
     padding: 0 1rem;
 }
 
-.profile-hover ul li {
+.navshop__profile--hover ul li {
     color: black;
     list-style-type: none;   
 }
 
-.profile-hover ul li:hover, .profile-hover ul li a:hover {
+.navshop__profile--hover ul li:hover, .navshop__profile--hover ul li a:hover {
     background-color: green;
     color: white;
     text-decoration: none;
     cursor: pointer;
 }
 
-.profile-hover ul li a {
+.navshop__profile--hover ul li a {
     color: black;
     display: inline-block;
     width: 100%;

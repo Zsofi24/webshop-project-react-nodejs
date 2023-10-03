@@ -1,4 +1,4 @@
-.product-card {
+.card {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -6,19 +6,19 @@
      /* flex: 1 1 30%; */
 }
 
-.product-card .product-image {
+.card .card__image {
     /* height: 20rem; */
     position: relative;
 }
 
-.product-card .product-image img {
+.card .card__image img {
     max-height: 100%;
 }
 
-.product-card h3 {
+.card h3 {
     font-weight: bold;
 }
-.product-card h3, 
-.product-card p {
+.card h3, 
+.card p {
     margin: 0.5rem 0;
 }

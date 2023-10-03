@@ -1,0 +1,42 @@
+.aside {
+    flex: 1;
+    /* background-color: rgb(246, 209, 134); */
+}
+
+.aside__select {
+    display: grid;
+    grid-template-areas: "select";
+    align-items: center;
+    position: relative;
+    width: 100%;
+    min-width: 15ch;
+    max-width: 30ch;
+    border: 1px solid var(--clr-primary);
+    border-radius: 0.25em;
+    padding: 0.25em 0.5em;
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    cursor: pointer;
+    line-height: 1.1;
+    background-color: white;
+    /* background-image: linear-gradient(to top, #a88282, #fff 33%); */
+
+    &::after {
+        grid-area: select;
+        justify-self: end;
+        content: "";
+        width: 0.8em;
+        height: 0.5em;
+        background-color: var(--clr-primary);
+        clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+    }
+}
+
+select {
+    grid-area: select;
+    justify-self: end;  
+}
+
+.hidden {
+    display: none;
+}

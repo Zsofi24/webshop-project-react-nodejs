@@ -18,11 +18,11 @@ export default function LoginForm() {
 
     const [formData, setFormData] = useState({
         email: {
-            value: "",
+            value: "ab@a.com",
             valid: false
         },
         password: {
-            value: "",
+            value: "12345",
             valid: false
         }
     })

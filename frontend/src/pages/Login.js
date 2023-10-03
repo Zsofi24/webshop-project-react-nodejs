@@ -5,8 +5,7 @@ import { Link } from 'react-router-dom';
 export default function Login() {
   return (
     <>
-      <section className='flex-wrapper'>
-        <div className='form-img'>        </div>
+      <section className='login-regist-form'>
 
         <div className='form-container'>
             <h1>bejelentkezés</h1>

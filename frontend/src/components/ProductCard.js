@@ -1,14 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { productService } from '../services/productServices';
-import { UserAuthContext } from '../contexts/UserAuthContext';
-import '../assets/css/ProductCard.css'
-import { CartContext } from '../contexts/CartContext';
 import { Link } from 'react-router-dom';
 import { BsFillCartFill, BsFillCartXFill, BsFillBellFill, BsFillCartCheckFill } from 'react-icons/bs';
+import { API_URL } from '../constants';
+import { productService } from '../services/productServices';
+import { UserAuthContext } from '../contexts/UserAuthContext';
+import { CartContext } from '../contexts/CartContext';
 import { cartService } from '../services/cartService';
 import Button from '../components/Button'
 import ProductCardLabel from './ProductCardLabel';
-import { API_URL } from '../constants';
 
 export default function ProductCard({product}) {
 
@@ -45,9 +44,9 @@ export default function ProductCard({product}) {
 
   return (
     <>
-    <div className='product-card'>
+    <div className='card'>
       <Link to={`${product.id}`}>
-      <div className='product-image'>
+      <div className='card__image'>
         {/* ideiglenes megoldás!!! default img */}
         {
           product.path 
@@ -59,8 +58,8 @@ export default function ProductCard({product}) {
         }
         { product.limited ? <ProductCardLabel text="limitált"/> : null }
       </div>
-      <h3 className='product-font-primary'>{product.title}</h3>
-      <p className='product-font-primary'>{(product.price).toLocaleString('fr')} Ft</p>
+      <h3>{product.title}</h3>
+      <p>{(product.price).toLocaleString('fr')} Ft</p>
       </Link>
       {
         isInCart 
