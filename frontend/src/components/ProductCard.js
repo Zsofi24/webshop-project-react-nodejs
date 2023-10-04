@@ -58,7 +58,7 @@ export default function ProductCard({product}) {
         }
         { product.limited ? <ProductCardLabel text="limitált"/> : null }
       </div>
-      <h3>{product.title}</h3>
+      <h3 className='heading-3'>{product.title}</h3>
       <p>{(product.price).toLocaleString('fr')} Ft</p>
       </Link>
       {

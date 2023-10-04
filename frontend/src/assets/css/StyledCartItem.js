@@ -28,6 +28,11 @@ export const StyledCartItem = styled.div`
         text-align: center;
         border: 1px solid black;
         border-radius: 12px;
+
+        @media screen and (min-width: 65rem) {
+            align-self: center;
+            min-width: 100%;
+        }
     }
 
     .amount-wrapper > * {
@@ -39,6 +44,10 @@ export const StyledCartItem = styled.div`
         grid-area: price;
         align-self: end;
         margin-left: auto;
+
+        @media screen and (min-width: 65rem) {
+            align-self: center;
+        }
     }
 
     & img {
@@ -46,6 +55,18 @@ export const StyledCartItem = styled.div`
         max-height: 100%;
         overflow: hidden;
         grid-area: img;
+    }
+
+    @media screen and (min-width: 65rem) {
+        grid-template-areas:
+            "img title amount price delete";
+
+        margin: 0 auto;
+        grid-template-columns: repeat(5, 1fr);
+
+        & > * {
+            align-self: center;
+        }
     }
 
 

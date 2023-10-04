@@ -4,6 +4,7 @@
 
 $color-text-default: $clr-primary;
 $color-background-default: $clr-white;
+$heading-color-default: $clr-grey;
 
 //body
 $body-font-family: $font-family-base;
@@ -11,4 +12,11 @@ $body-font-size: $font-size-400;
 $body-line-height: 1.5;
 $body-text-color: $color-text-default;
 $body-background-color: $color-background-default;
+
+$heading-1-font-size: $font-size-900;
+$heading-1-color: $heading-color-default;
+$heading-2-font-size: $font-size-800;
+$heading-2-color: $heading-color-default;
+$heading-3-font-size: $font-size-700;
+$heading-3-color: $heading-color-default;
 

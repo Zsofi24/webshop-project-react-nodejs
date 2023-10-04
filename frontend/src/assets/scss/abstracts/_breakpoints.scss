@@ -1,5 +1,11 @@
+// $breakpoints: (
+//   'small': 320px,
+//   'medium': 768px,
+//   'large': 1024px,
+// );
+
 $breakpoints: (
-  'small': 320px,
-  'medium': 768px,
-  'large': 1024px,
+  small: 30em,
+  medium: 45em,
+  large: 65em,
 );

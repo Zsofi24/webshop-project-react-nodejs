@@ -1,0 +1,48 @@
+@use "sass:meta";
+@use "sass:math";
+@use "sass:map";
+@use "breakpoints" as *;
+@use "tokens" as *;
+
+@mixin mq($size) {
+  @if map.has-key($breakpoints, $size) {
+    $breakpoint: map-get($breakpoints, $size);
+    @media screen and (min-width: $breakpoint) {
+      @content;
+    }
+  } @else if meta.type-of($size) == number {
+    @if math.is-unitless($size) {
+      @error 'when using a number with @mq() make sure to include a unit';
+    } @else {
+      @media screen and (min-width: $size) {
+        @content;
+      }
+    }
+  } @else {
+    @error 'the keyword #{$size} is not in the $breakpoints map';
+  }
+}
+
+@mixin heading($fs, $color: $heading-color-default) {
+    font-size: $fs;
+    color: $color;  
+}
+
+// @mixin respond-to($breakpoint) {
+//     // Retrieves the value from the key
+//     $value: map-get($breakpoints, $breakpoint);
+  
+//     // If the key exists in the map
+//     @if $value != null {
+//       // Prints a media query based on the value
+//       @media (min-width: $value) {
+//         @content;
+//       }
+//     }
+  
+//     // If the key doesn't exist in the map
+//     @else {
+//       @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+//           + "Please make sure it is defined in `$breakpoints` map.";
+//     }
+//   }
