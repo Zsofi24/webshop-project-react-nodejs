@@ -1,13 +1,12 @@
 import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { formValidation } from '../utils/formValidation';
-import { MdOutlineAlternateEmail } from 'react-icons/md';
-import { GiCheckMark } from 'react-icons/gi';
 import { BiLock } from 'react-icons/bi';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
-import '../assets/css/AuthForm.css';
+import { MdOutlineAlternateEmail } from 'react-icons/md';
+import { formValidation } from '../utils/formValidation';
 import { userService } from '../services/userServices';
 import { UserAuthContext } from '../contexts/UserAuthContext';
+import Button from '../components/Button';
 
 export default function LoginForm() {
 
@@ -85,7 +84,7 @@ export default function LoginForm() {
                         {/* <span className={`${formData.password.valid ? "valid" : "invalid"}`}>{formData.password.valid ? <GiCheckMark /> : "X"}</span> */}
                     </div>
                     
-                    <button type='submit'>bejelentkezés</button>
+                    <Button type="login-regist">bejelentkezés</Button>
                 </form>
         </>
   )

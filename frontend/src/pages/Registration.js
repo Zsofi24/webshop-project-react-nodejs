@@ -1,15 +1,14 @@
 import React from 'react'
 import RegistrationForm from '../components/RegistrationForm'
-import '../assets/css/AuthForm.css'
+// import '../assets/css/AuthForm.css'
 
 
 export default function Registration() {
   return (
     <>
-        <section className='flex-wrapper' >
-          <div className='form-img'></div>
+        <section className='login-regist' >
           <div className='form-container'>
-            <h1>Regisztráció</h1>
+            <h3 className='heading-3'>Ez az első látogatásod?</h3>
             <RegistrationForm/>
           </div>
         </section>

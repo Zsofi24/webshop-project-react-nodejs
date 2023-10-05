@@ -1,5 +1,5 @@
 import React from 'react'
-import {CartButton, PaginationButton, StyledButton, CartAmount, CartDelete } from '../assets/css/Button'
+import {CartButton, PaginationButton, StyledButton, CartAmount, CartDelete, LoginRegist } from '../assets/css/Button'
 
 export default function Button({disabled, notInStock, primary, text, children, handleClick, type}) {
 
@@ -14,8 +14,9 @@ export default function Button({disabled, notInStock, primary, text, children, h
       return <CartAmount disabled={disabled} onClick={handleClick}>{children}</CartAmount>
     } else if(type == "cart-delete") {
       return <CartDelete onClick={handleClick}>{children}</CartDelete>
+    } else if(type == "login-regist") {
+      return <LoginRegist onClick={handleClick}>{children}</LoginRegist>
     } else if(!type) {
       return <StyledButton onClick={handleClick}>{text}{children}</StyledButton>
     }
-
 }

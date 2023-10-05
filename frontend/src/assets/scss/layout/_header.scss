@@ -1,5 +1,8 @@
+@use "../abstracts/" as *;
+
 header {
     background-color: white;
     color: black;
+    height: $header-height;
 }
 

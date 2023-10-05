@@ -1,7 +1,10 @@
 /* .auth-form {
     /* width: 60%; */
     .login-regist-form {
-        height: var(--main-height);
+
+        /*calc(100-header-heigh)t*/
+        height: 92vh;
+
         /* display: flex;
         justify-content: center;
         align-items: center;
@@ -12,10 +15,10 @@
         padding-top: 3rem;
     }
     
-    .form-img {
+    /* .form-img {
         flex: 2;
         height: 100%;
-    }
+    } */
 
     .form-container {
         padding: 2rem 1rem;
@@ -34,7 +37,6 @@
         color: white;
         text-align: center;
         text-transform: uppercase;
-        font-size: var(--fs-medium);
 
     }
     

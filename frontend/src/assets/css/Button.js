@@ -46,3 +46,15 @@ export const CartDelete = styled(StyledButton)`
   border: red;
   padding: 0;
 `
+
+export const LoginRegist = styled(StyledButton)`
+  background: rgb(16 4 4 / 47%);
+  blur(10.5px);
+  color: white;
+  padding: 1em 0;
+  width: 100%;
+  border-radius: 16px;
+  border: none;
+  font-size: var(--fs-400);
+  text-transform: uppercase;
+`

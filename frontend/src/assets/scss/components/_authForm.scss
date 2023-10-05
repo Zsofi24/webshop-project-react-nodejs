@@ -1,0 +1,120 @@
+@use "../abstracts" as *;
+
+.login-regist {
+    height: calc(100vh - $header-height);
+    background-image: url('../img/form-background.jpg');
+    background-size: cover;
+    background-position: center;
+    padding-top: 3em;
+}
+
+.form-container {
+    padding: 2em;
+    width: 80%;
+    /* height: 100%; */
+    margin: 0 auto;        
+    background: rgb(81 80 80 / 47%);;
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10.5px);
+    -webkit-backdrop-filter: blur(10.5px);
+    border: 1px solid rgba(255, 255, 255, 0.48);
+
+    @include mq(large) {
+        width: 40%;
+        position: absolute;
+        right: 8em;
+        
+    }
+
+    section {
+        padding: 5em 15em;
+        height: 90vh;
+        background: rgb(244,215,154);
+        background: linear-gradient(56deg, rgba(244,215,154,1) 3%, rgba(210,160,154,1) 32%, rgba(83,155,157,1) 77%, rgba(154,238,255,1) 100%);
+    }
+
+    h3 {
+        color: white;
+        text-align: center;
+    }
+
+    p {
+        color: rgb(194, 186, 186);
+        text-align: right;
+        margin-top: 16px;
+
+        .regist-link {
+            text-decoration: underline;
+        }
+    }
+
+    .input-container {
+        margin: 0.8em 0;
+
+        &__message {
+            min-height: 1.5rem;
+            margin: 0.5em;
+        }
+    }
+}
+
+.auth-form {
+
+    fieldset {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: white;
+        color: rgb(20, 63, 63);
+        outline: none;
+        border: none;
+        border-radius: 16px;
+        line-height: 1.5rem;
+
+        span {
+            text-align: center;
+            vertical-align: middle;
+            margin-right: 0.5em;
+            
+            svg {
+                vertical-align: middle;
+            }
+        }
+
+        input {
+            outline: none;
+            border: none;
+            border-radius: 1rem;
+            background-color: inherit;
+            color: rgb(20, 63, 63);
+            width: 100%;
+            font-weight: 600;
+            padding: 0.8em;
+
+            &::placeholder {
+                outline: none;
+                border: none;
+                background-color: inherit;
+                color: grey;
+                vertical-align: middle;
+            }
+
+            &:focus::placeholder {
+                opacity: 0;
+                transition: all 200ms linear;       
+            }
+        }
+    }
+
+    .valid {
+        border: green;
+        color: green
+    }
+    
+    .invalid {
+        border: red;
+        color: red;
+    }
+
+}

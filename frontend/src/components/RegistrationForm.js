@@ -6,7 +6,7 @@ import { GiCheckMark } from 'react-icons/gi'
 import {formValidation} from '../utils/formValidation.js';
 import { useNavigate } from 'react-router-dom';
 import { userService } from '../services/userServices.js';
-
+import Button from '../components/Button';
 
 export default function RegistrationForm() {
 
@@ -51,10 +51,7 @@ export default function RegistrationForm() {
                 console.log(resp, "resp regist");
                 if(resp.ok) navigate('/belepes')
                 else setErrorMessage("már létezik ilyen adat")
-            })          
-        
- 
-        
+            })  
     }
 
     return (
@@ -73,14 +70,14 @@ export default function RegistrationForm() {
                             onChange={(e) => handleChange(e)}
                         />
                     </fieldset>
-                    <span className={`${formData.email.valid ? "valid" : "invalid"}`}>
+                    <div className={`${formData.email.valid ? "valid" : "invalid"} input-container__message`}>
                         {(!formData.email.valid && !formData.email.value) 
-                            ? null
+                            ? ""
                             : formData.email.valid  
                                 ? <GiCheckMark />
                                 : "Helyes e-mail formátumot adjon meg!"
                           }
-                    </span>
+                    </div>
                 </div>
             
                 <div className='input-container'>
@@ -94,14 +91,14 @@ export default function RegistrationForm() {
                             onChange={(e) => handleChange(e)}
                         />
                     </fieldset>
-                    <span className={`${formData.password.valid ? "valid" : "invalid"}`}>
+                    <div className={`${formData.password.valid ? "valid" : "invalid"} input-container__message`}>
                         {(!formData.password.valid && !formData.password.value) 
                             ? null
                             : formData.password.valid  
                                 ? <GiCheckMark />
                                 : "Minimum 4 karakter"
                           }
-                    </span>
+                    </div>
                 </div>
 
                 <div className='input-container'>
@@ -115,16 +112,16 @@ export default function RegistrationForm() {
                             onChange={(e) => handleChange(e)}
                         />
                     </fieldset>
-                    <span className={`${formData.username.valid ? "valid" : "invalid"}`}>
+                    <div className={`${formData.username.valid ? "valid" : "invalid"} input-container__message`}>
                         {(!formData.username.valid && !formData.username.value) 
                             ? null
                             : formData.username.valid  
                                 ? <GiCheckMark />
                                 : "Minimum 2 karakter"
                           }
-                    </span>
+                    </div>
                 </div>
-                <button type='submit'>regisztráció</button>
+                <Button type="login-regist">regisztráció</Button>
             </form>
         </>
     )
