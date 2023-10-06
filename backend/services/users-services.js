@@ -6,6 +6,6 @@ export default {
         return usersModel.create({ email, password, username, isAdmin });
     },
     find({ email, password , req}) {
-        return usersModel.find({ email,password , req})
+        return usersModel.find({ email, password, req})
     }
 }

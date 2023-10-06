@@ -11,6 +11,7 @@ export default {
 
     login(req, res, next) {
         const { email, password } = req.body;
+        console.log(email, password);
         usersServices
             .find({ email, password, req })
             .then(resp => res.status(201).send(resp))

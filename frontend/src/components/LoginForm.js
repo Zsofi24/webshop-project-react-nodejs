@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { BiLock } from 'react-icons/bi';
-import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
+import { AiOutlineEye, AiOutlineEyeInvisible, AiFillExclamationCircle } from 'react-icons/ai';
 import { MdOutlineAlternateEmail } from 'react-icons/md';
 import { formValidation } from '../utils/formValidation';
 import { userService } from '../services/userServices';
@@ -40,20 +40,19 @@ export default function LoginForm() {
     function loginSubmit(e) {
         e.preventDefault();
         userService.userLogin({email: formData.email.value, password: formData.password.value})
-            .then(resp => resp.json())
             .then(data => { 
-                console.log(data)
+                console.log(data, "data")
                 setUser(data)
-                navigate('/')
+                // navigate('/')
             })
+            .catch(err => setErrorMessage("Nem megfelelő email vagy jelszó!"))
     }
 
   return (
     <>
         {user?.name && <h1>{user.name}</h1>}
                 <form className='login-form auth-form' onSubmit={(e) => loginSubmit(e)}>
-                    {/* {message ? <h1 className='login-message'>{message}</h1> : <h2>log in</h2>*/}
-                    {errorMessage && <span>{errorMessage}</span>}
+                    <div className='auth-form__message--error'>{errorMessage ? ( <><AiFillExclamationCircle/> {errorMessage}</> ) : ""}</div>
                     <div className='input-container'>
                         <fieldset>
                             <span><MdOutlineAlternateEmail /></span>

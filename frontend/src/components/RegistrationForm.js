@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import { MdOutlineAlternateEmail } from 'react-icons/md';
 import { BiLock } from 'react-icons/bi';
 import { FaUser } from 'react-icons/fa';
-import { GiCheckMark } from 'react-icons/gi'
+import { AiFillExclamationCircle } from 'react-icons/ai';
+import { GiCheckMark } from 'react-icons/gi';
 import {formValidation} from '../utils/formValidation.js';
 import { useNavigate } from 'react-router-dom';
 import { userService } from '../services/userServices.js';
@@ -37,27 +38,35 @@ export default function RegistrationForm() {
                 valid: formValidation(name, value)
             }
         }))
+        setErrorMessage("")
     }
 
     function submitRegistration(e) {
         e.preventDefault();
-        const invalid = Object.values(formData).find(element => !element.valid)
+        const invalid = Object.values(formData).find(element => !element.valid);
+        const empty = Object.values(formData).find(element => !element.value)
         console.log(invalid);
-        if(invalid) return 
-        console.log(formData);
+        if(empty) {
+            setErrorMessage("Minden mező kitöltése kötelező!");
+            return
+        }
+        if(invalid)  {
+            setErrorMessage("Minden mezőt helyesen töltsön ki!");
+            return
+        } 
        
         userService.userRegist({email: formData.email.value, password: formData.password.value, username: formData.username.value})
             .then(resp => {
                 console.log(resp, "resp regist");
                 if(resp.ok) navigate('/belepes')
-                else setErrorMessage("már létezik ilyen adat")
+                else setErrorMessage("Már létezik ilyen email!")
             })  
     }
 
     return (
         <>
             <form className='registration-form auth-form' onSubmit={(e) => submitRegistration(e)}>
-                {errorMessage && <span>{errorMessage}</span>}
+            <   div className='auth-form__message--error'>{errorMessage ? ( <><AiFillExclamationCircle/> {errorMessage}</> ) : ""}</div>
                 <div className='input-container'>
                     <fieldset>
                         <span><MdOutlineAlternateEmail /></span>
@@ -75,7 +84,7 @@ export default function RegistrationForm() {
                             ? ""
                             : formData.email.valid  
                                 ? <GiCheckMark />
-                                : "Helyes e-mail formátumot adjon meg!"
+                                : <><AiFillExclamationCircle /> Helyes e-mail formátumot adjon meg!</>
                           }
                     </div>
                 </div>
@@ -96,7 +105,7 @@ export default function RegistrationForm() {
                             ? null
                             : formData.password.valid  
                                 ? <GiCheckMark />
-                                : "Minimum 4 karakter"
+                                : <><AiFillExclamationCircle /> Minimum 4 karakter</>
                           }
                     </div>
                 </div>
@@ -117,7 +126,7 @@ export default function RegistrationForm() {
                             ? null
                             : formData.username.valid  
                                 ? <GiCheckMark />
-                                : "Minimum 2 karakter"
+                                : <><AiFillExclamationCircle /> Minimum 2 karakter</>
                           }
                     </div>
                 </div>

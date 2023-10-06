@@ -155,7 +155,19 @@ p, h1, h2, h3, h4, h5, h6 {
   min-height: 1.5rem;
   margin: 0.5em;
 }
+.form-container .input-container__message svg {
+  vertical-align: text-bottom;
+}
 
+.auth-form__message--error {
+  min-height: 1.5rem;
+  margin-top: 0.8em;
+  text-align: center;
+  color: rgb(114, 8, 8);
+}
+.auth-form__message--error svg {
+  vertical-align: text-bottom;
+}
 .auth-form fieldset {
   display: flex;
   align-items: center;
@@ -173,7 +185,7 @@ p, h1, h2, h3, h4, h5, h6 {
   margin-right: 0.5em;
 }
 .auth-form fieldset span svg {
-  vertical-align: middle;
+  vertical-align: text-bottom;
 }
 .auth-form fieldset input {
   outline: none;
@@ -209,12 +221,16 @@ p, h1, h2, h3, h4, h5, h6 {
   transition: all 200ms linear;
 }
 .auth-form .valid {
-  border: green;
-  color: green;
+  border: rgb(20, 63, 63);
+  color: rgb(20, 63, 63);
+  font-weight: bold;
+  text-shadow: 0px 0px 10px rgba(250, 250, 250, 0.927);
 }
 .auth-form .invalid {
-  border: red;
-  color: red;
+  border: rgb(114, 8, 8);
+  color: rgb(114, 8, 8);
+  font-weight: bold;
+  text-shadow: 0px 0px 10px rgba(250, 250, 250, 0.927);
 }
 
 .products-wrapper {

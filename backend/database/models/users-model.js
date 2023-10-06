@@ -1,6 +1,7 @@
 import db from '../connection.js';
 import { nanoid } from 'nanoid';
 import bcrypt from 'bcrypt';
+import httpError from '../../utils/httpError.js';
 
 export default {
     createTable() {
@@ -69,12 +70,12 @@ export default {
                                 }; 
                                 resolve({localId: row.id, email: row.email, username: row.username })
                             } else {
-                                resolve({message: "helytelen email cím vagy jelszó"})
+                                reject(new httpError('Bad Request', 400))
                             }
                         })
                     } else {
                         console.log("nincs ilyen user");
-                        resolve({message: "nincs ilyen user"});
+                        reject(new httpError('Bad Request', 400));
                     }
                 })
             })

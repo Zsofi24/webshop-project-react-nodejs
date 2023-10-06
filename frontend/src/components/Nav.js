@@ -34,7 +34,7 @@ export default function Nav({ handleMouseEnter, handleMouseLeave, isProfileVisib
       <div>
         <NavLink to={`/kosar`}><BsCart/></NavLink>
         {/* { !user.email && <NavLink to='/belepes'><CgProfile/></NavLink> } */}
-        { user.email ?
+        { user?.email ?
         <>
           <div className='navshop__profile'>
             <NavLink to='/profile' onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
