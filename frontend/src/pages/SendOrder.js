@@ -1,10 +1,12 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import useCustomersDetails from '../hooks/useCustomersDetails'
 import OrderForm from '../components/OrderForm';
 import { orderServices } from '../services/orderServices';
-import { useNavigate } from 'react-router-dom';
 import { UserAuthContext } from '../contexts/UserAuthContext';
 import { CartContext } from '../contexts/CartContext';
+import Button from '../components/Button';
+import { checkEmptyInput } from '../utils/checkEmptyInput';
 
 export default function SendOrder() {
 
@@ -14,7 +16,12 @@ export default function SendOrder() {
 
   const {cart, setCart, total} = useContext(CartContext);
   const {user} = useContext(UserAuthContext);
+  const [valid, setValid] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setValid(checkEmptyInput(billingAddress, shippingAddress, differentBillAndShipData))
+  }, [differentBillAndShipData, user])
 
   function order() {
     console.log(cart, "cart in order function");
@@ -29,47 +36,54 @@ export default function SendOrder() {
 
   function handleChangeBillingAddress(e) {
     const { name, value, type, checked } = e.target;
+    const newBillingAddress = {...billingAddress, [name]: type === "checkbox" ? checked : value};
     dispatch({ 
       type: "BILLINGRESOLVED", 
-      response: {...billingAddress, [name]: type === "checkbox" ? checked : value}
-    })     
+      response: newBillingAddress
+    }) 
+    setValid(checkEmptyInput(newBillingAddress, shippingAddress, differentBillAndShipData))  
  }
 
  function handleChangeShippingAddress(e) {
   const { name, value, type, checked } = e.target;
+  const newShippingAddress = {...shippingAddress, [name]: type === "checkbox" ? checked : value};
   dispatch({ 
     type: "SHIPRESOLVED", 
-    response: {...shippingAddress, [name]: type === "checkbox" ? checked : value}
-  })     
+    response: newShippingAddress
+  })    
+  setValid(checkEmptyInput(billingAddress, newShippingAddress, differentBillAndShipData))
 }
 
   return (
-    <>
+    <section className='order-form-wrapper padding-helper'>
       <h3>Számlázási cím</h3>
       <OrderForm
         details={billingAddress}
         handleChange={handleChangeBillingAddress}
         formType="BILLINGRESOLVED"
       />
-      <label>Eltérő szállítási cím</label>
-      <h3>Szállítási cím</h3>
-      <input 
+      <div>
+        <label>Eltérő szállítási cím</label>
+        <input 
         type='checkbox'
         value={differentBillAndShipData}
         onChange={() => setDifferentSameBillAndShipData(prev => !prev)}
-      />
+        />
+      </div>
       {
         differentBillAndShipData 
         
         &&
-
+        <>
+        <h3>Szállítási cím</h3>
         <OrderForm
           details={shippingAddress}
           handleChange={handleChangeShippingAddress}
           formType="SHIPRESOLVED" 
         />
+        </>
       }
-      <button onClick={order}>megrendelés</button>
-    </>
-  )
+      <Button handleClick={order} disabled={!valid}>megrendelés</Button>
+    </section> 
+   )
 }

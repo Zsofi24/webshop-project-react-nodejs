@@ -55,23 +55,21 @@ export default function useCustomersDetails() {
                 surname: "",
                 city: "",
                 street: "",
-                house_number: null,
-                postal_code: null,
-                tax_number: null
+                house_number: "",
+                postal_code: "",
+                tax_number: ""
             },
         billingAddress: {
-                shippingAddress: {
                 familyname: "",
                 surname: "",
-                    city: "",
-                    street: "",
-                    house_number: null,
-                    postal_code: null,
-                    tax_number: null
-                }
+                city: "",
+                street: "",
+                house_number: "",
+                postal_code: "",
+                tax_number: ""
             }
-        
-    })
+        }        
+    )
 
     useEffect(() => {
         let isCurrent = true;
