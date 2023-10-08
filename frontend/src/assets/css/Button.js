@@ -1,13 +1,25 @@
 import styled from 'styled-components';
 
 export const StyledButton = styled.button`
-  background: ${props => props.$primary ? "var(--clr-green)" : "var(--clr-primary)"};
-  color: ${props => props.$primary ? "var(--clr-primary)" : "var(--clr-green)"};
+  background: ${props => {
+    if(props.disabled) return "grey"
+    else {
+      if(props.$primary) return "var(--clr-green)"
+      else return "var(--clr-primary)"
+    }
+  }};
+  color: ${props => {
+    if(props.disabled) return "white"
+    else {
+      if(props.$primary) return "var(--clr-primary)"
+      else return "var(--clr-green)"
+    }
+  }};
 
   padding: 0.5rem 1rem;
   border: 2px solid var(--clr-primary);
   border-radius: 3px;
-  cursor: pointer;
+  cursor: ${props => props.disabled ? "not-allowed" : "pointer"};
   vertical-align: middle;
 `;
 

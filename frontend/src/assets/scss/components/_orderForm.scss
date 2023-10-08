@@ -1,0 +1,45 @@
+@use "../abstracts/" as *;
+
+.order-form-wrapper {
+
+    display: flex;
+    flex-direction: column;
+    gap: $size-3;
+    max-width: 820px;
+
+    input[type="checkbox"] {
+        margin-left: $size-2;
+    }
+}
+
+.order-form {
+    display: flex;
+    flex-direction: column;
+
+    @include mq(medium) {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: $size-3;
+    }
+
+    .input--required {
+        color: $clr-error;
+    }
+
+    input {
+        margin-bottom: $size-2;
+        line-height: $size-7;
+    }
+
+    fieldset {
+        border: none;
+        margin: 0;
+        padding: 0;
+
+        & > * {
+            display: block;
+            width: 100%;
+        }
+    }
+
+}

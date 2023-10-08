@@ -17,6 +17,6 @@ export default function Button({disabled, notInStock, primary, text, children, h
     } else if(type == "login-regist") {
       return <LoginRegist onClick={handleClick}>{children}</LoginRegist>
     } else if(!type) {
-      return <StyledButton onClick={handleClick}>{text}{children}</StyledButton>
+      return <StyledButton disabled={disabled} onClick={handleClick}>{text}{children}</StyledButton>
     }
 }
