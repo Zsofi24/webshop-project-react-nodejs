@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { BiLock } from 'react-icons/bi';
 import { AiOutlineEye, AiOutlineEyeInvisible, AiFillExclamationCircle } from 'react-icons/ai';
 import { MdOutlineAlternateEmail } from 'react-icons/md';
@@ -43,7 +43,7 @@ export default function LoginForm() {
             .then(data => { 
                 console.log(data, "data")
                 setUser(data)
-                // navigate('/')
+                navigate('/', {state:{message: `Üdvözöljük, ${data.username}`}})
             })
             .catch(err => setErrorMessage("Nem megfelelő email vagy jelszó!"))
     }

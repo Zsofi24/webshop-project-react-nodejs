@@ -24,7 +24,7 @@ p, h1, h2, h3, h4, h5, h6 {
 
 :root {
   --clr-primary: rgb(20, 63, 63);
-  --clr-red: rgba(217, 85, 32, 0.662);
+  --clr-red: rgb(114, 8, 8);
   --clr-green: rgba(37, 173, 94, 0.662);
   --clr-grey: rgb(69, 69, 72);
   --clr-lightgrey: #777;
@@ -103,6 +103,11 @@ p, h1, h2, h3, h4, h5, h6 {
   color: rgb(69, 69, 72);
 }
 
+.heading-message {
+  font-size: var(--fs-500);
+  color: rgb(114, 8, 8);
+}
+
 .login-regist {
   height: 92vh;
   background-image: url("../img/form-background.jpg");
@@ -136,9 +141,13 @@ p, h1, h2, h3, h4, h5, h6 {
   background: rgb(244, 215, 154);
   background: linear-gradient(56deg, rgb(244, 215, 154) 3%, rgb(210, 160, 154) 32%, rgb(83, 155, 157) 77%, rgb(154, 238, 255) 100%);
 }
+.form-container h4 {
+  text-align: center;
+}
 .form-container h3 {
   color: white;
   text-align: center;
+  margin-bottom: 0.5rem;
 }
 .form-container p {
   color: rgb(194, 186, 186);

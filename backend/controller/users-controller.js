@@ -41,11 +41,12 @@ export default {
     },
 
     adminVerify(req, res, next) {
+        console.log(req.session);
         if(req.session.authenticated) {
-            if(req.session.isAdmin) res.send(req.session.user)
-            else res.send({message: "nincs hozzáférés"})
+            if(req.session.isAdmin) res.send({...req.session.user, authenticated: true})
+            else res.send({authenticated: true})
         } else {
-            res.send({message: "nincs authentikáció"})
+            res.send({authenticated: false})
         }
     }
 }

@@ -18,3 +18,9 @@
     $heading-3-color
   );
 }
+.heading-message {
+  @include heading(
+    $heading-message-font-size,
+    $heading-message-color
+  );
+}

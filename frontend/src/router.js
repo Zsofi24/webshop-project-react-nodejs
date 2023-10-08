@@ -1,7 +1,7 @@
 import {Route, createBrowserRouter, createRoutesFromElements} from 'react-router-dom';
 import Layout from './components/Layout';
-import Home from './pages/Home'
-import Login from './pages/Login';
+import Home, {loader as homeLoader} from './pages/Home'
+import Login, {loader as loginLoader} from './pages/Login';
 import Registration from './pages/Registration';
 import Products from './pages/Products';
 import Profile from './pages/Profile';
@@ -17,12 +17,12 @@ import AdminCategoryList from './pages/admin/AdminCategoryList';
 import AddNewCategory from './pages/admin/AddNewCategory';
 import EditCategory from './pages/admin/EditCategory';
 import SendOrder from './pages/SendOrder';
-import requireAuth from './utils/requireAuth';
+import requireAuthAdmin from './utils/requireAuthAdmin';
 
 export const router = createBrowserRouter(createRoutesFromElements([
     <Route path='/' element={<Layout/>}>
-        <Route index element={<Home />} />
-        <Route path='/belepes' element={<Login />} />
+        <Route index element={<Home/>} loader={homeLoader}/>
+        <Route path='/belepes' element={<Login />} loader={loginLoader} />
         <Route path='/regisztracio' element={<Registration />}/>
         <Route path='/termekek' element={<Products />}/>
         <Route path='/termekek/:productid' element={<ProductDetails />}/>
@@ -32,14 +32,13 @@ export const router = createBrowserRouter(createRoutesFromElements([
         <Route path='/profil' element={<Profile />}/>
     </Route>,
     <Route path='/admin' element={<AdminLayout />}>
-        <Route index element={<AdminDashboard />} loader={async () => await requireAuth()}/>
-        <Route path='termekek' element={<AdminProductList />} loader={async () => await requireAuth()}/>
-        <Route path='termekek/:productid' element={<EditProduct />} loader={async () => await requireAuth()}/>
-        <Route path='termekek/termek-felvitel' element={<AddNewProduct />} loader={async () => await requireAuth()}/>
-        <Route path='kategoriak' element={<AdminCategoryList />} loader={async () => await requireAuth()}/>
-        <Route path='kategoriak/:categoryid' element={<EditCategory />} loader={async () => await requireAuth()}/>
-        <Route path='kategoriak/kategoria-felvitel' element={<AddNewCategory />} loader={async () => await requireAuth()}/>
-
+        <Route index element={<AdminDashboard />} loader={async () => await requireAuthAdmin()}/>
+        <Route path='termekek' element={<AdminProductList />} loader={async () => await requireAuthAdmin()}/>
+        <Route path='termekek/:productid' element={<EditProduct />} loader={async () => await requireAuthAdmin()}/>
+        <Route path='termekek/termek-felvitel' element={<AddNewProduct />} loader={async () => await requireAuthAdmin()}/>
+        <Route path='kategoriak' element={<AdminCategoryList />} loader={async () => await requireAuthAdmin()}/>
+        <Route path='kategoriak/:categoryid' element={<EditCategory />} loader={async () => await requireAuthAdmin()}/>
+        <Route path='kategoriak/kategoria-felvitel' element={<AddNewCategory />} loader={async () => await requireAuthAdmin()}/>
     </Route>
 ]
 ))
