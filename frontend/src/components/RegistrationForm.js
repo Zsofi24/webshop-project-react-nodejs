@@ -2,71 +2,17 @@ import React, { useState } from 'react'
 import { MdOutlineAlternateEmail } from 'react-icons/md';
 import { BiLock } from 'react-icons/bi';
 import { FaUser } from 'react-icons/fa';
-import { AiFillExclamationCircle } from 'react-icons/ai';
+import { AiFillExclamationCircle, AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import { GiCheckMark } from 'react-icons/gi';
-import {formValidation} from '../utils/formValidation.js';
-import { useNavigate } from 'react-router-dom';
-import { userService } from '../services/userServices.js';
 import Button from '../components/Button';
 
-export default function RegistrationForm() {
+export default function RegistrationForm({formData, handleChange, submitRegistration}) {
 
-    const navigate = useNavigate();
-
-    const [errorMessage, setErrorMessage] = useState(null);
-    const [formData, setFormData] = useState({
-        email: {
-            value: "",
-            valid: false
-        },
-        password: {
-            value: "",
-            valid: false
-        },
-        username: {
-            value: "",
-            valid: false
-        }
-    })
-
-    function handleChange(e) {
-        const {value, name} = e.target;
-        setFormData(prev => ({
-            ...prev, 
-            [name] : {
-                value: value,
-                valid: formValidation(name, value)
-            }
-        }))
-        setErrorMessage("")
-    }
-
-    function submitRegistration(e) {
-        e.preventDefault();
-        const invalid = Object.values(formData).find(element => !element.valid);
-        const empty = Object.values(formData).find(element => !element.value)
-        console.log(invalid);
-        if(empty) {
-            setErrorMessage("Minden mező kitöltése kötelező!");
-            return
-        }
-        if(invalid)  {
-            setErrorMessage("Minden mezőt helyesen töltsön ki!");
-            return
-        } 
-       
-        userService.userRegist({email: formData.email.value, password: formData.password.value, username: formData.username.value})
-            .then(resp => {
-                console.log(resp, "resp regist");
-                if(resp.ok) navigate('/belepes')
-                else setErrorMessage("Már létezik ilyen email!")
-            })  
-    }
+    const [ passwordVisible, setPasswordVisible ] = useState(false);
 
     return (
         <>
             <form className='registration-form auth-form' onSubmit={(e) => submitRegistration(e)}>
-            <   div className='auth-form__message--error'>{errorMessage ? ( <><AiFillExclamationCircle/> {errorMessage}</> ) : ""}</div>
                 <div className='input-container'>
                     <fieldset>
                         <span><MdOutlineAlternateEmail /></span>
@@ -93,12 +39,13 @@ export default function RegistrationForm() {
                     <fieldset>
                         <span><BiLock /></span>
                         <input
-                            type='password'
+                            type={passwordVisible ? 'text' : 'password'}
                             name='password'
                             placeholder='jelszó'
                             value={formData.password.value}
                             onChange={(e) => handleChange(e)}
                         />
+                        <span onClick={() => setPasswordVisible(prev => !prev)}>{passwordVisible ? <AiOutlineEyeInvisible /> : <AiOutlineEye /> }</span>
                     </fieldset>
                     <div className={`${formData.password.valid ? "valid" : "invalid"} input-container__message`}>
                         {(!formData.password.valid && !formData.password.value) 

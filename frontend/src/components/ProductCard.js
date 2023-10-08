@@ -28,12 +28,11 @@ export default function ProductCard({product}) {
  
     function addToCart() {
       const cartdata = { userid: user.localId, productid: product.id }
-      console.log(cartdata, "cartdata");
-      if(Object.keys(user).length == 0) console.log("nincs bejelentkezve")
+      if(Object.keys(user).length == 0) alert("jelentkezz be!")
       else {
       productService.addProductToCart(cartdata)
         .then(resp => {
-          if(resp.error) console.log(resp.error, "cart error");
+          if(resp.error) alert(resp.error, "cart error");
           else {
             cartService.getCart()
             .then(cartitems => setCart(cartitems))

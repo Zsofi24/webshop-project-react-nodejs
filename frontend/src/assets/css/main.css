@@ -140,14 +140,17 @@ input[type=checkbox] {
     right: 8em;
   }
 }
-.form-container section {
-  padding: 5em 15em;
-  height: 90vh;
-  background: rgb(244, 215, 154);
-  background: linear-gradient(56deg, rgb(244, 215, 154) 3%, rgb(210, 160, 154) 32%, rgb(83, 155, 157) 77%, rgb(154, 238, 255) 100%);
-}
 .form-container h4 {
   text-align: center;
+}
+.form-container__message--error {
+  min-height: 1.5rem;
+  margin-top: 0.8em;
+  text-align: center;
+  color: rgb(114, 8, 8);
+}
+.form-container__message--error svg {
+  vertical-align: text-bottom;
 }
 .form-container h3 {
   color: white;
@@ -173,15 +176,6 @@ input[type=checkbox] {
   vertical-align: text-bottom;
 }
 
-.auth-form__message--error {
-  min-height: 1.5rem;
-  margin-top: 0.8em;
-  text-align: center;
-  color: rgb(114, 8, 8);
-}
-.auth-form__message--error svg {
-  vertical-align: text-bottom;
-}
 .auth-form fieldset {
   display: flex;
   align-items: center;
