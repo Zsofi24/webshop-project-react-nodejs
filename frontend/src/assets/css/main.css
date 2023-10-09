@@ -398,7 +398,7 @@ header {
 }
 .aside-mobile-wrapper .aside-mobile-panel {
   display: flex;
-  justify-content: flex-end;
+  align-items: baseline;
 }
 .aside-mobile-wrapper .filter-button {
   background-color: transparent;
@@ -413,7 +413,8 @@ header {
 
 .aside {
   flex: 1;
-  /* background-color: rgb(246, 209, 134); */
+  margin-left: 0.5rem;
+  max-width: 15rem;
 }
 
 .aside__select {
@@ -421,18 +422,13 @@ header {
   grid-template-areas: "select";
   align-items: center;
   position: relative;
-  width: 100%;
-  min-width: 15ch;
-  max-width: 30ch;
-  border: 1px solid var(--clr-primary);
+  border: none;
   border-radius: 0.25em;
   padding: 0.25em 0.5em;
   margin-bottom: 1rem;
-  font-size: 1.25rem;
   cursor: pointer;
-  line-height: 1.1;
+  line-height: 1.75rem;
   background-color: white;
-  /* background-image: linear-gradient(to top, #a88282, #fff 33%); */
 }
 .aside__select::after {
   grid-area: select;

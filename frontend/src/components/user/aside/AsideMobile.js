@@ -2,9 +2,9 @@ import React, { Fragment, useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { BiSolidFilterAlt } from "react-icons/bi";
 import { AiOutlineClose } from "react-icons/ai";
-import Select from "./Select";
-import Fieldset from "./Fieldset";
-import { categoryService } from "../services/categoryService";
+import Select from "../../Select";
+import Fieldset from "../../Fieldset";
+import { categoryService } from "../../../services/categoryService";
 
 export default function AsideMobile({ showMobileAside, setShowMobileAside }) {
   const [sort, setSort] = useState({ sortByTitle: "" });
@@ -65,7 +65,7 @@ export default function AsideMobile({ showMobileAside, setShowMobileAside }) {
   return (
     <div className="aside-mobile-wrapper">
       <div className="aside-mobile-panel">
-        <div className="aside-select">
+        <div className="aside__select">
           <Select
             value={sort.sortByTitle}
             handleChange={(e) => handleChange(e)}

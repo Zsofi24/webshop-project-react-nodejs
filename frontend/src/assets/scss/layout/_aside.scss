@@ -1,6 +1,9 @@
+@use "../abstracts/" as *;
+
 .aside {
     flex: 1;
-    /* background-color: rgb(246, 209, 134); */
+    margin-left: $size-2;
+    max-width: 15rem;
 }
 
 .aside__select {
@@ -8,18 +11,15 @@
     grid-template-areas: "select";
     align-items: center;
     position: relative;
-    width: 100%;
-    min-width: 15ch;
-    max-width: 30ch;
-    border: 1px solid var(--clr-primary);
+    border: none;
     border-radius: 0.25em;
     padding: 0.25em 0.5em;
     margin-bottom: 1rem;
-    font-size: 1.25rem;
     cursor: pointer;
-    line-height: 1.1;
+    line-height: $size-7;
     background-color: white;
-    /* background-image: linear-gradient(to top, #a88282, #fff 33%); */
+    // border-bottom: 1px solid $clr-primary;
+    // background-image: linear-gradient(to top, $clr-primary, #ffffff 37%); 
 
     &::after {
         grid-area: select;

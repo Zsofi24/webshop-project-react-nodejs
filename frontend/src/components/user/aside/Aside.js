@@ -1,8 +1,8 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { categoryService } from '../services/categoryService';
-import Select from './Select';
-import Fieldset from './Fieldset';
+import { categoryService } from '../../../services/categoryService';
+import Select from '../../Select';
+import Fieldset from '../../Fieldset';
 
 export default function Aside() {
 

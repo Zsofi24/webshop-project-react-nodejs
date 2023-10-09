@@ -2,11 +2,11 @@ import React, { useEffect, useMemo, useState } from 'react'
 import { useSearchParams } from 'react-router-dom';
 import { ColorRing } from 'react-loader-spinner';
 import ProductCard from '../components/ProductCard';
-import Aside from '../components/Aside';
+import Aside from '../components/user/aside/Aside';
 import Pagination from '../components/Pagination';
 import useProducts from '../hooks/useProducts';
 import useScreenSize from '../hooks/useScreenSize';
-import AsideMobile from '../components/AsideMobile';
+import AsideMobile from '../components/user/aside/AsideMobile';
 
 export default function Products() {
 
