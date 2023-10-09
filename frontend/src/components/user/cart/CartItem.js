@@ -1,8 +1,9 @@
 import React from 'react';
 import { AiOutlineDelete } from 'react-icons/ai';
-import { StyledCartItem } from '../assets/css/StyledCartItem'
-import Button from './Button'
-import { API_URL } from '../constants'
+import { StyledCartItem } from '../../../assets/css/StyledCartItem'
+import Button from '../../Button'
+import { API_URL } from '../../../constants'
+import ProductAmountChanger from './ProductAmountChanger';
 
 export default function CartItem({item, updateAmount, deleteItem}) {
   console.log(item, "item");
@@ -22,11 +23,12 @@ export default function CartItem({item, updateAmount, deleteItem}) {
         <Button type='cart-delete' handleClick={() => deleteItem(item.id)}><AiOutlineDelete /></Button>
       </div>
 
-      <div className='amount-wrapper'>
-        <Button type='cart-amount' disabled={item.amount == 1} handleClick={() => updateAmount(item.id, "-")}>-</Button>
-        <p>{item.amount}</p>
-        <Button type='cart-amount' handleClick={() => updateAmount(item.id, "+")}>+</Button>
-      </div>
+      <ProductAmountChanger 
+        updateAmount={updateAmount}
+        amount={item.amount}
+        id={item.id}
+
+      />
 
       <div id='cart-item-price'>
         <p>{(item.price * item.amount).toLocaleString("fr")} Ft</p>

@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import { BsFillCartFill, BsFillCartXFill, BsFillBellFill, BsFillCartCheckFill } from 'react-icons/bs';
-import { API_URL } from '../constants';
-import { productService } from '../services/productServices';
-import { UserAuthContext } from '../contexts/UserAuthContext';
-import { CartContext } from '../contexts/CartContext';
-import { cartService } from '../services/cartService';
-import Button from '../components/Button'
+import { API_URL } from '../../../constants';
+import { productService } from '../../../services/productServices';
+import { UserAuthContext } from '../../../contexts/UserAuthContext';
+import { CartContext } from '../../../contexts/CartContext';
+import { cartService } from '../../../services/cartService';
+import Button from '../../Button'
 import ProductCardLabel from './ProductCardLabel';
 
 export default function ProductCard({product}) {

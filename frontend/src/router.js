@@ -12,11 +12,11 @@ import AdminLayout from './components/admin/AdminLayout';
 import AdminProductList from './pages/admin/AdminProductList';
 import EditProduct from './pages/admin/EditProduct';
 import AddNewProduct from './pages/admin/AddNewProduct';
-import ProductDetails from './components/ProductDetails';
 import AdminCategoryList from './pages/admin/AdminCategoryList';
 import AddNewCategory from './pages/admin/AddNewCategory';
 import EditCategory from './pages/admin/EditCategory';
 import SendOrder from './pages/SendOrder';
+import ProductDetails from './components/user/product/ProductDetails';
 import requireAuthAdmin from './utils/requireAuthAdmin';
 
 export const router = createBrowserRouter(createRoutesFromElements([

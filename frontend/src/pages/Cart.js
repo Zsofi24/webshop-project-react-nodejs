@@ -3,25 +3,16 @@ import { useNavigate } from 'react-router-dom';
 import { CartContext } from '../contexts/CartContext'
 import { UserAuthContext } from '../contexts/UserAuthContext';
 import { orderServices } from '../services/orderServices';
-import CartItem from '../components/CartItem';
+import CartItem from '../components/user/cart/CartItem';
 import { cartService } from '../services/cartService';
 import Button from '../components/Button';
+import updateAmount from '../utils/updateProductAmount';
 
 export default function Cart() {
 
   const {cart, setCart, total} = useContext(CartContext);
   const {user} = useContext(UserAuthContext);
   const navigate = useNavigate();
-
-  function order() {
-    console.log(cart, "cart in order function");
-    orderServices.sendOrder(user.localId, cart, total)
-      .then(orderdetails => {
-        if(orderdetails.userId) setCart({})
-        alert("sikeres megrendelés")
-      })
-      .catch(err => alert(err))
-  }
 
   function updateAmount(id, operator) {
 

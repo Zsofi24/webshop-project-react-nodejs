@@ -1,14 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { BsFillCartFill, BsFillCartXFill, BsFillBellFill, BsFillCartCheckFill } from 'react-icons/bs';
-import '../assets/css/ProductDetails.css';
-import Button from './Button';
-import useProduct from '../hooks/useProduct';
-import { CartContext } from '../contexts/CartContext';
-import { productService } from '../services/productServices';
-import { UserAuthContext } from '../contexts/UserAuthContext';
-import { cartService } from '../services/cartService';
-import { API_URL } from '../constants';
+import '../../../assets/css/ProductDetails.css';
+import Button from '../../Button';
+import useProduct from '../../../hooks/useProduct';
+import { CartContext } from '../../../contexts/CartContext';
+import { productService } from '../../../services/productServices';
+import { UserAuthContext } from '../../../contexts/UserAuthContext';
+import { cartService } from '../../../services/cartService';
+import { API_URL } from '../../../constants';
 
 export default function ProductDetails() {
 
