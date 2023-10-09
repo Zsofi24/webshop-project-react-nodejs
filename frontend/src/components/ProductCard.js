@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import { BsFillCartFill, BsFillCartXFill, BsFillBellFill, BsFillCartCheckFill } from 'react-icons/bs';
 import { API_URL } from '../constants';
 import { productService } from '../services/productServices';
@@ -15,6 +15,7 @@ export default function ProductCard({product}) {
   const { cart, setCart, addToCartContext } = useContext(CartContext);
   const [ isInCart, setIsInCart ] = useState(false);
   const [ isInStock, setIsInStock ] = useState(true);
+  const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
     if(cart.length > 0) {
@@ -44,7 +45,7 @@ export default function ProductCard({product}) {
   return (
     <>
     <div className='card'>
-      <Link to={`${product.id}`}>
+      <Link to={`${product.id}`} state={{search: searchParams.toString()}}> 
       <div className='card__image'>
         {/* ideiglenes megoldás!!! default img */}
         {

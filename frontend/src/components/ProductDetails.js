@@ -1,22 +1,25 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Link, NavLink, useParams } from 'react-router-dom';
-import useProduct from '../hooks/useProduct';
-import '../assets/css/ProductDetails.css';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import { BsFillCartFill, BsFillCartXFill, BsFillBellFill, BsFillCartCheckFill } from 'react-icons/bs';
+import '../assets/css/ProductDetails.css';
 import Button from './Button';
+import useProduct from '../hooks/useProduct';
 import { CartContext } from '../contexts/CartContext';
 import { productService } from '../services/productServices';
 import { UserAuthContext } from '../contexts/UserAuthContext';
 import { cartService } from '../services/cartService';
+import { API_URL } from '../constants';
 
 export default function ProductDetails() {
 
-  const { productid } = useParams();
   const { user } = useContext(UserAuthContext);
   const [{loading, response, error, totalPages, currentPage}, dispatch] = useProduct();
   const { cart, setCart, addToCartContext } = useContext(CartContext);
   const [ isInCart, setIsInCart ] = useState(false);
   const [ isInStock, setIsInStock ] = useState(true);
+  const location = useLocation();
+  const search = location.state?.search || "";
+  console.log(cart, "cart");
 
   useEffect(() => {
     if(cart.length > 0) {
@@ -26,16 +29,15 @@ export default function ProductDetails() {
       setIsInCart(false)
     }
     setIsInStock(response?.stock > 0);
-  }, [response])
-
+  }, [response, cart])
 
   function addToCart() {
     const cartdata = { userid: user.localId, productid: response.id }
-    if(Object.keys(user).length == 0) console.error("nincs bejelentkezve")
+    if(Object.keys(user).length == 0) alert("nincs bejelentkezve")
     else {
     productService.addProductToCart(cartdata)
       .then(resp => {
-        if(resp.error) console.error(resp.error, "cart error");
+        if(resp.error) alert(resp.error, "cart error");
         else {
           cartService.getCart()
           .then(cartitems => setCart(cartitems))
@@ -44,20 +46,19 @@ export default function ProductDetails() {
   }
 }
 
-
   return (
     <>
     <div>
       <Link to='/'>főoldal</Link>
       -
-      <Link to='/termekek'>termékek</Link>
+      <Link to={`/termekek?${search}`}>termékek</Link>
       -
       <NavLink className={({isActive}) => isActive ? "active-link" : ""}>{response?.title}</NavLink>
     </div>
     <section>
       <div className='details-wrapper'>
         <div>
-          <img src='https://images.pexels.com/photos/8128069/pexels-photo-8128069.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'/>
+          <img src={`${API_URL}/api/${response.path}`} alt="wine"/>
         </div>
         <div>
           <h3>{response?.title}</h3>
