@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { AiFillExclamationCircle } from 'react-icons/ai';
 import useCustomersDetails from '../hooks/useCustomersDetails'
 import OrderForm from '../components/OrderForm';
 import { orderServices } from '../services/orderServices';
@@ -21,7 +22,7 @@ export default function SendOrder() {
 
   useEffect(() => {
     setValid(checkEmptyInput(billingAddress, shippingAddress, differentBillAndShipData))
-  }, [differentBillAndShipData, user])
+  }, [differentBillAndShipData, billingAddress])
 
   function order() {
     console.log(cart, "cart in order function");
@@ -83,6 +84,7 @@ export default function SendOrder() {
         />
         </>
       }
+      {!valid && <p className='error-message'><AiFillExclamationCircle/> A csillaggal jelölt mezők kitöltése kötelező!</p>}
       <Button handleClick={order} disabled={!valid}>megrendelés</Button>
     </section> 
    )

@@ -1,16 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import { orderServices } from '../services/orderServices';
+import React from 'react';
+import useUserOrders from '../hooks/useUserOrders';
+import UserOrders from '../components/user/orders/UserOrders';
+
 export default function Orders() {
 
-    const [ orders, setOrders ] = useState(null);
-    console.log(orders);
-
-    useEffect(() => {
-        orderServices.getUserOrders()
-            .then(userorders => setOrders(userorders))
-    }, [])
+    const [{loading, response, error}, dispatch] = useUserOrders(); 
 
   return (
-    <div>Orders</div>
+    <div>
+      <section>
+        { error && <div className="error">ERROR OH NO</div> }
+        { loading && <div>loading</div>}
+        {response && <UserOrders orders={response}/>}
+      </section>
+    </div>
   )
 }

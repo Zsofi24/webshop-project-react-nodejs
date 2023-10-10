@@ -1,0 +1,15 @@
+@use "../abstracts/" as *;
+
+.heading-message {
+    @include heading(
+      $heading-message-font-size,
+      $heading-message-color
+    );
+}
+
+.error-message {
+    @include heading(
+      $error-message-font-size,
+      $error-message-color
+    )
+}

@@ -39,16 +39,17 @@ export default {
     },
 
     getUserOrders({ userid }) {
-        const sql = `SELECT * FROM orders 
+        const sql = `SELECT id, created, status, total, SUM(amount) as totalAmount FROM orders 
                     JOIN orders_products ON orders.id = orders_products.order_id
-                    JOIN products ON orders_products.product_id=products.id
                     WHERE orders.user_id = ?
+                    GROUP BY id
                     `;
         return new Promise((resolve, reject) => {
             db.serialize(() => {
                 const stmt = db.prepare(sql);
                 stmt.bind(userid);
                 stmt.all((err, rows) => {
+                    console.log(rows);
                     if(err) reject(err)
                     else resolve(rows)
                 })

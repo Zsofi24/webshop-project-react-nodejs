@@ -39,7 +39,7 @@ export default {
         console.log(req.session.user, 'user in order');
         ordersServices
             .getUserOrders({ userid })
-            .then(resp => res.status(201).send(resp))
+            .then(resp => res.status(200).send(resp))
             .catch(next)
     }
 }
