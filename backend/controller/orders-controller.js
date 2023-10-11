@@ -41,5 +41,13 @@ export default {
             .getUserOrders({ userid })
             .then(resp => res.status(200).send(resp))
             .catch(next)
+    },
+
+    getOrder(req, res, next) {
+        const { orderid } = req.params;
+        ordersServices
+            .getOrder({ orderid })
+            .then(resp => res.status(200).send(resp))
+            .catch(next)
     }
 }

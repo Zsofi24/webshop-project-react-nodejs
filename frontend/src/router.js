@@ -18,6 +18,7 @@ import EditCategory from './pages/admin/EditCategory';
 import SendOrder from './pages/SendOrder';
 import ProductDetails from './components/user/product/ProductDetails';
 import requireAuthAdmin from './utils/requireAuthAdmin';
+import UserOrderDetails from './components/user/orders/UserOrderDetails';
 
 export const router = createBrowserRouter(createRoutesFromElements([
     <Route path='/' element={<Layout/>}>
@@ -27,6 +28,7 @@ export const router = createBrowserRouter(createRoutesFromElements([
         <Route path='/termekek' element={<Products />}/>
         <Route path='/termekek/:productid' element={<ProductDetails />}/>
         <Route path='/rendelesek' element={<Orders />}/>
+        <Route path='/rendelesek/:orderid' element={<UserOrderDetails />}/>
         <Route path='/kosar' element={<Cart />}/>
         <Route path='/rendeles' element={<SendOrder />}/>
         <Route path='/profil' element={<Profile />}/>

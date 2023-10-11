@@ -1,0 +1,38 @@
+@use '../abstracts/' as *;
+
+.orders-wrapper--user {
+    max-width: 800px;
+}
+
+.order__details {
+    display: flex;
+    flex-direction: column;
+}
+
+.order__product {
+    display: flex;
+
+
+    &__details {
+        display: flex;
+        flex-direction: column;
+
+        table {
+            table-layout: auto;
+            width: 100%;
+            margin: auto 0 0;
+        }
+    }
+
+    &__img {
+        max-width: 131px;
+        margin-right: $size-2;
+    }
+
+    img {
+        height: auto;
+        width: 100%;
+        object-fit: cover;
+        
+    }
+}

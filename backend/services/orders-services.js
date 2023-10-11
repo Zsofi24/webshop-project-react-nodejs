@@ -9,5 +9,10 @@ export default {
 
     getUserOrders({ userid }) {
         return ordersModel.getUserOrders({ userid })
+    },
+
+    getOrder({ orderid }) {
+        return ordersModel.getOrder({ orderid })
     }
+
 }

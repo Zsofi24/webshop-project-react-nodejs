@@ -21,10 +21,18 @@ function getUserOrders() {
     return fetch(`${API_URL}/api/orders/user`, {
         credentials: 'include'
     })
-    .then(resp => resp.json())
+        .then(resp => resp.json())
+}
+
+function getOrder(orderid) {
+    return fetch(`${API_URL}/api/orders/user/${orderid}`, {
+        credentials: 'include'
+    })
+        .then(resp => resp.json())
 }
 
 export const orderServices = {
     sendOrder,
-    getUserOrders
+    getUserOrders,
+    getOrder
 }

@@ -1,18 +1,29 @@
 import { useEffect, useReducer } from "react";
 import { orderServices } from "../services/orderServices";
+import { useParams } from "react-router-dom";
 
 export default function useUserOrders() {
+
+    const { orderid } = useParams();
 
     let [state, dispatch] = useReducer((state, action) => {
         switch(action.type) {
             case 'LOADING': {
                     return { ...state, loading: true }
             }
-            case 'RESOLVED': {
+            case 'ORDERS': {
                 return {
                     ...state,
                     loading: false,
-                    response: action.response,
+                    orders: action.orders,
+                    error: null
+                }
+            }
+            case 'ORDER': {
+                return {
+                    ...state,
+                    loading: false,
+                    order: action.order,
                     error: null
                 }
             }
@@ -20,7 +31,7 @@ export default function useUserOrders() {
                 return {
                     ...state,
                     loading: false,
-                    response: null,
+                    orders: null,
                     error: action.error
                 }
             }
@@ -29,7 +40,8 @@ export default function useUserOrders() {
         }
     }, {
         loading: false,
-        response: null,
+        orders: null,
+        order: null,
         error: null
     })
 
@@ -40,10 +52,28 @@ export default function useUserOrders() {
             .getUserOrders()
             .then(orders => {
                 if(isCurrent) {
-                    dispatch({ type: 'RESOLVED', response: orders })
+                    dispatch({ type: 'ORDERS', orders })
                 }
             })
             .catch(error => dispatch({ type: 'ERROR', error }))
+        return () => isCurrent = false;
+    }, [])
+
+
+    useEffect(() => {
+        let isCurrent = true;
+        if(orderid) {
+            dispatch({ type: 'LOADING' })
+            orderServices
+                .getOrder(orderid)
+                .then(order => {
+                    if(isCurrent) {
+                        dispatch({ type: 'ORDER', order })
+                    }
+                })
+                .catch(error => dispatch({ type: 'ERROR', error }))
+    
+        }
         return () => isCurrent = false;
     }, [])
 

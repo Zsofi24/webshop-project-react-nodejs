@@ -49,11 +49,42 @@ export default {
                 const stmt = db.prepare(sql);
                 stmt.bind(userid);
                 stmt.all((err, rows) => {
-                    console.log(rows);
                     if(err) reject(err)
                     else resolve(rows)
                 })
             })
         })
+    },
+
+    getOrder({ orderid }) {
+        const sql = `
+            SELECT id, created, status, total FROM orders
+            WHERE orders.id = ?
+        `;
+
+        const sql2 = `
+            SELECT op.order_id as orderId, op.product_id as productId, amount, title, description, price, image_path as img FROM orders_products as op
+            JOIN products as p ON op.product_id = p.id
+            WHERE op.order_id = ?
+        `
+
+        return new Promise((resolve, reject) => {
+            db.serialize(() => {
+                const stmt = db.prepare(sql);
+                stmt.bind(orderid);
+                stmt.get((err, orderInfo) => {
+                    if(err) reject(err)
+                    else {
+                        const stmt2 = db.prepare(sql2);
+                        stmt2.bind(orderid);
+                        stmt2.all((err, orderDetails) => {
+                            if(err) reject(err)
+                            else resolve({info: orderInfo, products: orderDetails})
+                        })
+                    }
+                })
+            })
+        })
     }
+
 }
