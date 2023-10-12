@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { AiFillExclamationCircle } from 'react-icons/ai';
 import RegistrationForm from '../components/RegistrationForm'
 import { formValidation } from '../utils/formValidation';
-import { userService } from '../services/userServices';
+import { authService } from '../services/authService';
 
 export default function Registration() {
 
@@ -50,7 +50,7 @@ export default function Registration() {
         return
     } 
   
-    userService.userRegist({email: formData.email.value, password: formData.password.value, username: formData.username.value})
+    authService.userRegist({email: formData.email.value, password: formData.password.value, username: formData.username.value})
         .then(resp => {
             console.log(resp, "resp regist");
             if(resp.ok) navigate('/belepes')

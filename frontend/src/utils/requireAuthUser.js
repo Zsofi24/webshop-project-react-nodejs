@@ -2,7 +2,7 @@ import { redirect } from "react-router-dom"
 import { API_URL } from "../constants"
 
 export default async function requireAuthUser() {
-    // const resp = await fetch(`${API_URL}/api/admin-verify`, {credentials: 'include'})
+    // const resp = await fetch(`${API_URL}/auth/admin-verify`, {credentials: 'include'})
     // const resp2 = await resp.json();
     // console.log(resp2);
     // const isLoggedIn = resp2.isAdmin;

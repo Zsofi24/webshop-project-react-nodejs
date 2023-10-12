@@ -4,7 +4,7 @@ import LoginForm from '../components/LoginForm';
 import { Link, useLoaderData } from 'react-router-dom';
 import {AiFillExclamationCircle} from 'react-icons/ai';
 import { formValidation } from '../utils/formValidation';
-import { userService } from '../services/userServices';
+import { authService } from '../services/authService';
 import { UserAuthContext } from '../contexts/UserAuthContext';
 
 
@@ -44,7 +44,7 @@ export default function Login() {
 
   function loginSubmit(e) {
     e.preventDefault();
-    userService.userLogin({email: formData.email.value, password: formData.password.value})
+    authService.userLogin({email: formData.email.value, password: formData.password.value})
         .then(data => { 
             console.log(data, "data")
             setUser(data)

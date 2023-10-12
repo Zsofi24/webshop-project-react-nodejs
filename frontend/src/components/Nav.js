@@ -4,9 +4,8 @@ import { BiLogIn } from 'react-icons/bi';
 import { BsCart } from 'react-icons/bs';
 import { AiOutlineUser } from 'react-icons/ai';
 import { UserAuthContext } from '../contexts/UserAuthContext';
-import { userService } from '../services/userServices';
+import { authService } from '../services/authService';
 import Profile from './Profile';
-// import '../assets/css/Profile.css';
 
 export default function Nav({ handleMouseEnter, handleMouseLeave, isProfileVisible }) {
 
@@ -14,7 +13,7 @@ export default function Nav({ handleMouseEnter, handleMouseLeave, isProfileVisib
   const navigate = useNavigate();
 
   function logout() {
-    userService
+    authService
       .userLogout()
       .then(() => {
         setUser({});

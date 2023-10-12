@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import session from 'express-session';
 import cookieParser from 'cookie-parser';
-import usersRouter from './routes/users-router.js';
+import authRouter from './routes/auth-route.js';
 import productsRouter from './routes/products-router.js';
 import cartItemsRouter from './routes/cart-items-router.js';
 import ordersRouter from './routes/orders-router.js';
@@ -38,7 +38,6 @@ app.use(
     })
 );
 
-app.use('/api', usersRouter);
 app.use('/api', productsRouter);
 app.use('/api', cartItemsRouter);
 app.use('/api', ordersRouter);
@@ -46,6 +45,7 @@ app.use('/api', ordersProductsRouter);
 app.use('/api', categoriesRouter);
 app.use('/api', shippingAddressesRouter);
 app.use('/api', billingAddressesRouter);
+app.use('/auth', authRouter);
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 

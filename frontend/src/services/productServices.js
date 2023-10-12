@@ -36,7 +36,8 @@ function createProduct(product) {
                 console.log(resp.status, resp.statusText);
                 return Promise.reject({
                     status: resp.status,
-                    statusText: resp.statusText
+                    statusText: resp.statusText,
+                    message: "Nem sikerült létrehozni a terméket!"
                 })
             }
             return resp

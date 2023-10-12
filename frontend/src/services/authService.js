@@ -1,7 +1,7 @@
 import { API_URL } from "../constants";
 
 function userRegist(formData) {
-    return fetch(`${API_URL}/api/signup`, {
+    return fetch(`${API_URL}/auth/signup`, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(formData)
@@ -9,7 +9,7 @@ function userRegist(formData) {
 }
 
 function userLogin(formData) {
-    return fetch(`${API_URL}/api/login`, {
+    return fetch(`${API_URL}/auth/login`, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(formData),
@@ -32,13 +32,13 @@ function userLogin(formData) {
 }
 
 function userLogout() {
-    return fetch(`${API_URL}/api/logout`, {
+    return fetch(`${API_URL}/auth/logout`, {
         credentials: 'include'
     })
     .then(resp => resp.json())
 }
 
-export const userService = {
+export const authService = {
     userRegist,
     userLogin,
     userLogout

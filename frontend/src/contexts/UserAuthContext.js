@@ -14,7 +14,7 @@ export function UserAuthProvider({children}) {
     useEffect(() => {
         console.log(cookies, "cookies");
         // if(cookies.sessionID) {
-          fetch(`${API_URL}/api/verify`, {
+          fetch(`${API_URL}/auth/verify`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json"
