@@ -27,19 +27,25 @@ paths:
                   type: string
                 limited:
                   type: boolean
+                  default: false
                 price:
                   type: string
                 stock:
                   type: string
-                title:
+                title:                  
                   type: string
                 visible:
                   type: boolean
+                  default: true
                 categories:
                   type: array
                   items:
                     $ref: '#/components/schemas/Category'
-
+              required:
+                - title
+                - categories
+      security: 
+        - cookieAuth: []
       responses:
         '201':
           description: Product created
@@ -48,9 +54,7 @@ paths:
               schema:
                 type: object
         '400':
-          description: bad request
-        '500':
-          description: error
+          description: invalid input(s)
     get:
       tags:
         - products
@@ -128,7 +132,5 @@ components:
           type: string
         categoryId:
           type: string
-
-
 
       

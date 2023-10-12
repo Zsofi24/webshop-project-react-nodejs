@@ -46,11 +46,10 @@ export default function Login() {
     e.preventDefault();
     authService.userLogin({email: formData.email.value, password: formData.password.value})
         .then(data => { 
-            console.log(data, "data")
             setUser(data)
             navigate('/', {state:{message: `Üdvözöljük, ${data.username}`}})
         })
-        .catch(err => setErrorMessage("Nem megfelelő email vagy jelszó!"))
+        .catch(err => setErrorMessage(err.message))
   }
   
   return (

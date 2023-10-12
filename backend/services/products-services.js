@@ -2,22 +2,22 @@ import { nanoid } from "nanoid";
 import sharp from 'sharp';
 import productsModel from "../database/models/products-model.js";
 import productsCategoriesModel from "../database/models/products-categories-model.js";
+import { createProductValidation } from "../utils/validation/productValidation.js";
 
 export default {
     async create({ title, price, description, id, stock, categories, visible, limited, path }) {
-        if(!id) {
-            id = nanoid(8)
-        }
-        visible = JSON.parse(visible);
-        limited = JSON.parse(limited);
-        const resizedImg = await sharp(path).resize({width: 640, height: 1014}).toFile(`${path}-resized`)
-        const resp = await productsModel.create({ title, price, description, id, stock, visible, limited, path: `${path}-resized` })
-        const resp2 = await productsCategoriesModel.setToProduct(id, categories)
-        return resp2
+        createProductValidation({ title, price, stock, categories })
+        if(!id) id = nanoid(8)
+        visible = JSON.parse(visible) || true;
+        limited = JSON.parse(limited) || false;
+        if(path) {
+            path.replace(/\\/g, '/')
+            await sharp(path).resize({width: 640, height: 1014}).toFile(`${path}-resized`)
+        }      
+        await productsModel.create({ title, price, description, id, stock, visible, limited, path: path ? `${path}-resized` : path })
+        const resp = await productsCategoriesModel.setToProduct(id, categories)
+        return resp
     },
-    // imgupload(newPath, productid) {
-    //     return productsModel.imgupload(newPath, productid)
-    // },
 
     getAll() {
         return productsModel.getAll()
@@ -39,7 +39,7 @@ export default {
         limited = JSON.parse(limited);
 
         if(path) {
-           const resizedImg = await sharp(path).resize({width: 640, height: 1014}).toFile(`${path}-resized`)
+           await sharp(path).resize({width: 640, height: 1014}).toFile(`${path}-resized`)
            path = `${path}-resized`
         }
 

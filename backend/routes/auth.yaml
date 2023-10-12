@@ -1,0 +1,102 @@
+tags:
+  - name: auth
+    desciption: webshop authentication
+
+paths:
+  /auth/signup:
+    post:
+      tags:
+        - auth
+      summary: User registration
+      description: User registration
+      operationId: signup
+      requestBody:
+        description: User data for registration
+        required: true
+        content: 
+          application/json:
+            schema:
+              type: object
+              propterties:
+                email:
+                  type: string
+                password:
+                  type: string
+                username:
+                  type: string
+              required:
+                - email
+                - password
+                - username
+            example:
+              email: "valaki32@a.com"
+              password: "HellBe32"
+              username: "Valaki32"
+        responses:
+          '201':
+            description: Registration success
+          '400':
+            description: Invalid input(s)
+          '500':
+            description: Server error - Email is taken, registered user
+  /auth/login:
+    post:
+      tags:
+        - auth
+      summary: Logs in a user and returns the authentication cookie and user datas
+      description: Login a user
+      operationId: login
+      requestBody:
+        description: Login a user
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+              required:
+                - email
+                - password
+            example:
+              email: "ab@a.com"
+              password: '1234'
+      security: []           
+      responses:
+        '200':
+          description: Authentication success
+          headers:
+            Set-Cookie:
+              schema:
+                type: string
+                example: sessionID=asdf1234; Path=/;
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    localId: 
+                      type: string
+                    email:
+                      type: string
+                    username:
+                      type: string
+                example:
+                  localId: "wertrewe12_12swq"
+                  email: "ab@a.com"
+                  username: "Valaki1"
+        '401':
+          description: Invalid request      
+           
+components:
+  securitySchemes:
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: "sessionID"
+
+security:
+  - cookieAuth: []

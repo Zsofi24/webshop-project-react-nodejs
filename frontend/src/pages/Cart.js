@@ -59,7 +59,7 @@ export default function Cart() {
             {
             cart.map(cartitem => (
               <CartItem 
-                key={cartitem.product_id} 
+                key={cartitem.id} 
                 item={cartitem} 
                 updateAmount={updateAmount}
                 deleteItem={deleteItem}
@@ -68,7 +68,7 @@ export default function Cart() {
             }
 
           <div className='cart-order-wrapper'>
-            <h4>végösszeg: {(total).toLocaleString('fr')} Ft</h4>
+            <h4>végösszeg: {(total)?.toLocaleString('fr')} Ft</h4>
             <Button handleClick={() => navigate("/rendeles")}>megrendelés</Button>
           </div>
 

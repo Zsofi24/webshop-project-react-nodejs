@@ -6,6 +6,17 @@ function userRegist(formData) {
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(formData)
     })
+        .then(resp => {
+            if(!resp.ok) {
+                return Promise.reject({
+                    status: resp.status,
+                    statusText: resp.statusText,
+                    message: resp.status == 400 ? "Minden mezőt helyesen töltsön ki!" : "Már létezik ilyen email!"
+                })
+            }
+            return resp
+        })
+        .then(resp => resp.json())
 }
 
 function userLogin(formData) {
@@ -17,18 +28,15 @@ function userLogin(formData) {
     })
         .then(resp => {
             if(!resp.ok) {
-                console.log(resp.status, resp.statusText);
                 return Promise.reject({
                     status: resp.status,
-                    statusText: resp.statusText
+                    statusText: resp.statusText,
+                    message: "Nem megfelelő email vagy jelszó!"
                 })
             }
             return resp
         })
-        .then(resp => {
-            console.log(resp)
-            return resp.json()
-        })
+        .then(resp => resp.json())
 }
 
 function userLogout() {

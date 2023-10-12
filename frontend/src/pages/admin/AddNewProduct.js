@@ -3,10 +3,12 @@ import ProductForm from '../../components/admin/ProductForm'
 import { productService } from '../../services/productServices';
 import useProduct from '../../hooks/useProduct';
 import Button from '../../components/Button';
+import { useNavigate } from 'react-router-dom';
 
 export default function AddNewProduct() {
 
   const [{ loading, response, error, categories}, dispatch ] = useProduct();
+  const navigate = useNavigate();
 
   function addOrRemoveCheckbox(id, name) {
 
@@ -31,7 +33,8 @@ export default function AddNewProduct() {
 
     productService
       .createProduct(productData)
-      .catch(err => alert(err.statusText))    
+      .then(() => navigate("/admin/termekek"))
+      .catch(err => alert(err.message))    
   }
 
   function handleChange(e) {
@@ -41,7 +44,6 @@ export default function AddNewProduct() {
     } else {
       dispatch({ type: 'UPDATE', response: {...response, [name]: type === "checkbox" ? checked : value}})
     }
-
   }
 
   return (

@@ -5,7 +5,7 @@ export default {
         const { email, password, username } = req.body;
         authServices
             .create({email, password, username})
-            .then(resp => res.status(201).send(resp.message))
+            .then(resp => res.status(201).json(resp))
             .catch(next)
     },
 
@@ -14,7 +14,7 @@ export default {
         console.log(email, password);
         authServices
             .find({ email, password, req })
-            .then(resp => res.status(201).send(resp))
+            .then(resp => res.status(200).json(resp))
             .catch(next)
     },
 
@@ -24,7 +24,7 @@ export default {
                 if(err) res.send(err)
                 else {
                     res.clearCookie("sessionID", {path: "/"})
-                    res.json({message: "ok"})
+                    res.status(200).json({message: "ok"})
                 }
             });            
         } else {

@@ -24,7 +24,12 @@ export default {
     },
 
     create({ title, description, price, stock, id, visible, limited, path }) {
-        const sql = `INSERT INTO products(title, description, price, stock, id, visible, limited, image_path) VALUES(?, ?, ?, ?, ?, ?, ?, ?)`;
+        const sql = `
+            INSERT INTO products
+            (title, description, price, stock, id, visible, limited, image_path) 
+            VALUES
+            (?, ?, ?, ?, ?, ?, ?, ?)
+        `;
 
         return new Promise((resolve, reject) => {
             db.serialize(() => {

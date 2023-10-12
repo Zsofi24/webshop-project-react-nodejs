@@ -24,7 +24,7 @@ export function CartProvider({ children }) {
                 .getCartTotal()
                 .then(cartTotal => setTotal(cartTotal.total))
         }
-    }, [cart])
+    }, [cart, user])
 
     return (
         <CartContext.Provider value={{ cart, setCart, total }}>

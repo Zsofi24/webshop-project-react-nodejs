@@ -1,12 +1,12 @@
 import React from 'react';
 import { AiOutlineDelete } from 'react-icons/ai';
+import { API_URL } from '../../../constants'
 import { StyledCartItem } from '../../../assets/css/StyledCartItem'
 import Button from '../../Button'
-import { API_URL } from '../../../constants'
 import ProductAmountChanger from './ProductAmountChanger';
 
 export default function CartItem({item, updateAmount, deleteItem}) {
-  console.log(item, "item");
+
   return (
     <StyledCartItem className='cart-items-wrapper'>
       {
@@ -27,7 +27,6 @@ export default function CartItem({item, updateAmount, deleteItem}) {
         updateAmount={updateAmount}
         amount={item.amount}
         id={item.id}
-
       />
 
       <div id='cart-item-price'>

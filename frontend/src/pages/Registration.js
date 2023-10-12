@@ -50,12 +50,10 @@ export default function Registration() {
         return
     } 
   
-    authService.userRegist({email: formData.email.value, password: formData.password.value, username: formData.username.value})
-        .then(resp => {
-            console.log(resp, "resp regist");
-            if(resp.ok) navigate('/belepes')
-            else setErrorMessage("Már létezik ilyen email!")
-        })  
+    authService
+        .userRegist({email: formData.email.value, password: formData.password.value, username: formData.username.value})
+        .then(() => navigate('/belepes'))
+        .catch(err => setErrorMessage(err.message))        
   }
 
   return (

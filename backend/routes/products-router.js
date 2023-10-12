@@ -1,9 +1,7 @@
 import express from "express";
 import multer from 'multer';
 import adminVerify from "../middlewares/admin-verify.js";
-
 import productsController from "../controller/products-controller.js";
-
 
 const router = express.Router();
 const upload = multer({ dest: "uploads/" });
@@ -24,15 +22,4 @@ router
     .route('/uploads/:imgpath')
     .get(productsController.getImage)
     
-// router
-//     .route('/products/:productid/imageupload')
-//     .put(upload.single("pic"), productsController.imgupload)
-
-
-// router.get('/uploads/:imgpath', (req, res) => {
-//     const { imgpath } = req.params;
-//     res.sendFile(path.resolve(`./uploads/${imgpath}`))
-// })
-// router.get('/products/:pagesize/:currentpage', productsController.getCurrent)
-
 export default router;

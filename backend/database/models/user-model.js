@@ -26,23 +26,17 @@ export default {
         })
     },
 
-    create({ email, password, username, isAdmin }) {
+    create({ id, email, hash, username, isAdmin }) {
         const sql = `INSERT INTO users(id, email, password, username, isAdmin, created) VALUES(?, ?, ?, ?, ?, datetime('now', 'localtime'))`;
-        const id = nanoid(16);
 
-        console.log(email, password, username, isAdmin);
-        // hash-t kivinni a service-be
         return new Promise((resolve, reject) => {
             db.serialize(() => {
-                bcrypt.hash(password, 10, (err, hash) => {
-                    const stmt = db.prepare(sql);
-                    stmt.bind(id, email, hash, username, isAdmin);
-                    stmt.run((err) => {
-                        if(err) reject(err)
-                        else resolve({message: 'ok'})
-                    })
-
-                } )
+                const stmt = db.prepare(sql);
+                stmt.bind(id, email, hash, username, isAdmin);
+                stmt.run((err) => {
+                    if(err) reject(err)
+                    else resolve({message: 'ok'})
+                })
             })
         })
     },
@@ -57,7 +51,7 @@ export default {
                     if(err) reject(err)
                     if(row) {
                         bcrypt.compare(password, row.password, (err, response) => {
-                            if(err) console.log(err, "login err");
+                            if(err) reject(err);
                             if(response) {
                                 // console.log("pwd response", response); //true or false
                                 req.session.authenticated = true;
@@ -70,12 +64,12 @@ export default {
                                 }; 
                                 resolve({localId: row.id, email: row.email, username: row.username })
                             } else {
-                                reject(new httpError('Bad Request', 400))
+                                reject(new httpError('Unauthorized', 401))
                             }
                         })
                     } else {
                         console.log("nincs ilyen user");
-                        reject(new httpError('Bad Request', 400));
+                        reject(new httpError('Unauthorized', 401));
                     }
                 })
             })

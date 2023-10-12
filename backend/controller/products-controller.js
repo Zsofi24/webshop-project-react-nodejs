@@ -4,7 +4,7 @@ import path from 'path';
 export default {
     create(req, res, next) {
         const { title, price, description, id, stock, visible, categories, limited } = req.body;
-        const path = req.file.path.replace(/\\/g, '/');
+        const path = req.file? req.file.path : null
         productsServices
             .create({ title, price, description, id, stock, categories, visible, limited, path })
             .then(resp => res.status(201).send(resp))
@@ -26,7 +26,7 @@ export default {
         if(!products) products = "all";
         productsServices
             .getCurrent({ currentPage, pageSize, sortBy, order, filter, products })
-            .then(resp => res.status(201).send(resp))
+            .then(resp => res.status(200).send(resp))
             .catch(next)    
     },
 
@@ -34,7 +34,7 @@ export default {
         const { productid } = req.params;
         productsServices
             .getOne({ productid })
-            .then(resp => res.status(201).send(resp))
+            .then(resp => res.status(200).send(resp))
             .catch(next)
     },
 
@@ -52,29 +52,11 @@ export default {
             .catch(next)
     },
 
-    // imgupload(req, res, next) {
-    //     console.log(req.file, "file");
-    //     const { productid } = req.params;
-    //     const newPath = req.file.path.replace(/\\/g, '/');
-    //     console.log(productid, "productid");
-    //     sharp(req.file.path)
-    //         .resize({width: 640, height: 1014})
-    //         .toFile(`${newPath}-resized`)
-    //         .then(data => {
-    //             console.log(data, "data");
-    //             productsServices.imgupload(`${newPath}-resized`, productid)
-    //             .then(resp => res.status(201).send(resp))
-    //             .catch(next)
-    //         })
-
-    // },
-
     delete(req, res, next) {
         console.log(req.params);
         const { productid: id } = req.params;
         productsServices.delete(id)
-            .then(resp => res.status(201).send(resp))
+            .then(resp => res.status(200).send(resp))
             .catch(next)
     }
 }
-

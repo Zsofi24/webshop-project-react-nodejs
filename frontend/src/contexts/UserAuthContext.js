@@ -8,11 +8,11 @@ export const UserAuthContext = createContext({});
 export function UserAuthProvider({children}) {
     const [user, setUser] = useState({});
     const [ cookies ] = useCookies(['sessionID']);
-    console.log(user, "contextuser");
-    console.log(cookies, "cookies");
+    // console.log(user, "contextuser");
+    // console.log(cookies, "cookies");
 
     useEffect(() => {
-        console.log(cookies, "cookies");
+        // console.log(cookies, "cookies");
         // if(cookies.sessionID) {
           fetch(`${API_URL}/auth/verify`, {
             method: "POST",
