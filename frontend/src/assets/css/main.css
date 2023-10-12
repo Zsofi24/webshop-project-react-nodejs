@@ -392,12 +392,16 @@ header {
   background-color: white;
   color: black;
   height: 8vh;
+  font-size: 18px;
 }
 
 .navshop {
   display: flex;
   justify-content: space-between;
   padding: 1rem;
+}
+.navshop__elements > a {
+  margin-left: 0.5rem;
 }
 .navshop a {
   text-decoration: none;
@@ -406,11 +410,16 @@ header {
 .navshop a:hover {
   text-decoration: underline;
 }
+.navshop svg {
+  margin-left: 0.5rem;
+}
 .navshop .navshop__profile {
   display: inline-block;
 }
 .navshop .navshop__profile:hover .navshop__profile--hover {
   display: block;
+  position: absolute;
+  z-index: 100;
 }
 .navshop .navshop__profile--hover {
   display: none;
@@ -420,6 +429,7 @@ header {
   background-color: #fff;
   border-radius: 5px;
   box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.4);
+  line-height: 1.5rem;
 }
 .navshop .navshop__profile--hover ul {
   padding-left: 0;
@@ -428,10 +438,11 @@ header {
 .navshop .navshop__profile--hover ul li {
   color: black;
   list-style-type: none;
+  padding: 0.5rem 0;
 }
 .navshop .navshop__profile--hover ul li:hover {
-  background-color: green;
-  color: white;
+  color: rgb(20, 63, 63);
+  font-weight: bold;
   text-decoration: none;
   cursor: pointer;
 }
@@ -442,8 +453,8 @@ header {
   text-decoration: none;
 }
 .navshop .navshop__profile--hover ul li a:hover {
-  background-color: green;
-  color: white;
+  color: rgb(20, 63, 63);
+  font-weight: bold;
   text-decoration: none;
   cursor: pointer;
 }

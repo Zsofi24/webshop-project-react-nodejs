@@ -27,7 +27,7 @@ export default function Nav({ handleMouseEnter, handleMouseLeave, isProfileVisib
       <div>
         <NavLink to='/'>F</NavLink>
       </div>
-      <div>
+      <div className='navshop__elements'>
         <NavLink to='/termekek'>termékek</NavLink>
         <NavLink to='/admin'>admin</NavLink>
       </div>
