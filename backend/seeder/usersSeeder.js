@@ -5,7 +5,7 @@ export const usersSeederData = [
     {
         id: "1r9fAAasdeMawe3_",
         email: "admin2@a.com",
-        password: "12345",
+        password: passwordHash('12345'),
         username: "admin2",
         isAdmin: true,
     }
@@ -21,23 +21,14 @@ const userNames = [
 ]
 
 function passwordHash(password) {
-  const saltRounds = 10;
-
-  const hashedPassword = new Promise((resolve, reject) => {
-    bcrypt.hash(password, saltRounds, function(err, hash) {
-      if (err) reject(err)
-      resolve(hash)
-    });
-  })
-
-  return hashedPassword
+  return bcrypt.hashSync(password, 10)
 }
 
 for (let i = 0; i < userNames.length; i++) {
     usersSeederData.push({
       id: nanoid(16),
       email: `teszt${i}@teszt.hu`,
-      password: "password",
+      password: passwordHash("password"),
       username: userNames[i],
       isAdmin: false,
     });
