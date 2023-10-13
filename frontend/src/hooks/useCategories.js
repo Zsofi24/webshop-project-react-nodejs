@@ -45,7 +45,7 @@ export default function useCategories() {
                     ...state,
                     error: null,
                     loading: false,
-                    currentPage: action.currentPage
+                    page: action.page
                 }
             }
             default:
@@ -58,7 +58,7 @@ export default function useCategories() {
         total: null,
         totalPages: 1,
         pageSize: 5,
-        currentPage: 1
+        page: 1
     })
 
     useEffect(() => {

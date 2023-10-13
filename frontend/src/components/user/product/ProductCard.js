@@ -8,6 +8,7 @@ import { CartContext } from '../../../contexts/CartContext';
 import { cartService } from '../../../services/cartService';
 import Button from '../../Button'
 import ProductCardLabel from './ProductCardLabel';
+import AddToCartButton from './AddToCartButton';
 
 export default function ProductCard({product}) {
 
@@ -46,37 +47,29 @@ export default function ProductCard({product}) {
     <>
     <div className='card'>
       <Link to={`${product.id}`} state={{search: searchParams.toString()}}> 
-      <div className='card__image'>
-        {/* ideiglenes megoldás!!! default img */}
-        {
-          product.path 
-          ?
-          <img src={`${API_URL}/api/${product.path}`} alt="wine" />
-          :
-          <img src={`${API_URL}/api/uploads/e65d2a0f397b3aadf357c6fd6dde1282-resized`} alt="wine" />
+        <div className='card__image'>
+          {/* ideiglenes megoldás!!! default img */}
+          {
+            product.path 
+            ?
+            <img src={`${API_URL}/api/${product.path}`} alt="wine" />
+            :
+            <img src={`${API_URL}/api/uploads/e65d2a0f397b3aadf357c6fd6dde1282-resized`} alt="wine" />
 
-        }
-        { product.limited ? <ProductCardLabel text="limitált"/> : null }
-      </div>
-      <h3 className='heading-3'>{product.title}</h3>
-      <p>{(product.price).toLocaleString('fr')} Ft</p>
+          }
+          { product.limited ? <ProductCardLabel text="limitált"/> : null }
+        </div>
+        <h3 className='heading-3'>{product.title}</h3>
+        <p>{(product.price).toLocaleString('fr')} Ft</p>
       </Link>
-      {
-        isInCart 
-          ?
-          <Button type="cart" text="Hozzáadva" primary handleClick={addToCart} ><BsFillCartCheckFill /></Button>
-          :
-          (          
-            isInStock
-              ?
-              <Button type="cart" text='Hozzáadás a kosárhoz' handleClick={addToCart} disabled={product.stock == 0}>{product.stock > 0 ? <BsFillCartFill /> : <BsFillCartXFill />}</Button>
-              :
-              <div>
-                <Button type="cart" notInStock handleClick={addToCart} disabled={product.stock == 0}>{product.stock > 0 ? <BsFillCartFill /> : <BsFillCartXFill />}</Button>
-                <Button type="cart" ><BsFillBellFill /></Button>
-              </div>
-          )
-      }
+
+      <AddToCartButton 
+        isInCart={isInCart}
+        handleClick={addToCart}
+        stock={product.stock}
+        isInStock={isInStock}
+      />
+      
     </div>      
     </>
   )

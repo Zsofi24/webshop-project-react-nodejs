@@ -12,8 +12,8 @@ export function UserAuthProvider({children}) {
     // console.log(cookies, "cookies");
 
     useEffect(() => {
-        // console.log(cookies, "cookies");
-        // if(cookies.sessionID) {
+        console.log(cookies, "cookies");
+        if(cookies.sessionID) {
           fetch(`${API_URL}/auth/verify`, {
             method: "POST",
             headers: {
@@ -23,7 +23,7 @@ export function UserAuthProvider({children}) {
           })
           .then(resp => resp.json())
           .then(data => setUser(data))
-        // }
+        }
       }, [])
 
     return (

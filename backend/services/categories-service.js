@@ -11,8 +11,8 @@ export default {
         return categoriesModel.getAll()
     },
 
-    getCurrent({ currentPage, pageSize, sortBy, order }) {
-        return categoriesModel.getCurrent({ currentPage, pageSize, sortBy, order })
+    getCurrent({ page, pageSize, sortBy, order }) {
+        return categoriesModel.getCurrent({ page, pageSize, sortBy, order })
     },
 
     getOne({ categoryid }) {

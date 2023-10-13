@@ -44,6 +44,8 @@ paths:
               required:
                 - title
                 - categories
+                - price
+                - stock
       security: 
         - cookieAuth: []
       responses:
@@ -62,7 +64,7 @@ paths:
       description: Get all products 
       operationId: getCurrent
       parameters:
-        - name: currentPage
+        - name: page
           in: path
           description: current page
           required: false

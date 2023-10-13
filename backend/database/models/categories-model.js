@@ -46,7 +46,7 @@ export default {
         })
     },
 
-    getCurrent({ pageSize , currentPage, sortBy, order }) {
+    getCurrent({ pageSize , page, sortBy, order }) {
         let orderquery = "";
         if(sortBy) orderquery = `ORDER BY ${sortBy} ${order}`;
 
@@ -54,7 +54,7 @@ export default {
             SELECT id as categoryId, name as categoryName 
             FROM categories
             ${orderquery}
-            LIMIT ${pageSize} OFFSET ${pageSize * (currentPage -1)}
+            LIMIT ${pageSize} OFFSET ${pageSize * (page -1)}
         `;
 
         const sql2 = `SELECT COUNT(*) as total FROM categories;`

@@ -8,14 +8,14 @@ import { categoryService } from '../../services/categoryService';
 
 export default function AdminCategoryList() {
 
-  const [{loading, response, error, totalPages, currentPage} , dispatch] = useCategories();
+  const [{loading, response, error, totalPages, page} , dispatch] = useCategories();
 
   const [searchParams, setSearchParams] = useSearchParams();
 
   function onPageChange(pagenum) {
-    searchParams.set("currentPage", pagenum)
+    searchParams.set("page", pagenum)
     setSearchParams(searchParams)
-    dispatch({ type: 'PAGECHANGE', currentPage: pagenum})
+    dispatch({ type: 'PAGECHANGE', page: pagenum})
   }
 
   function categoryDelete(id) {
@@ -41,7 +41,7 @@ export default function AdminCategoryList() {
       </>
       }
     </section>
-    <Pagination totalPages={totalPages} onPageChange={onPageChange} currentPage={currentPage}/>
+    <Pagination totalPages={totalPages} onPageChange={onPageChange} currentPage={page}/>
     </>
   )
 }

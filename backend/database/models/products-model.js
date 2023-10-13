@@ -6,10 +6,10 @@ export default {
             id VARCHAR(42) PRIMARY KEY,
             title VARCHAR(42) NOT NULL UNIQUE,
             description TEXT,
-            price INTEGER,
-            stock INTEGER,
-            visible BOOLEAN,
-            limited BOOLEAN,
+            price INTEGER NOT NULL,
+            stock INTEGER NOT NULL,
+            visible BOOLEAN NOT NULL,
+            limited BOOLEAN NOT NULL,
             image_path VARCHAR(42)
        )`
        db.serialize(() => {
@@ -19,7 +19,7 @@ export default {
                     throw err;
                 }
             }),
-            (err) => console.log(err, "error create products table");
+            (err) => console.log(err, 'error create products table');
        })
     },
 
@@ -37,7 +37,7 @@ export default {
                 stmt.bind(title, description, price, stock, id, visible, limited, path);
                 stmt.run((err) => {
                     if(err) reject(err)
-                    else resolve({title, description, price, stock, id, visible, limited, path})
+                    else resolve({ title, description, price, stock, id, visible, limited, path })
                 })
             })
         })
@@ -73,9 +73,9 @@ export default {
         })
     },
 
-    getCurrent({ pageSize , currentPage, sortBy, order, filter, products }) {
-        let orderquery = "";
-        let filterquery = "";
+    getCurrent({ pageSize , page, sortBy, order, filter, products }) {
+        let orderquery = '';
+        let filterquery = '';
         if(sortBy) orderquery = `ORDER BY p.${sortBy} ${order}`;
 
         if(filter) { filter = filter.map(cat => `'${cat}'`); filterquery = `WHERE c.name IN (${filter})`}
@@ -89,7 +89,7 @@ export default {
             AND p.stock > ${products}
             GROUP BY p.id  
             ${orderquery} 
-            LIMIT ${pageSize} OFFSET ${pageSize  * (currentPage -1)}             
+            LIMIT ${pageSize} OFFSET ${pageSize  * (page -1)}             
          `;
         const sql2 = `
             SELECT COUNT(*) as total FROM ( 
@@ -112,7 +112,7 @@ export default {
                         const stmt2 = db.prepare(sql2);
                         stmt2.get((err, row) => {
                             if(err) reject(err)
-                            else resolve({products: rows, total: row.total})
+                            else resolve({ products: rows, total: row.total })
                         })
                     }
                 })

@@ -42,7 +42,7 @@ export default function useProducts() {
                     ...state,
                     error: null,
                     loading: false,
-                    currentPage: action.currentPage
+                    page: action.page
                 }
             }
             default: 
@@ -55,7 +55,7 @@ export default function useProducts() {
         total: null,
         totalPages: 1,
         pageSize: 5,
-        currentPage: 1
+        page: 1
     })
 
     useEffect(() => {

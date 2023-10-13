@@ -10,7 +10,7 @@ import AsideMobile from '../components/user/aside/AsideMobile';
 
 export default function Products() {
 
-    const [{loading, response, error, totalPages, currentPage}, dispatch] = useProducts();
+    const [{loading, response, error, totalPages, page}, dispatch] = useProducts();
 
     const [searchParams, setSearchParams] = useSearchParams();
 
@@ -18,9 +18,9 @@ export default function Products() {
     const [showMobileAside, setShowMobileAside] = useState(false);
 
     function onPageChange(pagenum) {
-      searchParams.set("currentPage", pagenum)
+      searchParams.set("page", pagenum)
       setSearchParams(searchParams)
-      dispatch({ type: 'PAGECHANGE', currentPage: pagenum})
+      dispatch({ type: 'PAGECHANGE', page: pagenum})
     }
     
   return (
@@ -59,7 +59,7 @@ export default function Products() {
           response?.map(prod => <ProductCard key={prod.id} product={prod}/>)
         }
         </div>
-        <Pagination totalPages={totalPages} onPageChange={onPageChange} currentPage={currentPage}/>
+        <Pagination totalPages={totalPages} onPageChange={onPageChange} currentPage={page}/>
       </div>
     </section>
   )

@@ -20,12 +20,12 @@ export default {
 
     getCurrent(req, res, next) {
         // console.log(req.app.get('env'))
-        let { currentPage, pageSize, sortBy, order, filter, products } = req.query;
-        if(!currentPage) currentPage = 1;
+        let { page, pageSize, sortBy, order, filter, products } = req.query;
+        if(!page) page = 1;
         if(!pageSize) pageSize = 5;
         if(!products) products = "all";
         productsServices
-            .getCurrent({ currentPage, pageSize, sortBy, order, filter, products })
+            .getCurrent({ page, pageSize, sortBy, order, filter, products })
             .then(resp => res.status(200).send(resp))
             .catch(next)    
     },

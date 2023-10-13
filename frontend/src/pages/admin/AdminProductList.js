@@ -8,14 +8,14 @@ import { productService } from '../../services/productServices';
 
 export default function AdminProductList() {
 
-  const [{loading, response, error, totalPages, currentPage} , dispatch] = useProducts();
+  const [{loading, response, error, totalPages, page} , dispatch] = useProducts();
   
   const [searchParams, setSearchParams] = useSearchParams();
   
   function onPageChange(pagenum) {
-    searchParams.set("currentPage", pagenum)
+    searchParams.set("page", pagenum)
     setSearchParams(searchParams)
-    dispatch({ type: 'PAGECHANGE', currentPage: pagenum})
+    dispatch({ type: 'PAGECHANGE', page: pagenum})
   }
 
   function productDelete(id) {
@@ -52,7 +52,7 @@ export default function AdminProductList() {
       </>
       }
     </section>
-    <Pagination totalPages={totalPages} onPageChange={onPageChange} currentPage={currentPage}/>
+    <Pagination totalPages={totalPages} onPageChange={onPageChange} currentPage={page}/>
     </>
   )
 }

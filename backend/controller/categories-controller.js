@@ -17,11 +17,11 @@ export default {
     },
 
     getCurrent(req, res, next) {
-        let { currentPage, pageSize, sortBy, order } = req.query;
-        if(!currentPage) currentPage = 1;
+        let { page, pageSize, sortBy, order } = req.query;
+        if(!page) page = 1;
         if(!pageSize) pageSize = 5;
         categoriesService
-            .getCurrent({ currentPage, pageSize, sortBy, order })
+            .getCurrent({ page, pageSize, sortBy, order })
             .then(resp => res.status(200).send(resp))
             .catch(next)
     },
