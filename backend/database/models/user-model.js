@@ -1,6 +1,5 @@
-import db from '../connection.js';
-import { nanoid } from 'nanoid';
 import bcrypt from 'bcrypt';
+import db from '../connection.js';
 import httpError from '../../utils/httpError.js';
 
 export default {
@@ -53,7 +52,6 @@ export default {
                         bcrypt.compare(password, row.password, (err, response) => {
                             if(err) reject(err);
                             if(response) {
-                                // console.log("pwd response", response); //true or false
                                 req.session.authenticated = true;
                                 req.session.isAdmin = row.isAdmin;
                                 req.session.user = {
@@ -62,13 +60,12 @@ export default {
                                     localId: row.id,
                                     isAdmin: row.isAdmin                            
                                 }; 
-                                resolve({localId: row.id, email: row.email, username: row.username })
+                                resolve({ localId: row.id, email: row.email, username: row.username })
                             } else {
                                 reject(new httpError('Unauthorized', 401))
                             }
                         })
                     } else {
-                        console.log("nincs ilyen user");
                         reject(new httpError('Unauthorized', 401));
                     }
                 })

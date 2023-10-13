@@ -1,4 +1,4 @@
-import authServices from "../services/auth-services.js";
+import authServices from '../services/auth-services.js';
 
 export default {
     signup(req, res, next) {
@@ -23,8 +23,8 @@ export default {
             req.session.destroy(err => {
                 if(err) res.send(err)
                 else {
-                    res.clearCookie("sessionID", {path: "/"})
-                    res.status(200).json({message: "ok"})
+                    res.clearCookie("sessionID", {path: '/'})
+                    res.status(200).json({message: 'ok'})
                 }
             });            
         } else {
@@ -33,20 +33,28 @@ export default {
     },
 
     verify(req, res, next) {
-        if(req.session.authenticated) {
-            res.send(req.session.user)
-        } else {
-            res.send({message: "nincs bejelentkezve"})
+        try {
+            if(req.session.authenticated) {
+                res.status(200).send(req.session.user)
+            } else {
+                res.status(401).send({message: 'Unauthorized'})
+            }
+        } catch(err) {
+            next(err)
         }
     },
 
     adminVerify(req, res, next) {
         console.log(req.session);
-        if(req.session.authenticated) {
-            if(req.session.isAdmin) res.send({...req.session.user, authenticated: true})
-            else res.send({authenticated: true})
-        } else {
-            res.send({authenticated: false})
+        try {
+            if(req.session.authenticated) {
+                if(req.session.isAdmin) res.send({admin: req.session.user})
+                else res.status(403).json({message: 'Forbidden'})
+            } else {
+                res.status(401).send({message: 'Unauthorized'})
+            }
+        } catch(err) {
+            next(err)
         }
     }
 }

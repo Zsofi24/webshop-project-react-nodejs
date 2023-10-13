@@ -1,7 +1,7 @@
-import { nanoid } from "nanoid";
+import { nanoid } from 'nanoid';
 import bcrypt from 'bcrypt';
-import userModel from "../database/models/user-model.js";
-import { createUserValidation } from "../utils/validation/userValidation.js";
+import userModel from '../database/models/user-model.js';
+import { createUserValidation } from '../utils/validation/userValidation.js';
 
 export default {
     create({ email, password, username }) {
