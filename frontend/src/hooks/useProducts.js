@@ -61,12 +61,8 @@ export default function useProducts() {
     useEffect(() => {
         let isCurrent = true;
         dispatch({ type: 'LOADING' });
-        let query = '';
-        searchParams.forEach((key, value) => {
-            query = query + `${value}=${key}&`;
-        })
         productService
-            .getProducts(query)
+            .getProducts(searchParams)
             .then(products => {
                 if(isCurrent) {
                     // setTimeout(() => {

@@ -23,8 +23,8 @@ export default {
         return productsModel.getAll()
     },
 
-    getCurrent({ pageSize, page, sortBy, order, filter, products }) {
-        if(!Array.isArray(filter) && filter) filter = [filter];
+    getCurrent({ pageSize, page, sortBy, order, filter, products }) {        
+        if(filter) filter = filter[0].split(',');  
         if(products == "all") products = -1
         else products = 0
         return productsModel.getCurrent({ pageSize, page, sortBy, order, filter, products })

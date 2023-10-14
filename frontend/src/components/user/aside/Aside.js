@@ -6,28 +6,29 @@ import Fieldset from '../../Fieldset';
 
 export default function Aside() {
 
-  const [ sort, setSort ] = useState({sortByTitle: ""});
   const [ searchParams, setSearchParams ] = useSearchParams();
-  const [ filtered, setFiltered ] = useState(searchParams.getAll('filter') || []);
-  const [ instock, setInStock ] = useState("all")
+  const [ filtered, setFiltered ] = useState(searchParams.getAll('filter[]')[0]?.split(',') || []);
+  const [ instock, setInStock ] = useState(searchParams.get('products') || "all")
   const [ categories, setCategories ] = useState([]);
 
   useEffect(() => {
-      categoryService.getAllCategories()
+      categoryService
+        .getAllCategories()
         .then(cat => setCategories(cat))
   }, [])
 
   function handleChange(e) {
-    console.log("valami");
-    const newSort = {[e.target.name] : e.target.value}
-    setSort(newSort)
+    const sort = (e.target.value).split('-');
+    const sortBy = sort[0];
+    const order = sort[1];
+
     if(e.target.value == "") {
       searchParams.delete('sortBy')
       searchParams.delete('title')
       setSearchParams(searchParams)
     } else {
-      searchParams.set('sortBy', 'title')
-      searchParams.set('order', e.target.value)
+      searchParams.set('sortBy', sortBy)
+      searchParams.set('order', order)
       setSearchParams(searchParams);
     }
   }
@@ -37,16 +38,17 @@ export default function Aside() {
     if(isFiltered) {
       const newFiltered = filtered.filter(catname => catname != e.target.name);
       setFiltered(newFiltered);
-      searchParams.delete('filter');
-      if(newFiltered.length > 0) newFiltered.forEach(category => searchParams.append('filter', category))
+      searchParams.delete('filter[]');
+      if(newFiltered.length > 0) searchParams.append('filter[]', newFiltered)
+      searchParams.set('page', 1)
       setSearchParams(searchParams);
     } else {
       const newFiltered = [...filtered, e.target.name]
-      console.log(newFiltered, "newfiltered");
       setFiltered(newFiltered)
-      searchParams.delete('filter')
-      newFiltered.forEach(category => searchParams.append('filter', category))
-      // searchParams.append('filter', newFiltered)
+      searchParams.delete('filter[]')
+      // newFiltered.forEach(category => searchParams.append('filter', category))
+      searchParams.append('filter[]', newFiltered)
+      searchParams.set('page', 1)
       setSearchParams(searchParams)
     }
   }
@@ -60,10 +62,12 @@ export default function Aside() {
   return (
     <div className='aside'>
       <div className='aside__select'>
-        <Select value={sort.sortByTitle} handleChange={(e) => handleChange(e)} name='sortByTitle'>
-            <option className="hidden" value="">RENDEZÉS</option>
-            <option value="asc" >név: a-z</option>
-            <option value="desc" >név: z-a</option>
+        <Select handleChange={(e) => handleChange(e)} name='sort'>
+            <option disabled className="" value="">RENDEZÉS</option>
+            <option value="title-asc" >név: a-z</option>
+            <option value="title-desc" >név: z-a</option>
+            <option value="price-asc" >ár: a-z</option>
+            <option value="price-desc" >ár: z-a</option>
         </Select>
         <span className="focus"></span>
       </div>

@@ -78,7 +78,7 @@ export default {
         let filterquery = '';
         if(sortBy) orderquery = `ORDER BY p.${sortBy} ${order}`;
 
-        if(filter) { filter = filter.map(cat => `'${cat}'`); filterquery = `WHERE c.name IN (${filter})`}
+        if (filter) { filter = filter.map(cat => `'${cat}'`); filterquery = `WHERE c.name IN (${filter})`}
         else  filterquery = ""
 
         const sql = `
