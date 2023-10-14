@@ -60,7 +60,8 @@ export const CartDelete = styled(StyledButton)`
 `
 
 export const LoginRegist = styled(StyledButton)`
-  background: rgb(16 4 4 / 47%);
+  background-color: rgb(16 4 4 / 47%);
+  background-size: 0% 100%;
   blur(10.5px);
   color: white;
   padding: 1em 0;
@@ -69,4 +70,19 @@ export const LoginRegist = styled(StyledButton)`
   border: none;
   font-size: var(--fs-400);
   text-transform: uppercase;
+
+  z-index: 1;
+  transition: background-color 0.8s;
+
+  &:hover {
+    background-color: rgb(187 124 124 / 47%);
+    background-image: linear-gradient(
+      to right, rgb(255 255 255 / 6%) 0%, 
+      rgb(255 255 255 / 0%) 40%, 
+      rgb(208 208 208 / 7%) 100%
+    );
+    background-repeat:no-repeat;
+    background-size: 140% 100%; 
+    transition:background-size 1s, background-color 1s;    
+  }
 `
