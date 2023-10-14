@@ -8,19 +8,39 @@
 
     &__elements > a {
         margin-left: $size-2;
+        position: relative;
+
+        &::before {
+            content: "";
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 0;
+            height: 1.5px;
+            background-color: rgb(142, 139, 139);
+            transition: width 0.23s ease-out;
+        }
+
+        &:hover::before {
+            width: 100%;
+            left: 0;
+            right: auto;
+        }
     }
 
     a {
         text-decoration: none;
         color: black;  
 
-        &:hover {
-            text-decoration: underline;
-        }
+
     }
 
     svg {
         margin-left: $size-2;
+
+        &:hover {
+            transform: scale(1.2);
+        }
     }
 
     #{&}__profile {

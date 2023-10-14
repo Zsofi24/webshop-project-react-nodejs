@@ -429,16 +429,32 @@ header {
 }
 .navshop__elements > a {
   margin-left: 0.5rem;
+  position: relative;
+}
+.navshop__elements > a::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 0;
+  height: 1.5px;
+  background-color: rgb(142, 139, 139);
+  transition: width 0.23s ease-out;
+}
+.navshop__elements > a:hover::before {
+  width: 100%;
+  left: 0;
+  right: auto;
 }
 .navshop a {
   text-decoration: none;
   color: black;
 }
-.navshop a:hover {
-  text-decoration: underline;
-}
 .navshop svg {
   margin-left: 0.5rem;
+}
+.navshop svg:hover {
+  transform: scale(1.2);
 }
 .navshop .navshop__profile {
   display: inline-block;
