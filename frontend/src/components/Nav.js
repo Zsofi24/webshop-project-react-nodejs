@@ -31,23 +31,20 @@ export default function Nav({ handleMouseEnter, handleMouseLeave, isProfileVisib
         <NavLink to='/admin'>admin</NavLink>
       </div>
       <div>
-        <NavLink to={`/kosar`}><BsCart/></NavLink>
-        {/* { !user.email && <NavLink to='/belepes'><CgProfile/></NavLink> } */}
         { user?.email ?
         <>
           <div className='navshop__profile'>
             <NavLink to='/profile' onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
               <AiOutlineUser />
             </NavLink>
-            <Profile logout={logout} />
+            <Profile logout={logout} username={user.username} />
           </div>
         </>
           :
           <NavLink to='/belepes'><BiLogIn /></NavLink>
         }
-      </div>
-        
-
+        <NavLink to={`/kosar`}><BsCart/></NavLink>
+      </div>     
     </nav>
   )
 }

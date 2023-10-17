@@ -2,9 +2,11 @@ $clr-primary: rgb(20, 63, 63);
 $clr-red: rgba(217, 85, 32, 0.662);
 $clr-green: rgba(37, 173, 94, 0.662);
 $clr-grey: rgb(69, 69, 72);
-$clr-lightgrey: #777;
-$clr-white: #ffff;
-$clr-black: #0000;
+$clr-lightgrey-500: rgb(119, 119, 119);
+$clr-lightgrey-400: rgba(119, 119, 119, 0.592);
+$clr-lightgrey-200: rgba(119, 119, 119, 0.234);
+$clr-white: rgb(255, 255, 255);
+$clr-black: rgba(0, 0, 0, 0);
 $clr-error: rgb(114, 8, 8);
 
 $colors: (
