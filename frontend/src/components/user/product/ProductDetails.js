@@ -8,6 +8,7 @@ import { productService } from '../../../services/productServices';
 import { UserAuthContext } from '../../../contexts/UserAuthContext';
 import { cartService } from '../../../services/cartService';
 import AddToCartButton from './AddToCartButton';
+import Popup from '../popup/Popup';
 
 export default function ProductDetails() {
 
@@ -16,6 +17,7 @@ export default function ProductDetails() {
   const { cart, setCart, addToCartContext } = useContext(CartContext);
   const [ isInCart, setIsInCart ] = useState(false);
   const [ isInStock, setIsInStock ] = useState(true);
+  const [ popupOpen, setPopupOpen ] = useState(false);
   const location = useLocation();
   const search = location.state?.search || "";
   console.log(response, "resp");
@@ -39,7 +41,10 @@ export default function ProductDetails() {
         if(resp.error) alert(resp.error, "cart error");
         else {
           cartService.getCart()
-          .then(cartitems => setCart(cartitems))
+          .then(cartitems => {
+            setCart(cartitems)
+            setPopupOpen(true)
+          })
         }  
     })
   }
@@ -49,6 +54,9 @@ export default function ProductDetails() {
     <>
     { error && <div className="error">ERROR OH NO</div> }
     { loading && <div>Loading....</div>  }
+    {
+      popupOpen && <Popup closePopUp={() => setPopupOpen(false)} product={response}/>
+    }
     { response.id && (
       
     <>

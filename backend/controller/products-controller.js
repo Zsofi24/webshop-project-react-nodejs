@@ -23,7 +23,7 @@ export default {
         // console.log(req.app.get('env'))
         let { page, pageSize, sortBy, order, filter, products } = req.query;
         if(!page) page = 1;
-        if(!pageSize) pageSize = 5;
+        if(!pageSize) pageSize = 10;
         if(!products) products = "all";
         productsServices
             .getCurrent({ page, pageSize, sortBy, order, filter, products })

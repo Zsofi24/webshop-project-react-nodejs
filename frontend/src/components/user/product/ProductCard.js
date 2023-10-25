@@ -15,7 +15,7 @@ export default function ProductCard({product, setPopupOpen, setProduct}) {
   const { cart, setCart, addToCartContext } = useContext(CartContext);
   const [ isInCart, setIsInCart ] = useState(false);
   const [ isInStock, setIsInStock ] = useState(true);
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [ searchParams, setSearchParams ] = useSearchParams();
 
   useEffect(() => {
     if(cart.length > 0) {
@@ -38,7 +38,7 @@ export default function ProductCard({product, setPopupOpen, setProduct}) {
             cartService.getCart()
             .then(cartitems => {
               setCart(cartitems)
-              setPopupOpen(true);
+              setPopupOpen(true)
               setProduct(product)
             } )
           }  

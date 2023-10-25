@@ -54,7 +54,7 @@ export default function useProducts() {
         error: null,
         total: null,
         totalPages: 1,
-        pageSize: 5,
+        pageSize: 10,
         page: 1
     })
 

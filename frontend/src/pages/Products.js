@@ -30,8 +30,8 @@ export default function Products() {
     <section className='products-wrapper'>
       {/* <AsideMobile /> */}
       {
-          popupOpen && <Popup closePopUp={() => setPopupOpen(false)} product={product}/>
-        }
+        popupOpen && <Popup closePopUp={() => setPopupOpen(false)} product={product}/>
+      }
       {
         (screenSize.width <= 1025) 
         ?

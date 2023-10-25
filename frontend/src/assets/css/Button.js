@@ -35,10 +35,11 @@ export const CartButton = styled(StyledButton)`
   cursor: ${props => props.$notInStock && "not-allowed"};
 `
 export const PaginationButton = styled(StyledButton)`
-  background-color: white;
-  color: var(--clr-btn-pagination);
+  background-color: ${props => props.active ? "var(--clr-primary)" : "white"};
+  color: ${props => props.active ? "white" : "var(--clr-btn-pagination)"};
   border: none;
   padding: 0.25rem 0.4rem;
+  vertical-align: text-top;
 `
 
 export const CartAmount = styled(StyledButton)`
