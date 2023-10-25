@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom';
 import { ColorRing } from 'react-loader-spinner';
 import Pagination from '../components/Pagination';
@@ -7,6 +7,7 @@ import ProductCard from '../components/user/product/ProductCard';
 import useScreenSize from '../hooks/useScreenSize';
 import Aside from '../components/user/aside/Aside';
 import AsideMobile from '../components/user/aside/AsideMobile';
+import Popup from '../components/user/popup/Popup';
 
 export default function Products() {
 
@@ -16,6 +17,8 @@ export default function Products() {
 
     const screenSize = useScreenSize();
     const [showMobileAside, setShowMobileAside] = useState(false);
+    const [ popupOpen, setPopupOpen ] = useState(false);
+    const [ product, setProduct ] = useState(null);
 
     function onPageChange(pagenum) {
       searchParams.set("page", pagenum)
@@ -26,6 +29,9 @@ export default function Products() {
   return (
     <section className='products-wrapper'>
       {/* <AsideMobile /> */}
+      {
+          popupOpen && <Popup closePopUp={() => setPopupOpen(false)} product={product}/>
+        }
       {
         (screenSize.width <= 1025) 
         ?
@@ -56,7 +62,7 @@ export default function Products() {
         {
           !showMobileAside
           &&
-          response?.map(prod => <ProductCard key={prod.id} product={prod}/>)
+          response?.map(prod => <ProductCard key={prod.id} product={prod} setPopupOpen={setPopupOpen} setProduct={setProduct} />)
         }
         </div>
         <Pagination totalPages={totalPages} onPageChange={onPageChange} currentPage={page}/>

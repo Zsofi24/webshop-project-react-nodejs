@@ -6,11 +6,10 @@ import { productService } from '../../../services/productServices';
 import { UserAuthContext } from '../../../contexts/UserAuthContext';
 import { CartContext } from '../../../contexts/CartContext';
 import { cartService } from '../../../services/cartService';
-import Button from '../../Button'
 import ProductCardLabel from './ProductCardLabel';
 import AddToCartButton from './AddToCartButton';
 
-export default function ProductCard({product}) {
+export default function ProductCard({product, setPopupOpen, setProduct}) {
 
   const { user } = useContext(UserAuthContext);
   const { cart, setCart, addToCartContext } = useContext(CartContext);
@@ -28,20 +27,24 @@ export default function ProductCard({product}) {
     setIsInStock(product.stock > 0);
   }, [product, cart])
  
-    function addToCart() {
-      const cartdata = { userid: user.localId, productid: product.id }
-      if(Object.keys(user).length == 0) alert("jelentkezz be!")
-      else {
+  function addToCart() {
+    const cartdata = { userid: user.localId, productid: product.id }
+    if(Object.keys(user).length == 0) alert("jelentkezz be!")
+    else {
       productService.addProductToCart(cartdata)
         .then(resp => {
           if(resp.error) alert(resp.error, "cart error");
           else {
             cartService.getCart()
-            .then(cartitems => setCart(cartitems))
+            .then(cartitems => {
+              setCart(cartitems)
+              setPopupOpen(true);
+              setProduct(product)
+            } )
           }  
       })
     }
-  }
+    }
 
   return (
     <>
@@ -67,7 +70,7 @@ export default function ProductCard({product}) {
         isInCart={isInCart}
         handleClick={addToCart}
         stock={product.stock}
-        isInStock={isInStock}
+        isInStock={isInStock}        
       />
       
     </div>      

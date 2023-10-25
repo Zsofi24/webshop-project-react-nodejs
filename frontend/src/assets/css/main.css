@@ -331,6 +331,7 @@ input[type=checkbox] {
 }
 
 .popup {
+  background-color: rgba(0, 0, 0, 0.5);
   position: fixed;
   z-index: 2;
   width: 100%;
@@ -339,10 +340,9 @@ input[type=checkbox] {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
 }
-
-.popup--add-to-cart {
+.popup--added-to-cart {
+  padding: 2em 3em;
   position: absolute;
   top: 0;
   left: 0;
@@ -354,15 +354,37 @@ input[type=checkbox] {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 @media screen and (min-width: 65em) {
-  .popup--add-to-cart {
-    top: 45%;
+  .popup--added-to-cart {
+    margin: 0;
+    top: 50%;
     left: 50%;
+    transform: translate(-50%, -50%);
     border-radius: 15px;
   }
 }
-.popup--add-to-cart__close-icon {
+.popup--added-to-cart > * {
+  margin-bottom: 0.8em;
+}
+.popup__product-info {
+  display: flex;
+  text-align: left;
+}
+.popup__product-info img {
+  max-width: 131px;
+  margin-right: 0.5em;
+}
+.popup__close-icon {
+  background-color: white;
+  box-shadow: 2px 2px 10px rgb(67, 67, 67);
+  color: rgb(20, 63, 63);
   position: absolute;
-  right: 0;
+  right: 2em;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.popup__close-icon:hover {
+  background-color: rgba(119, 119, 119, 0.234);
 }
 
 .products-wrapper {
