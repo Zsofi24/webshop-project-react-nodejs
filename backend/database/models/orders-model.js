@@ -56,9 +56,9 @@ export default {
         })
     },
 
-    getOrder({ orderid }) {
+    getOrder({ orderid, userid }) {
         const sql = `
-            SELECT id, created, status, total FROM orders
+            SELECT id, created, status, total FROM orders            
             WHERE orders.id = ?
         `;
 
@@ -66,8 +66,12 @@ export default {
             SELECT op.order_id as orderId, op.product_id as productId, amount, title, description, price, image_path as img FROM orders_products as op
             JOIN products as p ON op.product_id = p.id
             WHERE op.order_id = ?
-        `
+        `;
 
+        const sql3 = `
+            SELECT * FROM shippingaddresses
+            WHERE user_id = ?
+        `
         return new Promise((resolve, reject) => {
             db.serialize(() => {
                 const stmt = db.prepare(sql);
@@ -79,12 +83,18 @@ export default {
                         stmt2.bind(orderid);
                         stmt2.all((err, orderDetails) => {
                             if(err) reject(err)
-                            else resolve({info: orderInfo, products: orderDetails})
+                            else {
+                                const stmt3 = db.prepare(sql3);
+                                stmt3.bind(userid);
+                                stmt3.get((err, shippingDetails) => {
+                                    if(err) reject(err)
+                                    else resolve({info: orderInfo, shipinfo: shippingDetails, products: orderDetails})
+                                })
+                            }
                         })
                     }
                 })
             })
         })
     }
-
 }

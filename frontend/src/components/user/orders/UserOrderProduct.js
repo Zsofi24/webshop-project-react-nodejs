@@ -1,14 +1,24 @@
+import { Link } from 'react-router-dom';
 import { API_URL } from '../../../constants';
+import image from '../../../assets/img/default_product_img.jpg';
 
 export default function UserOrderProduct({ product }) {
 
   return (
-    <div className='order__product'>
+      <div className='order__product'>
+        <Link to={`/termekek/${product.productId}`}>
         <div className='order__product__img'>
-            <img src={`${API_URL}/api/${product.img}`}/>
+            {
+                product.img ?
+                <img src={`${API_URL}/api/${product.img}`}/>
+                :
+                <img src={image}/>
+
+            }
         </div>
+        </Link>
         <div className='order__product__details'> 
-            <p>{product.title}</p>
+            <h4>{product.title}</h4>
             <p>{product.price} Ft</p>
             <table>
                 <tbody>

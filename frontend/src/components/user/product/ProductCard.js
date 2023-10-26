@@ -8,6 +8,7 @@ import { CartContext } from '../../../contexts/CartContext';
 import { cartService } from '../../../services/cartService';
 import ProductCardLabel from './ProductCardLabel';
 import AddToCartButton from './AddToCartButton';
+import image from '../../../assets/img/default_product_img.jpg';
 
 export default function ProductCard({product, setPopupOpen, setProduct}) {
 
@@ -57,7 +58,7 @@ export default function ProductCard({product, setPopupOpen, setProduct}) {
             ?
             <img src={`${API_URL}/api/${product.path}`} alt="wine" />
             :
-            <img src={`${API_URL}/api/uploads/e65d2a0f397b3aadf357c6fd6dde1282-resized`} alt="wine" />
+            <img src={image} alt="wine" />
 
           }
           { product.limited ? <ProductCardLabel text="limitált"/> : null }

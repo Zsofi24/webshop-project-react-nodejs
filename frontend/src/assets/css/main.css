@@ -441,13 +441,43 @@ input[type=checkbox] {
 
 .orders-wrapper--user {
   max-width: 800px;
+  margin-top: 0.75rem;
 }
 
+.order-wrapper {
+  max-width: 600px;
+  box-shadow: 1px 1px 20px black;
+  border-radius: 10px;
+}
+@media screen and (min-width: 45em) {
+  .order-wrapper {
+    margin: 0 auto;
+  }
+}
+
+.order__back-link {
+  color: rgb(119, 119, 119);
+  display: inline-block;
+  margin: 0.75rem 0;
+}
+.order__back-link svg {
+  vertical-align: text-bottom;
+}
+.order__info {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.75rem 0;
+}
+.order__info div p:nth-child(1) {
+  font-weight: bold;
+  margin-bottom: 0.25rem;
+}
 .order__details {
   display: flex;
   flex-direction: column;
+  gap: 0.75rem;
+  margin: 0.75rem 0;
 }
-
 .order__product {
   display: flex;
 }
@@ -459,6 +489,9 @@ input[type=checkbox] {
   table-layout: auto;
   width: 100%;
   margin: auto 0 0;
+}
+.order__product__details table tr td:nth-child(1) {
+  color: rgb(119, 119, 119);
 }
 .order__product__img {
   max-width: 131px;
@@ -635,4 +668,20 @@ select {
 .error-message {
   font-size: var(--fs-400);
   color: rgb(114, 8, 8);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.underline {
+  text-decoration: underline;
 }/*# sourceMappingURL=main.css.map */

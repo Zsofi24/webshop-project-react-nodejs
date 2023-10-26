@@ -45,8 +45,9 @@ export default {
 
     getOrder(req, res, next) {
         const { orderid } = req.params;
+        const { localId: userid } = req.session.user;
         ordersServices
-            .getOrder({ orderid })
+            .getOrder({ orderid, userid })
             .then(resp => res.status(200).send(resp))
             .catch(next)
     }

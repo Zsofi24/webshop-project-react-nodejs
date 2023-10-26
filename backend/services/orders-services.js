@@ -11,8 +11,8 @@ export default {
         return ordersModel.getUserOrders({ userid })
     },
 
-    getOrder({ orderid }) {
-        return ordersModel.getOrder({ orderid })
+    getOrder({ orderid, userid }) {
+        return ordersModel.getOrder({ orderid, userid })
     }
 
 }

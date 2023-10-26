@@ -30,7 +30,7 @@ export default function Pagination({totalPages, onPageChange, currentPage}) {
     <div className='pagination-container'>
       <Button type="pagination" handleClick={() => onPageChange(pageBackOne(currentPage))}><MdOutlineArrowBackIosNew /></Button>
       {
-          paginatioRange.map(page => <Button type="pagination" key={page} handleClick={() => onPageChange(page)}>{page}</Button> )
+          paginatioRange.map(page => <Button active={currentPage == page} type="pagination" key={page} handleClick={() => onPageChange(page)}>{page}</Button> )
       }
       <Button type="pagination" handleClick={() => onPageChange(pageForwardkOne(currentPage, totalPages))}><MdOutlineArrowForwardIos /></Button>
 
