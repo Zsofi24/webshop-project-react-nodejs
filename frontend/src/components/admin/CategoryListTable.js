@@ -20,7 +20,7 @@ export default function CategoryListTable({categories, categoryDelete}) {
                     <tr key={c.categoryId}>
                         <td>{c.categoryId}</td>
                         <td>{c.categoryName}</td>
-                        <td><Button><Link to={`/admin/kategoriak/${c.categoryId}`}><LuEdit /></Link></Button></td>
+                        <td><Button><Link to={`/admin/kategoriak/${c.categoryId}`}>hello</Link></Button></td>
                         <td><Button handleClick={() => categoryDelete(c.categoryId)}><RiDeleteBin2Fill /></Button></td>
                     </tr>
                 )

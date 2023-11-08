@@ -30,7 +30,7 @@ export default function ProductListTable({ products, productDelete, productVisib
                         <td>{p.title}</td>
                         <td>{p.price} Ft</td>
                         <td className='mq-medium-table-cell'>{p.description}</td>
-                        <td><Button type='admin'><Link to={`/admin/termekek/${p.id}`}><LuEdit /></Link></Button></td>
+                        <td><Button type='admin'><Link to={`/admin/termekek/${p.id}`}>valami</Link></Button></td>
                         <td className='mq-medium-table-cell'><Button type='admin' handleClick={() => productVisible(p, p.id)}>{p.visible ? <AiFillEye/> : <AiFillEyeInvisible/>}</Button></td>
                         <td><Button type='admin' remove={true} handleClick={() => productDelete(p.id)}><RiDeleteBin2Fill /></Button></td>
                     </tr>
