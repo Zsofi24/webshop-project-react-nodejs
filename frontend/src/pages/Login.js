@@ -47,7 +47,9 @@ export default function Login() {
     authService.userLogin({email: formData.email.value, password: formData.password.value})
         .then(data => { 
             setUser(data)
-            navigate('/', {state:{message: `Üdvözöljük, ${data.username}`}})
+            console.log(data);
+            if(data.isAdmin) navigate('/admin')
+            else navigate('/', {state:{message: `Üdvözöljük, ${data.username}`}})
         })
         .catch(err => setErrorMessage(err.message))
   }

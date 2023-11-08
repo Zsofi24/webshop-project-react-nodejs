@@ -60,7 +60,7 @@ export default {
                                     localId: row.id,
                                     isAdmin: row.isAdmin                            
                                 }; 
-                                resolve({ localId: row.id, email: row.email, username: row.username })
+                                resolve({ localId: row.id, email: row.email, username: row.username, isAdmin: row.isAdmin })
                             } else {
                                 reject(new httpError('Unauthorized', 401))
                             }

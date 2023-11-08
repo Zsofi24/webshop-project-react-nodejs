@@ -1,4 +1,4 @@
-import categoriesService from "../services/categories-service.js";
+import categoriesService from "../services/categories-service2.js";
 
 export default {
     create(req, res, next) {

@@ -60,6 +60,12 @@ export const CartDelete = styled(StyledButton)`
   padding: 0;
 `
 
+export const Admin = styled(StyledButton)`
+  color: ${props => { if(props.$remove) return "var(--clr-red)" }};
+  background-color: ${props => { if(props.$remove) return "white" }};
+  border-color: ${props => { if(props.$remove) return "var(--clr-red)" }}
+`
+
 export const LoginRegist = styled(StyledButton)`
   background-color: rgb(16 4 4 / 47%);
   background-size: 0% 100%;
