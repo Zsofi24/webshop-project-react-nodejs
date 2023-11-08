@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 import { RiDeleteBin2Fill } from 'react-icons/ri';
-import { LuEdit } from 'react-icons/lu';
+// import { LuEdit } from 'react-icons/lu';
 import { AdminTable } from '../../assets/css/AdminTable';
 import Button from '../../components/Button';
 import TableArrow from '../TableArrow';

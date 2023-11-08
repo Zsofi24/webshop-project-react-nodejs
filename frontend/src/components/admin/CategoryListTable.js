@@ -2,7 +2,7 @@ import React from 'react'
 import { AdminTable } from '../../assets/css/AdminTable'
 import Button from '../../components/Button'
 import { Link } from 'react-router-dom'
-import { LuEdit } from 'react-icons/lu'
+// import { LuEdit } from 'react-icons/lu'
 import { RiDeleteBin2Fill } from 'react-icons/ri'
 
 export default function CategoryListTable({categories, categoryDelete}) {
