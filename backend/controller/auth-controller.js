@@ -1,4 +1,4 @@
-import authServices from '../services/auth-service2.js';
+import authServices from '../services/auth-services.js';
 
 export default {
     signup(req, res, next) {

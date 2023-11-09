@@ -14,7 +14,7 @@
     "react-icons": "^4.10.1",
     "react-loader-spinner": "^5.4.5",
     "react-router-dom": "^6.14.1",
-    "react-scripts": "^3.0.1",
+    "react-scripts": "5.0.1",
     "styled-components": "^6.0.7",
     "web-vitals": "^2.1.4"
   },
@@ -44,7 +44,6 @@
     ]
   },
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "jsdoc": "^4.0.2"
   }
 }

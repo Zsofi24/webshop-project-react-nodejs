@@ -9,7 +9,7 @@ export default function Home() {
 
   const adminMessage = useLoaderData();
   const location = useLocation();
-  const { message } = location.state || ""; 
+  const { message } = location.state || "";
 
   return (
     <>

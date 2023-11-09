@@ -1,5 +1,5 @@
 $clr-primary: rgb(20, 63, 63);
-$clr-red: rgba(117, 25, 15, 0.662);
+$clr-red: rgba(217, 85, 32, 0.662);
 $clr-green: rgba(37, 173, 94, 0.662);
 $clr-grey: rgb(69, 69, 72);
 $clr-lightgrey-500: rgb(119, 119, 119);
@@ -14,9 +14,7 @@ $colors: (
     "red": rgb(114, 8, 8),
     "green": rgba(37, 173, 94, 0.662),
     "grey": rgb(69, 69, 72),
-    "lightgrey-500": rgb(119, 119, 119),
-    "lightgrey-400": rgba(119, 119, 119, 0.592),
-    "lightgrey-200": rgba(119, 119, 119, 0.234),
+    "lightgrey": #777,
     "white": #f8f8f8,
     "black": #0000,
 )

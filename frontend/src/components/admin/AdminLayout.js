@@ -1,6 +1,7 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
 import AdminNav from './AdminNav'
+import '../../assets/css/AdminLayout.css'
 
 export default function AdminLayout() {
   return (
@@ -12,6 +13,7 @@ export default function AdminLayout() {
         <main>
             <Outlet/>
         </main>
+
     </div>
     </>
   )

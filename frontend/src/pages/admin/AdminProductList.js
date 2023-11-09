@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import useProducts from '../../hooks/useProducts';
 import { Link, useSearchParams } from 'react-router-dom';
 import Pagination from '../../components/Pagination';
