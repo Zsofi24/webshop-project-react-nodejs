@@ -2,7 +2,7 @@ import React from 'react'
 import { AdminTable } from '../../assets/css/AdminTable'
 import Button from '../../components/Button'
 import { Link } from 'react-router-dom'
-import { LuEdit } from 'react-icons/lu'
+// import { LuEdit, LuFileEdit } from 'react-icons/lu'
 import { RiDeleteBin2Fill } from 'react-icons/ri'
 
 export default function CategoryListTable({categories, categoryDelete}) {
@@ -20,7 +20,7 @@ export default function CategoryListTable({categories, categoryDelete}) {
                     <tr key={c.categoryId}>
                         <td>{c.categoryId}</td>
                         <td>{c.categoryName}</td>
-                        <td><Button><Link to={`/admin/kategoriak/${c.categoryId}`}><LuEdit /></Link></Button></td>
+                        <td><Button><Link to={`/admin/kategoriak/${c.categoryId}`}>hello</Link></Button></td>
                         <td><Button handleClick={() => categoryDelete(c.categoryId)}><RiDeleteBin2Fill /></Button></td>
                     </tr>
                 )
