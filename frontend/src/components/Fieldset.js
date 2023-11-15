@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyledFieldset } from '../assets/css/StyledFieldset';
+import { StyledFieldset } from './user/aside/StyledFieldset';
 
 export default function Fieldset({children}) {
   return (

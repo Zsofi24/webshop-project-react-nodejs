@@ -1,8 +1,8 @@
-import useProducts from '../../hooks/useProducts';
 import { Link, useSearchParams } from 'react-router-dom';
+import useProducts from '../../hooks/useProducts';
 import Pagination from '../../components/Pagination';
 import ProductListTable from '../../components/admin/ProductListTable';
-import Button from '../../components/Button';
+import Button from '../../components/button/Button';
 import { productService } from '../../services/productServices';
 
 export default function AdminProductList() {

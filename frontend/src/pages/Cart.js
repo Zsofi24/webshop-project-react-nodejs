@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CartContext } from '../contexts/CartContext'
 import { UserAuthContext } from '../contexts/UserAuthContext';
 import CartItem from '../components/user/cart/CartItem';
 import { cartService } from '../services/cartService';
-import Button from '../components/Button';
+import Button from '../components/button/Button';
 
 export default function Cart() {
 

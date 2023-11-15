@@ -1,9 +1,8 @@
-import React from 'react'
-import { AdminTable } from '../../assets/css/AdminTable'
-import Button from '../../components/Button'
-import { Link } from 'react-router-dom'
-import { RiDeleteBin2Fill } from 'react-icons/ri'
-import { FiEdit } from 'react-icons/fi'
+import { Link } from 'react-router-dom';
+import { RiDeleteBin2Fill } from 'react-icons/ri';
+import { FiEdit } from 'react-icons/fi';
+import { AdminTable } from './AdminTable';
+import Button from '../button/Button';
 
 export default function CategoryListTable({categories, categoryDelete}) {
   return (
@@ -29,7 +28,6 @@ export default function CategoryListTable({categories, categoryDelete}) {
             )
             }
         </tbody>
-
     </AdminTable>
   )
 }

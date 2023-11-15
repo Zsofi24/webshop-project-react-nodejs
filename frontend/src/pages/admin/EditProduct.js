@@ -1,9 +1,8 @@
-import React, { useEffect } from 'react'
+import { useParams } from 'react-router-dom';
 import useProduct from '../../hooks/useProduct';
 import { productService } from '../../services/productServices';
-import { useParams } from 'react-router-dom';
-import Button from '../../components/Button';
 import ProductForm from '../../components/admin/ProductForm';
+import Button from '../../components/button/Button';
 
 export default function EditProduct() {
 

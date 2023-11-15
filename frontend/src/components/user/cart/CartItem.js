@@ -1,8 +1,7 @@
-import React from 'react';
 import { AiOutlineDelete } from 'react-icons/ai';
-import { API_URL } from '../../../constants'
-import { StyledCartItem } from '../../../assets/css/StyledCartItem'
-import Button from '../../Button'
+import { API_URL } from '../../../constants';
+import { StyledCartItem } from './StyledCartItem';
+import Button from '../../button/Button';
 import ProductAmountChanger from './ProductAmountChanger';
 
 export default function CartItem({item, updateAmount, deleteItem}) {

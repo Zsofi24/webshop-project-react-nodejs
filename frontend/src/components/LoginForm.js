@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { BiLock } from 'react-icons/bi';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import { MdOutlineAlternateEmail } from 'react-icons/md';
-import Button from '../components/Button';
+import Button from './button/Button';
 
 export default function LoginForm({handleChange, loginSubmit, formData}) {
 

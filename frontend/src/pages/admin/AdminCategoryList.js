@@ -1,7 +1,6 @@
-import React from 'react'
-import useCategories from '../../hooks/useCategories';
 import { Link, useSearchParams } from 'react-router-dom';
-import Button from '../../components/Button';
+import useCategories from '../../hooks/useCategories';
+import Button from '../../components/button/Button'; 
 import Pagination from '../../components/Pagination';
 import CategoryListTable from '../../components/admin/CategoryListTable';
 import { categoryService } from '../../services/categoryService';

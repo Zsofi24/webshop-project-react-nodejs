@@ -1,7 +1,6 @@
-import React from 'react'
 import { useParams } from 'react-router-dom';
 import useCategory from '../../hooks/useCategory';
-import Button from '../../components/Button';
+import Button from '../../components/button/Button';
 import { categoryService } from '../../services/categoryService';
 import CategoryForm from '../../components/admin/CategoryForm'
 

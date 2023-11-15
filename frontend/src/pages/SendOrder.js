@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { AiFillExclamationCircle } from 'react-icons/ai';
 import useCustomersDetails from '../hooks/useCustomersDetails'
@@ -6,8 +6,8 @@ import OrderForm from '../components/OrderForm';
 import { orderServices } from '../services/orderServices';
 import { UserAuthContext } from '../contexts/UserAuthContext';
 import { CartContext } from '../contexts/CartContext';
-import Button from '../components/Button';
 import { checkEmptyInput } from '../utils/checkEmptyInput';
+import Button from '../components/button/Button';
 
 export default function SendOrder() {
 

@@ -1,8 +1,7 @@
-import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { GiCheckMark } from 'react-icons/gi';
 import { API_URL } from '../../../constants';
-import Button from '../../Button';
-import { useNavigate } from 'react-router-dom';
+import Button from '../../button/Button';
 
 export default function Popup({closePopUp, product}) {
 

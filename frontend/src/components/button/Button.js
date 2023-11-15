@@ -1,6 +1,6 @@
 import React from 'react'
-import {CartButton, PaginationButton, StyledButton, CartAmount, CartDelete, LoginRegist } from '../assets/css/Button'
-import { Admin, AdminCreate } from '../assets/css/AdminButton'
+import { CartButton, PaginationButton, StyledButton, CartAmount, CartDelete, LoginRegist } from './StyledButton'
+import { Admin, AdminCreate } from './AdminButton'
 
 export default function Button({remove, active, disabled, notInStock, primary, text, children, handleClick, type}) {
 

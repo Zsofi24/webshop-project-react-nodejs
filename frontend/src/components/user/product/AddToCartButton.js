@@ -1,6 +1,5 @@
-import React from "react";
-import Button from "../../Button";
 import { BsFillBellFill, BsFillCartCheckFill, BsFillCartFill, BsFillCartXFill } from "react-icons/bs";
+import Button from '../../button/Button';
 
 export default function AddToCartButton({ isInCart, handleClick, stock, isInStock }) {
   return (
