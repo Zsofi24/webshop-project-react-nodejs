@@ -43,8 +43,8 @@ export default {
            path = `${path}-resized`
         }
 
-        await productsCategoriesModel.delete(id)
         if(categories) {
+           await productsCategoriesModel.delete(id)
            await productsCategoriesModel.setToProduct(id, categories)
         }
         const productsResp = await productsModel.edit({ title, price, description, id, stock, visible, path, limited })

@@ -20,12 +20,14 @@ export default function AdminCategoryList() {
 
   function categoryDelete(id) {
     categoryService.deleteCategory(id)
-     .then(id => console.log(id))
-     .catch(err => alert(err.statusText))
+      .then(id => dispatch({ type: 'DELETE', response: deletecategory(response, id)}))
+      .catch(err => alert(err.statusText))
   }
 
-  console.log(response, "resp");
-    
+  function deletecategory(categories, deletedid) {
+    return categories.filter(c => c.categoryId != deletedid.id)
+  }
+
   return (
     <>
     <section className='padding-helper'>
