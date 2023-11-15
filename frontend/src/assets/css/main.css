@@ -32,9 +32,16 @@ input[type=checkbox] {
   --clr-red: rgb(114, 8, 8);
   --clr-green: rgba(37, 173, 94, 0.662);
   --clr-grey: rgb(69, 69, 72);
-  --clr-lightgrey: #777;
+  --clr-lightgrey-500: rgb(119, 119, 119);
+  --clr-lightgrey-400: rgba(119, 119, 119, 0.592);
+  --clr-lightgrey-200: rgba(119, 119, 119, 0.234);
   --clr-white: #f8f8f8;
   --clr-black: rgba(0, 0, 0, 0);
+  --clr-admin-primary: rgb(103, 93, 80);
+  --clr-admin-second: rgb(169, 144, 126);
+  --clr-admin-light-blue: rgb(171, 196, 170);
+  --clr-admin-light: rgb(243, 222, 186);
+  --clr-admin-gold: rgb(98, 80, 34);
   --size-1: 0.25rem;
   --size-2: 0.5rem;
   --size-3: 0.75rem;
@@ -655,9 +662,34 @@ select {
   display: none;
 }
 
+.admin-aside {
+  display: none;
+  background-color: rgb(72, 105, 105);
+}
+@media screen and (min-width: 65em) {
+  .admin-aside {
+    display: block;
+  }
+}
+.admin-aside nav {
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-wrapper {
+  min-height: 100vh;
+}
+@media screen and (min-width: 65em) {
+  .admin-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+  }
+}
+
 .padding-helper {
   padding-block: 1em;
   padding-inline: 1em;
+  padding: 1.5rem clamp(1rem, 5%, 3rem);
 }
 
 .heading-message {
@@ -684,4 +716,22 @@ select {
 
 .underline {
   text-decoration: underline;
+}
+
+.mq-large-table-cell {
+  display: none;
+}
+@media screen and (min-width: 65em) {
+  .mq-large-table-cell {
+    display: table-cell;
+  }
+}
+
+.mq-medium-table-cell {
+  display: none;
+}
+@media screen and (min-width: 45em) {
+  .mq-medium-table-cell {
+    display: table-cell;
+  }
 }/*# sourceMappingURL=main.css.map */

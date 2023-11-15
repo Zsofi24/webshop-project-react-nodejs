@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import useCategories from '../../hooks/useCategories';
 import { Link, useSearchParams } from 'react-router-dom';
 import Button from '../../components/Button';
@@ -28,20 +28,20 @@ export default function AdminCategoryList() {
     
   return (
     <>
-    <section>
+    <section className='padding-helper'>
       { loading && <div>Loading...</div> }
       { error && <div>ERROR OH NO</div> }
       { 
       <>
-        <Link to='/admin/kategoriak/kategoria-felvitel'><Button>ÚJ KATEGÓRIA</Button></Link>
+        <Link to='/admin/kategoriak/kategoria-felvitel'><Button type="admin-create">+ ÚJ KATEGÓRIA</Button></Link>
         <CategoryListTable 
           categories={response}
           categoryDelete={categoryDelete}
         />          
       </>
       }
-    </section>
     <Pagination totalPages={totalPages} onPageChange={onPageChange} currentPage={page}/>
+    </section>
     </>
   )
 }

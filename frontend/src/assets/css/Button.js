@@ -23,6 +23,25 @@ export const StyledButton = styled.button`
   vertical-align: middle;
 `;
 
+// export const Admin = styled(StyledButton)`
+//   color: ${props => { 
+//     if(props.$remove) return "var(--clr-red)" 
+//     else if(props.$primary) return "var(--clr-admin-light)"
+//     else return "var(--clr-admin-gold)"
+//   }};
+//   background-color: ${props => { 
+//       if(props.$remove) return "white"
+//       else if(props.$primary) return "var(--clr-admin-gold)"
+//       else return "white"
+//    }};
+//   border-color: ${props => { 
+//     if(props.$remove) return "var(--clr-red)" 
+//     else if(props.$primary) return "var(--clr-admin-second)"
+//     else return "var(--clr-admin-gold)"
+
+//   }}
+// `
+
 export const CartButton = styled(StyledButton)`
   width: 100%;
   display: flex;

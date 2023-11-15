@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from 'react'
 import useProducts from '../../hooks/useProducts';
 import { Link, useSearchParams } from 'react-router-dom';
 import Pagination from '../../components/Pagination';
@@ -37,12 +36,12 @@ export default function AdminProductList() {
 
   return (
     <>
-    <section>
+    <section className='padding-helper'>
       { loading && <div>Loading...</div> }
       { error && <div>ERROR OH NO</div> }
       { 
       <>
-        <Link to='/admin/termekek/termek-felvitel'><Button>ÚJ TERMÉK</Button></Link>
+        <Link to='/admin/termekek/termek-felvitel'><Button type='admin-create'>+ ÚJ TERMÉK</Button></Link>
         <ProductListTable 
           products={response}
           productDelete={productDelete}

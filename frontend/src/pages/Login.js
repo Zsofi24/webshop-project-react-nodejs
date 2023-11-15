@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import LoginForm from '../components/LoginForm';
 import { Link, useLoaderData } from 'react-router-dom';
@@ -47,7 +47,8 @@ export default function Login() {
     authService.userLogin({email: formData.email.value, password: formData.password.value})
         .then(data => { 
             setUser(data)
-            navigate('/', {state:{message: `Üdvözöljük, ${data.username}`}})
+            if(data.isAdmin) navigate('/admin')
+            else navigate('/', {state:{message: `Üdvözöljük, ${data.username}`}})
         })
         .catch(err => setErrorMessage(err.message))
   }
