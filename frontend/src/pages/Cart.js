@@ -5,6 +5,9 @@ import { UserAuthContext } from '../contexts/UserAuthContext';
 import CartItem from '../components/user/cart/CartItem';
 import { cartService } from '../services/cartService';
 import Button from '../components/button/Button';
+import NoUserCart from '../components/user/cart/NoUserCart';
+import EmptyCart from '../components/user/cart/EmptyCart';
+import Checkout from '../components/user/cart/Checkout';
 
 export default function Cart() {
 
@@ -47,37 +50,36 @@ export default function Cart() {
     <>
       {Object.keys(user).length == 0 
         ?
-         <p>A kosár megtekintéséhez jelentkezzen be</p> 
+         <NoUserCart />
         : 
       (
         <>
         {
         cart.length > 0 ? (
         <>
-        <div className='cart-wrapper'>
-          <div className='padding-helper'>
-            {
-            cart.map(cartitem => (
-              <CartItem 
-                key={cartitem.id} 
-                item={cartitem} 
-                updateAmount={updateAmount}
-                deleteItem={deleteItem}
-              />          
-            ))
-            }
-
-          <div className='cart-order-wrapper'>
-            <h4>végösszeg: {(total)?.toLocaleString('fr')} Ft</h4>
-            <Button handleClick={() => navigate("/rendeles")}>megrendelés</Button>
+        <section className='cart-wrapper padding-helper'>
+          <div>
+              {
+              cart.map(cartitem => (
+                <CartItem 
+                  key={cartitem.id} 
+                  item={cartitem} 
+                  updateAmount={updateAmount}
+                  deleteItem={deleteItem}
+                />          
+              ))
+              }
           </div>
 
-          </div>
-        </div>
+            <Checkout 
+              total={total}
+            />
+
+          </section>
         </>
         )
         :
-        "A kosara üres :("
+        <EmptyCart />
         }
         </>
       )

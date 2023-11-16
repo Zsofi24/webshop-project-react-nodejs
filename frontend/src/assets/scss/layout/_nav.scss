@@ -26,20 +26,29 @@
             left: 0;
             right: auto;
         }
+
     }
 
     a {
         text-decoration: none;
         color: black;  
 
+        span {
+            margin-left: var(--size-1);
+            display: inline-block;
+            vertical-align: text-top;
+        }
 
     }
 
     svg {
         margin-left: $size-2;
+        vertical-align: middle;
 
         &:hover {
             transform: scale(1.2);
+            text-decoration: underline;
+
         }
     }
 

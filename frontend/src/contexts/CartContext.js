@@ -6,9 +6,10 @@ export const CartContext = createContext({});
 
 export function CartProvider({ children }) {
 
-    const [cart, setCart] = useState({});
+    const [cart, setCart] = useState([]);
     const [total, setTotal] = useState(null);
-    const {user, setUser} = useContext(UserAuthContext)
+    const {user, setUser} = useContext(UserAuthContext);
+    const [totalAmount, setTotalAmount] =useState(null);
     
     useEffect(() => {
         if(user.email) {
@@ -26,8 +27,14 @@ export function CartProvider({ children }) {
         }
     }, [cart, user])
 
+    useEffect(() => {
+        let amount = cart?.map(p => p.amount).reduce((acc, curr) => acc + curr, 0);
+        if(amount != 0) setTotalAmount(amount);
+        else setTotalAmount(null)
+    }, [cart, user])
+
     return (
-        <CartContext.Provider value={{ cart, setCart, total }}>
+        <CartContext.Provider value={{ cart, setCart, total, totalAmount }}>
             {children}
         </CartContext.Provider>
     )

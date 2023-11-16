@@ -19,7 +19,7 @@ export default function CartItem({item, updateAmount, deleteItem}) {
       <p id='cart-item-title'>{item.title}</p>
 
       <div id='cart-item-delete'>
-        <Button type='cart-delete' handleClick={() => deleteItem(item.id)}><AiOutlineDelete /></Button>
+        <Button type='cart-delete' handleClick={() => deleteItem(item.id)}><AiOutlineDelete /> törlés</Button>
       </div>
 
       <ProductAmountChanger 
