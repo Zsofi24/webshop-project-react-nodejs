@@ -23,11 +23,13 @@ export default {
         return productsModel.getAll()
     },
 
-    getCurrent({ pageSize, page, sortBy, order, filter, products }) {        
+    getCurrent({ pageSize, page, sortBy, order, filter, products, q }) {        
         if(filter) filter = filter[0].split(',');  
         if(products == "all") products = -1
         else products = 0
-        return productsModel.getCurrent({ pageSize, page, sortBy, order, filter, products })
+        let search = q ? q : ""
+
+        return productsModel.getCurrent({ pageSize, page, sortBy, order, filter, products, search })
     },
     
     getOne({ productid }) {

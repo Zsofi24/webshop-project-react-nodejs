@@ -407,6 +407,34 @@ input[type=checkbox] {
   color: white;
 }
 
+.searchbar {
+  width: 100%;
+  margin-bottom: var(--size-4);
+}
+@media screen and (min-width: 45em) {
+  .searchbar {
+    width: 50%;
+  }
+}
+.searchbar svg {
+  vertical-align: text-bottom;
+}
+.searchbar fieldset {
+  padding: var(--size-2) var(--size-2);
+  margin-bottom: var(--size-4);
+}
+.searchbar fieldset:has(> input:focus) {
+  outline: 3px solid black;
+}
+.searchbar fieldset input {
+  border: none;
+  width: 90%;
+  padding: var(--size-1);
+}
+.searchbar fieldset input:focus {
+  outline: none;
+}
+
 .products-wrapper {
   display: flex;
   flex-direction: column;
@@ -422,6 +450,16 @@ input[type=checkbox] {
   gap: 1.5rem;
   grid-template-columns: repeat(auto-fill, minmax(min(9rem, 100%), 1fr));
   margin: 0 auto;
+  position: relative;
+}
+.card-list .loading-container {
+  width: 100%;
+  min-height: 70vh;
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  background-color: rgba(205, 205, 205, 0.512);
 }
 
 .card img {
@@ -430,7 +468,7 @@ input[type=checkbox] {
   border-radius: 1rem 1rem 0 0;
 }
 
-@media screen and (width > 1025px) {
+@media screen and (min-width: 65em) {
   .products-wrapper {
     flex-direction: row;
   }

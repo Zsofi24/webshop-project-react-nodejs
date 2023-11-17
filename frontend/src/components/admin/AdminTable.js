@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const AdminTable = styled.table`
     border-spacing: 0;
-    white-space: nowrap;
+    // white-space: nowrap;
     margin: 0 auto;
     color: black;
     width: 100%;
@@ -54,8 +54,8 @@ export const AdminTable = styled.table`
     .description {
         width: 20rem;
         white-space: normal
-
     }
+
     .button {
         width: 4rem;
         overflow: hidden;
@@ -66,10 +66,7 @@ export const AdminTable = styled.table`
     tbody th {
         border-bottom:  1px solid var(--clr-primary);
     }
-    tr:not(thead tr:nth-child(-n+1)):hover {
+    tbody tr:not(thead tr:nth-child(-n+1)):hover {
         background-color: var(--clr-admin-light);
     } 
-
-
-
 `

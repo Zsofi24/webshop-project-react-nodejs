@@ -24,6 +24,7 @@ export default {
     },
 
     create({ title, description, price, stock, id, visible, limited, path }) {
+        console.log(stock, "stsock");
         const sql = `
             INSERT INTO products
             (title, description, price, stock, id, visible, limited, image_path) 
@@ -73,7 +74,8 @@ export default {
         })
     },
 
-    getCurrent({ pageSize , page, sortBy, order, filter, products }) {
+    getCurrent({ pageSize , page, sortBy, order, filter, products, search }) {
+        console.log(search, 'q');
         let orderquery = '';
         let filterquery = '';
         if(sortBy) orderquery = `ORDER BY p.${sortBy} ${order}`;
@@ -86,6 +88,7 @@ export default {
             JOIN products_categories pc ON pc.product_id = p.id
             JOIN categories c ON c.id = pc.category_id   
             ${filterquery} 
+            AND p.title LIKE '%${search}%'
             AND p.stock > ${products}
             GROUP BY p.id  
             ${orderquery} 
@@ -97,6 +100,7 @@ export default {
                 JOIN products_categories pc ON pc.product_id = p.id
                 JOIN categories c ON c.id = pc.category_id   
                 ${filterquery}
+                AND p.title LIKE '%${search}%'
                 AND p.stock > ${products}
                 GROUP BY p.id
             );
