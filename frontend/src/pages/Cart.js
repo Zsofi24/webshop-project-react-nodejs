@@ -50,7 +50,7 @@ export default function Cart() {
     <>
       {Object.keys(user).length == 0 
         ?
-         <NoUserCart />
+        <EmptyCart text="A kosár megtekintéséhez jelentkezzen be! &#128521;"/>
         : 
       (
         <>
@@ -58,7 +58,7 @@ export default function Cart() {
         cart.length > 0 ? (
         <>
         <section className='cart-wrapper padding-helper'>
-          <div>
+          <div className='cart-items-wrapper'>
               {
               cart.map(cartitem => (
                 <CartItem 
@@ -79,7 +79,7 @@ export default function Cart() {
         </>
         )
         :
-        <EmptyCart />
+        <EmptyCart text="A kosara üres &#128549;"/>
         }
         </>
       )

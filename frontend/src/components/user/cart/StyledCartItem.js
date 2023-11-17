@@ -11,6 +11,8 @@ export const StyledCartItem = styled.div`
     border-bottom: 1px solid grey;
     box-shadow: 10px 5px 5px #435B66;
     border-radius: var(--size-4);
+    background-color: white;
+    margin-bottom: var(--size-3);
 
     #cart-item-title {
         grid-area: title
@@ -73,14 +75,12 @@ export const StyledCartItem = styled.div`
         grid-template-areas:
             "img title amount price delete";
 
-        margin: 0 auto;
+        margin: var(--size-3) auto;
         grid-template-columns: repeat(5, 1fr);
 
         & > * {
             align-self: center;
         }
+        height: 13rem;
     }
-
-
-
 `

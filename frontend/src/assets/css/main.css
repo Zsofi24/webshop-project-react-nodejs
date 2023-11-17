@@ -398,6 +398,15 @@ input[type=checkbox] {
   background-color: rgba(119, 119, 119, 0.234);
 }
 
+.no-cart {
+  height: 92vh;
+  background-image: linear-gradient(to left top, #a76f6f, #92687d, #726581, #556178, #435b66);
+}
+.no-cart-text {
+  letter-spacing: 0.12em;
+  color: white;
+}
+
 .products-wrapper {
   display: flex;
   flex-direction: column;
@@ -439,8 +448,10 @@ input[type=checkbox] {
   gap: 0.5rem;
   max-width: 900px;
   margin: 0 auto;
+  background-image: linear-gradient(to left top, #a76f6f, #92687d, #726581, #556178, #435b66);
+  min-height: 92vh;
 }
-@media screen and (min-width: 65rem) {
+@media screen and (min-width: 55rem) {
   .cart-wrapper {
     max-width: 100%;
     display: grid;
@@ -455,7 +466,7 @@ input[type=checkbox] {
   font-size: 1.1rem;
   margin-top: var(--size-4);
   text-align: right;
-  background-color: var(--clr-lightgrey-200);
+  background-color: rgb(219, 219, 219);
   padding: var(--size-2);
 }
 .cart-wrapper .cart-order-wrapper .cart-order-sum {
@@ -724,6 +735,10 @@ select {
   }
 }
 
+main {
+  min-height: 92vh;
+}
+
 .padding-helper {
   padding-block: 1em;
   padding-inline: 1em;
@@ -780,4 +795,10 @@ select {
 
 .navshop .active-navlink {
   text-decoration: underline;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }/*# sourceMappingURL=main.css.map */
