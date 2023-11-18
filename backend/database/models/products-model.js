@@ -85,8 +85,8 @@ export default {
 
         const sql = `
             SELECT p.price, p.id, p.title, p.description, p.stock, p.visible, p.image_path as path, p.limited FROM products p  
-            JOIN products_categories pc ON pc.product_id = p.id
-            JOIN categories c ON c.id = pc.category_id   
+            LEFT JOIN products_categories pc ON pc.product_id = p.id
+            LEFT JOIN categories c ON c.id = pc.category_id   
             ${filterquery} 
             AND p.title LIKE '%${search}%'
             AND p.stock > ${products}
