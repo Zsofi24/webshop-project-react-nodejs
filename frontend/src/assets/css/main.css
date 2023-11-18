@@ -437,6 +437,25 @@ input[type=checkbox] {
   outline: none;
 }
 
+.mobile-header nav {
+  display: flex;
+  justify-content: space-between;
+}
+.mobile-header nav .mobile-menu-wrapper {
+  position: relative;
+}
+.mobile-header nav .mobile-menu-container {
+  background-color: white;
+  min-height: 90vh;
+  min-width: 10em;
+  position: absolute;
+  z-index: 2;
+  right: 0;
+}
+.mobile-header nav .mobile-menu-container > a {
+  display: block;
+}
+
 .products-wrapper {
   display: flex;
   flex-direction: column;
