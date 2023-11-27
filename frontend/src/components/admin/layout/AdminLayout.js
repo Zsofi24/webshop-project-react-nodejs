@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom';
 import AdminNav from './AdminNav';
-import AdminMobileNav from '../layout/AdminMobileNav';
-import useScreenSize from '../../hooks/useScreenSize';
+import AdminMobileNav from './AdminMobileNav';
+import useScreenSize from '../../../hooks/useScreenSize';
 
 export default function AdminLayout() {
 

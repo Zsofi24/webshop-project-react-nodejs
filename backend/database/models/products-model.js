@@ -80,31 +80,30 @@ export default {
         let filterquery = '';
         if(sortBy) orderquery = `ORDER BY p.${sortBy} ${order}`;
 
-        if (filter) { filter = filter.map(cat => `'${cat}'`); filterquery = `WHERE c.name IN (${filter})`}
+        if (filter) { filter = filter.map(cat => `'${cat}'`); filterquery = `AND c.name IN (${filter})`}
         else  filterquery = ""
 
         const sql = `
             SELECT p.price, p.id, p.title, p.description, p.stock, p.visible, p.image_path as path, p.limited FROM products p  
             LEFT JOIN products_categories pc ON pc.product_id = p.id
             LEFT JOIN categories c ON c.id = pc.category_id   
-            ${filterquery} 
-            AND p.title LIKE '%${search}%'
+            WHERE p.title LIKE '%${search}%'
             AND p.stock > ${products}
+            ${filterquery} 
             GROUP BY p.id  
             ${orderquery} 
             LIMIT ${pageSize} OFFSET ${pageSize  * (page -1)}             
          `;
         const sql2 = `
             SELECT COUNT(*) as total FROM ( 
-                SELECT COUNT(*) FROM products p
-                JOIN products_categories pc ON pc.product_id = p.id
-                JOIN categories c ON c.id = pc.category_id   
-                ${filterquery}
-                AND p.title LIKE '%${search}%'
+                SELECT COUNT(*), p.title, p.stock FROM products p
+                LEFT JOIN products_categories pc ON pc.product_id = p.id
+                LEFT JOIN categories c ON c.id = pc.category_id   
+                WHERE p.title LIKE '%${search}%'
                 AND p.stock > ${products}
+                ${filterquery}
                 GROUP BY p.id
             );
-
         `;
 
         return new Promise((resolve, reject) => {

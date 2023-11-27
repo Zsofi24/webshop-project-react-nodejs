@@ -1,0 +1,49 @@
+@use '../abstracts/' as *;
+
+.admin-aside {
+    display: none;
+    background-color: var(--clr-primary);
+    color: white;
+    box-shadow: 2px 2px 20px var(--clr-primary);
+
+    @include mq(large) {
+        display: block;
+    }
+
+
+
+    nav {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        padding: 1.5rem 0;
+
+        a {
+            padding: var(--size-3) 0;
+
+            &:hover {
+                background-color: var(--clr-second-light);
+                color: black;
+
+            }
+
+        }
+
+        .active {
+            text-decoration: underline;
+        }
+    }
+    
+
+}
+
+.admin-wrapper {
+
+    min-height: 100vh;
+    
+    @include mq(large) {
+        display: grid;
+        grid-template-columns: 1fr 5fr;
+
+    }
+}

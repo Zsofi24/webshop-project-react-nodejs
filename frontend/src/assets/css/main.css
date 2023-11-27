@@ -30,8 +30,10 @@ input[type=checkbox] {
 :root {
   --clr-primary: rgb(46, 68, 87);
   --clr-primary-light: rgb(67, 91, 102);
+  --clr-primary-light-500: rgba(67, 91, 102, 0.5);
   --clr-second: rgb(167, 111, 111);
   --clr-second-light: rgb(234, 178, 160);
+  --clr-second-light-500: rgba(234, 178, 160, 0.538);
   --clr-red: rgb(114, 8, 8);
   --clr-light-red: rgb(163, 53, 36);
   --clr-green: rgba(37, 173, 94, 0.662);
@@ -440,20 +442,51 @@ input[type=checkbox] {
 .mobile-header nav {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 .mobile-header nav .mobile-menu-wrapper {
   position: relative;
 }
+.mobile-header nav .mobile-menu-wrapper svg {
+  vertical-align: middle;
+}
+.mobile-header nav .mobile-menu-wrapper button {
+  margin-left: var(--size-2);
+}
 .mobile-header nav .mobile-menu-container {
-  background-color: white;
-  min-height: 90vh;
-  min-width: 10em;
+  background-color: #eae9e9;
+  color: var(--clr-primary);
+  padding-top: 1em;
+  text-align: center;
+  min-height: 94vh;
+  min-width: 14em;
   position: absolute;
   z-index: 2;
   right: 0;
+  box-shadow: 2px 2px 20px black;
 }
 .mobile-header nav .mobile-menu-container > a {
   display: block;
+  padding: var(--size-3);
+  animation-duration: 1.2s;
+  animation-name: slidein;
+}
+@keyframes slidein {
+  from {
+    margin-bottom: 40px;
+    width: 100%;
+  }
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+}
+.mobile-header nav .mobile-menu-container > a:hover {
+  background-color: var(--clr-primary);
+  color: white;
+}
+.mobile-header nav .active-navlink {
+  text-decoration: underline;
 }
 
 .products-wrapper {
@@ -613,10 +646,10 @@ input[type=checkbox] {
 }
 
 header {
-  background-color: white;
+  background-color: var(--clr-primary-light-500);
   color: black;
-  height: 8vh;
   font-size: 18px;
+  padding: var(--size-3);
 }
 
 .navshop {
@@ -772,7 +805,9 @@ select {
 
 .admin-aside {
   display: none;
-  background-color: rgb(72, 105, 105);
+  background-color: var(--clr-primary);
+  color: white;
+  box-shadow: 2px 2px 20px var(--clr-primary);
 }
 @media screen and (min-width: 65em) {
   .admin-aside {
@@ -782,6 +817,18 @@ select {
 .admin-aside nav {
   display: flex;
   flex-direction: column;
+  text-align: center;
+  padding: 1.5rem 0;
+}
+.admin-aside nav a {
+  padding: var(--size-3) 0;
+}
+.admin-aside nav a:hover {
+  background-color: var(--clr-second-light);
+  color: black;
+}
+.admin-aside nav .active {
+  text-decoration: underline;
 }
 
 .admin-wrapper {

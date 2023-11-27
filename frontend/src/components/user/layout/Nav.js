@@ -3,11 +3,11 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import { BiLogIn } from 'react-icons/bi';
 import { BsCart } from 'react-icons/bs';
 import { AiOutlineUser } from 'react-icons/ai';
-import { UserAuthContext } from '../contexts/UserAuthContext';
-import { authService } from '../services/authService';
-import Profile from './Profile';
-import NavCartAmount from './user/cart/NavCartAmount';
-import { CartContext } from '../contexts/CartContext';
+import { UserAuthContext } from '../../../contexts/UserAuthContext';
+import { authService } from '../../../services/authService';
+import Profile from '../../Profile';
+import NavCartAmount from '../cart/NavCartAmount';
+import { CartContext } from '../../../contexts/CartContext';
 
 export default function Nav({ handleMouseEnter, handleMouseLeave, isProfileVisible }) {
 

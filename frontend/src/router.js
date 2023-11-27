@@ -1,5 +1,5 @@
 import {Route, createBrowserRouter, createRoutesFromElements} from 'react-router-dom';
-import Layout from './components/Layout';
+import Layout from './components/user/layout/Layout';
 import Home, {loader as homeLoader} from './pages/Home'
 import Login, {loader as loginLoader} from './pages/Login';
 import Registration from './pages/Registration';
@@ -8,7 +8,7 @@ import Profile from './pages/Profile';
 import Cart from './pages/Cart';
 import Orders from './pages/Orders';
 import AdminDashboard from './pages/admin/AdminDashboard';
-import AdminLayout from './components/admin/AdminLayout';
+import AdminLayout from './components/admin/layout/AdminLayout';
 import AdminProductList from './pages/admin/AdminProductList';
 import EditProduct from './pages/admin/EditProduct';
 import AddNewProduct from './pages/admin/AddNewProduct';
@@ -22,7 +22,7 @@ import UserOrderDetails from './pages/UserOrderDetails';
 import Error from './components/error/Error';
 
 export const router = createBrowserRouter(createRoutesFromElements([
-    <Route path='/' element={<Layout/>} errorElement={<Error />}>
+    <Route path='/' element={<Layout/>} errorElement={<Error />} key='1'>
         <Route index element={<Home/>} loader={homeLoader} errorElement={<Error />}/>
         <Route path='/belepes' element={<Login />} loader={loginLoader} errorElement={<Error />} />
         <Route path='/regisztracio' element={<Registration />} errorElement={<Error />}/>
@@ -34,7 +34,7 @@ export const router = createBrowserRouter(createRoutesFromElements([
         <Route path='/rendeles' element={<SendOrder />} errorElement={<Error />}/>
         <Route path='/profil' element={<Profile />} errorElement={<Error />}/>
     </Route>,
-    <Route path='/admin' element={<AdminLayout />} errorElement={<Error />}>
+    <Route path='/admin' element={<AdminLayout />} errorElement={<Error />} key='2'>
         <Route index element={<AdminDashboard />} loader={async () => await requireAuthAdmin()} errorElement={<Error />}/>
         <Route path='termekek' element={<AdminProductList />} loader={async () => await requireAuthAdmin()} errorElement={<Error />}/>
         <Route path='termekek/:productid' element={<EditProduct />} loader={async () => await requireAuthAdmin()} errorElement={<Error />}/>

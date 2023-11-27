@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom'
 import Nav from './Nav'
-import useScreenSize from '../hooks/useScreenSize';
-import MobileNav from './layout/MobileNav';
+import useScreenSize from '../../../hooks/useScreenSize';
+import MobileNav from './MobileNav';
 
 export default function Layout() {
 

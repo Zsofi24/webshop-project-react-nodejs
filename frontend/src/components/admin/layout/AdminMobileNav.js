@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { MdMenu, MdOutlineClose } from "react-icons/md";
-import Button from '../button/Button';
+import Button from '../../button/Button';
 
 export default function AdminMobileNav() {
 
@@ -18,10 +18,10 @@ export default function AdminMobileNav() {
           {
             open &&
             <div className="mobile-menu-container">
-                <NavLink to='/'>webshop</NavLink>
-                <NavLink to='/admin'>dashboard</NavLink>
-                <NavLink to='termekek'>termékek</NavLink>
-                <NavLink to='kategoriak'>kategóriák</NavLink>
+                <NavLink to='/' onClick={() => setOpen(prev => !prev)}>webshop</NavLink>
+                <NavLink to='/admin' end className={({isActive}) => isActive ? 'active-navlink' : ''} onClick={() => setOpen(prev => !prev)}>dashboard</NavLink>
+                <NavLink to='termekek' className={({isActive}) => isActive ? 'active-navlink' : ''} onClick={() => setOpen(prev => !prev)}>termékek</NavLink>
+                <NavLink to='kategoriak' className={({isActive}) => isActive ? 'active-navlink' : ''} onClick={() => setOpen(prev => !prev)}>kategóriák</NavLink>
             </div>
           }      
         </div>
