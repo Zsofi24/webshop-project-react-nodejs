@@ -21,7 +21,7 @@ export default function Login() {
 
   const [formData, setFormData] = useState({
     email: {
-        value: "ab@a.com",
+        value: "admin@a.com",
         valid: false
     },
     password: {
@@ -46,6 +46,7 @@ export default function Login() {
     e.preventDefault();
     authService.userLogin({email: formData.email.value, password: formData.password.value})
         .then(data => { 
+          console.log(data, "data");
             setUser(data)
             if(data.isAdmin) navigate('/admin')
             else navigate('/', {state:{message: `Üdvözöljük, ${data.username}`}})

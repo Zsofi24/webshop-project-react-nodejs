@@ -60,7 +60,7 @@ export default {
                                     localId: row.id,
                                     isAdmin: row.isAdmin                            
                                 }; 
-                                resolve({ localId: row.id, email: row.email, username: row.username })
+                                resolve({ localId: row.id, email: row.email, username: row.username, isAdmin: row.isAdmin })
                             } else {
                                 reject(new httpError('Unauthorized', 401))
                             }
@@ -69,6 +69,70 @@ export default {
                         reject(new httpError('Unauthorized', 401));
                     }
                 })
+            })
+        })
+    },
+
+    getCurrent({ pageSize , page, sortBy, order, search }) {
+        let orderquery = "";
+        if(sortBy) orderquery = `ORDER BY ${sortBy} ${order}`;
+
+        const sql = `
+            SELECT id, email, username, isAdmin, created
+            FROM users
+            WHERE users.email LIKE'%${search}%'
+            ${orderquery}
+            LIMIT ${pageSize} OFFSET ${pageSize * (page -1)}
+        `;
+
+        const sql2 = `SELECT COUNT(*) as total FROM users;`
+
+        return new Promise((resolve, reject) => {
+            const stmt = db.prepare(sql);
+            stmt.all((err, rows) => {
+                if(err) reject(err)
+                else {
+                    const stmt2 = db.prepare(sql2);
+                    stmt2.get((err, row) => {
+                        if(err) reject(err)
+                        else resolve({users: rows, total: row.total})
+                    })
+                }
+            })
+        })
+    },
+
+    getUser({ userid }) {
+        const sql = `
+            SELECT id, email, username, isAdmin, created 
+            FROM users 
+            WHERE id = ?
+        `;
+
+        return new Promise((resolve, reject) => {
+            const stmt = db.prepare(sql);
+            stmt.bind(userid);
+            stmt.get((err, row) => {
+                console.log(row, "user data");
+                if(err) reject(err)
+                else resolve(row)
+            })
+        })
+    },
+
+    updateUser({isAdmin, username, userid}) {
+        const sql = `
+            UPDATE users
+            SET isAdmin = ?, username = ?
+            WHERE id = ?
+        `;
+
+        return new Promise((resolve, reject) => {
+            const stmt = db.prepare(sql);
+            stmt.bind(isAdmin, username, userid);
+            stmt.run((err) => {
+                if(err) reject(err)
+                else resolve({userid: userid, isAdmin: isAdmin})
             })
         })
     }

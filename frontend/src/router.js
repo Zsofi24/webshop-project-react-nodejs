@@ -20,6 +20,9 @@ import ProductDetails from './components/user/product/ProductDetails';
 import requireAuthAdmin from './utils/requireAuthAdmin';
 import UserOrderDetails from './pages/UserOrderDetails';
 import Error from './components/error/Error';
+import AdminUsersList from './pages/admin/AdminUsersList';
+import EditUser from './pages/admin/EditUser';
+import AdminNewUser from './pages/admin/AdminNewUser';
 
 export const router = createBrowserRouter(createRoutesFromElements([
     <Route path='/' element={<Layout/>} errorElement={<Error />} key='1'>
@@ -42,6 +45,9 @@ export const router = createBrowserRouter(createRoutesFromElements([
         <Route path='kategoriak' element={<AdminCategoryList />} loader={async () => await requireAuthAdmin()} errorElement={<Error />}/>
         <Route path='kategoriak/:categoryid' element={<EditCategory />} loader={async () => await requireAuthAdmin()} errorElement={<Error />}/>
         <Route path='kategoriak/kategoria-felvitel' element={<AddNewCategory />} loader={async () => await requireAuthAdmin()} errorElement={<Error />}/>
+        <Route path='felhasznalok' element={<AdminUsersList />} loader={async () => await requireAuthAdmin()} errorElement={<Error />}/>
+        <Route path='felhasznalok/:userid' element={<EditUser />} loader={async () => await requireAuthAdmin()} errorElement={<Error />}/>
+        <Route path='felhasznalok/felhasznalo-letrehozas' element={<AdminNewUser />} loader={async () => await requireAuthAdmin()} errorElement={<Error />}/>
     </Route>
 ]
 ))

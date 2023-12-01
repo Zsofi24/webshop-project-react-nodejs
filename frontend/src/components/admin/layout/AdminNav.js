@@ -8,6 +8,7 @@ export default function AdminNav() {
         <NavLink to='/admin' end>dasboard</NavLink>
         <NavLink to='/admin/termekek'>termékek</NavLink>
         <NavLink to='/admin/kategoriak'>kategóriák</NavLink>
+        <NavLink to='/admin/felhasznalok'>felhasználók</NavLink>
     </nav>
   )
 }

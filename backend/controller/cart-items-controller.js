@@ -12,7 +12,6 @@ export default  {
     updateCart(req, res, next) {
         const { productid, userid } = req.params;
         const { amount } = req.body;
-        console.log(productid, userid, amount);
         cartItemsServices
             .updateCart({ productid, userid, amount })
             .then(resp => res.status(200).send(resp))

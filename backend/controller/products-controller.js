@@ -4,7 +4,6 @@ import path from 'path';
 
 export default {
     create(req, res, next) {
-        console.log(req.body, "body");
         const { title, price, description, id, stock, visible, categories, limited } = req.body;
         const path = req.file? req.file.path : null
         productsServices
@@ -55,7 +54,6 @@ export default {
     },
 
     delete(req, res, next) {
-        console.log(req.params);
         const { productid: id } = req.params;
         productsServices.delete(id)
             .then(resp => res.status(200).send(resp))

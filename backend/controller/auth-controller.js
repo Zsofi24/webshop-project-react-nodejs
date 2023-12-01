@@ -11,7 +11,6 @@ export default {
 
     login(req, res, next) {
         const { email, password } = req.body;
-        console.log(email, password);
         authServices
             .find({ email, password, req })
             .then(resp => res.status(200).json(resp))
@@ -45,7 +44,6 @@ export default {
     },
 
     adminVerify(req, res, next) {
-        console.log(req.session);
         try {
             if(req.session.authenticated) {
                 if(req.session.isAdmin) res.send({admin: req.session.user})

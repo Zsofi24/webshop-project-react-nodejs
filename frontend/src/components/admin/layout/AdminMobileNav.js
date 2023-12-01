@@ -22,6 +22,7 @@ export default function AdminMobileNav() {
                 <NavLink to='/admin' end className={({isActive}) => isActive ? 'active-navlink' : ''} onClick={() => setOpen(prev => !prev)}>dashboard</NavLink>
                 <NavLink to='termekek' className={({isActive}) => isActive ? 'active-navlink' : ''} onClick={() => setOpen(prev => !prev)}>termékek</NavLink>
                 <NavLink to='kategoriak' className={({isActive}) => isActive ? 'active-navlink' : ''} onClick={() => setOpen(prev => !prev)}>kategóriák</NavLink>
+                <NavLink to='felhasznalok' className={({isActive}) => isActive ? 'active-navlink' : ''} onClick={() => setOpen(prev => !prev)}>felhasználók</NavLink>
             </div>
           }      
         </div>
