@@ -4,20 +4,20 @@ export const StyledButton = styled.button`
   background: ${props => {
     if(props.disabled) return "grey"
     else {
-      if(props.$primary) return "var(--clr-green)"
-      else return "var(--clr-primary)"
+      if(props.$primary) return "var(--clr-second-light)"
+      else return "var(--clr-second)"
     }
   }};
   color: ${props => {
     if(props.disabled) return "white"
     else {
-      if(props.$primary) return "var(--clr-primary)"
-      else return "var(--clr-green)"
+      if(props.$primary) return "var(--clr-second)"
+      else return "white"
     }
   }};
 
   padding: 0.5rem 1rem;
-  border: 2px solid var(--clr-primary);
+  border: 2px solid var(--clr-second-light);
   border-radius: 3px;
   cursor: ${props => props.disabled ? "not-allowed" : "pointer"};
   vertical-align: middle;
@@ -39,23 +39,23 @@ export const PaginationButton = styled(StyledButton)`
   color: ${props => props.active ? "white" : "var(--clr-btn-pagination)"};
   border: none;
   padding: 0.25rem 0.4rem;
-  vertical-align: text-top;
-`
+  vertical-align: text-top;`
 
 export const CartAmount = styled(StyledButton)`
-  background-color: ${(props) => props.disabled ? "var(--clr-lightgrey)" :  "var(--clr-green)"};
-  border: var(--clr-lightgrey);
+  background-color: ${(props) => props.disabled ? "var(--clr-lightgrey-200)" :  "var(--clr-primary)"};
   color: white;
   font-weight: bold;
   font-size: 0.8rem;
   padding: 0;
-  border-radius: none;
+  border-radius: 12px;
   overflow: hidden;
+  border-color: white;
+  padding: 0.3rem clamp(0.3rem, 5%, 1rem);
 `
 
 export const CartDelete = styled(StyledButton)`
   background-color: white;
-  color: red;
+  color: var(--clr-light-red);
   border: red;
   padding: 0;
 `

@@ -21,12 +21,12 @@ export default {
 
     getCurrent(req, res, next) {
         // console.log(req.app.get('env'))
-        let { page, pageSize, sortBy, order, filter, products } = req.query;
+        let { page, pageSize, sortBy, order, filter, products, q } = req.query;
         if(!page) page = 1;
         if(!pageSize) pageSize = 10;
         if(!products) products = "all";
         productsServices
-            .getCurrent({ page, pageSize, sortBy, order, filter, products })
+            .getCurrent({ page, pageSize, sortBy, order, filter, products, q })
             .then(resp => res.status(200).send(resp))
             .catch(next)    
     },
@@ -54,7 +54,6 @@ export default {
     },
 
     delete(req, res, next) {
-        console.log(req.params);
         const { productid: id } = req.params;
         productsServices.delete(id)
             .then(resp => res.status(200).send(resp))

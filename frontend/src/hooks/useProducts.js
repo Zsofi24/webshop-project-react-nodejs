@@ -4,7 +4,7 @@ import { useSearchParams } from 'react-router-dom';
 
 export default function useProducts() {
 
-    const [searchParams, setSearchParams] = useSearchParams();
+    const [searchParams] = useSearchParams();
 
     let [state, dispatch] = useReducer((state, action) => {
         switch(action.type) {
@@ -37,6 +37,14 @@ export default function useProducts() {
                     error: null
                 }
             }
+            case 'DELETE': {
+                return {
+                    ...state,
+                    loading: false,
+                    response: action.response,
+                    error: null
+                }
+            }
             case 'PAGECHANGE': {
                 return {
                     ...state,
@@ -61,11 +69,12 @@ export default function useProducts() {
     useEffect(() => {
         let isCurrent = true;
         dispatch({ type: 'LOADING' });
+        let timeout = searchParams.get("q") ? 1500 : 1
+        let timer = setTimeout(() => {
         productService
             .getProducts(searchParams)
             .then(products => {
                 if(isCurrent) {
-                    // setTimeout(() => {
                         dispatch({ 
                             type: 'RESOLVED', 
                             response: products.products, 
@@ -73,14 +82,16 @@ export default function useProducts() {
                             totalPages: (Math.ceil(products.total / state.pageSize))
                         })
 
-                    // }, 1000)
-                }
-            })
-            .catch(error => {
-                dispatch({ type: 'ERROR', error })
-            })
+                    }
+                })
+                .catch(error => {
+                    dispatch({ type: 'ERROR', error })
+                })
+        }, timeout)
         return () => {
+            clearTimeout(timer)
             isCurrent = false
+
         }
     }, [searchParams])
 

@@ -8,7 +8,7 @@ body {
   margin: 0;
   font-family: "Josefin Sans";
   font-size: var(--fs-400);
-  color: rgb(20, 63, 63);
+  color: rgb(46, 68, 87);
   background-color: rgb(255, 255, 255);
 }
 
@@ -28,13 +28,26 @@ input[type=checkbox] {
 }
 
 :root {
-  --clr-primary: rgb(20, 63, 63);
+  --clr-primary: rgb(46, 68, 87);
+  --clr-primary-light: rgb(67, 91, 102);
+  --clr-primary-light-500: rgba(67, 91, 102, 0.5);
+  --clr-second: rgb(167, 111, 111);
+  --clr-second-light: rgb(234, 178, 160);
+  --clr-second-light-500: rgba(234, 178, 160, 0.538);
   --clr-red: rgb(114, 8, 8);
+  --clr-light-red: rgb(163, 53, 36);
   --clr-green: rgba(37, 173, 94, 0.662);
   --clr-grey: rgb(69, 69, 72);
-  --clr-lightgrey: #777;
+  --clr-lightgrey-500: rgb(119, 119, 119);
+  --clr-lightgrey-400: rgba(119, 119, 119, 0.592);
+  --clr-lightgrey-200: rgba(119, 119, 119, 0.234);
   --clr-white: #f8f8f8;
   --clr-black: rgba(0, 0, 0, 0);
+  --clr-admin-primary: rgb(103, 93, 80);
+  --clr-admin-second: rgb(169, 144, 126);
+  --clr-admin-light-blue: rgb(171, 196, 170);
+  --clr-admin-light: rgb(243, 222, 186);
+  --clr-admin-gold: rgb(98, 80, 34);
   --size-1: 0.25rem;
   --size-2: 0.5rem;
   --size-3: 0.75rem;
@@ -59,7 +72,7 @@ input[type=checkbox] {
   --fs-300: 0.925rem;
   --fs-200: 0.875rem;
 }
-@media screen and (min-width: 65em) {
+@media screen and (min-width: 70em) {
   :root {
     --fs-900: 3.75rem;
     --fs-800: 3rem;
@@ -128,7 +141,7 @@ input[type=checkbox] {
   -webkit-backdrop-filter: blur(10.5px);
   border: 1px solid rgba(255, 255, 255, 0.48);
 }
-@media screen and (min-width: 65em) {
+@media screen and (min-width: 70em) {
   .form-container {
     width: 40%;
     position: absolute;
@@ -184,8 +197,9 @@ input[type=checkbox] {
   margin: 1em 0;
 }
 .form-container .input-container__message {
-  min-height: 1.5rem;
-  margin: 0.5em;
+  margin: 0.6em 0;
+  padding: 0.4em 1em;
+  border-radius: 16px;
 }
 .form-container .input-container__message svg {
   vertical-align: text-bottom;
@@ -205,8 +219,8 @@ input[type=checkbox] {
 }
 .auth-form fieldset:has(> input:focus) {
   box-shadow: 1px 1px 25px rgba(31, 30, 30, 0.967);
-  background-color: rgb(239, 238, 238);
-  border: 4px solid rgba(16, 4, 4, 0.778);
+  background-color: rgb(252, 249, 249);
+  outline: 4px solid rgba(16, 4, 4, 0.778);
 }
 .auth-form fieldset span {
   text-align: center;
@@ -250,8 +264,8 @@ input[type=checkbox] {
   transition: all 200ms linear;
 }
 .auth-form .valid {
-  border: rgb(20, 63, 63);
-  color: rgb(20, 63, 63);
+  border: rgb(46, 68, 87);
+  color: rgb(46, 68, 87);
   font-weight: bold;
   text-shadow: 0px 0px 10px rgba(250, 250, 250, 0.927);
 }
@@ -260,6 +274,7 @@ input[type=checkbox] {
   color: rgb(114, 8, 8);
   font-weight: bold;
   text-shadow: 0px 0px 10px rgba(250, 250, 250, 0.927);
+  background-color: rgba(241, 241, 241, 0.4588235294);
 }
 
 .order-form-wrapper {
@@ -353,7 +368,7 @@ input[type=checkbox] {
   background: white;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
-@media screen and (min-width: 65em) {
+@media screen and (min-width: 70em) {
   .popup--added-to-cart {
     margin: 0;
     top: 50%;
@@ -376,7 +391,7 @@ input[type=checkbox] {
 .popup__close-icon {
   background-color: white;
   box-shadow: 2px 2px 10px rgb(67, 67, 67);
-  color: rgb(20, 63, 63);
+  color: rgb(46, 68, 87);
   position: absolute;
   right: 2em;
   border: none;
@@ -385,6 +400,93 @@ input[type=checkbox] {
 }
 .popup__close-icon:hover {
   background-color: rgba(119, 119, 119, 0.234);
+}
+
+.no-cart {
+  height: 92vh;
+  background-image: linear-gradient(to left top, #a76f6f, #92687d, #726581, #556178, #435b66);
+}
+.no-cart-text {
+  letter-spacing: 0.12em;
+  color: white;
+}
+
+.searchbar {
+  width: 100%;
+  margin-bottom: var(--size-4);
+}
+@media screen and (min-width: 45em) {
+  .searchbar {
+    width: 50%;
+  }
+}
+.searchbar svg {
+  vertical-align: text-bottom;
+}
+.searchbar fieldset {
+  padding: var(--size-2) var(--size-2);
+  margin-bottom: var(--size-4);
+}
+.searchbar fieldset:has(> input:focus) {
+  outline: 3px solid black;
+}
+.searchbar fieldset input {
+  border: none;
+  width: 90%;
+  padding: var(--size-1);
+}
+.searchbar fieldset input:focus {
+  outline: none;
+}
+
+.mobile-header nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.mobile-header nav .mobile-menu-wrapper {
+  position: relative;
+}
+.mobile-header nav .mobile-menu-wrapper svg {
+  vertical-align: middle;
+}
+.mobile-header nav .mobile-menu-wrapper button {
+  margin-left: var(--size-2);
+}
+.mobile-header nav .mobile-menu-container {
+  background-color: #eae9e9;
+  color: var(--clr-primary);
+  padding-top: 1em;
+  text-align: center;
+  min-height: 94vh;
+  min-width: 14em;
+  position: absolute;
+  z-index: 2;
+  right: 0;
+  box-shadow: 2px 2px 20px black;
+}
+.mobile-header nav .mobile-menu-container > a {
+  display: block;
+  padding: var(--size-3);
+  animation-duration: 1.2s;
+  animation-name: slidein;
+}
+@keyframes slidein {
+  from {
+    margin-bottom: 40px;
+    width: 100%;
+  }
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+}
+.mobile-header nav .mobile-menu-container > a:hover {
+  background-color: var(--clr-primary);
+  color: white;
+}
+.mobile-header nav .active-navlink {
+  text-decoration: underline;
 }
 
 .products-wrapper {
@@ -402,6 +504,16 @@ input[type=checkbox] {
   gap: 1.5rem;
   grid-template-columns: repeat(auto-fill, minmax(min(9rem, 100%), 1fr));
   margin: 0 auto;
+  position: relative;
+}
+.card-list .loading-container {
+  width: 100%;
+  min-height: 70vh;
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  background-color: rgba(205, 205, 205, 0.512);
 }
 
 .card img {
@@ -410,7 +522,7 @@ input[type=checkbox] {
   border-radius: 1rem 1rem 0 0;
 }
 
-@media screen and (width > 1025px) {
+@media screen and (min-width: 70em) {
   .products-wrapper {
     flex-direction: row;
   }
@@ -425,18 +537,47 @@ input[type=checkbox] {
 .cart-wrapper {
   display: flex;
   flex-direction: column;
+  gap: 0.5rem;
   max-width: 900px;
+  margin: 0 auto;
+  background-image: linear-gradient(to left top, #a76f6f, #92687d, #726581, #556178, #435b66);
+  min-height: 92vh;
+}
+@media screen and (min-width: 55rem) {
+  .cart-wrapper {
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--size-8);
+  }
 }
 .cart-wrapper .padding-helper {
   padding: 0.5rem;
 }
 .cart-wrapper .cart-order-wrapper {
+  font-size: 1.1rem;
+  margin-top: var(--size-4);
   text-align: right;
+  background-color: rgb(219, 219, 219);
+  padding: var(--size-2);
 }
-@media screen and (min-width: 65rem) {
-  .cart-wrapper {
-    margin: 0 auto;
-  }
+.cart-wrapper .cart-order-wrapper .cart-order-sum {
+  margin-bottom: var(--size-2);
+}
+.cart-wrapper .cart-order-wrapper .cart-order-sum div {
+  margin-bottom: var(--size-2);
+  display: flex;
+  justify-content: space-between;
+}
+.cart-wrapper .cart-order-wrapper button {
+  width: 100%;
+  font-weight: bold;
+  padding: var(--size-3) 0;
+  letter-spacing: 0.1rem;
+}
+.cart-wrapper .cart-order-wrapper button:hover {
+  background-color: var(--clr-second-light);
+  color: var(--clr-primary);
 }
 
 .orders-wrapper--user {
@@ -505,10 +646,10 @@ input[type=checkbox] {
 }
 
 header {
-  background-color: white;
+  background-color: var(--clr-primary-light-500);
   color: black;
-  height: 8vh;
   font-size: 18px;
+  padding: var(--size-3);
 }
 
 .navshop {
@@ -540,11 +681,18 @@ header {
   text-decoration: none;
   color: black;
 }
+.navshop a span {
+  margin-left: var(--size-1);
+  display: inline-block;
+  vertical-align: text-top;
+}
 .navshop svg {
   margin-left: 0.5rem;
+  vertical-align: middle;
 }
 .navshop svg:hover {
   transform: scale(1.2);
+  text-decoration: underline;
 }
 .navshop .navshop__profile {
   display: inline-block;
@@ -577,7 +725,7 @@ header {
   padding: 0.5rem 0;
 }
 .navshop .navshop__profile--hover ul li:hover {
-  color: rgb(20, 63, 63);
+  color: rgb(46, 68, 87);
   background-color: rgba(119, 119, 119, 0.234);
   font-weight: bold;
   text-decoration: none;
@@ -590,7 +738,7 @@ header {
   text-decoration: none;
 }
 .navshop .navshop__profile--hover ul li a:hover {
-  color: rgb(20, 63, 63);
+  color: rgb(46, 68, 87);
   font-weight: bold;
   text-decoration: none;
   cursor: pointer;
@@ -655,9 +803,52 @@ select {
   display: none;
 }
 
+.admin-aside {
+  display: none;
+  background-color: var(--clr-primary);
+  color: white;
+  box-shadow: 2px 2px 20px var(--clr-primary);
+}
+@media screen and (min-width: 70em) {
+  .admin-aside {
+    display: block;
+  }
+}
+.admin-aside nav {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding: 1.5rem 0;
+}
+.admin-aside nav a {
+  padding: var(--size-3) 0;
+}
+.admin-aside nav a:hover {
+  background-color: var(--clr-second-light);
+  color: black;
+}
+.admin-aside nav .active {
+  text-decoration: underline;
+}
+
+.admin-wrapper {
+  min-height: 100vh;
+}
+@media screen and (min-width: 70em) {
+  .admin-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+  }
+}
+
+main {
+  min-height: 92vh;
+}
+
 .padding-helper {
   padding-block: 1em;
   padding-inline: 1em;
+  padding: 1.5rem clamp(1rem, 5%, 3rem);
 }
 
 .heading-message {
@@ -684,4 +875,40 @@ select {
 
 .underline {
   text-decoration: underline;
+}
+
+.mq-large-table-cell {
+  display: none;
+}
+@media screen and (min-width: 70em) {
+  .mq-large-table-cell {
+    display: table-cell;
+  }
+}
+
+.mq-medium-table-cell {
+  display: none;
+}
+@media screen and (min-width: 45em) {
+  .mq-medium-table-cell {
+    display: table-cell;
+  }
+}
+
+.hide {
+  display: none;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.navshop .active-navlink {
+  text-decoration: underline;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }/*# sourceMappingURL=main.css.map */

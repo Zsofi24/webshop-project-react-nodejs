@@ -1,15 +1,14 @@
-import React, { useEffect } from 'react'
+import { useParams } from 'react-router-dom';
 import useProduct from '../../hooks/useProduct';
 import { productService } from '../../services/productServices';
-import { useParams } from 'react-router-dom';
-import Button from '../../components/Button';
 import ProductForm from '../../components/admin/ProductForm';
+import Button from '../../components/button/Button';
+import { StyledUpdateForm } from '../../components/admin/StyledUpdateForm';
 
 export default function EditProduct() {
 
     let [{ loading, response, error, categories}, dispatch ] = useProduct();
     const { productid } = useParams();
-    console.log(response, "resp");
     
     function updateProduct(e) {
         e.preventDefault();
@@ -53,10 +52,10 @@ export default function EditProduct() {
       { loading && <div>Loading...</div> }
       { error && <div>ERROR OH NO</div> }
       { response && (
-        <>
+        <StyledUpdateForm>
             <ProductForm inputData={response} categories={categories} handleChange={handleChange} addOrRemoveCheckbox={addOrRemoveCheckbox}/>
             <Button $primary handleClick={updateProduct} text='szerkesztés'></Button>
-        </>
+        </StyledUpdateForm>
       )}
     </section>
   )

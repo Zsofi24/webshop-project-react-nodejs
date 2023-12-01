@@ -40,6 +40,14 @@ export default function useCategories() {
                     error: null
                 }
             }
+            case 'DELETE': {
+                return {
+                    ...state,
+                    loading: false,
+                    response: action.response,
+                    error: null
+                }
+            }
             case 'PAGECHANGE': {
                 return {
                     ...state,
@@ -64,13 +72,12 @@ export default function useCategories() {
     useEffect(() => {
         let isCurrent = true;
         dispatch({ type: 'LOADING' });
-        let query = '';
-        searchParams.forEach((key, value) => {
-            query = query + `${value}=${key}&`;
-        })
-        console.log(query, 'query in useCategories');
+        // let query = '';
+        // searchParams.forEach((key, value) => {
+        //     query = query + `${value}=${key}&`;
+        // })
         categoryService
-            .getCategories(query)
+            .getCategories(searchParams)
             .then(categories => {
                 if(isCurrent) {
                     dispatch({ 

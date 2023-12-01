@@ -1,7 +1,6 @@
-import React, { useState } from 'react'
-import useCategories from '../../hooks/useCategories';
 import { Link, useSearchParams } from 'react-router-dom';
-import Button from '../../components/Button';
+import useCategories from '../../hooks/useCategories';
+import Button from '../../components/button/Button'; 
 import Pagination from '../../components/Pagination';
 import CategoryListTable from '../../components/admin/CategoryListTable';
 import { categoryService } from '../../services/categoryService';
@@ -20,28 +19,30 @@ export default function AdminCategoryList() {
 
   function categoryDelete(id) {
     categoryService.deleteCategory(id)
-     .then(id => console.log(id))
-     .catch(err => alert(err.statusText))
+      .then(id => dispatch({ type: 'DELETE', response: deletecategory(response, id)}))
+      .catch(err => alert(err.statusText))
   }
 
-  console.log(response, "resp");
-    
+  function deletecategory(categories, deletedid) {
+    return categories.filter(c => c.categoryId != deletedid.id)
+  }
+
   return (
     <>
-    <section>
+    <section className='padding-helper'>
       { loading && <div>Loading...</div> }
       { error && <div>ERROR OH NO</div> }
       { 
       <>
-        <Link to='/admin/kategoriak/kategoria-felvitel'><Button>ÚJ KATEGÓRIA</Button></Link>
+        <Link to='/admin/kategoriak/kategoria-felvitel'><Button type="admin-create">+ ÚJ KATEGÓRIA</Button></Link>
         <CategoryListTable 
           categories={response}
           categoryDelete={categoryDelete}
         />          
       </>
       }
-    </section>
     <Pagination totalPages={totalPages} onPageChange={onPageChange} currentPage={page}/>
+    </section>
     </>
   )
 }

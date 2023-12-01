@@ -7,9 +7,12 @@ export const StyledCartItem = styled.div`
         "img amount price";
     grid-template-columns: 1fr 2fr 1fr;
     gap: 0.5rem;
-    padding-bottom: 0.5rem;
+    padding: var(--size-4);
     border-bottom: 1px solid grey;
-    background-color: $clr-primary;
+    box-shadow: 10px 5px 5px #435B66;
+    border-radius: var(--size-4);
+    background-color: white;
+    margin-bottom: var(--size-3);
 
     #cart-item-title {
         grid-area: title
@@ -18,26 +21,37 @@ export const StyledCartItem = styled.div`
     #cart-item-delete {
         grid-area: delete;
         margin-left: auto;
+        
+        button {
+            font-size: inherit;
+
+            svg {
+            vertical-align: middle;
+        }
+        }
     }
 
     .amount-wrapper {
-        max-width: 70%;
+        max-width: 50%;
         grid-area: amount;
         align-self: end;
         display: flex;
         text-align: center;
         border: 1px solid black;
         border-radius: 12px;
+        padding-inline: 4px 2px;
+        padding-block: 2px 2px;
 
         @media screen and (min-width: 65rem) {
             align-self: center;
             min-width: 100%;
         }
-    }
 
-    .amount-wrapper > * {
-        display: inline-block;
-        flex: 1;
+        > * {
+            display: inline-block;
+            flex: 1;
+            align-self: center;
+        }
     }
 
     #cart-item-price {
@@ -61,14 +75,12 @@ export const StyledCartItem = styled.div`
         grid-template-areas:
             "img title amount price delete";
 
-        margin: 0 auto;
+        margin: var(--size-3) auto;
         grid-template-columns: repeat(5, 1fr);
 
         & > * {
             align-self: center;
         }
+        height: 13rem;
     }
-
-
-
 `

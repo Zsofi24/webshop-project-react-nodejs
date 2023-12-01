@@ -1,0 +1,12 @@
+@use "../abstracts/" as *;
+
+.no-cart {
+    height: 92vh;
+    background-image: linear-gradient(to left top, #a76f6f, #92687d, #726581, #556178, #435b66);
+
+    &-text {
+        letter-spacing: 0.12em;
+        color: white;
+    }
+}
+

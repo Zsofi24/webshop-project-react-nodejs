@@ -1,5 +1,4 @@
-import React from 'react';
-import Button from '../../Button';
+import Button from "../../button/Button";
 
 export default function ProductAmountChanger({updateAmount, amount, id}) {
   return (

@@ -35,8 +35,8 @@ export default {
     },
 
     getUserOrders(req, res, next) {
-        const userid = req.session.user.localId
-        console.log(req.session.user, 'user in order');
+        const userid = req.session.user?.localId || req.params.userid
+        console.log(userid, 'userid');
         ordersServices
             .getUserOrders({ userid })
             .then(resp => res.status(200).send(resp))

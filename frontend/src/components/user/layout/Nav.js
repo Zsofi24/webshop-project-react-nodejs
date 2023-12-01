@@ -3,13 +3,16 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import { BiLogIn } from 'react-icons/bi';
 import { BsCart } from 'react-icons/bs';
 import { AiOutlineUser } from 'react-icons/ai';
-import { UserAuthContext } from '../contexts/UserAuthContext';
-import { authService } from '../services/authService';
-import Profile from './Profile';
+import { UserAuthContext } from '../../../contexts/UserAuthContext';
+import { authService } from '../../../services/authService';
+import Profile from '../../Profile';
+import NavCartAmount from '../cart/NavCartAmount';
+import { CartContext } from '../../../contexts/CartContext';
 
 export default function Nav({ handleMouseEnter, handleMouseLeave, isProfileVisible }) {
 
   const { user, setUser } = useContext(UserAuthContext);
+  const { cart, setCart } = useContext(CartContext);
   const navigate = useNavigate();
 
   function logout() {
@@ -17,6 +20,7 @@ export default function Nav({ handleMouseEnter, handleMouseLeave, isProfileVisib
       .userLogout()
       .then(() => {
         setUser({});
+        setCart(null);
         navigate('/')
       })
   }
@@ -27,14 +31,14 @@ export default function Nav({ handleMouseEnter, handleMouseLeave, isProfileVisib
         <NavLink to='/'>F</NavLink>
       </div>
       <div className='navshop__elements'>
-        <NavLink to='/termekek'>termékek</NavLink>
-        <NavLink to='/admin'>admin</NavLink>
+        <NavLink to='/termekek' className={({isActive}) => isActive ? 'active-navlink' : ''}>termékek</NavLink>
+        <NavLink to='/admin' className={({isActive}) => isActive ? 'active-navlink' : ''}>admin</NavLink>
       </div>
       <div>
         { user?.email ?
         <>
           <div className='navshop__profile'>
-            <NavLink to='/profile' onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+            <NavLink to='/profile' className={({isActive}) => isActive ? 'active-navlink' : ''} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
               <AiOutlineUser />
             </NavLink>
             <Profile logout={logout} username={user.username} />
@@ -43,7 +47,7 @@ export default function Nav({ handleMouseEnter, handleMouseLeave, isProfileVisib
           :
           <NavLink to='/belepes'><BiLogIn /></NavLink>
         }
-        <NavLink to={`/kosar`}><BsCart/></NavLink>
+        <NavLink to={`/kosar`} className={({isActive}) => isActive ? 'active-navlink' : ''}><BsCart/><NavCartAmount /></NavLink>
       </div>     
     </nav>
   )

@@ -15,6 +15,17 @@
     gap: $size-6;
     grid-template-columns: repeat(auto-fill, minmax(min(9rem, 100%), 1fr));
     margin: 0 auto;
+    position: relative;
+
+    .loading-container {
+      width: 100%;
+      min-height: 70vh;
+      position: absolute;
+      left: 0;
+      right: 0;
+      z-index: 5;
+      background-color: rgba(205, 205, 205, 0.512);
+    }
 }
   
 .card img {
@@ -23,7 +34,7 @@
     border-radius: $size-4 $size-4 0 0;
 }
 
-@media screen and (width > 1025px) {
+@include mq(large) {
     .products-wrapper {
       flex-direction: row;
     }

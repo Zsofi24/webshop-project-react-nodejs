@@ -76,7 +76,8 @@ function updateProduct(product, id) {
     return fetch(`${API_URL}/api/products/${id}`, {
         method: "PUT",
         credentials: "include",
-        body: product
+        body: JSON.stringify(product),
+        headers: {"Content-Type": "application/json"}
     })
         .then(resp => resp.json())
 }
@@ -86,6 +87,17 @@ function deleteProduct(id) {
         credentials: "include",
         method: "DELETE"
     })
+        .then(resp => {
+            console.log(resp, "resp");
+            if(!resp.ok) {
+                console.log(resp.status, resp.statusText);
+                return Promise.reject({
+                    status: resp.status,
+                    statusText: resp.statusText
+                })
+            }
+            return resp
+        })
         .then(resp => resp.json())
 }
 

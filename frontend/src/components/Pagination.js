@@ -1,7 +1,7 @@
 import React from 'react'
 import { MdOutlineArrowBackIosNew, MdOutlineArrowForwardIos } from 'react-icons/md';
 import '../assets/css/Pagination.css';
-import Button from './Button';
+import Button from './button/Button';
 
 export default function Pagination({totalPages, onPageChange, currentPage}) {
 

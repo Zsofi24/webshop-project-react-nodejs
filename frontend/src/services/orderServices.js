@@ -31,8 +31,14 @@ function getOrder(orderid) {
         .then(resp => resp.json())
 }
 
+function getUserOrdersById(userid) {
+    return fetch(`${API_URL}/api/orders/${userid}`)
+        .then(resp => resp.json())
+}
+
 export const orderServices = {
     sendOrder,
     getUserOrders,
-    getOrder
+    getOrder,
+    getUserOrdersById
 }

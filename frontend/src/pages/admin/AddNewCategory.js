@@ -1,9 +1,9 @@
-import React from 'react'
+import { useNavigate } from 'react-router-dom';
 import useCategory from '../../hooks/useCategory';
-import Button from '../../components/Button';
 import { categoryService } from '../../services/categoryService';
 import CategoryForm from '../../components/admin/CategoryForm';
-import { useNavigate } from 'react-router-dom';
+import Button from '../../components/button/Button';
+import { StyledUpdateForm } from '../../components/admin/StyledUpdateForm';
 
 export default function AddNewCategory() {
 
@@ -20,7 +20,6 @@ export default function AddNewCategory() {
     }
 
   }
-  console.log(response);
 
   function createCategory() {
     categoryService
@@ -33,11 +32,13 @@ export default function AddNewCategory() {
 
   return (
     <>
-    <CategoryForm
-      inputData={response}
-      handleChange={handleChange}      
-    />
-    <Button $primary handleClick={createCategory}>kategória létrehozása</Button>
+    <StyledUpdateForm>
+      <CategoryForm
+        inputData={response}
+        handleChange={handleChange}      
+      />
+      <Button $primary handleClick={createCategory}>kategória létrehozása</Button>
+    </StyledUpdateForm>
     </>
   )
 }

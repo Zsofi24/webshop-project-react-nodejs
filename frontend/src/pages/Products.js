@@ -8,6 +8,7 @@ import useScreenSize from '../hooks/useScreenSize';
 import Aside from '../components/user/aside/Aside';
 import AsideMobile from '../components/user/aside/AsideMobile';
 import Popup from '../components/user/popup/Popup';
+import Searchbar from '../components/Searchbar';
 
 export default function Products() {
 
@@ -28,7 +29,6 @@ export default function Products() {
     
   return (
     <section className='products-wrapper'>
-      {/* <AsideMobile /> */}
       {
         popupOpen && <Popup closePopUp={() => setPopupOpen(false)} product={product}/>
       }
@@ -48,8 +48,11 @@ export default function Products() {
 
 
       <div className='products-container'>
+        <Searchbar />
         <div className='card-list'>
-        { loading && <div><ColorRing
+          {
+            loading && <div className='loading-container flex-center'>
+              <div><ColorRing
               visible={true}
               height="80"
               width="80"
@@ -57,7 +60,9 @@ export default function Products() {
               wrapperStyle={{}}
               wrapperClass="blocks-wrapper"
               colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
-            /></div> }
+            /></div> 
+            </div>
+          }
         { error && <div className="error">ERROR OH NO</div> }
         {
           !showMobileAside
@@ -65,7 +70,13 @@ export default function Products() {
           response?.map(prod => <ProductCard key={prod.id} product={prod} setPopupOpen={setPopupOpen} setProduct={setProduct} />)
         }
         </div>
-        <Pagination totalPages={totalPages} onPageChange={onPageChange} currentPage={page}/>
+        {
+          response?.length <= 0
+          ?
+          <h3>Nincs a keresésnek megfelelő termék</h3>
+          :
+          <Pagination totalPages={totalPages} onPageChange={onPageChange} currentPage={page}/>
+        }
       </div>
     </section>
   )
