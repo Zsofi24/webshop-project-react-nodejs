@@ -4,7 +4,7 @@ import { BiLock } from 'react-icons/bi';
 import { FaUser } from 'react-icons/fa';
 import { AiFillExclamationCircle, AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import { GiCheckMark } from 'react-icons/gi';
-import Button from './button/Button';
+import Button from '../../button/Button';
 
 export default function RegistrationForm({formData, handleChange, submitRegistration}) {
 

@@ -1,9 +1,9 @@
 import { AiOutlineArrowLeft } from 'react-icons/ai';
-import useUserOrders from '../hooks/useUserOrders';
-import UserOrderProduct from '../components/user/orders/UserOrderProduct';
+import useUserOrders from '../../hooks/useUserOrders';
+import UserOrderProduct from '../../components/user/orders/UserOrderProduct';
 import { Link } from 'react-router-dom';
 
-export default function UserOrderDetails() {
+export default function UserOrderDetailsPage() {
 
   const [{loading, orders, order, error}, dispatch] = useUserOrders();
   console.log(order, "order");
@@ -30,7 +30,7 @@ export default function UserOrderDetails() {
                 <h3 className='heading-3 text-center uppercase'>rendelés összegzése</h3>
                 <div className='order__details'>
                     {
-                        order.products.map(product => <UserOrderProduct product={product} />)                     
+                        order.products.map(product => <UserOrderProduct product={product} key={product.id}/>)                     
                     }
                 </div>
                 <div>

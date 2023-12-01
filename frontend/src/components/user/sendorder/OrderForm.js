@@ -1,5 +1,3 @@
-import React from 'react'
-
 export default function OrderForm({details, handleChange}) {
   return (
     <form className='order-form'>

@@ -1,7 +1,7 @@
-import useUserOrders from '../hooks/useUserOrders';
-import UserOrders from '../components/user/orders/UserOrders';
+import useUserOrders from '../../hooks/useUserOrders';
+import UserOrders from '../../components/user/orders/UserOrders';
 
-export default function Orders() {
+export default function OrdersPage() {
 
     const [{loading, orders, error}, dispatch] = useUserOrders(); 
 

@@ -5,7 +5,7 @@ import { BsCart } from 'react-icons/bs';
 import { AiOutlineUser } from 'react-icons/ai';
 import { UserAuthContext } from '../../../contexts/UserAuthContext';
 import { authService } from '../../../services/authService';
-import Profile from '../../Profile';
+import Profile from '../profile/Profile';
 import NavCartAmount from '../cart/NavCartAmount';
 import { CartContext } from '../../../contexts/CartContext';
 
