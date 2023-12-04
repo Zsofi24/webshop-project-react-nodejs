@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useSearchParams } from 'react-router-dom';
 import { ColorRing } from 'react-loader-spinner';
-import Pagination from '../components/Pagination';
-import useProducts from '../hooks/useProducts';
-import ProductCard from '../components/user/product/ProductCard';
-import useScreenSize from '../hooks/useScreenSize';
-import Aside from '../components/user/aside/Aside';
-import AsideMobile from '../components/user/aside/AsideMobile';
-import Popup from '../components/user/popup/Popup';
-import Searchbar from '../components/Searchbar';
+import Pagination from '../../components/Pagination';
+import useProducts from '../../hooks/useProducts';
+import ProductCard from '../../components/user/product/ProductCard';
+import useScreenSize from '../../hooks/useScreenSize';
+import Aside from '../../components/user/aside/Aside';
+import AsideMobile from '../../components/user/aside/AsideMobile';
+import Popup from '../../components/user/popup/Popup';
+import Searchbar from '../../components/Searchbar';
 
-export default function Products() {
+export default function ProductsPage() {
 
     const [{loading, response, error, totalPages, page}, dispatch] = useProducts();
 
