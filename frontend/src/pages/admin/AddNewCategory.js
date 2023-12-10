@@ -3,6 +3,7 @@ import useCategory from '../../hooks/useCategory';
 import { categoryService } from '../../services/categoryService';
 import CategoryForm from '../../components/admin/CategoryForm';
 import Button from '../../components/button/Button';
+import { StyledUpdateForm } from '../../components/admin/StyledUpdateForm';
 
 export default function AddNewCategory() {
 
@@ -19,7 +20,6 @@ export default function AddNewCategory() {
     }
 
   }
-  console.log(response);
 
   function createCategory() {
     categoryService
@@ -32,11 +32,13 @@ export default function AddNewCategory() {
 
   return (
     <>
-    <CategoryForm
-      inputData={response}
-      handleChange={handleChange}      
-    />
-    <Button $primary handleClick={createCategory}>kategória létrehozása</Button>
+    <StyledUpdateForm>
+      <CategoryForm
+        inputData={response}
+        handleChange={handleChange}      
+      />
+      <Button $primary handleClick={createCategory}>kategória létrehozása</Button>
+    </StyledUpdateForm>
     </>
   )
 }

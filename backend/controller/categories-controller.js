@@ -35,7 +35,6 @@ export default {
     },
 
     update(req, res, next) {
-        console.log(req.body, "body");
         const { categoryName: name, categoryId: id} = req.body;
         categoriesService
             .update(name, id)
@@ -46,7 +45,6 @@ export default {
 
     delete(req, res, next) {
         const { categoryid: id } = req.params;
-        console.log(id, "id");
         categoriesService
             .delete(id)
             .then(resp => res.status(201).send(resp))

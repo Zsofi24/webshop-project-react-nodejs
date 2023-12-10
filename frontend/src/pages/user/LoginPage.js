@@ -1,18 +1,18 @@
 import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import LoginForm from '../components/LoginForm';
+import LoginForm from '../../components/user/login/LoginForm';
 import { Link, useLoaderData } from 'react-router-dom';
 import {AiFillExclamationCircle} from 'react-icons/ai';
-import { formValidation } from '../utils/formValidation';
-import { authService } from '../services/authService';
-import { UserAuthContext } from '../contexts/UserAuthContext';
+import { formValidation } from '../../utils/formValidation';
+import { authService } from '../../services/authService';
+import { UserAuthContext } from '../../contexts/UserAuthContext';
 
 
 export function loader({ request }) {
   return new URL(request.url).searchParams.get('message');  
 }
 
-export default function Login() {
+export default function LoginPage() {
   
   const message = useLoaderData();
   const navigate = useNavigate();
@@ -21,7 +21,7 @@ export default function Login() {
 
   const [formData, setFormData] = useState({
     email: {
-        value: "ab@a.com",
+        value: "admin@a.com",
         valid: false
     },
     password: {
@@ -46,6 +46,7 @@ export default function Login() {
     e.preventDefault();
     authService.userLogin({email: formData.email.value, password: formData.password.value})
         .then(data => { 
+          console.log(data, "data");
             setUser(data)
             if(data.isAdmin) navigate('/admin')
             else navigate('/', {state:{message: `Üdvözöljük, ${data.username}`}})

@@ -1,0 +1,65 @@
+@use "../abstracts/" as *;
+
+.mobile-header {
+
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .mobile-menu-wrapper {
+            position: relative;
+
+            svg {
+                vertical-align: middle;
+            }
+
+            button {
+                margin-left: var(--size-2);
+            }
+        }
+        
+        .mobile-menu-container {            
+            background-color: #eae9e9;
+            color: var(--clr-primary);
+            padding-top: 1em;
+            text-align: center;
+            min-height: 94vh;
+            min-width: 14em;
+            position: absolute;
+            z-index: 2;
+            right: 0;
+            box-shadow: 2px 2px 20px black;
+
+            & > a {
+                display: block;
+                padding: var(--size-3);
+
+                animation-duration: 1.2s;
+                animation-name: slidein;
+
+                @keyframes slidein {
+                    from {
+                        margin-bottom: 40px; 
+                        width: 100%;                       
+                    }
+                    to {
+                        margin-left: 0%;
+                        width: 100%;
+                    }
+                    
+                }
+
+                &:hover {
+                    background-color: var(--clr-primary);
+                    color: white;
+                }
+            }
+        }
+
+        .active-navlink {
+            text-decoration: underline;
+
+        }
+    }
+}

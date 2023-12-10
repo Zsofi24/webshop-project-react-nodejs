@@ -1,7 +1,9 @@
 $clr-primary: rgb(46, 68, 87);
 $clr-primary-light: rgb(67, 91, 102);
+$clr-primary-light-500: rgba(67, 91, 102, 0.5);
 $clr-second: rgb(167, 111, 111);
 $clr-second-light: rgb(234, 178, 160);
+$clr-second-light-200: rgba(234, 179, 160, 0.538);
 $clr-red: rgba(117, 25, 15, 0.662);
 $clr-light-red: rgb(163, 53, 36);
 $clr-green: rgba(37, 173, 94, 0.662);
@@ -22,8 +24,10 @@ $clr-admin-gold: #BA9741;
 $colors: (
     "primary": rgb(46, 68, 87),
     "primary-light": rgb(67, 91, 102),
+    "primary-light-500": rgb(67, 91, 102, 0.5),
     "second": rgb(167, 111, 111),
     "second-light": rgb(234, 178, 160),
+    "second-light-500": rgb(234, 178, 160, 0.538),
     "red": rgb(114, 8, 8),
     "light-red": rgb(163, 53, 36),
     "green": rgba(37, 173, 94, 0.662),

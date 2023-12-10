@@ -1,9 +1,10 @@
 @use "../abstracts/" as *;
 
 header {
-    background-color: white;
+    background-color: var(--clr-primary-light-500);
     color: black;
-    height: $header-height;
+    // height: $header-height;
     font-size: 18px;
+    padding: var(--size-3)
 }
 

@@ -19,7 +19,7 @@ export default function ProductCard({product, setPopupOpen, setProduct}) {
   const [ searchParams, setSearchParams ] = useSearchParams();
 
   useEffect(() => {
-    if(cart.length > 0) {
+    if(cart?.length > 0) {
       const productInCart = cart.some(item => item.id == product.id)
       setIsInCart(productInCart)
     } else {

@@ -1,19 +1,16 @@
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { CartContext } from '../contexts/CartContext'
-import { UserAuthContext } from '../contexts/UserAuthContext';
-import CartItem from '../components/user/cart/CartItem';
-import { cartService } from '../services/cartService';
-import Button from '../components/button/Button';
-import NoUserCart from '../components/user/cart/NoUserCart';
-import EmptyCart from '../components/user/cart/EmptyCart';
-import Checkout from '../components/user/cart/Checkout';
+import { CartContext } from '../../contexts/CartContext'
+import { UserAuthContext } from '../../contexts/UserAuthContext';
+import CartItem from '../../components/user/cart/CartItem';
+import { cartService } from '../../services/cartService';
+import EmptyCart from '../../components/user/cart/EmptyCart';
+import Checkout from '../../components/user/cart/Checkout';
 
-export default function Cart() {
+export default function CartPage() {
 
   const {cart, setCart, total} = useContext(CartContext);
   const {user} = useContext(UserAuthContext);
-  const navigate = useNavigate();
 
   function updateAmount(id, operator) {
 

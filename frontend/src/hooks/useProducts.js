@@ -69,11 +69,12 @@ export default function useProducts() {
     useEffect(() => {
         let isCurrent = true;
         dispatch({ type: 'LOADING' });
+        let timeout = searchParams.get("q") ? 1500 : 1
+        let timer = setTimeout(() => {
         productService
             .getProducts(searchParams)
             .then(products => {
                 if(isCurrent) {
-                    // setTimeout(() => {
                         dispatch({ 
                             type: 'RESOLVED', 
                             response: products.products, 
@@ -81,14 +82,16 @@ export default function useProducts() {
                             totalPages: (Math.ceil(products.total / state.pageSize))
                         })
 
-                    // }, 1000)
-                }
-            })
-            .catch(error => {
-                dispatch({ type: 'ERROR', error })
-            })
+                    }
+                })
+                .catch(error => {
+                    dispatch({ type: 'ERROR', error })
+                })
+        }, timeout)
         return () => {
+            clearTimeout(timer)
             isCurrent = false
+
         }
     }, [searchParams])
 

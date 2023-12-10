@@ -4,7 +4,7 @@ import { BiLock } from 'react-icons/bi';
 import { FaUser } from 'react-icons/fa';
 import { AiFillExclamationCircle, AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import { GiCheckMark } from 'react-icons/gi';
-import Button from './button/Button';
+import Button from '../../button/Button';
 
 export default function RegistrationForm({formData, handleChange, submitRegistration}) {
 
@@ -24,13 +24,13 @@ export default function RegistrationForm({formData, handleChange, submitRegistra
                             placeholder='email'
                             onChange={(e) => handleChange(e)}
                         />
+                        <span>{formData.email.valid && <GiCheckMark />}</span>
                     </fieldset>
-                    <div className={`${formData.email.valid ? "valid" : "invalid"} input-container__message`}>
+                    <div className={`${formData.email.valid ? "valid" : formData.email.value ? "invalid" : ""} input-container__message`}>
                         {(!formData.email.valid && !formData.email.value) 
                             ? ""
-                            : formData.email.valid  
-                                ? <GiCheckMark />
-                                : <><AiFillExclamationCircle /> Helyes e-mail formátumot adjon meg!</>
+                            : !formData.email.valid  
+                                && <><AiFillExclamationCircle /> Helyes e-mail formátumot adjon meg!</>
                           }
                     </div>
                 </div>
@@ -46,13 +46,13 @@ export default function RegistrationForm({formData, handleChange, submitRegistra
                             onChange={(e) => handleChange(e)}
                         />
                         <span onClick={() => setPasswordVisible(prev => !prev)}>{passwordVisible ? <AiOutlineEyeInvisible /> : <AiOutlineEye /> }</span>
+                        <span>{formData.password.valid && <GiCheckMark />}</span>
                     </fieldset>
-                    <div className={`${formData.password.valid ? "valid" : "invalid"} input-container__message`}>
+                    <div className={`${formData.password.valid ? "valid" : formData.password.value ? "invalid" : ""} input-container__message`}>
                         {(!formData.password.valid && !formData.password.value) 
                             ? null
-                            : formData.password.valid  
-                                ? <GiCheckMark />
-                                : <><AiFillExclamationCircle /> Minimum 4 karakter</>
+                            : !formData.password.valid  
+                                && <><AiFillExclamationCircle /> Minimum 4 karakter</>
                           }
                     </div>
                 </div>
@@ -67,13 +67,13 @@ export default function RegistrationForm({formData, handleChange, submitRegistra
                             value={formData.username.value}
                             onChange={(e) => handleChange(e)}
                         />
+                        <span>{formData.username.valid && <GiCheckMark />}</span>
                     </fieldset>
-                    <div className={`${formData.username.valid ? "valid" : "invalid"} input-container__message`}>
+                    <div className={`${formData.username.valid ? "valid" : formData.username.value ? "invalid" : ""} input-container__message`}>
                         {(!formData.username.valid && !formData.username.value) 
                             ? null
-                            : formData.username.valid  
-                                ? <GiCheckMark />
-                                : <><AiFillExclamationCircle /> Minimum 2 karakter</>
+                            : !formData.username.valid  
+                                && <><AiFillExclamationCircle /> Minimum 2 karakter</>
                           }
                     </div>
                 </div>

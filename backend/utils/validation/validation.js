@@ -3,7 +3,7 @@ export function minLength(data, minimum) {
 }
 
 export function minNumber(number, minimum) {
-    return Number(number) > minimum
+    return Number(number) >= minimum
 }
 
 export function emailValidation(email) {

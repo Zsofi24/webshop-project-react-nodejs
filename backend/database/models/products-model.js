@@ -24,6 +24,7 @@ export default {
     },
 
     create({ title, description, price, stock, id, visible, limited, path }) {
+        console.log(stock, "stsock");
         const sql = `
             INSERT INTO products
             (title, description, price, stock, id, visible, limited, image_path) 
@@ -73,34 +74,36 @@ export default {
         })
     },
 
-    getCurrent({ pageSize , page, sortBy, order, filter, products }) {
+    getCurrent({ pageSize , page, sortBy, order, filter, products, search }) {
+        console.log(search, 'q');
         let orderquery = '';
         let filterquery = '';
         if(sortBy) orderquery = `ORDER BY p.${sortBy} ${order}`;
 
-        if (filter) { filter = filter.map(cat => `'${cat}'`); filterquery = `WHERE c.name IN (${filter})`}
+        if (filter) { filter = filter.map(cat => `'${cat}'`); filterquery = `AND c.name IN (${filter})`}
         else  filterquery = ""
 
         const sql = `
             SELECT p.price, p.id, p.title, p.description, p.stock, p.visible, p.image_path as path, p.limited FROM products p  
-            JOIN products_categories pc ON pc.product_id = p.id
-            JOIN categories c ON c.id = pc.category_id   
-            ${filterquery} 
+            LEFT JOIN products_categories pc ON pc.product_id = p.id
+            LEFT JOIN categories c ON c.id = pc.category_id   
+            WHERE p.title LIKE '%${search}%'
             AND p.stock > ${products}
+            ${filterquery} 
             GROUP BY p.id  
             ${orderquery} 
             LIMIT ${pageSize} OFFSET ${pageSize  * (page -1)}             
          `;
         const sql2 = `
             SELECT COUNT(*) as total FROM ( 
-                SELECT COUNT(*) FROM products p
-                JOIN products_categories pc ON pc.product_id = p.id
-                JOIN categories c ON c.id = pc.category_id   
-                ${filterquery}
+                SELECT COUNT(*), p.title, p.stock FROM products p
+                LEFT JOIN products_categories pc ON pc.product_id = p.id
+                LEFT JOIN categories c ON c.id = pc.category_id   
+                WHERE p.title LIKE '%${search}%'
                 AND p.stock > ${products}
+                ${filterquery}
                 GROUP BY p.id
             );
-
         `;
 
         return new Promise((resolve, reject) => {

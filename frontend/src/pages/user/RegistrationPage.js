@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { AiFillExclamationCircle } from 'react-icons/ai';
-import RegistrationForm from '../components/RegistrationForm'
-import { formValidation } from '../utils/formValidation';
-import { authService } from '../services/authService';
+import RegistrationForm from '../../components/user/registration/RegistrationForm'
+import { formValidation } from '../../utils/formValidation';
+import { authService } from '../../services/authService';
 
-export default function Registration() {
+export default function RegistrationPage() {
 
   const [errorMessage, setErrorMessage] = useState(null);
   const navigate = useNavigate();

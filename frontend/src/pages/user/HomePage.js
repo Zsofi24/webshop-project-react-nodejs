@@ -6,7 +6,7 @@ export function loader({ request }) {
   return new URL(request.url).searchParams.get('message');  
 }
 
-export default function Home() {
+export default function HomePage() {
 
   const adminMessage = useLoaderData();
   const location = useLocation();

@@ -105,16 +105,23 @@ export default {
     },
 
     delete(id) {
-        const sql = `DELETE FROM categories WHERE id = ?`;
+        const sql = `DELETE FROM products_categories WHERE category_id = ?`;
+        const sql2 = `DELETE FROM categories WHERE id = ?`;
 
         return new Promise((resolve, reject) => {
             const stmt = db.prepare(sql);
             stmt.bind(id);
             stmt.run((err) => {
                 if(err) reject(err)
-                else resolve({id})
+                else {
+                    const stmt2 = db.prepare(sql2);
+                    stmt2.bind(id);
+                    stmt2.run((err) => {
+                        if(err) reject(err)
+                        else resolve({ id })
+                    })
+                }
             })
         })
-
     }
 }
