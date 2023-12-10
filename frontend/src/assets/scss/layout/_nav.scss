@@ -1,10 +1,12 @@
 @use "../abstracts" as *;
 
 .navshop {
+    font-size: 1.2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1rem;  
+    text-transform: capitalize;
 
     &__elements > a {
         margin-left: $size-2;

@@ -7,7 +7,7 @@
     max-width: 900px;
     margin: 0 auto;
     background-image: linear-gradient(to left top, #a76f6f, #92687d, #726581, #556178, #435b66);
-    min-height: 92vh;
+    min-height: calc(100vh - $header-height);
 
     // @media screen and (min-width: 40rem) {
     //     max-width: 100%;

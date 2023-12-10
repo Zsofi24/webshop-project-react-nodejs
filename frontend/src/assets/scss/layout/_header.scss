@@ -1,10 +1,25 @@
 @use "../abstracts/" as *;
 
 header {
-    background-color: var(--clr-primary-light-500);
+    background-color: rgba(255, 255, 255, 0.562);
     color: black;
-    // height: $header-height;
+    height: $header-height;
     font-size: 18px;
-    padding: var(--size-3)
+    padding: var(--size-3);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+}
+
+.opacity-nav {
+    top: 0;
+    opacity: .8;
+
+    a {
+        color: white;
+
+    }
 }
 

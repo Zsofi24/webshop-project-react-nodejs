@@ -27,6 +27,10 @@ input[type=checkbox] {
   vertical-align: middle;
 }
 
+section {
+  padding-top: 10vh;
+}
+
 :root {
   --clr-primary: rgb(46, 68, 87);
   --clr-primary-light: rgb(67, 91, 102);
@@ -122,11 +126,11 @@ input[type=checkbox] {
 }
 
 .login-regist {
-  height: 92vh;
+  height: 100vh;
   background-image: url("../img/form-background.jpg");
   background-size: cover;
   background-position: center;
-  padding-top: 3em;
+  padding-top: calc(10vh + 2em);
 }
 
 .form-container {
@@ -278,6 +282,7 @@ input[type=checkbox] {
 }
 
 .order-form-wrapper {
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
@@ -348,7 +353,7 @@ input[type=checkbox] {
 .popup {
   background-color: rgba(0, 0, 0, 0.5);
   position: fixed;
-  z-index: 2;
+  z-index: 1000;
   width: 100%;
   height: 100%;
   top: 0;
@@ -403,7 +408,7 @@ input[type=checkbox] {
 }
 
 .no-cart {
-  height: 92vh;
+  height: 100vh;
   background-image: linear-gradient(to left top, #a76f6f, #92687d, #726581, #556178, #435b66);
 }
 .no-cart-text {
@@ -541,7 +546,7 @@ input[type=checkbox] {
   max-width: 900px;
   margin: 0 auto;
   background-image: linear-gradient(to left top, #a76f6f, #92687d, #726581, #556178, #435b66);
-  min-height: 92vh;
+  min-height: 90vh;
 }
 @media screen and (min-width: 55rem) {
   .cart-wrapper {
@@ -587,8 +592,6 @@ input[type=checkbox] {
 
 .order-wrapper {
   max-width: 600px;
-  box-shadow: 1px 1px 20px black;
-  border-radius: 10px;
 }
 @media screen and (min-width: 45em) {
   .order-wrapper {
@@ -596,6 +599,14 @@ input[type=checkbox] {
   }
 }
 
+.order {
+  margin-top: 2em;
+  box-shadow: 1px 1px 20px black;
+  border-radius: 10px;
+}
+.order h3 {
+  margin-top: 2rem;
+}
 .order__back-link {
   color: rgb(119, 119, 119);
   display: inline-block;
@@ -645,23 +656,79 @@ input[type=checkbox] {
      object-fit: cover;
 }
 
-.test {
-  min-height: 92vh;
-  background-image: linear-gradient(to left top, #a76f6f, #92687d, #726581, #556178, #435b66);
+.home-header {
+  display: flex;
+  align-items: center;
+  position: relative;
+  justify-content: center;
+  font-size: 50px;
+  width: 100%;
+  color: #121212;
+  height: 98vh;
+  background-image: url("../img/bg.jpg");
+  -o-object-fit: cover;
+     object-fit: cover;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center center;
 }
 
+.home-header .wave {
+  padding: 0px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  left: 0;
+  right: 0;
+}
+
+.home-header .main-text {
+  width: 400px;
+  height: 400px;
+  opacity: 0.87;
+  position: absolute;
+  left: 30px;
+  top: 40px;
+  animation-duration: 2s;
+  animation-name: home;
+}
+
+@keyframes home {
+  from {
+    transform: matrix(0, 1, 1, 0, 0, 0);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
 header {
-  background-color: var(--clr-primary-light-500);
+  background-color: rgba(255, 255, 255, 0.562);
   color: black;
+  height: 10vh;
   font-size: 18px;
   padding: var(--size-3);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+}
+
+.opacity-nav {
+  top: 0;
+  opacity: 0.8;
+}
+.opacity-nav a {
+  color: white;
 }
 
 .navshop {
+  font-size: 1.2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
+  text-transform: capitalize;
 }
 .navshop__elements > a {
   margin-left: 0.5rem;
@@ -847,13 +914,25 @@ select {
 }
 
 main {
-  min-height: 92vh;
+  min-height: 91vh;
+}
+
+section.padding-helper {
+  padding-block: 10vh;
+  padding-inline: 0.8em;
+}
+@media screen and (min-width: 70em) {
+  section.padding-helper {
+    padding-block: 1em;
+    padding-inline: 0.8em;
+    padding: 1.5rem clamp(0.8rem, 5%, 2rem);
+  }
 }
 
 .padding-helper {
   padding-block: 1em;
-  padding-inline: 1em;
-  padding: 1.5rem clamp(1rem, 5%, 3rem);
+  padding-inline: 0.8em;
+  padding: 1.5rem clamp(0.8rem, 5%, 2rem);
 }
 
 .heading-message {

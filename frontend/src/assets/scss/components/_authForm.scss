@@ -1,11 +1,11 @@
 @use "../abstracts" as *;
 
 .login-regist {
-    height: calc(100vh - $header-height);
+    height: 100vh;
     background-image: url('../img/form-background.jpg');
     background-size: cover;
     background-position: center;
-    padding-top: 3em;
+    padding-top: calc($header-height + 2em);
 }
 
 .form-container {

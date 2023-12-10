@@ -1,5 +1,19 @@
+@use "../abstracts" as *;
+
+section.padding-helper {
+    padding-block: min($header-height, 13vh);
+    padding-inline: min(.8em, 1.5em);
+    // padding: 1.5rem clamp(1rem, 5%, 3rem);
+
+    @include mq(large) {
+        padding-block: min(1em, 1.5em);
+        padding-inline: min(.8em, 1.5em);
+        padding: 1.5rem clamp(.8rem, 5%, 2rem);
+    }
+}
+
 .padding-helper {
     padding-block: min(1em, 1.5em);
-    padding-inline: min(1em, 1.5em);
-    padding: 1.5rem clamp(1rem, 5%, 3rem);
+    padding-inline: min(.8em, 1.5em);
+    padding: 1.5rem clamp(.8rem, 5%, 2rem);
 }

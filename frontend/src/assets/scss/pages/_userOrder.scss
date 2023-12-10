@@ -7,14 +7,19 @@
 
 .order-wrapper {
     max-width: 600px;
-    box-shadow: 1px 1px 20px black;
-    border-radius: 10px;
     @include mq(medium) {
         margin: 0 auto;
     }
 }
 
 .order {
+    margin-top: 2em;
+    box-shadow: 1px 1px 20px black;
+    border-radius: 10px;
+
+    h3 {
+        margin-top: $size-8; 
+    }
 
     &__back-link {
         color: $clr-lightgrey-500;
