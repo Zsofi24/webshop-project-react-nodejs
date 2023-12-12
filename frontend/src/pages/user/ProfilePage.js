@@ -1,16 +1,18 @@
 import React, { useContext } from 'react'
 import { UserAuthContext } from '../../contexts/UserAuthContext'
+import AsideNav from '../../components/user/layout/AsideNav'
+import ProfileDetails from '../../components/user/profile/ProfileDetails'
 
 export default function ProfilePage() {
 
   const { user, setUser } = useContext(UserAuthContext)
 
   return (
-    <>
-    <div>Profile</div>
-    <p>{user.username}</p>
-    <p>{user.email}</p>
-    </>
-
+    <section>
+      <div className='profile-wrapper padding-helper'>
+        <AsideNav/>
+        <ProfileDetails/>      
+      </div>
+    </section>
   )
 }

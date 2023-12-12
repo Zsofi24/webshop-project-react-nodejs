@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
-import { useLoaderData, useLocation } from 'react-router-dom';
+import { Link, useLoaderData, useLocation } from 'react-router-dom';
 import { UserAuthContext } from '../../contexts/UserAuthContext';
+import productImage from '../../assets/img/default_product_img.jpg';
 
 export function loader({ request }) {
   return new URL(request.url).searchParams.get('message');  
@@ -23,13 +24,37 @@ export default function HomePage() {
         </svg>
         <svg className="main-text" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
           <path id="SvgjsPath1116" d="M12 17v83c0 49.3 40.5 89.1 90.1 88 46.8-1.1 85-39.4 85.9-86.2.5-25-9.5-47.7-25.8-64C146.3 21.9 124.3 12 100 12H17c-2.7 0-5 2.3-5 5z" fill="rgba(255, 255, 255, 1)"></path>
-          <text x='30' y='80'>valami </text>
+          <text x='30' y='80' id='home-text-big'>Üdvözöljük</text>
+          <text x='50' y='100' id='home-text-small'>oldalunkon!</text>
         </svg>
         </section>
+      </div>
+          {/* { adminMessage && <h2>{adminMessage}</h2>}
+          { message && <h2>{message}</h2>} */}
+          <article className='home-product'>
+            <img src={productImage}/>
+            <div className='home-product__text'>
+                Kóstolja meg újdonságunkat!
+                <Link>bővebben</Link>
+            </div>
+          </article>
+          <article className='home-product'>
+            <img src={productImage}/>
+            <div className='home-product__text'>
+                Kóstolja meg újdonságunkat!
+                <Link>bővebben</Link>
+            </div>
+          </article>
+          <article className='home-product'>
+            <img src={productImage}/>
+            <div className='home-product__text'>
+                Kóstolja meg újdonságunkat!
+                <Link>bővebben</Link>
+            </div>
+          </article>
+      <div>
 
       </div>
-      { adminMessage && <h2>{adminMessage}</h2>}
-      { message && <h2>{message}</h2>}
     </>
   )
 }

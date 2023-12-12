@@ -1,28 +1,51 @@
 @use '../abstracts/' as *;
 
-.orders-wrapper--user {
-    max-width: 800px;
-    margin-top: $size-3;
+.orders-page {
+
+    min-height: calc(100vh - $header-height);
+
+    @include mq(medium) {
+        display: grid;
+        grid-template-columns: 1fr 4fr;
+        gap: $size-6;
+    }
 }
 
-.order-wrapper {
-    max-width: 600px;
+.orders-wrapper {
+    // max-width: 600px;
     @include mq(medium) {
         margin: 0 auto;
+    }
+
+    &--user {
+        max-width: 800px;
+
+        @include mq(medium) {
+            max-width: 900px;
+        }
+        margin-top: $size-3;
     }
 }
 
 .order {
-    margin-top: 2em;
-    box-shadow: 1px 1px 20px black;
+    margin-inline: $size-6;
+    // margin-top: 2em;
+    // box-shadow: 1px 1px 20px black;
     border-radius: 10px;
+    border-top: 2px solid $clr-second;
 
-    h3 {
+    @include mq(medium) {
+        margin-left: 0;
+        margin-bottom: $size-6;    
+        max-width: 900px;
+    }
+
+    h2 {
         margin-top: $size-8; 
     }
 
     &__back-link {
-        color: $clr-lightgrey-500;
+        color: $clr-second;
         display: inline-block;
         margin: $size-3 0;
 
@@ -77,9 +100,6 @@
             height: auto;
             width: 100%;
             object-fit: cover;
-            
         }
-
-
     }
 }

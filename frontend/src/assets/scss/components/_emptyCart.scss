@@ -2,8 +2,8 @@
 
 .no-cart {
     height: 100vh;
-    background-image: linear-gradient(to left top, #a76f6f, #92687d, #726581, #556178, #435b66);
-
+    background-image: radial-gradient(ellipse at top, #844a4a, #391d2b, #1c1721, #243046, #435b66, transparent),
+                    radial-gradient(ellipse at bottom, #a76f6f, #573245, #1c1721, #243046, #435b66, transparent);
     &-text {
         letter-spacing: 0.12em;
         color: white;

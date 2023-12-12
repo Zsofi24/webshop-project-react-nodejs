@@ -2,6 +2,7 @@ import { AiOutlineArrowLeft } from 'react-icons/ai';
 import useUserOrders from '../../hooks/useUserOrders';
 import UserOrderProduct from '../../components/user/orders/UserOrderProduct';
 import { Link } from 'react-router-dom';
+import AsideNav from '../../components/user/layout/AsideNav';
 
 export default function UserOrderDetailsPage() {
 
@@ -9,14 +10,15 @@ export default function UserOrderDetailsPage() {
   console.log(order, "order");
 
   return (
-    <section className='order-wrapper  padding-helper'>
+    <section className='order-wrapper orders-page'>
         { loading && <h3>loading</h3>}
         { error && <h3>ohh, no, error</h3>}
         { order && 
         <>
-            <div className='order padding-helper'>
+            <AsideNav />
+            <div className='order'>
                 <Link to='/rendelesek' className='order__back-link'><AiOutlineArrowLeft /> összes rendelés</Link>
-                    <h3 className='heading-3 text-center uppercase'>Rendelés részletei</h3>
+                    <h2 className='text-center uppercase'>Rendelés részletei</h2>
                     <div className='order__info'>
                         <div>
                             <p>rendelés száma</p>
@@ -27,7 +29,7 @@ export default function UserOrderDetailsPage() {
                             <p>{order.info.created}</p>
                         </div>
                     </div>
-                    <h3 className='heading-3 text-center uppercase'>rendelés összegzése</h3>
+                    <h2 className='text-center uppercase'>rendelés összegzése</h2>
                     <div className='order__details'>
                         {
                             order.products.map(product => <UserOrderProduct product={product} key={product.id}/>)                     

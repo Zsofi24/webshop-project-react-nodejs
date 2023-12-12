@@ -3,7 +3,7 @@ $clr-primary-light: rgb(67, 91, 102);
 $clr-primary-light-500: rgba(67, 91, 102, 0.5);
 $clr-second: rgb(167, 111, 111);
 $clr-second-light: rgb(234, 178, 160);
-$clr-second-light-200: rgba(234, 179, 160, 0.538);
+$clr-second-light-500: rgba(234, 179, 160, 0.538);
 $clr-red: rgba(117, 25, 15, 0.662);
 $clr-light-red: rgb(163, 53, 36);
 $clr-green: rgba(37, 173, 94, 0.662);
@@ -11,6 +11,7 @@ $clr-grey: rgb(69, 69, 72);
 $clr-lightgrey-500: rgb(119, 119, 119);
 $clr-lightgrey-400: rgba(119, 119, 119, 0.592);
 $clr-lightgrey-200: rgba(119, 119, 119, 0.234);
+$clr-lightgrey-700: rgba(119, 119, 119, 0.7);
 $clr-white: rgb(255, 255, 255);
 $clr-black: rgba(0, 0, 0, 0);
 $clr-error: rgb(114, 8, 8);
@@ -41,5 +42,5 @@ $colors: (
     "admin-second": rgb(169, 144, 126),
     "admin-light-blue": rgb(171, 196, 170),
     "admin-light": rgb(243, 222, 186),
-    "admin-gold": rgb(98, 80, 34)
+    "admin-gold": #BA9741
 )

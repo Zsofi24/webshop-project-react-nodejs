@@ -21,11 +21,13 @@ export default function Layout() {
     </main>
     </>
     :
-    <div>
+    <>
+    <header className={color ? 'opacity-nav' : ''}>
       <MobileNav />
-      <main>
-        <Outlet />
-      </main>
-    </div>
+    </header>
+    <main>
+      <Outlet />
+    </main>
+    </>
   )
 }

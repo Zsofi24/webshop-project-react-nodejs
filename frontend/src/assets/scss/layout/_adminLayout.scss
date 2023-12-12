@@ -10,8 +10,6 @@
         display: block;
     }
 
-
-
     nav {
         display: flex;
         flex-direction: column;
@@ -24,7 +22,6 @@
             &:hover {
                 background-color: var(--clr-second-light);
                 color: black;
-
             }
 
         }

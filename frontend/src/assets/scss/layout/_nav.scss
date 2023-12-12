@@ -8,8 +8,14 @@
     padding: 1rem;  
     text-transform: capitalize;
 
+    .nav-logo {
+        font-family: whisper;
+        font-weight: 900;
+        font-size: 1.2em;
+    }
+
     &__elements > a {
-        margin-left: $size-2;
+        margin-left: $size-6;
         position: relative;
 
         &::before {

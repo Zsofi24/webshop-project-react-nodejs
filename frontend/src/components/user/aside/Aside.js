@@ -61,15 +61,18 @@ export default function Aside() {
 
   return (
     <div className='aside'>
-      <div className='aside__select'>
-        <Select handleChange={(e) => handleChange(e)} name='sort'>
-            <option disabled className="" value="">RENDEZÉS</option>
-            <option value="title-asc" >név: a-z</option>
-            <option value="title-desc" >név: z-a</option>
-            <option value="price-asc" >ár: a-z</option>
-            <option value="price-desc" >ár: z-a</option>
-        </Select>
-        <span className="focus"></span>
+      <div className='aside__select-wrapper'>
+        <span>rendezés:</span>
+        <div className='aside__select'>
+          <Select handleChange={(e) => handleChange(e)} name='sort'>
+              <option className="" value=""></option>
+              <option value="title-asc" >név: a-z</option>
+              <option value="title-desc" >név: z-a</option>
+              <option value="price-asc" >ár: a-z</option>
+              <option value="price-desc" >ár: z-a</option>
+          </Select>
+          <span className="focus"></span>
+        </div>
       </div>
         <div>
             <Fieldset>
