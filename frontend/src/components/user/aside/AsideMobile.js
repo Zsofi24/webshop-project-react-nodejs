@@ -63,12 +63,11 @@ export default function AsideMobile({ showMobileAside, setShowMobileAside }) {
   return (
     <div className="aside-mobile-wrapper">
       <div className="aside-mobile-panel">
+      <div className='aside__select-wrapper'>
+        <p>rendezés:</p>
         <div className="aside__select">
-          <Select
-            handleChange={(e) => handleChange(e)}
-            name="sort"
-          >
-            <option disabled className="" value="">RENDEZÉS</option>
+          <Select handleChange={(e) => handleChange(e)} name="sort">
+            <option className="" value=""></option>
             <option value="title-asc" >név: a-z</option>
             <option value="title-desc" >név: z-a</option>
             <option value="price-asc" >ár: a-z</option>
@@ -76,7 +75,8 @@ export default function AsideMobile({ showMobileAside, setShowMobileAside }) {
           </Select>
           <span className="focus"></span>
         </div>
-        <h3>szűrők</h3>
+        </div>
+        <p>szűrés</p>
         <button
           className="filter-button"
           onClick={() => setShowMobileAside((prev) => !prev)}

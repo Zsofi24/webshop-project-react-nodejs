@@ -1,3 +1,5 @@
+@use '../abstracts/' as *;
+
 .aside-mobile-wrapper {
     height: 8vh;
     display: flex;
@@ -5,6 +7,7 @@
 
     .aside-mobile-panel {
         display: flex;
+        padding-inline: 12px;
         // justify-content: flex-end;
         align-items: baseline;
     }
@@ -13,6 +16,12 @@
         background-color: transparent;
         border: none;
         margin-right: 1rem;
+
+        svg {
+            cursor: pointer;
+            vertical-align: middle;
+            color: $clr-primary;
+        }
     }
 
     .aside-mobile-filter {

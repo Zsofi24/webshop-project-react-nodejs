@@ -431,9 +431,12 @@ section {
 .searchbar fieldset {
   padding: var(--size-2) var(--size-2);
   margin-bottom: var(--size-4);
+  border: none;
+  outline: 1px solid rgb(46, 68, 87);
 }
 .searchbar fieldset:has(> input:focus) {
-  outline: 3px solid black;
+  outline: 3px solid #BA9741;
+  border: none;
 }
 .searchbar fieldset input {
   border: none;
@@ -904,12 +907,18 @@ header {
 }
 .aside-mobile-wrapper .aside-mobile-panel {
   display: flex;
+  padding-inline: 12px;
   align-items: baseline;
 }
 .aside-mobile-wrapper .filter-button {
   background-color: transparent;
   border: none;
   margin-right: 1rem;
+}
+.aside-mobile-wrapper .filter-button svg {
+  cursor: pointer;
+  vertical-align: middle;
+  color: rgb(46, 68, 87);
 }
 .aside-mobile-wrapper .aside-mobile-filter {
   z-index: 100;
@@ -937,6 +946,7 @@ header {
   position: relative;
   width: 100%;
   border: none;
+  outline: 1px solid rgb(46, 68, 87);
   border-radius: 0.25em;
   padding: 0.25em 0.5em;
   margin-block: 1rem;

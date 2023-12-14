@@ -16,9 +16,12 @@
 
         padding: var(--size-2) var(--size-2);
         margin-bottom: var(--size-4);
+        border: none;
+        outline: 1px solid $clr-primary;
 
         &:has(> input:focus) {
-            outline: 3px solid black;
+            outline: 3px solid $clr-admin-gold;
+            border: none;
         }
 
         input {
