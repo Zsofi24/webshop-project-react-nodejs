@@ -5,7 +5,7 @@ export const StyledFieldset = styled.fieldset`
     flex-direction: column;
     gap: 0.3rem;
     border: none;
-    border-top: 2px solid var(--clr-primary);
+    border-top: 2px solid var(--clr-admin-gold);
 
     div {
         display: flex;
@@ -13,7 +13,7 @@ export const StyledFieldset = styled.fieldset`
     }
 
     legend {
-        color: var(--clr-primary);
+        color: var(--clr-admin-gold);
         text-transform: uppercase;
         font-weight: bold;
     }

@@ -1,0 +1,12 @@
+@use '../abstracts' as *;
+
+.profile-wrapper {
+    min-height: 100vh;
+
+    @include mq(medium) {
+        display: grid;
+        grid-template-columns: 1fr 4fr;
+        gap: $size-6;
+        justify-self: end;
+    }
+}

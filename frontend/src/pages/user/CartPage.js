@@ -54,23 +54,26 @@ export default function CartPage() {
         {
         cart.length > 0 ? (
         <>
-        <section className='cart-wrapper padding-helper'>
-          <div className='cart-items-wrapper'>
-              {
-              cart.map(cartitem => (
-                <CartItem 
-                  key={cartitem.id} 
-                  item={cartitem} 
-                  updateAmount={updateAmount}
-                  deleteItem={deleteItem}
-                />          
-              ))
-              }
-          </div>
+        <section className=''>
+          <div className='padding-helper cart-wrapper '>
+            <div className='cart-items-wrapper '>
+                {
+                cart.map(cartitem => (
+                  <CartItem 
+                    key={cartitem.id} 
+                    item={cartitem} 
+                    updateAmount={updateAmount}
+                    deleteItem={deleteItem}
+                  />          
+                ))
+                }
+            </div>
 
-            <Checkout 
-              total={total}
-            />
+              <Checkout 
+                total={total}
+              />
+            
+          </div>
 
           </section>
         </>

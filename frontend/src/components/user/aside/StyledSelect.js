@@ -24,7 +24,7 @@ export const StyledSelect = styled.select`
         left: -1px;
         right: -1px;
         bottom: -1px;
-        border: 2px solid var(--select-focus);
+        border: 2px solid var(--clr-admin-gold);
         border-radius: inherit;
     }
 

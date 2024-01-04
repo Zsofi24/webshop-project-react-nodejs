@@ -8,6 +8,7 @@ import { authService } from '../../../services/authService';
 import Profile from '../profile/Profile';
 import NavCartAmount from '../cart/NavCartAmount';
 import { CartContext } from '../../../contexts/CartContext';
+import logout from '../../../utils/logout';
 
 export default function Nav({ handleMouseEnter, handleMouseLeave, isProfileVisible }) {
 
@@ -15,23 +16,24 @@ export default function Nav({ handleMouseEnter, handleMouseLeave, isProfileVisib
   const { cart, setCart } = useContext(CartContext);
   const navigate = useNavigate();
 
-  function logout() {
-    authService
-      .userLogout()
-      .then(() => {
-        setUser({});
-        setCart(null);
-        navigate('/')
-      })
-  }
+  // function logout() {
+  //   authService
+  //     .userLogout()
+  //     .then(() => {
+  //       setUser({});
+  //       setCart(null);
+  //       navigate('/')
+  //     })
+  // }
   
   return (
     <nav className='navshop'>
       <div>
-        <NavLink to='/'>F</NavLink>
+        <NavLink to='/' className='nav-logo'>F</NavLink>
       </div>
       <div className='navshop__elements'>
         <NavLink to='/termekek' className={({isActive}) => isActive ? 'active-navlink' : ''}>termékek</NavLink>
+        <NavLink to='/' className={({isActive}) => isActive ? 'active-navlink' : ''}>kapcsolat</NavLink>
         <NavLink to='/admin' className={({isActive}) => isActive ? 'active-navlink' : ''}>admin</NavLink>
       </div>
       <div>
@@ -41,7 +43,7 @@ export default function Nav({ handleMouseEnter, handleMouseLeave, isProfileVisib
             <NavLink to='/profile' className={({isActive}) => isActive ? 'active-navlink' : ''} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
               <AiOutlineUser />
             </NavLink>
-            <Profile logout={logout} username={user.username} />
+            <Profile logout={() => logout(setUser, setCart, navigate)} username={user.username} />
           </div>
         </>
           :

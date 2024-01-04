@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AiFillExclamationCircle } from 'react-icons/ai';
+import { AiOutlineArrowLeft } from 'react-icons/ai';
 import useCustomersDetails from '../../hooks/useCustomersDetails'
 import OrderForm from '../../components/user/sendorder/OrderForm';
 import { orderServices } from '../../services/orderServices';
@@ -56,36 +57,40 @@ export default function SendOrderPage() {
 }
 
   return (
-    <section className='order-form-wrapper padding-helper'>
-      <h3>Számlázási cím</h3>
-      <OrderForm
-        details={billingAddress}
-        handleChange={handleChangeBillingAddress}
-        formType="BILLINGRESOLVED"
-      />
-      <div>
-        <label>Eltérő szállítási cím</label>
-        <input 
-        type='checkbox'
-        value={differentBillAndShipData}
-        onChange={() => setDifferentSameBillAndShipData(prev => !prev)}
-        />
-      </div>
-      {
-        differentBillAndShipData 
-        
-        &&
-        <>
-        <h3>Szállítási cím</h3>
+    <section>
+      <div className='order-form-wrapper padding-helper'>
+        <Link to='/kosar'><p><AiOutlineArrowLeft /> vissza a kosárhoz</p></Link>
+        <h3>Számlázási cím</h3>
         <OrderForm
-          details={shippingAddress}
-          handleChange={handleChangeShippingAddress}
-          formType="SHIPRESOLVED" 
+          details={billingAddress}
+          handleChange={handleChangeBillingAddress}
+          formType="BILLINGRESOLVED"
         />
-        </>
-      }
-      {!valid && <p className='error-message'><AiFillExclamationCircle/> A csillaggal jelölt mezők kitöltése kötelező!</p>}
-      <Button handleClick={order} disabled={!valid}>megrendelés</Button>
-    </section> 
+        <div>
+          <label>Eltérő szállítási cím</label>
+          <input 
+          type='checkbox'
+          value={differentBillAndShipData}
+          onChange={() => setDifferentSameBillAndShipData(prev => !prev)}
+          />
+        </div>
+        {
+          differentBillAndShipData 
+          
+          &&
+          <>
+          <h3>Szállítási cím</h3>
+          <OrderForm
+            details={shippingAddress}
+            handleChange={handleChangeShippingAddress}
+            formType="SHIPRESOLVED" 
+          />
+          </>
+        }
+        {!valid && <p className='error-message'><AiFillExclamationCircle/> A csillaggal jelölt mezők kitöltése kötelező!</p>}
+        <Button handleClick={order} disabled={!valid}>megrendelés</Button>
+
+        </div>
+    </section>
    )
 }

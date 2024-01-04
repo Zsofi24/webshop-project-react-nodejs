@@ -3,6 +3,8 @@
 ### USAGE
 - install
 ```$ npm install```
+- seed
+```$ npm run seed```
 - start server
 ```$ npm start```
 

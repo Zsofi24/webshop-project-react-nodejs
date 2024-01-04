@@ -27,6 +27,10 @@ input[type=checkbox] {
   vertical-align: middle;
 }
 
+section {
+  padding-top: 10vh;
+}
+
 :root {
   --clr-primary: rgb(46, 68, 87);
   --clr-primary-light: rgb(67, 91, 102);
@@ -47,7 +51,7 @@ input[type=checkbox] {
   --clr-admin-second: rgb(169, 144, 126);
   --clr-admin-light-blue: rgb(171, 196, 170);
   --clr-admin-light: rgb(243, 222, 186);
-  --clr-admin-gold: rgb(98, 80, 34);
+  --clr-admin-gold: #BA9741;
   --size-1: 0.25rem;
   --size-2: 0.5rem;
   --size-3: 0.75rem;
@@ -122,11 +126,11 @@ input[type=checkbox] {
 }
 
 .login-regist {
-  height: 92vh;
+  height: 100vh;
   background-image: url("../img/form-background.jpg");
   background-size: cover;
   background-position: center;
-  padding-top: 3em;
+  padding-top: calc(10vh + 2em);
 }
 
 .form-container {
@@ -278,6 +282,7 @@ input[type=checkbox] {
 }
 
 .order-form-wrapper {
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
@@ -321,7 +326,7 @@ input[type=checkbox] {
   grid-template-columns: 2fr 2fr 1fr;
   grid-template-areas: "status date icon" "productsAmount total icon";
   margin-bottom: 0.5em;
-  background-color: beige;
+  background-color: rgba(119, 119, 119, 0.234);
   cursor: pointer;
 }
 .orders__card--status {
@@ -348,7 +353,7 @@ input[type=checkbox] {
 .popup {
   background-color: rgba(0, 0, 0, 0.5);
   position: fixed;
-  z-index: 2;
+  z-index: 1000;
   width: 100%;
   height: 100%;
   top: 0;
@@ -403,8 +408,8 @@ input[type=checkbox] {
 }
 
 .no-cart {
-  height: 92vh;
-  background-image: linear-gradient(to left top, #a76f6f, #92687d, #726581, #556178, #435b66);
+  height: 100vh;
+  background-image: radial-gradient(ellipse at top, #844a4a, #391d2b, #1c1721, #243046, #435b66, transparent), radial-gradient(ellipse at bottom, #a76f6f, #573245, #1c1721, #243046, #435b66, transparent);
 }
 .no-cart-text {
   letter-spacing: 0.12em;
@@ -426,9 +431,12 @@ input[type=checkbox] {
 .searchbar fieldset {
   padding: var(--size-2) var(--size-2);
   margin-bottom: var(--size-4);
+  border: none;
+  outline: 1px solid rgb(46, 68, 87);
 }
 .searchbar fieldset:has(> input:focus) {
-  outline: 3px solid black;
+  outline: 3px solid #BA9741;
+  border: none;
 }
 .searchbar fieldset input {
   border: none;
@@ -489,9 +497,34 @@ input[type=checkbox] {
   text-decoration: underline;
 }
 
+.aside-nav-profile {
+  display: none;
+  background-color: var(--clr-grey);
+  color: white;
+}
+@media screen and (min-width: 45em) {
+  .aside-nav-profile {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 1.5rem 0;
+  }
+  .aside-nav-profile a {
+    padding: var(--size-3) 0;
+  }
+  .aside-nav-profile a:hover {
+    background-color: var(--clr-admin-gold);
+    color: white;
+  }
+  .aside-nav-profile .active {
+    text-decoration: underline;
+  }
+}
+
 .products-wrapper {
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
 }
 
 .products-container {
@@ -540,8 +573,8 @@ input[type=checkbox] {
   gap: 0.5rem;
   max-width: 900px;
   margin: 0 auto;
-  background-image: linear-gradient(to left top, #a76f6f, #92687d, #726581, #556178, #435b66);
-  min-height: 92vh;
+  background-image: linear-gradient(to left top, #a76f6f, #573245, #1c1721, #243046, #435b66);
+  min-height: 90vh;
 }
 @media screen and (min-width: 55rem) {
   .cart-wrapper {
@@ -580,24 +613,49 @@ input[type=checkbox] {
   color: var(--clr-primary);
 }
 
+.orders-page {
+  min-height: 90vh;
+}
+@media screen and (min-width: 45em) {
+  .orders-page {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    gap: 1.5rem;
+  }
+}
+
+@media screen and (min-width: 45em) {
+  .orders-wrapper {
+    margin: 0 auto;
+  }
+}
 .orders-wrapper--user {
   max-width: 800px;
   margin-top: 0.75rem;
 }
-
-.order-wrapper {
-  max-width: 600px;
-  box-shadow: 1px 1px 20px black;
-  border-radius: 10px;
-}
 @media screen and (min-width: 45em) {
-  .order-wrapper {
-    margin: 0 auto;
+  .orders-wrapper--user {
+    max-width: 900px;
   }
 }
 
+.order {
+  margin-inline: 1.5rem;
+  border-radius: 10px;
+  border-top: 2px solid rgb(167, 111, 111);
+}
+@media screen and (min-width: 45em) {
+  .order {
+    margin-left: 0;
+    margin-bottom: 1.5rem;
+    max-width: 900px;
+  }
+}
+.order h2 {
+  margin-top: 2rem;
+}
 .order__back-link {
-  color: rgb(119, 119, 119);
+  color: rgb(167, 111, 111);
   display: inline-block;
   margin: 0.75rem 0;
 }
@@ -645,21 +703,119 @@ input[type=checkbox] {
      object-fit: cover;
 }
 
+.home-header {
+  display: flex;
+  align-items: center;
+  position: relative;
+  justify-content: center;
+  font-size: 50px;
+  width: 100%;
+  color: #121212;
+  height: 100vh;
+  background-image: url("../img/bg.jpg");
+  -o-object-fit: cover;
+     object-fit: cover;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center center;
+}
+.home-header .wave {
+  padding: 0px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  left: 0;
+  right: 0;
+}
+.home-header .main-text {
+  width: 300px;
+  height: 300px;
+  opacity: 0.87;
+  position: absolute;
+  left: 30px;
+  top: 10vh;
+  animation-duration: 2s;
+  animation-name: home;
+}
+.home-header #home-text-big {
+  font-size: 1.7rem;
+}
+.home-header #home-text-small {
+  font-size: 1.4rem;
+  font-style: italic;
+}
+
+.home-product {
+  max-width: 80%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: left;
+}
+
+img {
+  max-width: 100%;
+  max-height: 200px;
+  overflow: hidden;
+}
+
+@keyframes home {
+  from {
+    transform: matrix(0, 1, 1, 0, 0, 0);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+.profile-wrapper {
+  min-height: 100vh;
+}
+@media screen and (min-width: 45em) {
+  .profile-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    gap: 1.5rem;
+    justify-self: end;
+  }
+}
+
 header {
-  background-color: var(--clr-primary-light-500);
+  background-color: rgba(255, 255, 255, 0.1);
   color: black;
+  height: 10vh;
   font-size: 18px;
   padding: var(--size-3);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+}
+
+.opacity-nav {
+  top: 0;
+  opacity: 0.9;
+  background-color: rgb(46, 68, 87);
+  transition: background-color 0.6s ease-in-out;
+}
+.opacity-nav a {
+  color: white !important;
 }
 
 .navshop {
+  font-size: 1.2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
+  text-transform: capitalize;
+}
+.navshop .nav-logo {
+  font-family: whisper;
+  font-weight: 900;
+  font-size: 1.2em;
 }
 .navshop__elements > a {
-  margin-left: 0.5rem;
+  margin-left: 1.5rem;
   position: relative;
 }
 .navshop__elements > a::before {
@@ -751,12 +907,18 @@ header {
 }
 .aside-mobile-wrapper .aside-mobile-panel {
   display: flex;
+  padding-inline: 12px;
   align-items: baseline;
 }
 .aside-mobile-wrapper .filter-button {
   background-color: transparent;
   border: none;
   margin-right: 1rem;
+}
+.aside-mobile-wrapper .filter-button svg {
+  cursor: pointer;
+  vertical-align: middle;
+  color: rgb(46, 68, 87);
 }
 .aside-mobile-wrapper .aside-mobile-filter {
   z-index: 100;
@@ -766,8 +928,15 @@ header {
 
 .aside {
   flex: 1;
-  margin-left: 0.5rem;
   max-width: 15rem;
+  background-color: rgb(69, 69, 72);
+  color: white;
+}
+.aside__select-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-inline: 12px;
+  align-items: center;
 }
 
 .aside__select {
@@ -775,12 +944,14 @@ header {
   grid-template-areas: "select";
   align-items: center;
   position: relative;
+  width: 100%;
   border: none;
+  outline: 1px solid rgb(46, 68, 87);
   border-radius: 0.25em;
   padding: 0.25em 0.5em;
-  margin-bottom: 1rem;
+  margin-block: 1rem;
   cursor: pointer;
-  line-height: 1.75rem;
+  line-height: 1.25rem;
   background-color: white;
 }
 .aside__select::after {
@@ -842,13 +1013,25 @@ select {
 }
 
 main {
-  min-height: 92vh;
+  min-height: 91vh;
+}
+
+section.padding-helper {
+  padding-block: 10vh;
+  padding-inline: 0.8em;
+}
+@media screen and (min-width: 70em) {
+  section.padding-helper {
+    padding-block: 1em;
+    padding-inline: 0.8em;
+    padding: 1.5rem clamp(0.8rem, 5%, 2rem);
+  }
 }
 
 .padding-helper {
   padding-block: 1em;
-  padding-inline: 1em;
-  padding: 1.5rem clamp(1rem, 5%, 3rem);
+  padding-inline: 0.8em;
+  padding: 1.5rem clamp(0.8rem, 5%, 2rem);
 }
 
 .heading-message {

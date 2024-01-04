@@ -1,5 +1,6 @@
 import useUserOrders from '../../hooks/useUserOrders';
 import UserOrders from '../../components/user/orders/UserOrders';
+import AsideNav from '../../components/user/layout/AsideNav';
 
 export default function OrdersPage() {
 
@@ -10,7 +11,12 @@ export default function OrdersPage() {
       <section>
         { error && <div className="error">ERROR OH NO</div> }
         { loading && <div>loading</div>}
-        { orders && <UserOrders orders={orders}/>}
+        { orders && 
+            <div className='orders-page padding-helper'>
+            <AsideNav />
+            <UserOrders orders={orders}/>
+            </div>
+        }
       </section>
     </div>
   )

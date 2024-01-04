@@ -1,0 +1,27 @@
+@use '../abstracts/' as *;
+
+.aside-nav-profile {
+    display: none;
+    background-color: var(--clr-grey);
+    color: white;
+
+    @include mq(medium) {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        padding: 1.5rem 0;
+
+        a {
+            padding: var(--size-3) 0;
+
+            &:hover {
+                background-color: var(--clr-admin-gold);
+                color: white;
+            }
+        }
+
+        .active {
+            text-decoration: underline;
+        }
+    }
+}
