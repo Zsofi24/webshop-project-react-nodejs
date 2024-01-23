@@ -29,7 +29,7 @@ export default function MobileNav() {
     <header className='mobile-header'>
       <nav>
         <div>
-          <NavLink to='/'>F</NavLink>
+          <NavLink to='/' className='nav-logo'>F</NavLink>
         </div>
         <div className='mobile-menu-wrapper'>
           <NavLink to={`/kosar`} className={({isActive}) => isActive ? 'active-navlink' : ''}><BsCart/><NavCartAmount /></NavLink>
