@@ -95,8 +95,8 @@ export const StepForwardButton = styled(StyledButton)`
   letter-spacing: 0.1rem;
 
   &:hover {
-      background-color: var(--clr-second-light);
-      color: var(--clr-primary);
+      background-color: ${props => {if(!props.disabled) return "var(--clr-second-light)"}};
+      color: ${props => {if(!props.disabled) return "var(--clr-primary)"}};
   }
 
   cursor: ${props => props.disabled ? "not-allowed" : "pointer"};
