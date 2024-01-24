@@ -26,7 +26,6 @@ export default function MobileNav() {
   }
 
   return (
-    <header className='mobile-header'>
       <nav>
         <div>
           <NavLink to='/'>F</NavLink>
@@ -57,6 +56,5 @@ export default function MobileNav() {
           }      
         </div>
       </nav>
-    </header>
   )
 }

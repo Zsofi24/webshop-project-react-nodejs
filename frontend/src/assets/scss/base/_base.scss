@@ -30,6 +30,6 @@ input[type="checkbox"] {
 }
 
 section {
-    padding-top: $header-height;
+    padding-top: calc($header-height + 4vh);
 }
 
