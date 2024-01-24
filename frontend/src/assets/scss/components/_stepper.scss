@@ -1,0 +1,33 @@
+@use "../abstracts/" as *;
+
+.stepper-wrapper {
+    background-color: white;
+    margin-block: 2em;
+}
+
+.stepper-step {
+    display: flex;
+    flex-direction: column;
+}
+
+.stepper-container {
+    display: flex;
+    // flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 20px;
+    // width: 300px;
+}
+
+.stepper-show {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.stepper-labels {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+

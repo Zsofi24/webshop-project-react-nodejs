@@ -87,3 +87,19 @@ export const LoginRegist = styled(StyledButton)`
     transition:background-size 1s, background-color 1s;    
   }
 `
+
+export const StepForwardButton = styled(StyledButton)`
+  width: 100%;
+  font-weight: bold;
+  padding: var(--size-3) 0;
+  letter-spacing: 0.1rem;
+
+  &:hover {
+      background-color: var(--clr-second-light);
+      color: var(--clr-primary);
+  }
+
+  cursor: ${props => props.disabled ? "not-allowed" : "pointer"};
+
+
+`

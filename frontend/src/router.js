@@ -24,6 +24,7 @@ import AdminUsersList from './pages/admin/AdminUsersList';
 import EditUser from './pages/admin/EditUser';
 import AdminNewUser from './pages/admin/AdminNewUser';
 import RegistrationPage from './pages/user/RegistrationPage';
+import OrderSumPage from './pages/user/OrderSumPage';
 
 export const router = createBrowserRouter(createRoutesFromElements([
     <Route path='/' element={<Layout/>} errorElement={<Error />} key='1'>
@@ -36,6 +37,7 @@ export const router = createBrowserRouter(createRoutesFromElements([
         <Route path='/rendelesek/:orderid' element={<UserOrderDetailsPage />} errorElement={<Error />}/>
         <Route path='/kosar' element={<CartPage />} errorElement={<Error />}/>
         <Route path='/rendeles' element={<SendOrderPage />} errorElement={<Error />}/>
+        <Route path='/rendeles-osszegzes' element={<OrderSumPage />} errorElement={<Error />}/>
         <Route path='/profil' element={<ProfilePage />} errorElement={<Error />}/>
     </Route>,
     <Route path='/admin' element={<AdminLayout />} errorElement={<Error />} key='2'>

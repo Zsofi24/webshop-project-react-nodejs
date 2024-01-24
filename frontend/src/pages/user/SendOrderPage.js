@@ -1,14 +1,13 @@
-import { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { AiFillExclamationCircle } from 'react-icons/ai';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 import useCustomersDetails from '../../hooks/useCustomersDetails'
 import OrderForm from '../../components/user/sendorder/OrderForm';
-import { orderServices } from '../../services/orderServices';
-import { UserAuthContext } from '../../contexts/UserAuthContext';
-import { CartContext } from '../../contexts/CartContext';
 import { checkEmptyInput } from '../../utils/checkEmptyInput';
 import Button from '../../components/button/Button';
+import Stepper from '../../components/stepper/Stepper';
+import { StyledBackButton } from '../../components/button/StyledBackButton';
 
 export default function SendOrderPage() {
 
@@ -16,25 +15,12 @@ export default function SendOrderPage() {
 
   const [differentBillAndShipData, setDifferentSameBillAndShipData] = useState(false);
 
-  const {cart, setCart, total} = useContext(CartContext);
-  const {user} = useContext(UserAuthContext);
   const [valid, setValid] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
     setValid(checkEmptyInput(billingAddress, shippingAddress, differentBillAndShipData))
   }, [differentBillAndShipData, billingAddress])
-
-  function order() {
-    console.log(cart, "cart in order function");
-    orderServices.sendOrder(user.localId, cart, total, shippingAddress, billingAddress)
-      .then(() => {
-        setCart({})
-        alert("sikeres megrendelés")
-        navigate('/termekek')        
-      })
-      .catch(err => alert(err))
-  }
 
   function handleChangeBillingAddress(e) {
     const { name, value, type, checked } = e.target;
@@ -59,7 +45,12 @@ export default function SendOrderPage() {
   return (
     <section>
       <div className='order-form-wrapper padding-helper'>
-        <Link to='/kosar'><p><AiOutlineArrowLeft /> vissza a kosárhoz</p></Link>
+        <StyledBackButton>
+          <Link to='/kosar'>
+            <AiOutlineArrowLeft /> vissza a kosárhoz
+          </Link>
+        </StyledBackButton>
+        <Stepper currentStep={1} />
         <h3>Számlázási cím</h3>
         <OrderForm
           details={billingAddress}
@@ -88,7 +79,8 @@ export default function SendOrderPage() {
           </>
         }
         {!valid && <p className='error-message'><AiFillExclamationCircle/> A csillaggal jelölt mezők kitöltése kötelező!</p>}
-        <Button handleClick={order} disabled={!valid}>megrendelés</Button>
+        {/* <Button handleClick={order} disabled={!valid}>megrendelés</Button> */}
+        <Button type="step-forward" disabled={!valid} handleClick={() => navigate('/rendeles-osszegzes')}>Összegzés</Button>
 
         </div>
     </section>
