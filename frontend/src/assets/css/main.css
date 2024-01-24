@@ -521,30 +521,26 @@ section {
   }
 }
 
-.stepper-wrapper {
+.stepper {
   background-color: white;
   margin-block: 2em;
 }
-
-.stepper-step {
-  display: flex;
-  flex-direction: column;
-}
-
-.stepper-container {
+.stepper__container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 20px;
 }
-
-.stepper-show {
+.stepper__step {
+  display: flex;
+  flex-direction: column;
+}
+.stepper__progress {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
-.stepper-labels {
+.stepper__labels {
   display: flex;
   align-items: center;
   justify-content: center;
