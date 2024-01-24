@@ -1,33 +1,30 @@
 @use "../abstracts/" as *;
 
-.stepper-wrapper {
+.stepper {
     background-color: white;
     margin-block: 2em;
-}
 
-.stepper-step {
-    display: flex;
-    flex-direction: column;
-}
+    &__container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 20px;
+    }
 
-.stepper-container {
-    display: flex;
-    // flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 20px;
-    // width: 300px;
-}
+    &__step {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    &__progress {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
-.stepper-show {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    &__labels {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 }
-
-.stepper-labels {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
