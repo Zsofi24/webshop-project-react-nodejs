@@ -57,7 +57,7 @@ export default function CartPage() {
         <>
         <section className=''>
           <Stepper currentStep={0} />
-          <div className='padding-helper cart-wrapper '>
+          <div className='cart-wrapper '>
             <div className='cart-items-wrapper '>
                 {
                 cart.map(cartitem => (

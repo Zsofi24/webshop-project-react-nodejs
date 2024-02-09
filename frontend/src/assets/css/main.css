@@ -708,7 +708,7 @@ section {
   margin: 0 auto;
   background-image: linear-gradient(to left top, #a76f6f, #573245, #1c1721, #243046, #435b66);
   min-height: 92vh;
-  padding: 2rem 6rem;
+  padding: 2rem 3rem;
 }
 @media screen and (min-width: 55rem) {
   .cart-wrapper {
