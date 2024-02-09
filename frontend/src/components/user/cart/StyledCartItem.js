@@ -9,7 +9,7 @@ export const StyledCartItem = styled.div`
     gap: 0.5rem;
     padding: var(--size-4);
     border-bottom: 1px solid grey;
-    box-shadow: 10px 5px 5px #435B66;
+    box-shadow: 5px 2px 2px #435B66;
     border-radius: var(--size-4);
     background-color: white;
     margin-bottom: var(--size-3);

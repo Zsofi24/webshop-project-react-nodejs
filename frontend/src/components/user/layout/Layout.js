@@ -22,7 +22,7 @@ export default function Layout() {
     </>
     :
     <>
-    <header className={color ? 'opacity-nav' : ''}>
+    <header className={color ? 'opacity-nav mobile-header' : 'mobile-header'}>
       <MobileNav />
     </header>
     <main>

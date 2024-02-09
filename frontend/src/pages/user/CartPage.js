@@ -6,6 +6,7 @@ import CartItem from '../../components/user/cart/CartItem';
 import { cartService } from '../../services/cartService';
 import EmptyCart from '../../components/user/cart/EmptyCart';
 import Checkout from '../../components/user/cart/Checkout';
+import Stepper from '../../components/stepper/Stepper';
 
 export default function CartPage() {
 
@@ -55,7 +56,8 @@ export default function CartPage() {
         cart.length > 0 ? (
         <>
         <section className=''>
-          <div className='padding-helper cart-wrapper '>
+          <Stepper currentStep={0} />
+          <div className='cart-wrapper '>
             <div className='cart-items-wrapper '>
                 {
                 cart.map(cartitem => (

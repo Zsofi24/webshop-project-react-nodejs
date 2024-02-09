@@ -1,4 +1,3 @@
-import { log } from "console";
 import productsServices from "../services/products-services.js";
 import path from 'path';
 

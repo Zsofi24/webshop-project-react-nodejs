@@ -1,5 +1,5 @@
 import React from 'react'
-import { CartButton, PaginationButton, StyledButton, CartAmount, CartDelete, LoginRegist } from './StyledButton'
+import { CartButton, PaginationButton, StyledButton, CartAmount, CartDelete, LoginRegist, StepForwardButton } from './StyledButton'
 import { Admin, AdminCreate } from './AdminButton'
 
 export default function Button({remove, active, disabled, notInStock, primary, text, children, handleClick, type}) {
@@ -8,6 +8,9 @@ export default function Button({remove, active, disabled, notInStock, primary, t
       return (
         <CartButton $notInStock={notInStock} $primary={primary} onClick={handleClick}>{children}{text}</CartButton>
       )
+    }
+    else if(type == "step-forward") {
+      return <StepForwardButton onClick={handleClick} disabled={disabled}>{children}</StepForwardButton>
     }
     else if(type == "pagination") {
       return <PaginationButton active={active} onClick={handleClick}>{children}</PaginationButton>

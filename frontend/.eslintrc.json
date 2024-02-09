@@ -22,7 +22,9 @@
     "react/jsx-uses-react": "error",
     "react/jsx-uses-vars": "error",
     "react/prop-types": "off",
-    "no-unused-vars": "off"
+    "no-unused-vars": "off",
+    "no-unreachable": "off",
+    "no-useless-escape": "off"
 
     //add customize rules here as per your project's needs
   }

@@ -11,11 +11,11 @@ import ordersProductsRouter from './routes/orders-products-router.js';
 import categoriesRouter from './routes/categories-router.js';
 import billingAddressesRouter from './routes/billing-addresses-router.js';
 import shippingAddressesRouter from './routes/shipping-addresses-router.js';
+import stripeRouter from './routes/stripe-router.js';
 import errorHandler from './middlewares/error-handler-middleware.js';
 import swaggerUi from 'swagger-ui-express';
 import swaggerJSDocs from 'swagger-jsdoc';
 import { swaggerOptions } from './constants.js';
-
 
 const store = new session.MemoryStore();
 const app = express();
@@ -48,6 +48,7 @@ app.use('/api', shippingAddressesRouter);
 app.use('/api', billingAddressesRouter);
 app.use('/auth', authRouter);
 app.use('/api', usersRouter);
+app.use('/api', stripeRouter);
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 

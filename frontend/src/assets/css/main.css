@@ -28,7 +28,7 @@ input[type=checkbox] {
 }
 
 section {
-  padding-top: 10vh;
+  padding-top: 12vh;
 }
 
 :root {
@@ -130,7 +130,7 @@ section {
   background-image: url("../img/form-background.jpg");
   background-size: cover;
   background-position: center;
-  padding-top: calc(10vh + 2em);
+  padding-top: calc(8vh + 2em);
 }
 
 .form-container {
@@ -521,6 +521,139 @@ section {
   }
 }
 
+.stepper {
+  background-color: white;
+  margin-block: 2em;
+}
+.stepper__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20px;
+}
+.stepper__step {
+  display: flex;
+  flex-direction: column;
+}
+.stepper__progress {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.stepper__labels {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.payment {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+  /* spinner/processing state, errors */
+}
+.payment #payment-form {
+  width: 80%;
+  max-width: 540px;
+}
+.payment button {
+  background: #0A2540;
+  font-family: Arial, sans-serif;
+  color: #ffffff;
+  border-color: #0A2540;
+  border-radius: 4px;
+  padding: 12px 16px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  display: block;
+  transition: all 0.2s ease;
+  box-shadow: 0px 4px 5.5px 0px rgba(0, 0, 0, 0.07);
+  width: 100%;
+}
+.payment button:hover {
+  filter: contrast(115%);
+  background-color: rgba(10, 37, 64, 0.1764705882);
+  color: #0A2540;
+}
+.payment button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.payment .spinner,
+.payment .spinner:before,
+.payment .spinner:after {
+  border-radius: 50%;
+}
+.payment .spinner {
+  color: #ffffff;
+  font-size: 22px;
+  text-indent: -99999px;
+  margin: 0px auto;
+  position: relative;
+  width: 20px;
+  height: 20px;
+  box-shadow: inset 0 0 0 2px;
+  transform: translateZ(0);
+}
+.payment .spinner:before,
+.payment .spinner:after {
+  position: absolute;
+  content: "";
+}
+.payment .spinner:before {
+  width: 10.4px;
+  height: 20.4px;
+  background: #5469d4;
+  border-radius: 20.4px 0 0 20.4px;
+  top: -0.2px;
+  left: -0.2px;
+  transform-origin: 10.4px 10.2px;
+  animation: loading 2s infinite ease 1.5s;
+}
+.payment .spinner:after {
+  width: 10.4px;
+  height: 10.2px;
+  background: #5469d4;
+  border-radius: 0 10.2px 10.2px 0;
+  top: -0.1px;
+  left: 10.2px;
+  transform-origin: 0px 10.2px;
+  animation: loading 2s infinite ease;
+}
+
+#payment-message {
+  color: rgb(105, 115, 134);
+  font-size: 16px;
+  line-height: 20px;
+  padding-top: 12px;
+  text-align: center;
+}
+
+#payment-element {
+  margin-bottom: 24px;
+}
+
+.order-sum--container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.order-sum--cart-data > * {
+  margin-bottom: 0.5rem;
+}
+
+.order-sum--products table {
+  width: 100%;
+  text-align: center;
+  border: 1px solid black;
+}
+.order-sum--products table img {
+  max-height: 100px;
+}
+
 .products-wrapper {
   display: flex;
   flex-direction: column;
@@ -574,7 +707,8 @@ section {
   max-width: 900px;
   margin: 0 auto;
   background-image: linear-gradient(to left top, #a76f6f, #573245, #1c1721, #243046, #435b66);
-  min-height: 90vh;
+  min-height: 92vh;
+  padding: 2rem 3rem;
 }
 @media screen and (min-width: 55rem) {
   .cart-wrapper {
@@ -614,7 +748,7 @@ section {
 }
 
 .orders-page {
-  min-height: 90vh;
+  min-height: 92vh;
 }
 @media screen and (min-width: 45em) {
   .orders-page {
@@ -733,7 +867,7 @@ section {
   opacity: 0.87;
   position: absolute;
   left: 30px;
-  top: 10vh;
+  top: 8vh;
   animation-duration: 2s;
   animation-name: home;
 }
@@ -781,7 +915,6 @@ img {
 header {
   background-color: rgba(255, 255, 255, 0.1);
   color: black;
-  height: 10vh;
   font-size: 18px;
   padding: var(--size-3);
   position: fixed;
@@ -789,6 +922,9 @@ header {
   left: 0;
   right: 0;
   z-index: 999;
+}
+header nav {
+  height: 8vh;
 }
 
 .opacity-nav {
@@ -1017,7 +1153,7 @@ main {
 }
 
 section.padding-helper {
-  padding-block: 10vh;
+  padding-block: 8vh;
   padding-inline: 0.8em;
 }
 @media screen and (min-width: 70em) {

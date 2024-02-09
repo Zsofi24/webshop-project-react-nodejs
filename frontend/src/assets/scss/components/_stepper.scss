@@ -1,0 +1,30 @@
+@use "../abstracts/" as *;
+
+.stepper {
+    background-color: white;
+    margin-block: 2em;
+
+    &__container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 20px;
+    }
+
+    &__step {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    &__progress {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__labels {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}

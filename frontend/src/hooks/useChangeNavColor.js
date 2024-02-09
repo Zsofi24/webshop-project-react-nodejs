@@ -6,11 +6,10 @@ export default function useChangeNavColor() {
     const [ color, setColor ] = useState(false);
 
     const changeBackground = () => {
-        console.log(window.scrollY)
         if (window.scrollY >= 66) {
           setColor(true)
         } else {
-            setColor(false)
+          setColor(false)
         }
     } 
 
