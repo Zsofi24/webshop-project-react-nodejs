@@ -8,6 +8,7 @@
     margin: 0 auto;
     background-image: linear-gradient(to left top, #a76f6f, #573245, #1c1721, #243046, #435b66);
     min-height: calc(100vh - $header-height);
+    padding: 2rem 6rem;
 
     // @media screen and (min-width: 40rem) {
     //     max-width: 100%;
@@ -55,4 +56,5 @@
             }
         }
     }
+
 }

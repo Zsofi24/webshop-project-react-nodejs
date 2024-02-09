@@ -5,14 +5,13 @@ export default function OrderSumCartData() {
 
     const { cart, setCart, total, totalAmount } = useContext(CartContext);
     const delivery = 0;
-    console.log(total, "cart in ordersum");
   return (
-    <div>
+    <div className='order-sum--cart-data'>
         <h2>Kosár: {totalAmount + " tétel"}</h2>
-        <p>vásárlás összértéke: {total + " Ft"}</p>
+        <p>vásárlás összértéke: {(total).toLocaleString('fr') + " Ft"}</p>
         <p>szállítási költség: {delivery + " Ft"}</p>
 
-        <h2>Fizetendő: {total + delivery + " Ft"}</h2>
+        <h2>Fizetendő: {(total + delivery).toLocaleString('fr') + " Ft"}</h2>
     </div>
   )
 }
