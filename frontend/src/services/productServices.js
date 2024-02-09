@@ -31,9 +31,7 @@ function createProduct(product) {
         body: product,
     })
         .then(resp => {
-            console.log(resp, "resp");
             if(!resp.ok) {
-                console.log(resp.status, resp.statusText);
                 return Promise.reject({
                     status: resp.status,
                     statusText: resp.statusText,
@@ -60,10 +58,7 @@ function addProductToCart(cart) {
         body: JSON.stringify(cart),
         headers: {"Content-Type": "application/json"}
     })
-        .then(resp => {
-            console.log(resp);
-        return resp.json()
-        } )
+        .then(resp => resp.json())
 }
 
 function getOneProduct(id) {
@@ -72,7 +67,6 @@ function getOneProduct(id) {
 }
 
 function updateProduct(product, id) {
-    console.log(product, "p");
     return fetch(`${API_URL}/api/products/${id}`, {
         method: "PUT",
         credentials: "include",
@@ -88,9 +82,7 @@ function deleteProduct(id) {
         method: "DELETE"
     })
         .then(resp => {
-            console.log(resp, "resp");
             if(!resp.ok) {
-                console.log(resp.status, resp.statusText);
                 return Promise.reject({
                     status: resp.status,
                     statusText: resp.statusText

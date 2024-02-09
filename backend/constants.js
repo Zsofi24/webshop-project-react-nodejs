@@ -1,4 +1,8 @@
+import Stripe from 'stripe';
+
 export const PORT = process.env.PORT || 3031;
+export const CLIENT_URL = `http://localhost:${process.env.CLIENT_PORT}`;
+
 export const swaggerOptions = {
     definition: {
       openapi: '3.0.0',
@@ -15,3 +19,5 @@ export const swaggerOptions = {
     },
     apis: ['**/*.yaml'],
   };
+
+export const stripe = new Stripe(process.env.STRIPE_PRIVATE_KEY);

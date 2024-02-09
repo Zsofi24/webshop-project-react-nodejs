@@ -33,7 +33,6 @@ export default {
             const stmt = db.prepare(sql);
             stmt.bind(userId);
             stmt.get((err, row) => {
-                console.log(row, "shipping address row");
                 if(err) rejecet(err)
                 else if(row) resolve(row)
             })
